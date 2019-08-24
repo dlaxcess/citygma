@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil de Citygma{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <div id="enygma">
+        <h2>Ceci est la page d'accueil de Citygma</h2>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/citygma.js') }}"></script>
+{% endblock %}
