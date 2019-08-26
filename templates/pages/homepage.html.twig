@@ -18,5 +18,14 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/citygma.js') }}"></script>
+    {{ encore_entry_script_tags('Citygma_App') }}
+    <script>
+
+        $(document).ready(function () {
+            var $enigmaDiv = $('body');
+
+            var citygmaApp = new CitygmaApp($enigmaDiv);
+        });
+
+    </script>
 {% endblock %}
