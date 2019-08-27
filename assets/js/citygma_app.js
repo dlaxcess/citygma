@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import CitygmaApp from "./Citygma/CitygmaApp";
 import '../css/styles.scss';
 
-const el = React.createElement('h2', null, 'yo');
+const shouldShowBuddy = true;
 
-ReactDom.render(el, document.getElementById('enygma'));
+ReactDom.render(
+    <div>
+        <CitygmaApp withBuddy={shouldShowBuddy} />
+        <CitygmaApp withBuddy={false} />
+    </div>,
+    document.getElementById('enygma')
+);
 /*'use strict';
 
 import $ from 'jquery';
