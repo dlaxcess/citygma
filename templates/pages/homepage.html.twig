@@ -5,27 +5,20 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/citygma_app.css') }}">
 
 {% endblock %}
 
 {% block body %}
-    <div id="enygma">
+    <div>
         <h2>Ceci est la page d'accueil de Citygma</h2>
     </div>
+    <div  id="enygma"></div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
-    {{ encore_entry_script_tags('Citygma_App') }}
-    <script>
+    {{ encore_entry_script_tags('citygma_app') }}
 
-        $(document).ready(function () {
-            var $enigmaDiv = $('body');
-
-            var citygmaApp = new CitygmaApp($enigmaDiv);
-        });
-
-    </script>
 {% endblock %}

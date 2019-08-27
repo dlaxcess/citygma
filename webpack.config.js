@@ -23,7 +23,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('Citygma_App', './public/assets/js/CitygmaApp.js')
+    .addEntry('citygma_app', './assets/js/citygma_app.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -45,16 +45,16 @@ Encore
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
+    .enableVersioning(/*Encore.isProduction()*/)
 
     // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
-        useBuiltIns: 'usage',
-        corejs: 3
-    })
+    //.configureBabel(() => {}, {
+    //    useBuiltIns: 'usage',
+    //    corejs: 3
+    //})
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -64,10 +64,10 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
+    .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
