@@ -1,3 +1,46 @@
-h2 {
+@import '_mixins';
+
+body {
+  margin: 0;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+      margin: 0;
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  nav {
+    position: fixed;
+    top: -6rem;
+    left: 10rem;
+    @include transition(all .2s linear);
+
+    &.openedNav {
+      top: 0;
+    }
+  }
+}
+
+#citygma_container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../images/Labyrinthe.svg');
+  background-position: center;
+  background-size: 100%;
+}
+
+#homepageTitle {
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
     color: red;
+  }
 }

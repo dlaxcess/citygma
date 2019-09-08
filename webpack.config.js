@@ -23,12 +23,13 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('citygma_header', './assets/js/citygma_header.js')
     .addEntry('citygma_app', './assets/js/citygma_app.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+    //.splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -51,6 +52,12 @@ Encore
     //.configureBabel(() => {}, {
     //    useBuiltIns: 'usage',
     //    corejs: 3
+    //})
+
+    // enables copyFiles
+    //.copyFiles({
+    //    from: './assets/images',
+    //    to: 'images/[path][name].[hash:8].[ext]'
     //})
 
     // enables Sass/SCSS support

@@ -6,11 +6,8 @@ import '../css/styles.scss';
 const shouldShowBuddy = true;
 
 ReactDom.render(
-    <div>
-        <CitygmaApp withBuddy={shouldShowBuddy} />
-        <CitygmaApp withBuddy={false} />
-    </div>,
-    document.getElementById('enygma')
+    <CitygmaApp withBuddy={shouldShowBuddy} />,
+    document.getElementById('citygma_container')
 );
 /*'use strict';
 

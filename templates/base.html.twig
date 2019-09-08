@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/citygma_header.css') }}">
+        {% endblock %}
     </head>
     <body>
+        <header id="citygma_header"></header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <!--<script
-                    src="https://code.jquery.com/jquery-3.4.1.js"
-                    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-                    crossorigin="anonymous"></script>-->
-
+            {{ encore_entry_script_tags('citygma_header') }}
         {% endblock %}
     </body>
 </html>

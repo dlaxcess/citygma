@@ -1,12 +1,23 @@
 import React, {Component} from "react";
+import CitygmaAppContainer from "./CitygmaAppContainer";
 
 export default class CitygmaApp extends Component {
-    render() {
-        let buddy ='';
-        if (this.props.withBuddy) {
-            buddy = <b>fears cause hesitations, hesitations makes your worth fears to be true</b>
-        }
+    constructor(props) {
+        super(props);
 
-        return <h2>yo! {buddy}</h2>;
+        this.state = {
+            htmlElementClicked : null,
+        };
+    }
+
+    render() {
+        const { htmlElementClicked } = this.state;
+        const { withBuddy } = this.props;
+
+        return (
+            <CitygmaAppContainer
+                withBuddy={withBuddy}
+            />
+        )
     }
 }
