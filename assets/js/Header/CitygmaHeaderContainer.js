@@ -5,7 +5,7 @@ export default function CitygmaHeaderContainer(props) {
     const { burgerClicked, onBurgerClick } = props;
 
     return (
-        <div>
+        <header>
                 <span
                     onClick={() => onBurgerClick(burgerClicked)}
                 >
@@ -14,6 +14,6 @@ export default function CitygmaHeaderContainer(props) {
             <CitygmaNav
                 burgerClicked={burgerClicked}
             />
-        </div>
+        </header>
     );
 }

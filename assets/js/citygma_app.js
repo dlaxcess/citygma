@@ -9,14 +9,3 @@ ReactDom.render(
     <CitygmaApp withBuddy={shouldShowBuddy} />,
     document.getElementById('citygma_container')
 );
-/*'use strict';
-
-import $ from 'jquery';
-import CitygmaApp from './components/CitygmaApp';
-import '../css/styles.scss';
-
-$(document).ready(function () {
-    var $enigmaDiv = $('body');
-
-    var citygmaApp = new CitygmaApp($enigmaDiv);
-});*/

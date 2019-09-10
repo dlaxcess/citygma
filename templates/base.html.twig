@@ -3,17 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/citygma_header.css') }}">
+            <link rel="stylesheet" href="{{ asset('build/citygma_app.css') }}">
         {% endblock %}
     </head>
     <body>
-        <header id="citygma_header"></header>
+        <div  id="citygma_container"></div>
 
         {% block body %}{% endblock %}
+
         {% block javascripts %}
-            {{ encore_entry_script_tags('citygma_header') }}
+            {{ encore_entry_script_tags('citygma_app') }}
         {% endblock %}
     </body>
 </html>

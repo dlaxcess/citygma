@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
+import CitygmaHeader from "../Header/CitygmaHeader";
 import CitygmaAppContainer from "./CitygmaAppContainer";
 
 export default class CitygmaApp extends Component {
@@ -15,9 +16,12 @@ export default class CitygmaApp extends Component {
         const { withBuddy } = this.props;
 
         return (
-            <CitygmaAppContainer
-                withBuddy={withBuddy}
-            />
+            <Fragment>
+                <CitygmaHeader/>
+                <CitygmaAppContainer
+                    withBuddy={withBuddy}
+                />
+            </Fragment>
         )
     }
 }
