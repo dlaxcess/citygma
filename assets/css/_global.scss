@@ -1,0 +1,87 @@
+html {
+  line-height: 1.15; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+html {
+  box-sizing: border-box;
+  font-size: $font-size-root;
+  // voir https://github.com/twbs/bootstrap/issues/18543 (bug ergo IE 10 : interraction gênante entre la scrollbar et une eventuelle zone active à côté de la scrollbar)
+  -ms-overflow-style: scrollbar;
+  height: 100%;
+  -webkit-overflow-scrolling: touch; // Pour avoir un défilement avec inertie sur les blocs avec scroll (ie : burger)
+}
+
+html *,
+html *::before,
+html *::after {
+  box-sizing: border-box;
+}
+
+* {
+  outline: none;
+}
+
+// Voir https://getbootstrap.com/getting-started/#support-ie10-width pour l'explication du hack.
+@at-root {
+  @-ms-viewport { width: device-width; }
+}
+
+//
+/* !-- RESET HTML, BODY, ET PLUS -------------------------------------------------------------------- */
+//
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $black;
+  background-color:$white;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
+//RESET
+body {
+  margin:0
+}
+
+html,
+body,
+p,
+ul,ol,
+li,
+dl,
+dd {
+  margin:0;
+  padding:0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  li {
+    list-style:none;
+  }
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: $title-font-family;
+    margin:0;
+  }
+}
+
+.clearfix {
+  &:after {
+    @include clearfix();
+  }
+}

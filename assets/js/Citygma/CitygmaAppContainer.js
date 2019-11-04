@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 
 export default function CitygmaAppContainer(props) {
     const { withBuddy } = props;
@@ -9,9 +9,14 @@ export default function CitygmaAppContainer(props) {
     }
 
     return (
-        <div id="homepageTitle">
-            <h2>Bienvenue sur la page d'accueil de Citygma</h2>
-            <h3>yo! {buddy}</h3>
-        </div>
+        <Fragment>
+            <div id="homepageTitle">
+                <h2>Bienvenue sur la page d'accueil de Citygma</h2>
+                <h3>yo! {buddy}</h3>
+            </div>
+            <div id="homepageContainer">
+                <p>Citygma est un jeu d'enquête</p>
+            </div>
+        </Fragment>
     );
 }

@@ -9,7 +9,11 @@ export default function CitygmaHeaderContainer(props) {
                 <span
                     onClick={() => onBurgerClick(burgerClicked)}
                 >
-                    x
+                    <div id="burgerButton" title="Menu principal">
+                        <div className="bar1"></div>
+                        <div className="bar2"></div>
+                        <div className="bar3"></div>
+                    </div>
                 </span>
             <CitygmaNav
                 burgerClicked={burgerClicked}

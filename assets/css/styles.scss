@@ -1,19 +1,24 @@
+@import '_variables';
 @import '_mixins';
 
-body {
-  margin: 0;
-}
-
-@for $i from 1 through 6 {
-  h#{$i} {
-      margin: 0;
-  }
-}
+// Charte
+@import '_global';
 
 header {
   position: fixed;
   top: 0;
   left: 0;
+  height: 7rem;
+  width: 100%;
+  background-color: rgba(255,255,255,0.6);
+
+  .bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: $black;
+    margin: 8px 0;
+    @include transition(all .4s linear);
+  }
 
   nav {
     position: fixed;
@@ -22,7 +27,7 @@ header {
     @include transition(all .2s linear);
 
     &.openedNav {
-      top: 0;
+      top: 7rem;
     }
   }
 }
@@ -33,14 +38,19 @@ header {
   background-image: url('../images/Labyrinthe.svg');
   background-position: center;
   background-size: 100%;
+  padding-top: 9rem;
+
+  #homepageTitle {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      color: red;
+    }
+  }
 }
 
-#homepageTitle {
-  width: 100%;
-  text-align: center;
-
-  h2 {
-    font-size: 1.5rem;
-    color: red;
-  }
+@media screen and (min-width: $min-breakpoint-tablet) {
+  @import "front-tablet";
 }

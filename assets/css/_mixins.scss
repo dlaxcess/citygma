@@ -1,5 +1,25 @@
+// clearfix
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
 // transition
 @mixin transition($transition...) {
   -webkit-transition: $transition;
   transition: $transition;
+}
+
+// transform
+@mixin transform($transforms) {
+  -ms-transform: $transforms;
+  transform: $transforms;
+}
+
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
 }
