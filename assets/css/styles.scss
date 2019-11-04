@@ -5,38 +5,67 @@
 @import '_global';
 
 header {
+  z-index: 9999;
   position: fixed;
   top: 0;
   left: 0;
   height: 7rem;
   width: 100%;
-  background-color: rgba(255,255,255,0.6);
+  background-color: #f9f9f8;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  .bar1, .bar2, .bar3 {
-    width: 30px;
-    height: 2px;
-    background-color: $black;
-    margin: 8px 0;
-    @include transition(all .4s linear);
+  #burgerButton {
+    .bar1, .bar2, .bar3 {
+      width: 30px;
+      height: 2px;
+      background-color: $black;
+      margin: 8px 0;
+      @include transition(all .4s linear);
+    }
+
+    &.activeBurger {
+      .bar1 {
+        @include transform(rotate(-45deg) translate(-9px, 5px));
+      }
+      .bar2 {opacity: 0;}
+      .bar3 {
+        @include transform(rotate(45deg) translate(-8px, -6px));
+      }
+    }
+  }
+}
+
+nav {
+  z-index: 8000;
+  position: fixed;
+  width: 100%;
+  height: 20rem;
+  top: -20rem;
+  left: 0;
+  @include transition(all .2s linear);
+  background-color: lightgrey;
+  padding: 3rem;
+  text-align: right;
+
+  a {
+    color: black;
   }
 
-  nav {
-    position: fixed;
-    top: -6rem;
-    left: 10rem;
-    @include transition(all .2s linear);
-
-    &.openedNav {
-      top: 7rem;
-    }
+  &.openedNav {
+    top: 7rem;
   }
 }
 
 #citygma_container {
   width: 100%;
   min-height: 100vh;
-  background-image: url('../images/Labyrinthe.svg');
-  background-position: center;
+  background-color: #DEA000;
+  background-image: url('../images/immeubles.png');
+  background-repeat: no-repeat;
+  background-position: left 50% bottom 0;
   background-size: 100%;
   padding-top: 9rem;
 
@@ -51,6 +80,14 @@ header {
   }
 }
 
+@media screen and (orientation : landscape) {
+  @import "landscape";
+}
+
 @media screen and (min-width: $min-breakpoint-tablet) {
+  @import "front-tablet";
+}
+
+@media screen and (min-width: $min-breakpoint-desktop) {
   @import "front-tablet";
 }

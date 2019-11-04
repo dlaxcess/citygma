@@ -10,6 +10,7 @@ export default function CitygmaNav(props) {
             <ul>
                 <li><a href="{{ path('homepage') }}">Acceuil</a></li>
                 <li><a href="TODO">Connection / Inscription</a></li>
+                <li><a href="TODO">Mentions légales</a></li>
             </ul>
         </nav>
     );
