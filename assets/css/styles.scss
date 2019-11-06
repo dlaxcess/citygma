@@ -11,7 +11,7 @@ header {
   left: 0;
   height: 7rem;
   width: 100%;
-  background-color: #f9f9f8;
+  background-color: #dfa619/*#f9f9f8*/;
   padding: 0 3rem;
   display: flex;
   justify-content: space-between;
@@ -46,9 +46,10 @@ nav {
   top: -20rem;
   left: 0;
   @include transition(all .2s linear);
-  background-color: lightgrey;
+  background-color: #fdc53c;
   padding: 3rem;
   text-align: right;
+  @include border-radius(0 0 10px 10px);
 
   a {
     color: black;
@@ -61,13 +62,9 @@ nav {
 
 #citygma_container {
   width: 100%;
+  height: 100vh;
   min-height: 100vh;
   background-color: #DEA000;
-  background-image: url('../images/immeubles.png');
-  background-repeat: no-repeat;
-  background-position: left 50% bottom 0;
-  background-size: 100%;
-  padding-top: 9rem;
 
   #homepageTitle {
     width: 100%;
@@ -78,6 +75,79 @@ nav {
       color: red;
     }
   }
+}
+
+#homepageContainer {
+  width: 100%;
+  height: 100%;
+}
+
+#homepageBubble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  #homepageText {
+    width: 60vw;
+    height: 100%;
+    background-color: $white;
+    padding: 9rem 2rem 0 2rem;
+  }
+
+  #homepageTextBorder {
+    z-index: 5000;
+    width: 4vh;
+    height: 100%;
+    background-image: url('../images/barre-bulle.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+  }
+}
+
+#homepageImmeubles {
+  z-index: 6000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../images/ville.png');
+  background-repeat: no-repeat;
+  background-size: 200%;
+  background-position: right 0 bottom 0;
+
+  #playButton {
+    position: fixed;
+    @include transform(translateX(50%));
+    right: 50%;
+    bottom: 5%;
+    width: 43vw;
+    height: 22vw;
+    background-color: rgba(255,255,255,0.8);
+    @include border-radius(9vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7vw;
+  }
+}
+
+#homepageImmeubleRight {
+  z-index: 7000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/aerations-droite.png');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right 0 bottom 0;
 }
 
 @media screen and (orientation : landscape) {

@@ -10,12 +10,24 @@ export default function CitygmaAppContainer(props) {
 
     return (
         <Fragment>
-            <div id="homepageTitle">
-                <h2>Bienvenue sur la page d'accueil de Citygma</h2>
-                <h3>yo! {buddy}</h3>
-            </div>
             <div id="homepageContainer">
-                <p>Citygma est un jeu d'enquête</p>
+                <div id="homepageBubble">
+                    <div id="homepageText">
+                        <div id="homepageTitle">
+                            <p>Bienvenue sur la page d'accueil de Citygma</p>
+                            <p>yo! {buddy}</p>
+                        </div>
+                        <div id="homepageContainer">
+                            <p>Citygma est un jeu d'enquête à résoudre dans une ville pour la visiter en apprenant sur son histoire tout en s'amusant.</p>
+                            <p>Citygma est un jeu d'enquête à résoudre dans une ville pour la visiter en apprenant sur son histoire tout en s'amusant.</p>
+                        </div>
+                    </div>
+                    <div id="homepageTextBorder"></div>
+                </div>
+                <div id="homepageImmeubles">
+                    <span id="playButton">Jouer</span>
+                </div>
+                <div id="homepageImmeubleRight"></div>
             </div>
         </Fragment>
     );

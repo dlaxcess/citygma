@@ -1,7 +1,10 @@
+@import '_variables';
+@import '_mixins';
+
 html {
-  line-height: 1.15; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15; // 1
+  -ms-text-size-adjust: 100%; // 2
+  -webkit-text-size-adjust: 100%; // 2
 }
 
 html {
@@ -29,7 +32,7 @@ html *::after {
 }
 
 //
-/* !-- RESET HTML, BODY, ET PLUS -------------------------------------------------------------------- */
+// !-- RESET HTML, BODY, ET PLUS -------------------------------------------------------------------- //
 //
 body {
   font-family: $font-family;

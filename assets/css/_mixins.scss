@@ -1,10 +1,8 @@
-// clearfix
-@mixin clearfix() {
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+// border raduis
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
 }
 
 // transition
@@ -22,4 +20,13 @@
 // rotate
 @mixin rotate ($deg) {
   @include transform(rotate(#{$deg}deg));
+}
+
+// clearfix
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
