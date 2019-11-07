@@ -54,17 +54,6 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: right 0 bottom 0;
-
-  #playButton {
-    position: absolute;
-    right: 22vw;
-    bottom: 15%;
-    @include transform(translateX(0%));
-    width: 20vw;
-    height: 9vw;
-    @include border-radius(5vw);
-    font-size: 5vw;
-  }
 }
 
 #homepageImmeubleRight {
@@ -78,4 +67,15 @@
   background-repeat: no-repeat;
   background-size: 9% auto;
   background-position: right 0 bottom 0;
+}
+
+#playButton {
+  position: absolute;
+  right: 20vw;
+  bottom: 15%;
+  @include transform(translateX(0%));
+  width: 20vw;
+  height: 9vw;
+  @include border-radius(5vw);
+  font-size: 5vw;
 }

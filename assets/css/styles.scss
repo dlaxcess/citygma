@@ -11,7 +11,7 @@ header {
   left: 0;
   height: 7rem;
   width: 100%;
-  background-color: #dfa619/*#f9f9f8*/;
+  background-color: #fdc53c/*#f9f9f8*/;
   padding: 0 3rem;
   display: flex;
   justify-content: space-between;
@@ -41,12 +41,12 @@ header {
 nav {
   z-index: 8000;
   position: fixed;
-  width: 100%;
+  width: 32rem;
   height: 20rem;
   top: -20rem;
-  left: 0;
+  right: 0;
   @include transition(all .2s linear);
-  background-color: #fdc53c;
+  background-color: #ffdc57;
   padding: 3rem;
   text-align: right;
   @include border-radius(0 0 10px 10px);
@@ -92,7 +92,7 @@ nav {
   justify-content: flex-start;
 
   #homepageText {
-    width: 60vw;
+    width: 67vw;
     height: 100%;
     background-color: $white;
     padding: 9rem 2rem 0 2rem;
@@ -119,22 +119,7 @@ nav {
   background-image: url('../images/ville.png');
   background-repeat: no-repeat;
   background-size: 200%;
-  background-position: right 0 bottom 0;
-
-  #playButton {
-    position: fixed;
-    @include transform(translateX(50%));
-    right: 50%;
-    bottom: 5%;
-    width: 43vw;
-    height: 22vw;
-    background-color: rgba(255,255,255,0.8);
-    @include border-radius(9vw);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 7vw;
-  }
+  background-position: right -2vw bottom -6vw;
 }
 
 #homepageImmeubleRight {
@@ -148,6 +133,26 @@ nav {
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: right 0 bottom 0;
+}
+
+#playButton {
+  z-index: 9999;
+  position: fixed;
+  @include transform(translateX(50%));
+  right: 50%;
+  bottom: 5%;
+  width: 43vw;
+  height: 22vw;
+  background-color: rgba(255,255,255,0.8);
+  @include border-radius(9vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7vw;
+
+  &:hover {
+    border: 4px solid #669900;
+  }
 }
 
 @media screen and (orientation : landscape) {

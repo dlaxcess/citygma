@@ -1,6 +1,11 @@
 import React, {Component, Fragment} from "react";
+import {Route} from "react-router-dom";
+import {Switch} from "react-router";
 import CitygmaHeader from "../Header/CitygmaHeader";
 import CitygmaAppContainer from "./CitygmaAppContainer";
+import CitygmaLogin from "./Pages/CitygmaLogin";
+import CitygmaAbout from "./Pages/CitygmaAbout";
+import CitygmaMentions from "./Pages/CitygmaMentions";
 
 export default class CitygmaApp extends Component {
     constructor(props) {
@@ -14,13 +19,17 @@ export default class CitygmaApp extends Component {
     render() {
         const { htmlElementClicked } = this.state;
         const { withBuddy } = this.props;
+        console.log(window.location.pathname);
 
         return (
             <Fragment>
                 <CitygmaHeader/>
-                <CitygmaAppContainer
-                    withBuddy={withBuddy}
-                />
+                <Switch>
+                    <Route exact path="/" component={CitygmaAppContainer} />
+                    <Route path="/login" component={CitygmaLogin} />
+                    <Route path="/about" component={CitygmaAbout} />
+                    <Route path="/Mentions" component={CitygmaMentions} />
+                </Switch>
             </Fragment>
         )
     }

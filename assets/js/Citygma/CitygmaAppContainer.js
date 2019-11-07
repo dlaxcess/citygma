@@ -24,10 +24,9 @@ export default function CitygmaAppContainer(props) {
                     </div>
                     <div id="homepageTextBorder"></div>
                 </div>
-                <div id="homepageImmeubles">
-                    <span id="playButton">Jouer</span>
-                </div>
+                <div id="homepageImmeubles"></div>
                 <div id="homepageImmeubleRight"></div>
+                <span id="playButton">Jouer</span>
             </div>
         </Fragment>
     );
