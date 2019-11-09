@@ -11,10 +11,10 @@ export default function CitygmaNav(props) {
             className={burgerClicked === true ? 'openedNav' : ''}
         >
             <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/login">Connection / Inscription</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
-                <li><NavLink to="/Mentions">Mentions légales</NavLink></li>
+                <li><p><NavLink to="/">Home</NavLink></p></li>
+                <li><p><NavLink to="/login">Connection / Inscription</NavLink></p></li>
+                <li><p><NavLink to="/about">About</NavLink></p></li>
+                <li><p><NavLink to="/Mentions">Mentions légales</NavLink></p></li>
             </ul>
         </nav>
     );

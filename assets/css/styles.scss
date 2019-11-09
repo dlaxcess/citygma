@@ -18,15 +18,24 @@ header {
   align-items: center;
 
   #burgerButton {
+    cursor: pointer;
+
     .bar1, .bar2, .bar3 {
       width: 30px;
       height: 2px;
       background-color: $black;
       margin: 8px 0;
-      @include transition(all .4s linear);
+      @include transition(all .2s linear);
+    }
+
+    &:hover .bar1 {
+      width: 15px;
     }
 
     &.activeBurger {
+      &:hover .bar1 {
+        width: 30px;
+      }
       .bar1 {
         @include transform(rotate(-45deg) translate(-9px, 5px));
       }
@@ -50,6 +59,24 @@ nav {
   padding: 3rem;
   text-align: right;
   @include border-radius(0 0 10px 10px);
+  box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
+
+  ul {
+    font-size: 2rem;
+
+    li {
+      cursor: pointer;
+      margin-bottom: 1rem;
+
+      p {
+        @include transition(margin-right .2s ease-in-out);
+      }
+
+      &:hover p {
+        margin-right: 2rem;
+      }
+    }
+  }
 
   a {
     color: black;
@@ -64,17 +91,7 @@ nav {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
-  background-color: #DEA000;
-
-  #homepageTitle {
-    width: 100%;
-    text-align: center;
-
-    h2 {
-      font-size: 1.5rem;
-      color: red;
-    }
-  }
+  background-color: $orangeBack;
 }
 
 #homepageContainer {
@@ -96,6 +113,19 @@ nav {
     height: 100%;
     background-color: $white;
     padding: 9rem 2rem 0 2rem;
+
+    #homepageTitle {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    #homepageTextContainer {
+      text-align: center;
+
+      p {
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   #homepageTextBorder {
@@ -135,6 +165,167 @@ nav {
   background-position: right 0 bottom 0;
 }
 
+// Page Connection / Inscription
+#loginContainer {
+  #loginImmeubleLeft {
+    z-index: 7000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14vh;
+    height: 100vh;
+    background-image: url('../images/trace-aerations-droite.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+    @include transform(scaleX(-1));
+  }
+
+  #loginTextContainer {
+    padding: 10rem 3rem 3rem 17vh;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/trace-coin-ville.png');
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: right 0 bottom 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// Page About
+#aboutContainer {
+  padding: 7rem 0 0 28vw;
+
+  #aboutImmeubleLeft {
+    z-index: 7000;
+    position: fixed;
+    top: 0;
+    left: -4vw;
+    width: 14vh;
+    height: 100vh;
+    background-image: url('../images/aerations-droite.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+    @include transform(scaleX(-1));
+  }
+
+  #aboutVille {
+    z-index: 6000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28vw;
+    height: 100vh;
+    background-image: url('../images/trace-ville.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+  }
+
+  #aboutTextContainer {
+    width: 100%;
+    height: calc(100vh - 7rem);
+    overflow-y: scroll;
+    background-color: $white;
+
+    #aboutText {
+      width: 100%;
+      background-image: url('../images/trace-coin-ville.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: right 0 bottom 0;
+      padding: 3rem 3rem 28vw 3rem;
+
+      .clearFloat {
+        clear: right;
+      }
+
+      h2 {
+        margin-bottom: 1rem;
+      }
+
+      .imgAbout {
+        float: right;
+        margin-bottom: 1rem;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .wrapTextAbout {
+        margin-bottom: 3rem;
+      }
+
+      #playAbout {
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15vw;
+        height: 9vw;
+        @include border-radius(4vw);
+        border: 3px solid #669900;
+        background-color: #ccff33;
+        color: #669900;
+      }
+    }
+  }
+}
+
+// Page Mentions légales
+#mentionsContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #DEA000;
+  padding-left: 16vh;
+
+  #mentionsImmeubleLeft {
+    z-index: 7000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14vh;
+    height: 100%;
+    background-image: url('../images/aerations-droite.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+    @include transform(scaleX(-1));
+  }
+
+  #mentionsTextBorder {
+    position: fixed;
+    top: 7.5rem;
+    left: 12vh;
+    z-index: 5000;
+    width: 4vh;
+    height: 100vh;
+    background-image: url('../images/barre-bulle.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
+    @include transform(scaleX(-1));
+  }
+
+  #mentionsTextContainer {
+    width: 100%;
+    height: calc(100vh - 7rem);
+    margin-top: 7rem;
+    overflow-y: scroll;
+    background-color: $white;
+    padding: 3rem 3rem 5rem 3rem;
+  }
+}
+
 #playButton {
   z-index: 9999;
   position: fixed;
@@ -159,10 +350,18 @@ nav {
   @import "landscape";
 }
 
+@media screen and (min-width: $min-breakpoint-mobile) {
+  @import "front-small-tablet";
+}
+
 @media screen and (min-width: $min-breakpoint-tablet) {
   @import "front-tablet";
 }
 
 @media screen and (min-width: $min-breakpoint-desktop) {
-  @import "front-tablet";
+  @import "front-desktop";
+}
+
+@media screen and (min-width: $min-breakpoint-desktopXL) {
+  @import "front-desktop-xl";
 }

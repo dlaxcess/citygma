@@ -3,16 +3,6 @@
   height: 100vh;
   min-height: 100vh;
   background-color: #DEA000;
-
-  #homepageTitle {
-    width: 100%;
-    text-align: center;
-
-    h2 {
-      font-size: 1.5rem;
-      color: red;
-    }
-  }
 }
 
 #homepageContainer {
@@ -67,6 +57,19 @@
   background-repeat: no-repeat;
   background-size: 9% auto;
   background-position: right 0 bottom 0;
+}
+
+// Page About
+#aboutContainer {
+  padding: 7rem 0 0 30vw;
+
+  #aboutImmeubleLeft {
+    left: 0;
+  }
+
+  #aboutVille {
+    width: 30vw;
+  }
 }
 
 #playButton {

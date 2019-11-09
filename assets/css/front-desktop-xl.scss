@@ -1,0 +1,18 @@
+body {
+  font-size: 2.5rem;
+}
+
+// Page About
+#aboutContainer {
+  #aboutTextContainer {
+    #aboutText {
+      padding: 3rem 3rem 35vw 3rem;
+
+      .imgAbout {
+        img {
+          width: 25vw;
+        }
+      }
+    }
+  }
+}

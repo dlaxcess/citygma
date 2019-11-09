@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush&display=swap&subset=latin-ext');//Titre
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid:100,300,400,900&display=swap');//Titre
+@import url('https://fonts.googleapis.com/css?family=Pangolin&display=swap');//Text
+
 // COLOR
 $white        : #fff;
 $black        : #000;
@@ -6,16 +10,18 @@ $gris-fonce : #333333;
 $blackTitle   : #454545;
 $greyText : #666666;
 
+$orangeBack : #DEA000;
+
 // FONT FAMILY
-$font-family: sans-serif;
-$title-font-family: sans-serif;
+$title-font-family: /*sans-serif, 'Caveat Brush', cursive*//**/'Londrina Solid', cursive;
+$font-family: /*sans-serif, */'Pangolin', cursive;
 
 // FONT WEIGHT
 $light    : 300;
 $regular  : 400;
 $medium   : 600;
 $bold     : 700;
-$exbold   : 800;
+$exbold   : 900;
 
 $font-size-root: 10px !default;
 $font-size-xsmall: 1.2rem !default;
@@ -34,3 +40,4 @@ $max-breakpoint-mobile: 767.98px;
 $min-breakpoint-mobile: 768px;
 $min-breakpoint-tablet: 992px;
 $min-breakpoint-desktop: 1200px;
+$min-breakpoint-desktopXL: 1450px;

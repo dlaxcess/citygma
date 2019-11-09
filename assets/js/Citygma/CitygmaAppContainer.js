@@ -14,12 +14,12 @@ export default function CitygmaAppContainer(props) {
                 <div id="homepageBubble">
                     <div id="homepageText">
                         <div id="homepageTitle">
-                            <p>Bienvenue sur la page d'accueil de Citygma</p>
-                            <p>yo! {buddy}</p>
+                            <h2>L'AGENCE CITYGMA A BESOIN DE VOUS POUR<br/>SAUVER LA CITÉE RENNAISE&nbsp;!</h2>
                         </div>
-                        <div id="homepageContainer">
-                            <p>Citygma est un jeu d'enquête à résoudre dans une ville pour la visiter en apprenant sur son histoire tout en s'amusant.</p>
-                            <p>Citygma est un jeu d'enquête à résoudre dans une ville pour la visiter en apprenant sur son histoire tout en s'amusant.</p>
+                        <div id="homepageTextContainer">
+                            <p>Assistés de votre smartphone, déambulez dans les rues de Rennes au coeur d’une affaire brûlante.
+                                Résolvez des énigmes, suivez une piste grâce à votre GPS, plongez dans l’histoire de la ville et faites preuve d’audace&nbsp;!</p>
+                            <p>Cliquez sur JOUER pour obtenir les dossiers confidentiels et commencer l’aventure&nbsp;!</p>
                         </div>
                     </div>
                     <div id="homepageTextBorder"></div>

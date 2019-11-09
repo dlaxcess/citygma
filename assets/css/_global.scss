@@ -79,6 +79,7 @@ ul {
 @for $i from 1 through 6 {
   h#{$i} {
     font-family: $title-font-family;
+    font-weight: $regular;
     margin:0;
   }
 }
