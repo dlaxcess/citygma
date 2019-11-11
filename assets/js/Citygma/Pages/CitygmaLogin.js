@@ -9,7 +9,7 @@ export default function CitygmaLogin() {
                 <div id="loginTextContainer">
                     <img src={persoCitygma} alt=""/>
                     <div className="loginForm">
-                        <label for="playerMail">E-mail</label>
+                        <label htmlFor="playerMail">E-mail</label>
                         <input type="text" name="playerMail" id="playerMail"/>
                         <label htmlFor="playerPass">Mot de passe</label>
                         <input type="text" name="playerPass" id="playerPass"/>

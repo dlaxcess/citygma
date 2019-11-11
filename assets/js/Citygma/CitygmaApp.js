@@ -25,7 +25,7 @@ export default class CitygmaApp extends Component {
             <Fragment>
                 <CitygmaHeader/>
                 <Switch>
-                    <Route exact path="/" component={CitygmaAppContainer} />
+                    <Route exact path="/"><CitygmaAppContainer/></Route>
                     <Route path="/login" component={CitygmaLogin} />
                     <Route path="/about" component={CitygmaAbout} />
                     <Route path="/Mentions" component={CitygmaMentions} />

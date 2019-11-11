@@ -109,21 +109,30 @@ nav {
   justify-content: flex-start;
 
   #homepageText {
+    position: relative;
     width: 67vw;
     height: 100%;
     background-color: $white;
-    padding: 9rem 2rem 0 2rem;
+    overflow: hidden;
 
-    #homepageTitle {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+    #homepageTextScroll {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 9rem 2rem 0 2rem;
+      @include transition(all .2s ease-in-out);
 
-    #homepageTextContainer {
-      text-align: center;
+      #homepageTitle {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
 
-      p {
-        margin-bottom: 1rem;
+      #homepageTextContainer {
+        text-align: center;
+
+        p {
+          margin-bottom: 1rem;
+        }
       }
     }
   }
@@ -136,6 +145,20 @@ nav {
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: right 0 bottom 0;
+  }
+}
+
+#homepageArrows {
+  z-index: 9999;
+  position: fixed;
+  top: 10rem;
+  left: 65.5vw;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 20px;
+    height: auto;
   }
 }
 
