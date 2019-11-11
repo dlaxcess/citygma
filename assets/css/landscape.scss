@@ -59,6 +59,28 @@
   background-position: right 0 bottom 0;
 }
 
+// Page Connection / Inscription
+#loginContainer {
+  #loginTextContainer {
+    display: flex;
+    align-items: flex-start;
+    background-size: 30%, auto 100%;
+    padding-top: 3rem!important;
+
+    img {
+      width: 25%!important;
+    }
+
+    .loginForm {
+      width: 100%;
+      padding: 0 10%;
+      @media screen and (min-width: $min-breakpoint-tablet) {
+        padding-top: 20%!important;
+      }
+    }
+  }
+}
+
 // Page About
 #aboutContainer {
   padding: 7rem 0 0 30vw;

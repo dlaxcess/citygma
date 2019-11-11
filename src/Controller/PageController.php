@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{reactRouting}", name="homepage", defaults={"reactRouting": null})
      */
     public function homepage()
     {

@@ -167,11 +167,15 @@ nav {
 
 // Page Connection / Inscription
 #loginContainer {
-  #loginImmeubleLeft {
+  width: 100%;
+  height: 100vh;
+  padding-top: 7rem;
+
+  /*#loginImmeubleLeft {
     z-index: 7000;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 14vh;
     height: 100vh;
     background-image: url('../images/trace-aerations-droite.png');
@@ -179,20 +183,66 @@ nav {
     background-size: auto 100%;
     background-position: right 0 bottom 0;
     @include transform(scaleX(-1));
-  }
+  }*/
 
   #loginTextContainer {
-    padding: 10rem 3rem 3rem 17vh;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('../images/trace-coin-ville.png');
-    background-repeat: no-repeat;
-    background-size: 60%;
-    background-position: right 0 bottom 0;
+    position: relative;
+    padding: 3rem 13vh 3rem 3rem;
+    width: 100%;
+    height: calc(100vh - 7rem);
+    background-image: url('../images/trace-coin-ville-left.png'), url('../images/trace-aerations-droite.png');
+    background-repeat: no-repeat, no-repeat;
+    background-size: 80%, auto 100%;
+    background-position: left 0 bottom 0, right 0 bottom 0;
+    overflow-y: scroll;
+
+    /*#loginImmeubleLeft {
+      z-index: 7000;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 14vh;
+      height: 100vh;
+      background-image: url('../images/trace-aerations-droite.png');
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-position: right 0 bottom 0;
+    }*/
 
     img {
-      width: 100%;
+      width: 50%;
       height: auto;
+    }
+
+    .loginForm {
+      text-align: center;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      #loginSubmit {
+        text-align: right;
+        margin-top: 1rem;
+
+        #loginSubmitButton {
+          display: inline-block;
+          //height: 2rem;
+          padding: 1.5rem;
+          @include border-radius(2rem);
+          background-color: #733a3a;
+          color: $white;
+          text-align: right;
+        }
+      }
     }
   }
 }
@@ -327,7 +377,7 @@ nav {
 }
 
 #playButton {
-  z-index: 9999;
+  z-index: 7000;
   position: fixed;
   @include transform(translateX(50%));
   right: 50%;
@@ -340,6 +390,8 @@ nav {
   justify-content: center;
   align-items: center;
   font-size: 7vw;
+  color: $black;
+  cursor: pointer;
 
   &:hover {
     border: 4px solid #669900;
@@ -348,6 +400,10 @@ nav {
 
 @media screen and (orientation : landscape) {
   @import "landscape";
+}
+
+@media screen and (min-width: $min-breakpoint-xmobile) {
+  @import "front-mobile-xl";
 }
 
 @media screen and (min-width: $min-breakpoint-mobile) {

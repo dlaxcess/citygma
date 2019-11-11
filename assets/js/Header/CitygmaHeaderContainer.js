@@ -23,6 +23,7 @@ export default function CitygmaHeaderContainer(props) {
             </header>
             <CitygmaNav
                 burgerClicked={burgerClicked}
+                onBurgerClick={onBurgerClick}
             />
         </Fragment>
     );

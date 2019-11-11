@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import {NavLink} from "react-router-dom";
 
 export default function CitygmaAppContainer(props) {
     const { withBuddy } = props;
@@ -26,7 +27,7 @@ export default function CitygmaAppContainer(props) {
                 </div>
                 <div id="homepageImmeubles"></div>
                 <div id="homepageImmeubleRight"></div>
-                <span id="playButton">Jouer</span>
+                <NavLink to="/login"><span id="playButton">Jouer</span></NavLink>
             </div>
         </Fragment>
     );

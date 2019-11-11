@@ -4,11 +4,13 @@ import {
 } from "react-router-dom";
 
 export default function CitygmaNav(props) {
-    const { burgerClicked } = props;
+    const { burgerClicked, onBurgerClick } = props;
 
     return (
         <nav
             className={burgerClicked === true ? 'openedNav' : ''}
+            onMouseLeave={() => onBurgerClick(burgerClicked)}
+            onClickOutside={() => onBurgerClick(burgerClicked)}
         >
             <ul>
                 <li><p><NavLink to="/">Home</NavLink></p></li>

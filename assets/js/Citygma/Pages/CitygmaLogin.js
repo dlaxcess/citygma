@@ -5,21 +5,18 @@ export default function CitygmaLogin() {
     return (
         <Fragment>
             <div id="loginContainer">
-                <div id="loginImmeubleLeft"></div>
+
                 <div id="loginTextContainer">
                     <img src={persoCitygma} alt=""/>
-                    <p>login</p>
-                    <input type="text"/>
-                    <p>login</p>
-                    <input type="text"/>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
-                    <p>login</p>
+                    <div className="loginForm">
+                        <label for="playerMail">E-mail</label>
+                        <input type="text" name="playerMail" id="playerMail"/>
+                        <label htmlFor="playerPass">Mot de passe</label>
+                        <input type="text" name="playerPass" id="playerPass"/>
+                        <div id="loginSubmit">
+                            <span id="loginSubmitButton">Connexion</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Fragment>
