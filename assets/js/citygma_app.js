@@ -5,11 +5,9 @@ import CitygmaApp from "./Citygma/CitygmaApp";
 import '../css/styles.scss';
 import logopng from "../images/logo-citygma.png";
 
-const shouldShowBuddy = true;
-
 ReactDom.render(
     <BrowserRouter>
-        <CitygmaApp withBuddy={shouldShowBuddy} />
+        <CitygmaApp/>
     </BrowserRouter>,
     document.getElementById('citygma_container')
 );

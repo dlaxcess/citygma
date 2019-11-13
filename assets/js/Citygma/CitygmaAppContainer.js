@@ -3,13 +3,7 @@ import {NavLink} from "react-router-dom";
 import arrowUp from "../../images/arrow-up.png";
 import arrowDown from "../../images/arrow-down.png";
 
-export default function CitygmaAppContainer(props) {
-    const { withBuddy } = props;
-
-    let buddy = '';
-    if (withBuddy) {
-        buddy = <b>fears cause hesitations, hesitations makes your worth fears to be true</b>
-    }
+export default function CitygmaAppContainer() {
 
     let textTop = 0;
 
