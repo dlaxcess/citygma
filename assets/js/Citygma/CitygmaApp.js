@@ -16,6 +16,8 @@ export default class CitygmaApp extends Component {
         this.state = {
             htmlElementClicked : null,
         };
+
+        this.handleUserConnectSubmit =this.handleUserConnectSubmit.bind(this);
     }
 
     handleUserCreateSubmit(playerMail, playerPassword) {
@@ -38,7 +40,6 @@ export default class CitygmaApp extends Component {
             .then((data) => {
                 console.log(data);
             })
-
     }
 
     handleUserConnectSubmit(connectPlayerMail, connectPlayerPassword) {
@@ -47,6 +48,23 @@ export default class CitygmaApp extends Component {
             "password" : connectPlayerPassword
         };
 
+        //* security symfony
+        fetch('/api/login_symfony', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                document.location.href="/profil";
+            });/**/
+
+        /* security jwt
         fetch('/api/login_check', {
             method: 'POST',
             body: JSON.stringify(user),
@@ -58,8 +76,8 @@ export default class CitygmaApp extends Component {
                 return response.json();
             })
             .then((data) => {
-                console.log(data.token);
-            })
+                console.log(data);
+            });/**/
     }
 
     render() {

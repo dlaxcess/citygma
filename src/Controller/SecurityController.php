@@ -57,7 +57,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login", methods={"POST"})
+     * @Route("/login_symfony", name="login", methods={"POST"})
      */
     public function login(Request $request)
     {
@@ -66,5 +66,13 @@ class SecurityController extends AbstractController
             'username' => $user->getUsername(),
             'roles' => $user->getRoles()
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
+
     }
 }

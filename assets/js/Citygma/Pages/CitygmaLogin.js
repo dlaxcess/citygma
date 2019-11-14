@@ -29,6 +29,14 @@ export default function CitygmaLogin(props) {
                 <div id="loginTextContainer">
                     <img src={persoCitygma} alt=""/>
                     <div className="loginForm">
+                        <a href="#"
+                           onClick={(e) => {
+                               e.preventDefault();
+                               fetch('/api/logout');
+
+                               document.location.href="/login";
+                           }}
+                        >logout</a>
                         <form onSubmit={handleUserCreateSubmit}>
                             <label htmlFor="playerMail">E-mail</label>
                             <input type="text" name="playerMail" id="playerMail"/>

@@ -14,6 +14,14 @@ export default function CitygmaProfil(props) {
                 <p>Profil</p>
                 <p>Profil</p>
                 <p>Profil</p>
+                <a href="#"
+                   onClick={(e) => {
+                       e.preventDefault();
+                       fetch('/api/logout');
+
+                       document.location.href="/login";
+                   }}
+                >logout</a>
                 <p>Profil</p>
                 <p>Profil</p>
                 <p>Profil</p>
