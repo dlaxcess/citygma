@@ -16,13 +16,13 @@ security:
             security: false
 
 ###################### security symfony
-        main:
-            anonymous: true
-            json_login:
-                check_path: /api/login_symfony
+        #main:
+            #anonymous: true
+            #json_login:
+                #check_path: /api/login_symfony
 
-            logout:
-                path: /api/logout
+            #logout:
+                #path: /api/logout
                 #target: /
 ###########################
 
@@ -32,21 +32,21 @@ security:
             anonymous: true
 
 ########################### security jwt
-        #login:
-            #pattern:  ^/api/login
-            #stateless: true
-            #anonymous: true
-            #json_login:
-                #check_path:               /api/login_check
-                #success_handler:          lexik_jwt_authentication.handler.authentication_success
-                #failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+        login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path:               /api/login_check
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
 
-        #api:
-            #pattern:   ^/api
-            #stateless: true
-            #guard:
-                #authenticators:
-                    #- lexik_jwt_authentication.jwt_token_authenticator
+        api:
+            pattern:   ^/api
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 ###########################
 
 
@@ -61,9 +61,9 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/login_symfony, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/profil,       roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/api/login_symfony, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/users,       roles: IS_AUTHENTICATED_FULLY }

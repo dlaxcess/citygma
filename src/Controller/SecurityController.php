@@ -57,7 +57,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login_symfony", name="login", methods={"POST"})
+     * @Route("/login", name="login", methods={"POST"})
      */
     public function login(Request $request)
     {

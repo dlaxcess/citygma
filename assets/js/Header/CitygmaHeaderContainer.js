@@ -5,7 +5,7 @@ import logotext from "../../images/logo-texte-citygma.svg";
 import {NavLink} from "react-router-dom";
 
 export default function CitygmaHeaderContainer(props) {
-    const { burgerClicked, onBurgerClick } = props;
+    const { burgerClicked, onBurgerClick, currentUser, onLogoutClick } = props;
 
     return (
         <Fragment>
@@ -24,6 +24,8 @@ export default function CitygmaHeaderContainer(props) {
             <CitygmaNav
                 burgerClicked={burgerClicked}
                 onBurgerClick={onBurgerClick}
+                currentUser={currentUser}
+                onLogoutClick={onLogoutClick}
             />
         </Fragment>
     );

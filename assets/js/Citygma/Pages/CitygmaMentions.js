@@ -1,6 +1,8 @@
 import React, {Fragment} from "react";
+import {userService} from "../../auth/services/userService";
 
 export default function CitygmaMentions() {
+
     return (
         <Fragment>
             <div id="mentionsContainer">

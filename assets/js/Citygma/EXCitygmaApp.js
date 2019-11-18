@@ -7,10 +7,7 @@ import CitygmaLogin from "./Pages/CitygmaLogin";
 import CitygmaAbout from "./Pages/CitygmaAbout";
 import CitygmaMentions from "./Pages/CitygmaMentions";
 import CitygmaProfil from "./Pages/CitygmaProfil";
-
-import { PrivateRoute } from "../auth/components/PrivateRoute";
-import { authenticationService } from '../auth/services/authenticationService';
-import { history } from "../auth/helpers/history";
+import Cookies from "react-cookie";
 
 export default class CitygmaApp extends Component {
     constructor(props) {
@@ -18,10 +15,8 @@ export default class CitygmaApp extends Component {
 
         this.state = {
             htmlElementClicked : null,
-            currentUser: null
         };
 
-        this.logout = this.logout.bind(this);
     }
 
     handleUserCreateSubmit(playerMail, playerPassword) {
@@ -46,25 +41,50 @@ export default class CitygmaApp extends Component {
             })
     }
 
-    componentDidMount() {
-        authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
-    }
+    handleUserConnectSubmit(connectPlayerMail, connectPlayerPassword) {
+        let user = {
+            "username" : connectPlayerMail,
+            "password" : connectPlayerPassword
+        };
 
-    logout() {
-        authenticationService.logout();
-        history.push('/login');
+        //* security symfony
+        fetch('/api/login_symfony', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                document.location.href="/profil";
+            });/**/
+
+        /* security jwt_
+        fetch('/api/login_check', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            });/**/
     }
 
     render() {
         const { htmlElementClicked } = this.state;
-        const { currentUser } = this.state;
 
         return (
             <Fragment>
-                <CitygmaHeader
-                    currentUser={currentUser}
-                    onLogoutClick={this.logout}
-                />
+                <CitygmaHeader/>
                 <Switch>
                     <Route exact path="/"><CitygmaAppContainer/></Route>
                     <Route path="/login">
@@ -76,7 +96,7 @@ export default class CitygmaApp extends Component {
                     </Route>
                     <Route path="/about" component={CitygmaAbout} />
                     <Route path="/Mentions" component={CitygmaMentions} />
-                    <PrivateRoute exact path="/profil" component={CitygmaProfil} />
+                    <Route path="/profil" component={CitygmaProfil} />
                 </Switch>
             </Fragment>
         )

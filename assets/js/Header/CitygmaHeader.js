@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import CitygmaHeaderContainer from "./CitygmaHeaderContainer";
+import { authenticationService } from '../auth/services/authenticationService';
+import {history} from "../auth/helpers/history";
 
 export default class CitygmaHeader extends Component {
     constructor(props) {
@@ -18,11 +20,14 @@ export default class CitygmaHeader extends Component {
 
     render() {
         const { burgerClicked } = this.state;
+        const { currentUser, onLogoutClick } = this.props;
 
         return (
             <CitygmaHeaderContainer
                 burgerClicked={burgerClicked}
                 onBurgerClick={this.burgerIconClick}
+                currentUser={currentUser}
+                onLogoutClick={onLogoutClick}
             />
         );
     }
