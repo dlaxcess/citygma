@@ -8,5 +8,5 @@ export const userService = {
 
 function getCurrentUser() {
     const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch("/api/user", requestOptions).then(handleResponse);
+    return fetch("82.165.120.148:80/api/user", requestOptions).then(handleResponse);
 }
