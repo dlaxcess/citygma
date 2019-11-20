@@ -8,5 +8,5 @@ export const userService = {
 
 function getCurrentUser() {
     const requestOptions = { method: 'GET', headers: authHeader() };
-    return fetch("http://localhost/api/user", requestOptions).then(handleResponse);
+    return fetch("/api/user", requestOptions).then(handleResponse);
 }
