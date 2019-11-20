@@ -20,7 +20,7 @@ function signin(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch('82.165.120.148:80/api/register', requestOptions)
+    return fetch('http://www.citygma.com/api/register', requestOptions)
         .then(handleResponse)
         .then(data => {
 
@@ -35,7 +35,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch("82.165.120.148:80/api/login_check", requestOptions)
+    return fetch("http://www.citygma.com/api/login_check", requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
