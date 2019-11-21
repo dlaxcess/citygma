@@ -1,6 +1,6 @@
 import decode from 'jwt-decode';
 
-export default class AuthService {
+export default class EXAuthService {
     // Initializing important variables
     constructor(domain) {
         this.domain = domain || 'http://127.O.O.1:8000/'; // API server domain

@@ -1,7 +1,5 @@
 import React, {Component, Fragment} from "react";
 import persoCitygma from "../../../images/silhouette-logo.png";
-import AuthService from "../../auth/components/AuthService";
-import {Redirect} from "react-router";
 
 import { authenticationService } from '../../auth/services/authenticationService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -14,29 +12,11 @@ export default class CitygmaLogin extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            /*username: null,
-            password: null,
-            currentUser: null*/
-        };
-
-        /*this.handleUserCreateSubmit = this.handleUserCreateSubmit.bind(this);*/
-
         // redirect to home if already logged in
         if (authenticationService.currentUserValue) {
             this.props.history.push('/profil');
         }
     }
-
-    /*handleUserCreateSubmit(e) {
-        e.preventDefault();
-
-        const { onUserCreateSubmit } = this.props;
-        onUserCreateSubmit(
-            e.target.elements.namedItem('playerMail').value,
-            e.target.elements.namedItem('playerPass').value
-        );
-    }*/
 
     render() {
 

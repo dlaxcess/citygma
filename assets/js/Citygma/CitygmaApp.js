@@ -24,28 +24,6 @@ export default class CitygmaApp extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    handleUserCreateSubmit(playerMail, playerPassword) {
-        console.log(playerMail, playerPassword);
-        let value = {
-            "username" : playerMail,
-            "password" : playerPassword
-        };
-
-        fetch('/api/register', {
-            method: 'POST',
-            body: JSON.stringify(value),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-            .then(response => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-            })
-    }
-
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
     }

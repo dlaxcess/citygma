@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import persoCitygma from "../../../images/silhouette-logo.png";
-import AuthService from "../../auth/components/AuthService";
+import EXAuthService from "../../auth/components/EXAuthService";
 import {Redirect} from "react-router";
 
 export default class CitygmaLogin extends Component{
@@ -20,7 +20,7 @@ export default class CitygmaLogin extends Component{
         //this.componentWillMount = this.componentWillMount.bind(this);
         this.handleFormLoginSubmit = this.handleFormLoginSubmit.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-        this.Auth = new AuthService();
+        this.Auth = new EXAuthService();
     }
 
     handleChange(e){

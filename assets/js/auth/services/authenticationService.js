@@ -20,7 +20,7 @@ function signin(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch('http://www.citygma.com/api/register', requestOptions)
+    return fetch('/api/register', requestOptions)
         .then(handleResponse)
         .then(data => {
 

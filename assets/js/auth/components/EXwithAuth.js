@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AuthService from "./AuthService";
+import EXAuthService from "./EXAuthService";
 
 export default function withAuth(AuthComponent) {
-    const Auth = new AuthService('/');
+    const Auth = new EXAuthService('/');
 
     return class AuthWrapped extends Component {
         constructor(props) {
