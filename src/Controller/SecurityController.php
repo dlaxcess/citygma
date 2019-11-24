@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 /**
  * @Route("/api")
  */
@@ -57,19 +59,20 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login", methods={"POST"})
+     * @Route("/login", name="login")
      */
-    public function login(Request $request)
+    public function login_admin(Request $request)
     {
         /*$user = $this->getUser();
         return $this->json([
             'username' => $user->getUsername(),
             'roles' => $user->getRoles()
         ]);*/
+
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/EXlogout", name="EXlogout")
      */
     public function logout()
     {

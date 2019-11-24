@@ -32,7 +32,7 @@ export default function CitygmaAppContainer() {
                     <div id="homepageText">
                         <div id="homepageTextScroll">
                             <div id="homepageTitle">
-                                <h2>L'AGENCE CITYGMA A BESOIN DE VOUS POUR<br/>SAUVER LA CITÉE RENNAISE&nbsp;!</h2>
+                                <h2>L'AGENCE CITYGMA A BESOIN DE VOUS POUR<br/>SAUVER LA CITÉ RENNAISE&nbsp;!</h2>
                             </div>
                             <div id="homepageTextContainer">
                                 <p>Assistés de votre smartphone, déambulez dans les rues de Rennes au coeur d’une

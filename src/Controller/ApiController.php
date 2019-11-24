@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/api/user", name="users", methods={"GET"})
+     * @Route("/api/user", name="user", methods={"GET"})
      */
     public function user(Request $request)
     {
