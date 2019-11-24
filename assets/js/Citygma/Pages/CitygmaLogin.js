@@ -5,6 +5,7 @@ import { authenticationService } from '../../auth/services/authenticationService
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { history } from "../../auth/helpers/history";
+import {userService} from "../../auth/services/userService";
 
 
 export default class CitygmaLogin extends Component{
@@ -16,6 +17,10 @@ export default class CitygmaLogin extends Component{
         if (authenticationService.currentUserValue) {
             this.props.history.push('/profil');
         }
+    }
+
+    componentDidMount() {
+        userService.getCurrentUser().then(user => console.log({ user }));
     }
 
     render() {
@@ -41,23 +46,25 @@ export default class CitygmaLogin extends Component{
                             <Formik
                                 initialValues={{
                                     usernameCreate: '',
+                                    emailCreate: '',
                                     passwordCreate: '',
                                     passwordCreateConfirm: ''
                                 }}
                                 validationSchema={Yup.object().shape({
-                                    usernameCreate: Yup.string().required('Username is required').email('Veuillez renseigner une adresse email valide'),
+                                    usernameCreate: Yup.string().required('Username is required'),
+                                    emailCreate: Yup.string().required('Username is required').email('Veuillez renseigner une adresse email valide'),
                                     passwordCreate: Yup.string().required('Password is required'),
                                     passwordCreateConfirm: Yup.string()
                                         .oneOf([Yup.ref('passwordCreate'), null], 'Les mots de pass doivent concorder')
                                 })}
-                                onSubmit={({ usernameCreate, passwordCreate, passwordCreateConfirm }, { setStatus, setSubmitting }) => {
+                                onSubmit={({ usernameCreate, emailCreate, passwordCreate, passwordCreateConfirm }, { setStatus, setSubmitting }) => {
                                     setStatus();
-                                    authenticationService.signin(usernameCreate, passwordCreate)
+                                    authenticationService.signin(usernameCreate, emailCreate, passwordCreate)
                                         .then(
                                             data => {
                                                 console.log(data);
                                                 /*const { from } = this.props.location.state || { from: { pathname: "/profil" } };*/
-                                                authenticationService.login(usernameCreate, passwordCreate)
+                                                authenticationService.login(emailCreate, passwordCreate)
                                                     .then(
                                                         user => {
 
@@ -81,6 +88,11 @@ export default class CitygmaLogin extends Component{
                                         <div>
                                             <label htmlFor="usernameCreate">Username</label>
                                             <Field name="usernameCreate" type="text" className={'form-control' + (errors.usernameCreate && touched.usernameCreate ? ' is-invalid' : '')} placeholder="Email" />
+                                            <ErrorMessage name="usernameCreate" component="div" className="invalid-feedback" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="emailCreate">Email</label>
+                                            <Field name="emailCreate" type="text" className={'form-control' + (errors.emailCreate && touched.emailCreate ? ' is-invalid' : '')} placeholder="Email" />
                                             <ErrorMessage name="usernameCreate" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>

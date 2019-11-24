@@ -10,17 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @Route("/api")
+ */
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/api/user", name="user", methods={"GET"})
+     * @Route("/user", name="user", methods={"GET"})
      */
     public function user(Request $request)
     {
         $user = $this->getUser();
         return $this->json([
-            'username' => $user->getUsername(),
+            'username' => $user->getName(),
+            'email' => $user->getEmail(),
             'roles' => $user->getRoles()
         ]);
     }

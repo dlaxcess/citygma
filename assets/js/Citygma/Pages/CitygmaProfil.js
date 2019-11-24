@@ -44,6 +44,9 @@ export default class CitygmaProfil extends Component {
                         <p>Bienvenue {user.username}</p>
                     }
                     {user &&
+                        <p>Bienvenue {user.email}</p>
+                    }
+                    {user &&
                         <p>Bienvenue {user.roles[0]}</p>
                     }
                     {console.log(currentUser)}

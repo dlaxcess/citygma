@@ -13,11 +13,11 @@ export const authenticationService = {
     get currentUserValue () { return currentUserSubject.value }
 };
 
-function signin(username, password) {
+function signin(username, email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, email, password })
     };
 
     return fetch('/api/register', requestOptions)

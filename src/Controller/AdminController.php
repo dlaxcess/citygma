@@ -32,7 +32,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout_admin", name="logout_admin")
      */
     public function logout()
     {
@@ -43,11 +43,11 @@ class AdminController extends AbstractController
      * @Route("/adminInterface", name="adminInterface")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function adminInterface(AuthenticationUtils $authenticationUtils)
+    public function adminInterface()
     {
-        if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+        /*if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('login_admin');
-        }
+        }*/
 
         return $this->render('admin/adminInterface.html.twig', []);
     }

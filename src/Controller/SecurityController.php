@@ -26,9 +26,10 @@ class SecurityController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $validator)
     {
         $values = json_decode($request->getContent());
-        if(isset($values->username,$values->password)) {
+        if(isset($values->username,$values->email,$values->password)) {
             $user = new User();
-            $user->setEmail($values->username);
+            $user->setUsername($values->username);
+            $user->setEmail($values->email);
             $user->setPassword($passwordEncoder->encodePassword($user, $values->password));
             $user->setRoles($user->getRoles());
 

@@ -15,16 +15,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-###################### security symfony
-        #main:
-            #anonymous: true
-            #json_login:
-                #check_path: /api/login_symfony
-
-            #logout:
-                #path: /api/logout
-                #target: /
-###########################
+########################### Player create
 
         register:
             pattern:  ^/api/register
@@ -47,17 +38,18 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
-###########################
 
+########################### Interface admin
         admin:
             anonymous: true
             form_login:
+                login_path: /login_admin
                 check_path: /login_admin
                 failure_path: /login_admin
             access_denied_handler: App\AdminSecurity\AccessDeniedHandler
 
             logout:
-                path: /logout
+                path: /logout_admin
                 target: /login_admin
 
 
@@ -74,8 +66,5 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/login_admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/api/login_symfony, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login_admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-        #- { path: ^/users,       roles: IS_AUTHENTICATED_FULLY }

@@ -20,6 +20,7 @@ class AdminFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
+        $user->setUsername('Philou');
         $user->setEmail("phil@gmail.com");
         $user->setPassword($this->encoder->encodePassword($user, 6420));
         $user->setRoles(['ROLE_ADMIN']);
