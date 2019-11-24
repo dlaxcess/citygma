@@ -19,10 +19,6 @@ export default class CitygmaLogin extends Component{
         }
     }
 
-    componentDidMount() {
-        userService.getCurrentUser().then(user => console.log({ user }));
-    }
-
     render() {
 
         return (
