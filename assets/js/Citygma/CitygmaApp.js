@@ -11,7 +11,6 @@ import CitygmaProfil from "./Pages/CitygmaProfil";
 import { PrivateRoute } from "../auth/components/PrivateRoute";
 import { authenticationService } from '../auth/services/authenticationService';
 import { history } from "../auth/helpers/history";
-import CitygmaAdmin from "./Admin/CitygmaAdmin";
 
 export default class CitygmaApp extends Component {
     constructor(props) {
@@ -56,7 +55,6 @@ export default class CitygmaApp extends Component {
                     <Route path="/about" component={CitygmaAbout} />
                     <Route path="/Mentions" component={CitygmaMentions} />
                     <PrivateRoute exact path="/profil" component={CitygmaProfil} />
-                    <Route path="/adminLogger" component={CitygmaAdmin} />
                 </Switch>
             </Fragment>
         )

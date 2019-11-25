@@ -13,7 +13,7 @@ export default class CitygmaLogin extends Component{
     constructor(props){
         super(props);
 
-        // redirect to home if already logged in
+        // redirect to profil if already logged in
         if (authenticationService.currentUserValue) {
             this.props.history.push('/profil');
         }
@@ -83,7 +83,7 @@ export default class CitygmaLogin extends Component{
                                     <Form>
                                         <div>
                                             <label htmlFor="usernameCreate">Username</label>
-                                            <Field name="usernameCreate" type="text" className={'form-control' + (errors.usernameCreate && touched.usernameCreate ? ' is-invalid' : '')} placeholder="Email" />
+                                            <Field name="usernameCreate" type="text" className={'form-control' + (errors.usernameCreate && touched.usernameCreate ? ' is-invalid' : '')} placeholder="Pseudo" />
                                             <ErrorMessage name="usernameCreate" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
@@ -93,12 +93,12 @@ export default class CitygmaLogin extends Component{
                                         </div>
                                         <div>
                                             <label htmlFor="passwordCreate">Password</label>
-                                            <Field name="passwordCreate" type="password" className={'form-control' + (errors.passwordCreate && touched.passwordCreate ? ' is-invalid' : '')} />
+                                            <Field name="passwordCreate" type="password" className={'form-control' + (errors.passwordCreate && touched.passwordCreate ? ' is-invalid' : '')} placeholder="Mot de passe" />
                                             <ErrorMessage name="passwordCreate" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
                                             <label htmlFor="passwordCreateConfirm">Password confirmation</label>
-                                            <Field name="passwordCreateConfirm" type="password" className={'form-control' + (errors.passwordCreateConfirm && touched.passwordCreateConfirm ? ' is-invalid' : '')} />
+                                            <Field name="passwordCreateConfirm" type="password" className={'form-control' + (errors.passwordCreateConfirm && touched.passwordCreateConfirm ? ' is-invalid' : '')} placeholder="Confirmation mot de passe" />
                                             <ErrorMessage name="passwordCreateConfirm" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
