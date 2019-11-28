@@ -39,7 +39,7 @@ class CityAdventure
     private $adventureDuration;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $adventureDescription;
 
@@ -74,7 +74,7 @@ class CityAdventure
     private $videoFinalSequenceFilename;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\EnygmaLoop", mappedBy="cityAdventure")
+     * @ORM\OneToMany(targetEntity="App\Entity\EnygmaLoop", mappedBy="cityAdventure", cascade={"persist"}, orphanRemoval=true)
      */
     private $enygmaLoops;
 

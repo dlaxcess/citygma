@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    imgUploadDir_twig_param: '/uploads/cityAdventures/'
+    cityAdventures_directory: '%kernel.project_dir%/public/uploads/cityAdventures'
 
 services:
     # default configuration for services in *this* file
@@ -30,3 +32,8 @@ services:
         class: App\EventListener\AuthenticationFailureListener
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+
+    #Repertoire d'upload de fichiers pour les aventures passé en parametre du constructeur
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%cityAdventures_directory%'

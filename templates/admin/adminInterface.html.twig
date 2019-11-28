@@ -1,42 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
-    <p>ADMIN</p>
+    <p>Admin interface</p>
+    <a href="{{ path('adminCitygmaAdventureEdit', {}) }}">Créer une nouvelle aventure</a>
+
+    {% for citygmaAdventure in citygmaAdventures %}
+        <p>
+            {{ citygmaAdventure.adventureTown }} :
+            <a href="{{ path('adminCitygmaAdventureEdit', { 'id': citygmaAdventure.id }) }}">Modifier</a>
+            <a href="{{ path('adminCitygmaAdventureDelete', { 'id': citygmaAdventure.id }) }}">Supprimer</a>
+        </p>
+    {% endfor %}
 {% endblock %}
 
 {% block javascripts %}{% endblock %}

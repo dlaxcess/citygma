@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {# form(form) #}
+
+
+    <div>
+        {% for message in app.session.flashbag.get('notice') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <div>
+            {{ form_start(form) }}
+
+            {{ form_errors(form) }}
+            <div>
+
+                {{ form_row(form.adventureName) }}
+
+                {{ form_row(form.adventureTown) }}
+
+                {{ form_row(form.adventurePictureFilename) }}
+                {% if cityAdventure.adventurePictureFilename %}
+                    <img src="{{ imgUploadDir ~ cityAdventure.adventurePictureFilename }}" alt="" />
+                {% endif %}
+
+                {{ form_row(form.adventureDuration) }}
+
+                {{ form_row(form.adventureDescription) }}
+
+                {{ form_row(form.videoAdventureIntroFilename) }}
+
+                {{ form_row(form.videoLastEnigmaFilename) }}
+
+                {{ form_row(form.lastEnigmaPictureFilename) }}
+
+                {{ form_row(form.lastEnigmaQuestionText) }}
+
+                {{ form_row(form.lastEnigmaExpectedAnswer) }}
+
+                {{ form_row(form.videoFinalSequenceFilename) }}
+
+            </div>
+
+            {{ form_row(form.enygmaLoops) }}
+        </div>
+    </div>
+    <div>
+        <a href="#" id="add_enigme" class="btn btn-outline-secondary btn-sm">Ajouter une enigme</a>
+    </div>
+    <div>
+        <div>
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="Enregistrer l'aventure">
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/admin/adminJS.js') }}"></script>
+{% endblock %}
