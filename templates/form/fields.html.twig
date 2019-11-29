@@ -1,0 +1,25 @@
+{# --------------------------------------------- #}
+{# Overide of tickets collection data-prototype  #}
+{# --------------------------------------------- #}
+{% block _city_adventure_enygmaLoops_entry_row %}
+    <fieldset class="form-group">
+        <legend class="col-form-label required">__name__label__</legend>
+        {{ form_row(form.storyOrder) }}
+
+        {{ form_row(form.enygmaName) }}
+
+        {{ form_row(form.gpsCoord) }}
+
+        {{ form_row(form.compasActivate) }}
+
+        {{ form_row(form.videoIntroClueFilename) }}
+
+        {{ form_row(form.videoHistoryInfoFilename) }}
+
+        {{ form_row(form.enygmaQuestionPictureFilename) }}
+
+        {{ form_row(form.enygmaQuestionText) }}
+
+        {{ form_row(form.enigmaExpectedAnswer) }}
+    </fieldset>
+{% endblock %}

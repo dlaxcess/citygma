@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    {# form(form) #}
+    <div id="adventureId" data-id="{{ cityAdventure.id }}">{{ cityAdventure.id }}</div>
 
 
     <div>
@@ -31,16 +31,46 @@
                 {{ form_row(form.adventureDescription) }}
 
                 {{ form_row(form.videoAdventureIntroFilename) }}
+                {% if cityAdventure.videoAdventureIntroFilename %}
+                    <video controls width="300" autoplay="true" muted="true">
+
+                        <source src="{{ imgUploadDir ~ cityAdventure.videoAdventureIntroFilename }}"
+                                type="video/mp4">
+
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                {% endif %}
 
                 {{ form_row(form.videoLastEnigmaFilename) }}
+                {% if cityAdventure.videoLastEnigmaFilename %}
+                    <video controls width="300" autoplay="true" muted="true">
+
+                        <source src="{{ imgUploadDir ~ cityAdventure.videoLastEnigmaFilename }}"
+                                type="video/mpeg">
+
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                {% endif %}
 
                 {{ form_row(form.lastEnigmaPictureFilename) }}
+                {% if cityAdventure.lastEnigmaPictureFilename %}
+                    <img src="{{ imgUploadDir ~ cityAdventure.lastEnigmaPictureFilename }}" alt="" />
+                {% endif %}
 
                 {{ form_row(form.lastEnigmaQuestionText) }}
 
                 {{ form_row(form.lastEnigmaExpectedAnswer) }}
 
                 {{ form_row(form.videoFinalSequenceFilename) }}
+                {% if cityAdventure.videoFinalSequenceFilename %}
+                    <video controls width="300" autoplay="true" muted="true">
+
+                        <source src="{{ imgUploadDir ~ cityAdventure.videoFinalSequenceFilename }}"
+                                type="video/mpeg">
+
+                        Sorry, your browser doesn't support embedded videos.
+                    </video>
+                {% endif %}
 
             </div>
 

@@ -11,6 +11,7 @@ use phpDocumentor\Reflection\Element;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -108,26 +109,38 @@ class AdminController extends AbstractController
                 $cityAdventure->setLastEnigmaPictureFilename($lastEnigmaPictureFileName);
             }
             if ($videoFinalSequenceFile) {
-                $videoFinalSequenceFileName = $fileUploader->upload($adventurePictureFile);
+                $videoFinalSequenceFileName = $fileUploader->upload($videoFinalSequenceFile);
                 $cityAdventure->setVideoFinalSequenceFilename($videoFinalSequenceFileName);
             }
 
             $cityAdventureEnigmas = $cityAdventure->getEnygmaLoops();
             $enigmaEntries = $form->get('enygmaLoops')/*->get('0')->get('videoIntroClueFilename')->getData()*/;
-            //dd($enigmaEntries['0']->getData()->getId());
-            $i = 0;
+            //dd($cityAdventureEnigmas['2']->getVideoHistoryInfoFilename(), $enigmaEntries['2']->get('videoHistoryInfoFilename')->getData());
+            //$i = 0;
 
-            foreach ($enigmaEntries as $enigmaEntry) {
+            foreach ($enigmaEntries as $key => $enigmaEntry) {
                 //var_dump($enigmaEntry->get('videoIntroClueFilename')->getData());
 
                 $videoIntroClueFile = $enigmaEntry->get('videoIntroClueFilename')->getData();
+                $videoHistoryInfoFile = $enigmaEntry->get('videoHistoryInfoFilename')->getData();
+                $enygmaQuestionPictureFile = $enigmaEntry->get('enygmaQuestionPictureFilename')->getData();
 
                 if ($videoIntroClueFile) {
                     $videoIntroClueFileName = $fileUploader->upload($videoIntroClueFile);
-                    $cityAdventureEnigmas[$i]->setVideoIntroClueFilename($videoIntroClueFileName);
+                    $cityAdventureEnigmas[$key]->setVideoIntroClueFilename($videoIntroClueFileName);
                 }
 
-                $i++;
+                if ($videoHistoryInfoFile) {
+                    $videoHistoryInfoFileName = $fileUploader->upload($videoHistoryInfoFile);
+                    $cityAdventureEnigmas[$key]->setVideoHistoryInfoFilename($videoHistoryInfoFileName);
+                }
+
+                if ($enygmaQuestionPictureFile) {
+                    $enygmaQuestionPictureFileName = $fileUploader->upload($enygmaQuestionPictureFile);
+                    $cityAdventureEnigmas[$key]->setEnygmaQuestionPictureFilename($enygmaQuestionPictureFileName);
+                }
+
+                //$i++;
             }
 
 
@@ -172,12 +185,37 @@ class AdminController extends AbstractController
      * @Route("/adminCitygmaAdventureDelete{id}", name="adminCitygmaAdventureDelete")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function adminCitygmaAdventureDelete(int $id, EntityManagerInterface $entityManager, CityAdventureRepository $cityAdventureRepository) {
+    public function adminCitygmaAdventureDelete(int $id, EntityManagerInterface $entityManager, CityAdventureRepository $cityAdventureRepository)
+    {
         $cityAdventure = $cityAdventureRepository->find($id);
 
         $entityManager->remove($cityAdventure);
         $entityManager->flush();
 
         return $this->redirect($this->generateUrl('adminInterface'));
+    }
+
+    /**
+     * @Route("/adminAdventureGetEnigmas{id}", name="adminAdventureGetEnigmas")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function adminAdventureGetEnigmas(int $id, CityAdventureRepository $cityAdventureRepository)
+    {
+        $cityAdventure = $cityAdventureRepository->find($id);
+
+        $enigmaLoops = $cityAdventure->getEnygmaLoops();
+
+        $jsonEnigmaLoops = [];
+
+        foreach ($enigmaLoops as $enigmaLoop) {
+            $jsonEnigmaLoops[] = [
+                'videoIntroClueFilename' => $enigmaLoop->getVideoIntroClueFilename(),
+                'videoHistoryInfoFilename' => $enigmaLoop->getVideoHistoryInfoFilename(),
+                'enygmaQuestionPictureFilename' => $enigmaLoop->getEnygmaQuestionPictureFilename(),
+            ];
+        }
+
+        //return $this->json($jsonEnigmaLoops);
+        return new JsonResponse($jsonEnigmaLoops, 201);
     }
 }

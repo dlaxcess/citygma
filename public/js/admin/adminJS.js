@@ -1,11 +1,64 @@
 $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $adventureId = $('div#adventureId').attr('data-id');
+    //console.log($adventureId);
+
+    var jsonEnigmaLoops = {};
+
     var $container = $('div#city_adventure_enygmaLoops');
+    var index = $container.find('fieldset').length;
+
+    $.ajax({
+
+        // Adresse à laquelle la requête est envoyée
+        url: '/adminAdventureGetEnigmas'+$adventureId,
+
+        // Le délai maximun en millisecondes de traitement de la demande
+        timeout: 4000,
+
+        // La fonction à apeller si la requête aboutie
+        success: function (data) {
+            // Je charge les données dans box
+            console.log(data);
+
+            enigmeReorder();
+            if (index == 0) {
+                addEnigme($container);
+            } else {
+                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+                var indexEnigme = 0;
+
+                $container.children('fieldset').each(function() {
+
+
+                    addDeleteLink($(this));
+                    addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoIntroClueFilename').parent().parent(), indexEnigme, data, 'videoIntroClueFilename');
+                    addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoHistoryInfoFilename').parent().parent(), indexEnigme, data, 'videoHistoryInfoFilename');
+                    addImage($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_enygmaQuestionPictureFilename').parent().parent(), indexEnigme, data, 'enygmaQuestionPictureFilename');
+
+                    enigmeReorder();
+
+                    indexEnigme++;
+                });
+            }
+        },
+
+        // La fonction à appeler si la requête n'a pas abouti
+        error: function() {
+            // J'affiche un message d'erreur
+            console.log("Désolé, aucun résultat trouvé.");
+        }
+
+    });
+
+
+
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    /*var $container = $('div#city_adventure_enygmaLoops');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find('fieldset').length;
 
-    enigmeReorder();
+    enigmeReorder();*/
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_enigme').click(function(e) {
@@ -16,7 +69,7 @@ $(document).ready(function() {
     });
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
+    /*if (index == 0) {
         addEnigme($container);
     } else {
         // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
@@ -24,7 +77,7 @@ $(document).ready(function() {
             addDeleteLink($(this));
             enigmeReorder();
         });
-    }
+    }*/
 
     // La fonction qui ajoute un formulaire CategoryType
     function addEnigme($container) {
@@ -70,6 +123,23 @@ $(document).ready(function() {
             e.preventDefault(); // évite qu'un # apparaisse dans l'URL
             return false;
         });
+    }
+
+    function addVideo($field, indexEnigme, data, enigmaMediaParam) {
+        let fileName = data[indexEnigme][enigmaMediaParam];
+        let $media = $('' +
+            '<video controls width="300" autoPlay="true" muted="true">' +
+            '<source src="/uploads/cityAdventures/'+ fileName +'"' +
+                    ' type="video/mp4">' +
+            'Sorry, your browser doesn\'t support embedded videos.' +
+            '</video>' +
+            '');
+        $field.append($media);
+    }
+
+    function addImage($field, indexEnigme, data, enigmaImgParam) {
+        let $media = $('<img src="/uploads/cityAdventures/'+ data[indexEnigme][enigmaImgParam] +'" alt="" />');
+        $field.append($media);
     }
 
     function enigmeReorder() {

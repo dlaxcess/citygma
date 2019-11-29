@@ -32,7 +32,7 @@ class EnygmaLoopType extends AbstractType
                     new File([
                         'maxSize' => '2048k',
                         'mimeTypes' => [
-                            'video/mpeg',
+                            'video/mp4',
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
@@ -44,9 +44,9 @@ class EnygmaLoopType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
                         'mimeTypes' => [
-                            'video/mpeg',
+                            'video/mp4',
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
