@@ -45,61 +45,38 @@ export default class CitygmaProfil extends Component {
 
         return (
             <Fragment>
-                <div>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
+                <div id="profilContainer">
+                    <div id="profilImmeubleLeft"></div>
+                    <div id="profilContainerScroll">
+                        <div id="profilTextContainer">
+                            <div id="profilHeader">
+                                <div id="profilName">
+                                    {user && <h2>Bienvenue {user.username}</h2>}
+                                    {currentUser && <div className="logoutButton" onClick={this.logout}>Déconnexion</div>}
+                                </div>
 
-                    {/*<AdventureTemplate cityadventures={cityAdventures}/>*/}
-                    {console.log(cityAdventures)}
-                    <AdventureTemplate cityAdventures={cityAdventures}/>
+                                <p>Choisissez votre aventure et cliquez sur &quot;Jouer&quot; pour commencer la partie, ou cliquez sur &quot;Continuer&quot; pour reprendre l'histoire là où vous en étiez.<br/>
+                                Si vous souhaitez redémarrer l'aventure depuis le début, cliquez sur &quot;Recommencer&quot;</p>
+                            </div>
+
+                            <div id="profilAdventures">
+                                <AdventureTemplate cityAdventures={cityAdventures}/>
+                            </div>
+
+                            <div id="profilUserForm">
+
+                            </div>
+
+                            {user &&
+                                <p>Bienvenue {user.email}</p>
+                            }
+                            {user &&
+                                <p>Bienvenue {user.roles[0]}</p>
+                            }
 
 
-
-
-
-
-
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    {currentUser &&
-                        <a onClick={this.logout}>Logout</a>
-                    }
-                    {user &&
-                        <p>Bienvenue {user.username}</p>
-                    }
-                    {user &&
-                        <p>Bienvenue {user.email}</p>
-                    }
-                    {user &&
-                        <p>Bienvenue {user.roles[0]}</p>
-                    }
-                    {/*console.log(currentUser)*/}
-                    {/*user && console.log(user.username)*/}
-                    {/*user && console.log(user.roles[0])*/}
-                    {cityAdventures &&
-                        <p>{cityAdventures[0].adventureDescription}</p>
-                    }
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
-                    <p>Profil</p>
+                        </div>
+                    </div>
                 </div>
             </Fragment>
         );

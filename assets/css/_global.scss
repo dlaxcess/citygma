@@ -89,3 +89,18 @@ ul {
     @include clearfix();
   }
 }
+
+/********* Citygma Globals *********/
+.marronButton {
+  display: table;
+  background-color: $marron;
+  @include border-radius(2rem);
+  color: white;
+  font-family: $title-font-family;
+  padding: 5px 20px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: lighten($marron, 10%);
+  }
+}
