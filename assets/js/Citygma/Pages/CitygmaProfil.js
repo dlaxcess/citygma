@@ -2,7 +2,10 @@ import React, {Component, Fragment} from "react";
 import { authenticationService } from '../../auth/services/authenticationService';
 import {userService} from "../../auth/services/userService";
 import { history } from "../../auth/helpers/history";
-import {adventureService} from "../Game/services/adventureService";
+import {adventureService } from "../Game/services/adventureService";
+
+import AdventureTemplate from "./ProfilComponents/AdventureTemplate";
+
 
 export default class CitygmaProfil extends Component {
     constructor(props) {
@@ -13,16 +16,16 @@ export default class CitygmaProfil extends Component {
             user: null,
             cityAdventures: null
         };
+
+        adventureService.getCityAdventures()
+            .then(cityAdventures => {
+                /*console.log(cityAdventures);*/
+                this.setState({ cityAdventures: cityAdventures });
+            });
     }
 
     componentDidMount() {
         userService.getCurrentUser().then(user => this.setState({ user }));
-
-        adventureService.getCityAdventures()
-            .then(cityAdventures => {
-                console.log(cityAdventures);
-                this.setState({ cityAdventures });
-            });
     }
 
     logout() {
@@ -31,7 +34,14 @@ export default class CitygmaProfil extends Component {
     }
 
     render() {
+        /*console.log(this.state);*/
         const { currentUser, user, cityAdventures } = this.state;
+
+        {/*const cityAdventures = [
+            { adventureId: 1, adventureName: 'fgfhf', adventureTown: 'dfghfgh', adventureDuration: '1h'}
+        ];*/}
+
+
 
         return (
             <Fragment>
@@ -42,6 +52,17 @@ export default class CitygmaProfil extends Component {
                     <p>Profil</p>
                     <p>Profil</p>
                     <p>Profil</p>
+
+                    {/*<AdventureTemplate cityadventures={cityAdventures}/>*/}
+                    {console.log(cityAdventures)}
+                    <AdventureTemplate cityAdventures={cityAdventures}/>
+
+
+
+
+
+
+
                     <p>Profil</p>
                     <p>Profil</p>
                     <p>Profil</p>
@@ -57,9 +78,9 @@ export default class CitygmaProfil extends Component {
                     {user &&
                         <p>Bienvenue {user.roles[0]}</p>
                     }
-                    {console.log(currentUser)}
-                    {user && console.log(user.username)}
-                    {user && console.log(user.roles[0])}
+                    {/*console.log(currentUser)*/}
+                    {/*user && console.log(user.username)*/}
+                    {/*user && console.log(user.roles[0])*/}
                     {cityAdventures &&
                         <p>{cityAdventures[0].adventureDescription}</p>
                     }

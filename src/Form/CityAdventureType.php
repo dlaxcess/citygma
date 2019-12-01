@@ -35,9 +35,7 @@ class CityAdventureType extends AbstractType
                 ],
             ])
             ->add('adventureDuration', TextType::class)
-            ->add('adventureDescription', TextareaType::class, [
-                'row_attr' => ['class' => 'textareaFormGroup'],
-            ])
+            ->add('adventureDescription', TextareaType::class)
             ->add('videoAdventureIntroFilename', FileType::class, [
                 'label' => 'Vidéo d\'intro de l\'aventure',
                 'mapped' => false,

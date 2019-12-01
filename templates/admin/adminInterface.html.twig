@@ -2,8 +2,10 @@
 
 {% block body %}
 <div id="interfaceAdmin">
-    <p>Admin interface</p>
-    <a href="{{ path('adminCitygmaAdventureEdit', {}) }}">Créer une nouvelle aventure</a>
+    <p>Admin interface <a href="{{ path('logout_admin') }}">Logout</a></p><br/>
+    <a href="{{ path('adminCitygmaAdventureEdit', {}) }}">Créer une nouvelle aventure</a><br/><br/>
+
+    <p>Aventures existantes :</p>
 
     {% for citygmaAdventure in citygmaAdventures %}
         <p>

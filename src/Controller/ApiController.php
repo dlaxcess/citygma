@@ -46,6 +46,7 @@ class ApiController extends AbstractController
 
         foreach ($cityAdventuresArray as $cityAdventureObject) {
             $cityAdventures[] = [
+                'adventureId' => $cityAdventureObject->getId(),
                 'adventureName' => $cityAdventureObject->getAdventureName(),
                 'adventureTown' => $cityAdventureObject->getAdventureTown(),
                 'adventurePictureFilename' => $cityAdventureObject->getAdventurePictureFilename(),
