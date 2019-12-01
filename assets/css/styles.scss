@@ -421,6 +421,56 @@ nav {
   }
 }
 
+
+
+/******************************/
+/******* ADMINISTRATION *******/
+/******************************/
+#interfaceAdmin {
+  //background-color: rgba(0,0,0,0.05);
+  padding: 4rem;
+
+  fieldset {
+    border: 1px solid black;
+    padding: 2rem;
+  }
+
+  legend {
+    width: auto;
+  }
+
+  input {
+    font-size: 2rem;
+  }
+
+  .custom-file-input {
+    opacity: 1;
+  }
+
+  .custom-file-label::after {
+    content: none;
+  }
+
+  .descriptionAdventRow200 {
+    textarea {
+      height: 200px;
+    }
+  }
+
+  .descriptionAdventRow100 {
+    textarea {
+      height: 100px;
+    }
+  }
+
+
+
+  .row {
+    margin-bottom: 3rem;
+  }
+}
+
+
 @media screen and (orientation : landscape) {
   @import "landscape";
 }

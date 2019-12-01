@@ -31,9 +31,16 @@ $(document).ready(function() {
 
 
                     addDeleteLink($(this));
-                    addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoIntroClueFilename').parent().parent(), indexEnigme, data, 'videoIntroClueFilename');
-                    addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoHistoryInfoFilename').parent().parent(), indexEnigme, data, 'videoHistoryInfoFilename');
-                    addImage($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_enygmaQuestionPictureFilename').parent().parent(), indexEnigme, data, 'enygmaQuestionPictureFilename');
+
+                    if (data[indexEnigme].videoIntroClueFilename) {
+                        addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoIntroClueFilename').parent().parent().children('label'), indexEnigme, data, 'videoIntroClueFilename');
+                    }
+                    if (data[indexEnigme].videoHistoryInfoFilename) {
+                        addVideo($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_videoHistoryInfoFilename').parent().parent().children('label'), indexEnigme, data, 'videoHistoryInfoFilename');
+                    }
+                    if (data[indexEnigme].enygmaQuestionPictureFilename) {
+                        addImage($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_enygmaQuestionPictureFilename').parent().parent().children('label'), indexEnigme, data, 'enygmaQuestionPictureFilename');
+                    }
 
                     enigmeReorder();
 
@@ -86,7 +93,7 @@ $(document).ready(function() {
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Enigme' + (index+1))
-            .replace(/__name__/g,        index)
+            .replace(/__name__/g,        index+1)
         ;
 
         // On crée un objet jquery qui contient ce template
@@ -128,18 +135,18 @@ $(document).ready(function() {
     function addVideo($field, indexEnigme, data, enigmaMediaParam) {
         let fileName = data[indexEnigme][enigmaMediaParam];
         let $media = $('' +
-            '<video controls width="300" autoPlay="true" muted="true">' +
+            '<div><video controls width="300" autoPlay="true" muted="true">' +
             '<source src="/uploads/cityAdventures/'+ fileName +'"' +
-                    ' type="video/mp4">' +
+                    ' type="video/webm">' +
             'Sorry, your browser doesn\'t support embedded videos.' +
-            '</video>' +
+            '</video></div>' +
             '');
-        $field.append($media);
+        $field.after($media);
     }
 
     function addImage($field, indexEnigme, data, enigmaImgParam) {
-        let $media = $('<img src="/uploads/cityAdventures/'+ data[indexEnigme][enigmaImgParam] +'" alt="" />');
-        $field.append($media);
+        let $media = $('<div></div><img src="/uploads/cityAdventures/'+ data[indexEnigme][enigmaImgParam] +'" alt="" /></div>');
+        $field.after($media);
     }
 
     function enigmeReorder() {

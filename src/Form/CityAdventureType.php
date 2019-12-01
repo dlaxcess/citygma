@@ -35,7 +35,9 @@ class CityAdventureType extends AbstractType
                 ],
             ])
             ->add('adventureDuration', TextType::class)
-            ->add('adventureDescription', TextareaType::class)
+            ->add('adventureDescription', TextareaType::class, [
+                'row_attr' => ['class' => 'textareaFormGroup'],
+            ])
             ->add('videoAdventureIntroFilename', FileType::class, [
                 'label' => 'Vidéo d\'intro de l\'aventure',
                 'mapped' => false,
@@ -44,7 +46,8 @@ class CityAdventureType extends AbstractType
                     new File([
                         'maxSize' => '2048k',
                         'mimeTypes' => [
-                            'video/mp4'
+                            'video/mp4',
+                            'video/webm'
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
@@ -59,6 +62,7 @@ class CityAdventureType extends AbstractType
                         'maxSize' => '2048k',
                         'mimeTypes' => [
                             'video/mp4',
+                            'video/webm'
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
@@ -89,6 +93,7 @@ class CityAdventureType extends AbstractType
                         'maxSize' => '2048k',
                         'mimeTypes' => [
                             'video/mp4',
+                            'video/webm'
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])

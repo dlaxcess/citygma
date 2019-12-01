@@ -33,13 +33,14 @@ class EnygmaLoopType extends AbstractType
                         'maxSize' => '2048k',
                         'mimeTypes' => [
                             'video/mp4',
+                            'video/webm'
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
                 ],
             ])
             ->add('videoHistoryInfoFilename', FileType::class, [
-                'label' => 'Vidéo d\'information historique sur le lieu de l\'énigme',
+                'label' => 'Vidéo d\'information historique sur le lieu',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -47,6 +48,7 @@ class EnygmaLoopType extends AbstractType
                         'maxSize' => '2048k',
                         'mimeTypes' => [
                             'video/mp4',
+                            'video/webm'
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])

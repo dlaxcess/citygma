@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<div id="interfaceAdmin">
     <p>Admin interface</p>
     <a href="{{ path('adminCitygmaAdventureEdit', {}) }}">Créer une nouvelle aventure</a>
 
@@ -11,6 +12,7 @@
             <a href="{{ path('adminCitygmaAdventureDelete', { 'id': citygmaAdventure.id }) }}">Supprimer</a>
         </p>
     {% endfor %}
+</div>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}

@@ -4,22 +4,27 @@
 {% block _city_adventure_enygmaLoops_entry_row %}
     <fieldset class="form-group">
         <legend class="col-form-label required">__name__label__</legend>
-        {{ form_row(form.storyOrder) }}
-
-        {{ form_row(form.enygmaName) }}
-
-        {{ form_row(form.gpsCoord) }}
-
-        {{ form_row(form.compasActivate) }}
-
-        {{ form_row(form.videoIntroClueFilename) }}
-
-        {{ form_row(form.videoHistoryInfoFilename) }}
-
-        {{ form_row(form.enygmaQuestionPictureFilename) }}
-
-        {{ form_row(form.enygmaQuestionText) }}
-
-        {{ form_row(form.enigmaExpectedAnswer) }}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">{{ form_row(form.enygmaName) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md">{{ form_row(form.storyOrder) }}</div>
+                <div class="col-md">{{ form_row(form.gpsCoord) }}</div>
+                <div class="col-md">{{ form_row(form.compasActivate) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md">{{ form_row(form.videoIntroClueFilename) }}</div>
+                <div class="col-md">{{ form_row(form.videoHistoryInfoFilename) }}</div>
+                <div class="col-md"></div>
+            </div>
+            <div class="row descriptionAdventRow100">
+                <div class="col-md-4">{{ form_row(form.enygmaQuestionPictureFilename) }}</div>
+                <div class="col-md-8">
+                    {{ form_row(form.enygmaQuestionText) }}
+                    {{ form_row(form.enigmaExpectedAnswer) }}
+                </div>
+            </div>
+        </div>
     </fieldset>
 {% endblock %}

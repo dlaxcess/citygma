@@ -115,8 +115,17 @@ class AdminController extends AbstractController
 
             $cityAdventureEnigmas = $cityAdventure->getEnygmaLoops();
             $enigmaEntries = $form->get('enygmaLoops')/*->get('0')->get('videoIntroClueFilename')->getData()*/;
-            //dd($cityAdventureEnigmas['2']->getVideoHistoryInfoFilename(), $enigmaEntries['2']->get('videoHistoryInfoFilename')->getData());
-            //$i = 0;
+            //dd($cityAdventureEnigmas, $enigmaEntries);
+
+            $cityAdventureEnigmasOrderedArray = [];
+            foreach ($cityAdventureEnigmas as $cityAdventureEnigma) {
+                $cityAdventureEnigmasOrderedArray[] = $cityAdventureEnigma;
+            }
+            $i = 0;
+            //$combinedArray = array_combine($enigmaEntries->getData(), $cityAdventureEnigmas);
+            //dd($enigmaEntries);
+
+            //die();
 
             foreach ($enigmaEntries as $key => $enigmaEntry) {
                 //var_dump($enigmaEntry->get('videoIntroClueFilename')->getData());
@@ -127,20 +136,20 @@ class AdminController extends AbstractController
 
                 if ($videoIntroClueFile) {
                     $videoIntroClueFileName = $fileUploader->upload($videoIntroClueFile);
-                    $cityAdventureEnigmas[$key]->setVideoIntroClueFilename($videoIntroClueFileName);
+                    $cityAdventureEnigmasOrderedArray[$i]->setVideoIntroClueFilename($videoIntroClueFileName);
                 }
 
                 if ($videoHistoryInfoFile) {
                     $videoHistoryInfoFileName = $fileUploader->upload($videoHistoryInfoFile);
-                    $cityAdventureEnigmas[$key]->setVideoHistoryInfoFilename($videoHistoryInfoFileName);
+                    $cityAdventureEnigmasOrderedArray[$i]->setVideoHistoryInfoFilename($videoHistoryInfoFileName);
                 }
 
                 if ($enygmaQuestionPictureFile) {
                     $enygmaQuestionPictureFileName = $fileUploader->upload($enygmaQuestionPictureFile);
-                    $cityAdventureEnigmas[$key]->setEnygmaQuestionPictureFilename($enygmaQuestionPictureFileName);
+                    $cityAdventureEnigmasOrderedArray[$i]->setEnygmaQuestionPictureFilename($enygmaQuestionPictureFileName);
                 }
 
-                //$i++;
+                $i++;
             }
 
 

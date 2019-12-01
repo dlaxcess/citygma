@@ -1,7 +1,14 @@
 {% extends "base.html.twig" %}
 
-{% block body %}
+{% block stylesheets %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+<div id="interfaceAdmin">
     <div id="adventureId" data-id="{{ cityAdventure.id }}">{{ cityAdventure.id }}</div>
 
 
@@ -16,62 +23,156 @@
 
             {{ form_errors(form) }}
             <div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md">
+                            {{ form_row(form.adventureName) }}
+                        </div>
+                        <div class="col-md">
+                            {{ form_row(form.adventureTown) }}
+                        </div>
+                        <div class="col-md">
+                            {{ form_row(form.adventureDuration) }}
+                        </div>
+                    </div>
 
-                {{ form_row(form.adventureName) }}
+                    <div class="row descriptionAdventRow200">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.adventurePictureFilename) }}
+                                {% if cityAdventure.adventurePictureFilename %}
+                                    <div>
+                                        <img src="{{ imgUploadDir ~ cityAdventure.adventurePictureFilename }}" alt="" />
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.adventurePictureFilename) }}
 
-                {{ form_row(form.adventureTown) }}
+                                <small>{{ form_help(form.adventurePictureFilename) }}</small>
 
-                {{ form_row(form.adventurePictureFilename) }}
-                {% if cityAdventure.adventurePictureFilename %}
-                    <img src="{{ imgUploadDir ~ cityAdventure.adventurePictureFilename }}" alt="" />
-                {% endif %}
+                                <div class="form-error">
+                                    {{ form_errors(form.adventurePictureFilename) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            {{ form_row(form.adventureDescription) }}
+                        </div>
+                    </div>
 
-                {{ form_row(form.adventureDuration) }}
+                    {# form_row(form.adventurePictureFilename) #}
 
-                {{ form_row(form.adventureDescription) }}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.videoAdventureIntroFilename) }}
+                                {% if cityAdventure.videoAdventureIntroFilename %}
+                                    <div>
+                                        <video controls width="300" autoplay="true" muted="true">
 
-                {{ form_row(form.videoAdventureIntroFilename) }}
-                {% if cityAdventure.videoAdventureIntroFilename %}
-                    <video controls width="300" autoplay="true" muted="true">
+                                            <source src="{{ imgUploadDir ~ cityAdventure.videoAdventureIntroFilename }}"
+                                                    type="video/webm">
 
-                        <source src="{{ imgUploadDir ~ cityAdventure.videoAdventureIntroFilename }}"
-                                type="video/mp4">
+                                            Sorry, your browser doesn't support embedded videos.
+                                        </video>
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.videoAdventureIntroFilename) }}
 
-                        Sorry, your browser doesn't support embedded videos.
-                    </video>
-                {% endif %}
+                                <small>{{ form_help(form.videoAdventureIntroFilename) }}</small>
 
-                {{ form_row(form.videoLastEnigmaFilename) }}
-                {% if cityAdventure.videoLastEnigmaFilename %}
-                    <video controls width="300" autoplay="true" muted="true">
+                                <div class="form-error">
+                                    {{ form_errors(form.videoAdventureIntroFilename) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.videoLastEnigmaFilename) }}
+                                {% if cityAdventure.videoLastEnigmaFilename %}
+                                    <div>
+                                        <video controls width="300" autoplay="true" muted="true">
 
-                        <source src="{{ imgUploadDir ~ cityAdventure.videoLastEnigmaFilename }}"
-                                type="video/mpeg">
+                                            <source src="{{ imgUploadDir ~ cityAdventure.videoLastEnigmaFilename }}"
+                                                    type="video/webm">
 
-                        Sorry, your browser doesn't support embedded videos.
-                    </video>
-                {% endif %}
+                                            Sorry, your browser doesn't support embedded videos.
+                                        </video>
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.videoLastEnigmaFilename) }}
 
-                {{ form_row(form.lastEnigmaPictureFilename) }}
-                {% if cityAdventure.lastEnigmaPictureFilename %}
-                    <img src="{{ imgUploadDir ~ cityAdventure.lastEnigmaPictureFilename }}" alt="" />
-                {% endif %}
+                                <small>{{ form_help(form.videoLastEnigmaFilename) }}</small>
 
-                {{ form_row(form.lastEnigmaQuestionText) }}
+                                <div class="form-error">
+                                    {{ form_errors(form.videoLastEnigmaFilename) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.videoFinalSequenceFilename) }}
+                                {% if cityAdventure.videoFinalSequenceFilename %}
+                                    <div>
+                                        <video controls width="300" autoplay="true" muted="true">
 
-                {{ form_row(form.lastEnigmaExpectedAnswer) }}
+                                            <source src="{{ imgUploadDir ~ cityAdventure.videoFinalSequenceFilename }}"
+                                                    type="video/webm">
 
-                {{ form_row(form.videoFinalSequenceFilename) }}
-                {% if cityAdventure.videoFinalSequenceFilename %}
-                    <video controls width="300" autoplay="true" muted="true">
+                                            Sorry, your browser doesn't support embedded videos.
+                                        </video>
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.videoFinalSequenceFilename) }}
 
-                        <source src="{{ imgUploadDir ~ cityAdventure.videoFinalSequenceFilename }}"
-                                type="video/mpeg">
+                                <small>{{ form_help(form.videoFinalSequenceFilename) }}</small>
 
-                        Sorry, your browser doesn't support embedded videos.
-                    </video>
-                {% endif %}
+                                <div class="form-error">
+                                    {{ form_errors(form.videoFinalSequenceFilename) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    {# form_row(form.videoAdventureIntroFilename) #}
+
+                    {# form_row(form.videoLastEnigmaFilename) #}
+
+                    <div class="row descriptionAdventRow100">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{ form_label(form.lastEnigmaPictureFilename) }}
+                                {% if cityAdventure.lastEnigmaPictureFilename %}
+                                    <div>
+                                        <img src="{{ imgUploadDir ~ cityAdventure.lastEnigmaPictureFilename }}" alt="" />
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.lastEnigmaPictureFilename) }}
+
+                                <small>{{ form_help(form.lastEnigmaPictureFilename) }}</small>
+
+                                <div class="form-group">
+                                    {{ form_errors(form.lastEnigmaPictureFilename) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            {{ form_row(form.lastEnigmaQuestionText) }}
+                            {{ form_row(form.lastEnigmaExpectedAnswer) }}
+                        </div>
+                    </div>
+
+
+                    {# form_row(form.lastEnigmaPictureFilename) #}
+
+
+
+
+
+
+
+                    {# form_row(form.videoFinalSequenceFilename) #}
+
+                </div>
             </div>
 
             {{ form_row(form.enygmaLoops) }}
@@ -91,6 +192,7 @@
         </div>
 
     </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
