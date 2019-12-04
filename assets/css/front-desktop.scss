@@ -1,3 +1,14 @@
 body {
   font-size: 2rem;
 }
+
+// Page Profil joueur
+#profilContainer {
+  #profilContainerScroll {
+    font-size: initial;
+
+    #profilTextContainer {
+      padding: 3rem 8vw 3rem 6vw;
+    }
+  }
+}

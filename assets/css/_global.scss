@@ -103,4 +103,14 @@ ul {
     cursor: pointer;
     background-color: lighten($marron, 10%);
   }
+
+  &.white {
+    background-color: white;
+    color: $marron;
+
+    &:hover {
+      background-color: lighten($marron, 10%);
+      color: white;
+    }
+  }
 }

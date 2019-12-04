@@ -14,3 +14,20 @@
     }
   }
 }
+
+// Page Profil joueur
+#profilContainer {
+  #profilContainerScroll {
+    #profilTextContainer {
+      padding: 3rem 5.5rem 3rem 3rem;
+
+      #profilAdventures {
+        .adventureDescription {
+          border-image-source: url("../images/cadre-paysage.png");
+          border-image-slice: 12;
+          border-image-width: 2;
+        }
+      }
+    }
+  }
+}

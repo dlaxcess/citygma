@@ -5,6 +5,7 @@ import { history } from "../../auth/helpers/history";
 import {adventureService } from "../Game/services/adventureService";
 
 import AdventureTemplate from "./ProfilComponents/AdventureTemplate";
+import ProfilForm from "./ProfilComponents/ProfilForm";
 
 
 export default class CitygmaProfil extends Component {
@@ -63,8 +64,8 @@ export default class CitygmaProfil extends Component {
                                 <AdventureTemplate cityAdventures={cityAdventures}/>
                             </div>
 
-                            <div id="profilUserForm">
-
+                            <div id="profilForm">
+                                <ProfilForm user={user}/>
                             </div>
 
                             {user &&

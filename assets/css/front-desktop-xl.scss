@@ -1,5 +1,5 @@
 body {
-  font-size: 2.5rem;
+  //font-size: 2.5rem;
 }
 
 // Page About
@@ -13,6 +13,15 @@ body {
           width: 25vw;
         }
       }
+    }
+  }
+}
+
+// Page Profil joueur
+#profilContainer {
+  #profilContainerScroll {
+    #profilTextContainer {
+      padding: 3rem 14vw 3rem 12vw;
     }
   }
 }
