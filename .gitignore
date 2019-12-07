@@ -31,5 +31,5 @@ yarn-error.log
 ###< lexik/jwt-authentication-bundle ###
 
 ###> lexik/jwt-authentication-bundle ###
-/public/uploads/cityAdventures/*
+/public/uploads/cityAdventures/*.*
 ###< lexik/jwt-authentication-bundle ###
