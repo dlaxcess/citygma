@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 //import config from 'config';
 import { handleResponse } from '../helpers/handle-response';
+import {authHeader} from "../helpers/auth-header";
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
@@ -9,6 +10,8 @@ export const authenticationService = {
     signin,
     login,
     logout,
+    userDataChange,
+    userPasswordChange,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
@@ -50,4 +53,34 @@ function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     currentUserSubject.next(null);
+}
+
+function userDataChange(id, username, email) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ id, username, email })
+    };
+
+    return fetch('/api/userDataChange', requestOptions)
+        .then(handleResponse)
+        .then(data => {
+
+            return data;
+        });
+}
+
+function userPasswordChange(oldPass, newPass) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ oldPass, newPass })
+    };
+
+    return fetch('/api/userPasswordChange', requestOptions)
+        .then(handleResponse)
+        .then(data => {
+
+            return data;
+        });
 }

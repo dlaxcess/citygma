@@ -6,6 +6,7 @@ import {adventureService } from "../Game/services/adventureService";
 
 import AdventureTemplate from "./ProfilComponents/AdventureTemplate";
 import ProfilForm from "./ProfilComponents/ProfilForm";
+import ProfilPasswordChange from "./ProfilComponents/ProfilPasswordChange";
 
 
 export default class CitygmaProfil extends Component {
@@ -23,10 +24,45 @@ export default class CitygmaProfil extends Component {
                 /*console.log(cityAdventures);*/
                 this.setState({ cityAdventures: cityAdventures });
             });
+
+        this.handleUserDataChange = this.handleUserDataChange.bind(this);
+        this.handleUserPasswordChange = this.handleUserPasswordChange.bind(this);
     }
 
     componentDidMount() {
         userService.getCurrentUser().then(user => this.setState({ user }));
+    }
+
+    handleUserDataChange(username, email, password, setStatus, setSubmitting) {
+        return (
+            authenticationService.userDataChange(this.state.user.id, username, email)
+                .then(
+                    data => {
+                        this.logout();
+                        authenticationService.login(data.email, password).then(data => {history.push('/profil')});
+                    },
+                    error => {
+                        setSubmitting(false);
+                        setStatus(error);
+                    }
+                )
+        );
+    }
+
+    handleUserPasswordChange(oldPass, newPass, confirmPass, setStatus, setSubmitting) {
+        return (
+            authenticationService.userPasswordChange(oldPass, newPass)
+                .then(
+                    data => {
+                        this.logout();
+                        authenticationService.login(data.email, newPass).then(data => {history.push('/profil')});
+                    },
+                    error => {
+                        setSubmitting(false);
+                        setStatus(error);
+                    }
+                )
+        );
     }
 
     logout() {
@@ -35,14 +71,7 @@ export default class CitygmaProfil extends Component {
     }
 
     render() {
-        /*console.log(this.state);*/
         const { currentUser, user, cityAdventures } = this.state;
-
-        {/*const cityAdventures = [
-            { adventureId: 1, adventureName: 'fgfhf', adventureTown: 'dfghfgh', adventureDuration: '1h'}
-        ];*/}
-
-
 
         return (
             <Fragment>
@@ -65,17 +94,12 @@ export default class CitygmaProfil extends Component {
                             </div>
 
                             <div id="profilForm">
-                                <ProfilForm user={user}/>
+                                <ProfilForm handleUserDataChange = {this.handleUserDataChange} user={user && user}/>
                             </div>
 
-                            {user &&
-                                <p>Bienvenue {user.email}</p>
-                            }
-                            {user &&
-                                <p>Bienvenue {user.roles[0]}</p>
-                            }
-
-
+                            <div id="profilPasswordChange">
+                                <ProfilPasswordChange handleUserPasswordChange = {this.handleUserPasswordChange} />
+                            </div>
                         </div>
                     </div>
                 </div>

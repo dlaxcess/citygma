@@ -29,16 +29,7 @@ export default class CitygmaLogin extends Component{
                         <img src={persoCitygma} alt=""/>
                         <div className="loginForm">
 
-                            {/*<form onSubmit={this.handleUserCreateSubmit}>
-                                <label htmlFor="playerMail">E-mail</label>
-                                <input type="text" name="playerMail" id="playerMail"/>
-                                <label htmlFor="playerPass">Mot de passe</label>
-                                <input type="text" name="playerPass" id="playerPass"/>
-                                <div id="loginSubmit">
-                                    <input type="submit" id="loginSubmitButton" value="S'inscrire"/>
-                                </div>
-                            </form>*/}
-
+                            <h2>M&lsquo;inscrire</h2>
                             <Formik
                                 initialValues={{
                                     usernameCreate: '',
@@ -49,7 +40,7 @@ export default class CitygmaLogin extends Component{
                                 validationSchema={Yup.object().shape({
                                     usernameCreate: Yup.string().required('Username is required'),
                                     emailCreate: Yup.string().required('Username is required').email('Veuillez renseigner une adresse email valide'),
-                                    passwordCreate: Yup.string().required('Password is required'),
+                                    passwordCreate: Yup.string().required('Password is required').min(6, 'veuillez entrer au moins 6 caractères'),
                                     passwordCreateConfirm: Yup.string()
                                         .oneOf([Yup.ref('passwordCreate'), null], 'Les mots de pass doivent concorder')
                                 })}
@@ -82,7 +73,7 @@ export default class CitygmaLogin extends Component{
                                 {({ errors, status, touched, isSubmitting }) => (
                                     <Form>
                                         <div>
-                                            <label htmlFor="usernameCreate">Username</label>
+                                            <label htmlFor="usernameCreate">Nom</label>
                                             <Field name="usernameCreate" type="text" className={'form-control' + (errors.usernameCreate && touched.usernameCreate ? ' is-invalid' : '')} placeholder="Pseudo" />
                                             <ErrorMessage name="usernameCreate" component="div" className="invalid-feedback" />
                                         </div>
@@ -92,17 +83,17 @@ export default class CitygmaLogin extends Component{
                                             <ErrorMessage name="usernameCreate" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
-                                            <label htmlFor="passwordCreate">Password</label>
+                                            <label htmlFor="passwordCreate">Mot de passe</label>
                                             <Field name="passwordCreate" type="password" className={'form-control' + (errors.passwordCreate && touched.passwordCreate ? ' is-invalid' : '')} placeholder="Mot de passe" />
                                             <ErrorMessage name="passwordCreate" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
-                                            <label htmlFor="passwordCreateConfirm">Password confirmation</label>
+                                            <label htmlFor="passwordCreateConfirm">Confirmation Mot de passe</label>
                                             <Field name="passwordCreateConfirm" type="password" className={'form-control' + (errors.passwordCreateConfirm && touched.passwordCreateConfirm ? ' is-invalid' : '')} placeholder="Confirmation mot de passe" />
                                             <ErrorMessage name="passwordCreateConfirm" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
-                                            <button type="submit" disabled={isSubmitting}>S&rsquo;inscrire</button>
+                                            <button className="marronButton" type="submit" disabled={isSubmitting}>S&rsquo;inscrire</button>
                                             {isSubmitting &&
                                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                             }
@@ -114,6 +105,7 @@ export default class CitygmaLogin extends Component{
                                 )}
                             </Formik>
 
+                            <h2>Me connecter</h2>
                             <Formik
                                 initialValues={{
                                     username: '',
@@ -141,17 +133,17 @@ export default class CitygmaLogin extends Component{
                                 {({ errors, status, touched, isSubmitting }) => (
                                     <Form>
                                         <div>
-                                            <label htmlFor="username">Username</label>
+                                            <label htmlFor="username">Email</label>
                                             <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} placeholder="Email" />
                                             <ErrorMessage name="username" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
-                                            <label htmlFor="password">Password</label>
-                                            <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                                            <label htmlFor="password">Mot de passe</label>
+                                            <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} placeholder="Mot de passe" />
                                             <ErrorMessage name="password" component="div" className="invalid-feedback" />
                                         </div>
                                         <div>
-                                            <button type="submit" disabled={isSubmitting}>Login</button>
+                                            <button className="marronButton" type="submit" disabled={isSubmitting}>Se connecter</button>
                                             {isSubmitting &&
                                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                             }

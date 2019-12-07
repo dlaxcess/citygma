@@ -51,8 +51,8 @@ nav {
   z-index: 8000;
   position: fixed;
   width: 32rem;
-  height: 20rem;
-  top: -20rem;
+  height: 22rem;
+  top: -22rem;
   right: 0;
   @include transition(all .2s linear);
   background-color: #ffdc57;
@@ -80,6 +80,11 @@ nav {
 
   a {
     color: black;
+  }
+
+  &.loggedNav {
+    height: 25rem;
+    top: -25rem;
   }
 
   &.openedNav {
@@ -215,24 +220,11 @@ nav {
     padding: 3rem 13vh 3rem 3rem;
     width: 100%;
     height: calc(100vh - 7rem);
-    background-image: url('../images/trace-coin-ville-left.png'), url('../images/trace-aerations-droite.png');
-    background-repeat: no-repeat, no-repeat;
-    background-size: 80%, auto 100%;
-    background-position: left 0 bottom 0, right 0 bottom 0;
+    background-image: url('../images/trace-aerations-droite.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right 0 bottom 0;
     overflow-y: scroll;
-
-    /*#loginImmeubleLeft {
-      z-index: 7000;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 14vh;
-      height: 100vh;
-      background-image: url('../images/trace-aerations-droite.png');
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      background-position: right 0 bottom 0;
-    }*/
 
     img {
       width: 50%;
@@ -240,7 +232,17 @@ nav {
     }
 
     .loginForm {
-      text-align: center;
+      h2 {
+        color: $marron;
+      }
+
+      form {
+        margin-bottom: 4rem;
+
+        > div {
+          margin-bottom: 0.5rem;
+        }
+      }
 
       label {
         display: block;
@@ -250,8 +252,10 @@ nav {
       input {
         width: 100%;
         padding: 0.6rem 1rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-bottom: 1rem;
+        border: none;
+        @include border-radius(0.5rem);
       }
 
       #loginSubmit {
@@ -307,7 +311,7 @@ nav {
     width: 100%;
     height: calc(100vh - 7rem);
     overflow-y: scroll;
-    background-color: $white;
+    background-color: $whiteBubble;
 
     #aboutText {
       width: 100%;
@@ -323,6 +327,7 @@ nav {
 
       h2 {
         margin-bottom: 1rem;
+        color: white;
       }
 
       .imgAbout {
@@ -350,6 +355,88 @@ nav {
         border: 3px solid #669900;
         background-color: #ccff33;
         color: #669900;
+      }
+    }
+  }
+}
+
+// Page Contact
+#contactContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #DEA000;
+
+  #contactImmeubleLeft {
+    z-index: 7000;
+    position: fixed;
+    top: 0;
+    left: -3rem;
+    width: 12vh;
+    height: 100%;
+    background-image: url('../images/aerations-gauche-profil.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: left 0 bottom 0;
+  }
+
+  #contactContainerScroll {
+    height: calc(100vh - 7rem);
+    margin-top: 7rem;
+    padding-left: 12vh;
+    overflow-y: scroll;
+
+    #contactTextContainer {
+      width: 100%;
+      height: calc(100vh - 7rem);
+      padding: 3rem 1.5rem 3rem 0;
+      @media screen and (min-height: 560px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h2 {
+        color: $marron;
+        margin-bottom: 0.5rem;
+      }
+
+      form {
+        margin-top: 3rem;
+
+        >div {
+          display: flex;
+          align-items: flex-end;
+          flex-wrap: wrap;
+
+          >div {
+            width: 100%;
+            padding-right: 3rem;
+            margin-bottom: 1.5rem;
+
+            label {
+              display: block;
+            }
+
+            input, textarea {
+              width: 100%;
+              border: none;
+              padding: 0.5rem;
+              @include border-radius(0.5rem);
+            }
+
+            textarea {
+              height: 30vh;
+              font-family: $font-family;
+            }
+
+          }
+
+          &>div:nth-child(4) {
+            width: 7.9%;
+          }
+        }
+
       }
     }
   }
@@ -396,7 +483,7 @@ nav {
     height: calc(100vh - 7rem);
     margin-top: 7rem;
     overflow-y: scroll;
-    background-color: $white;
+    background-color: $whiteBubble;
     padding: 3rem 3rem 5rem 3rem;
   }
 }
@@ -490,6 +577,8 @@ nav {
       }
 
       #profilAdventures {
+        margin-bottom: 4rem;
+
         .adventureSolo {
           margin-bottom: 2rem;
 
@@ -590,13 +679,33 @@ nav {
         }
       }
 
+      #profilForm, #profilPasswordChange {
+        margin-bottom: 3rem;
+
+        h3 {
+          margin-left: -2rem;
+
+          + p {
+            margin-left: -2rem;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+
+      #profilPasswordChange h3 {
+        margin-bottom: 0.5rem;
+      }
+
       form {
         >div {
           display: flex;
+          align-items: flex-end;
+          flex-wrap: wrap;
 
           >div {
-            width: 30.7%;
+            width: 100%;
             padding-right: 3rem;
+            margin-bottom: 1.5rem;
 
             label {
               display: block;
@@ -615,9 +724,6 @@ nav {
           }
         }
 
-        #profilSubmitForm {
-          height: 4rem;
-        }
       }
 
     }

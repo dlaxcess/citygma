@@ -2,6 +2,23 @@ body {
   font-size: 2rem;
 }
 
+// Page Connection / Inscription
+#loginContainer {
+  #loginTextContainer {
+    background-size: 30%, auto 100%;
+    padding-top: 12vh;
+  }
+}
+
+// Page Contact
+#contactContainer {
+  #contactContainerScroll {
+    #contactTextContainer {
+      padding: 3rem 25vw 3rem 20vw;
+    }
+  }
+}
+
 // Page Profil joueur
 #profilContainer {
   #profilContainerScroll {

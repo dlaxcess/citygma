@@ -29,10 +29,12 @@ class ApiController extends AbstractController
     public function user(Request $request)
     {
         $user = $this->getUser();
+
         return $this->json([
+            'id' => $user->getId(),
             'username' => $user->getName(),
             'email' => $user->getEmail(),
-            'roles' => $user->getRoles()
+            'roles' => $user->getRoles(),
         ]);
     }
 

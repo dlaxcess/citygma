@@ -1,3 +1,19 @@
+// Page Connection / Inscription
+#loginContainer {
+  #loginTextContainer {
+    background-image: url('../images/trace-coin-ville-left.png'), url('../images/trace-aerations-droite.png');
+    background-repeat: no-repeat, no-repeat;
+    background-size: 50%, auto 100%;
+    background-position: left 0 bottom 0, right 0 bottom 0;
+
+    .loginForm {
+      form > div {
+        text-align: center;
+      }
+    }
+  }
+}
+
 // Page About
 #aboutContainer {
   #aboutTextContainer {
@@ -15,6 +31,15 @@
   }
 }
 
+// Page Contact
+#contactContainer {
+  #contactContainerScroll {
+    #contactTextContainer {
+      padding: 3rem 15vw 3rem 10vw;
+    }
+  }
+}
+
 // Page Profil joueur
 #profilContainer {
   #profilContainerScroll {
@@ -26,6 +51,14 @@
           border-image-source: url("../images/cadre-paysage.png");
           border-image-slice: 12;
           border-image-width: 2;
+        }
+      }
+
+      form {
+        > div {
+          > div {
+            width: 50%;
+          }
         }
       }
     }

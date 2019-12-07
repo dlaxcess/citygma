@@ -1,7 +1,7 @@
 // Page Connection / Inscription
 #loginContainer {
   #loginTextContainer {
-    padding-top: 15vh;
+    padding-top: 6vh;
     text-align: center;
 
     img {
@@ -11,6 +11,15 @@
     .loginForm {
       width: 100%;
       padding: 0 10%;
+    }
+  }
+}
+
+// Page Contact
+#contactContainer {
+  #contactContainerScroll {
+    #contactTextContainer {
+      padding: 3rem 10vw 3rem 5vw;
     }
   }
 }

@@ -92,8 +92,9 @@ ul {
 
 /********* Citygma Globals *********/
 .marronButton {
-  display: table;
+  //display: table;
   background-color: $marron;
+  border: none;
   @include border-radius(2rem);
   color: white;
   font-family: $title-font-family;

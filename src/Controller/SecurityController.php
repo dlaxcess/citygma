@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -57,6 +58,72 @@ class SecurityController extends AbstractController
             'message' => 'Vous devez renseigner les clés username et password'
         ];
         return new JsonResponse($data, 500);
+    }
+
+    /**
+     * @Route("/userDataChange", name="userDataChange", methods={"POST"})
+     */
+    public function userDataChange(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager)
+    {
+        $values = json_decode($request->getContent());
+        if(isset($values->id,$values->username,$values->email)) {
+            $user = $userRepository->find(array('id' => $values->id));
+
+            if ($values->username) {
+                $user->setUsername($values->username);
+            }
+            if ($values->email) {
+                $user->setEmail($values->email);
+            }
+
+
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $data = [
+                'status' => 201,
+                'message' => 'Les données ont bien été modifiées',
+                'email' => $user->getEmail()
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/userPasswordChange", name="userPasswordChange", methods={"POST"})
+     */
+    public function userPasswordChange(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserRepository $userRepository, EntityManagerInterface $entityManager)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->oldPass, $values->newPass)) {
+            $user = $this->getUser();
+
+            if ($passwordEncoder->isPasswordValid($user, $values->oldPass)) {
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $values->newPass);
+                $user->setPassword($newEncodedPassword);
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                $data = [
+                    'status' => 201,
+                    'message' => 'Le mot de passe a bien été modifiées',
+                    'email' => $user->getEmail(),
+                    'newPass' => $values->newPass
+                ];
+
+                return new JsonResponse($data, 201);
+            } else {
+                $data = [
+                    'status' => 500,
+                    'message' => 'Ancien mot de passe incorrect',
+                ];
+
+                return new JsonResponse($data, 500);
+            }
+        }
     }
 
     /**

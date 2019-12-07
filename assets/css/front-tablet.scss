@@ -1,8 +1,35 @@
+// Page Connection / Inscription
+#loginContainer {
+  #loginTextContainer {
+    .loginForm {
+      input {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
 // Page About
 #aboutContainer {
   #aboutTextContainer {
     #aboutText {
       padding: 3rem 3rem 31vw 3rem;
+    }
+  }
+}
+
+// Page Profil joueur
+#profilContainer {
+  #profilContainerScroll {
+    #profilTextContainer {
+      form {
+        > div {
+          > div {
+            width: 30.7%;
+            margin-bottom: 0;
+          }
+        }
+      }
     }
   }
 }

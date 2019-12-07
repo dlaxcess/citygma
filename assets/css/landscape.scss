@@ -68,8 +68,11 @@
   #loginTextContainer {
     display: flex;
     align-items: flex-start;
+    background-image: url('../images/trace-coin-ville-left.png'), url('../images/trace-aerations-droite.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: left 0 bottom 0, right 0 bottom 0;
     background-size: 30%, auto 100%;
-    padding-top: 3rem!important;
+    padding-top: 3rem;
 
     img {
       width: 25%!important;
@@ -107,6 +110,13 @@
   height: 9vw;
   @include border-radius(5vw);
   font-size: 5vw;
+}
+
+// Page Contact
+#contactContainer {
+  #contactImmeubleLeft {
+    left: -1rem;
+  }
 }
 
 // Page Profil joueur

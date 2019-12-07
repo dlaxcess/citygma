@@ -19,6 +19,45 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AdminController extends AbstractController
 {
     /**
+     * @Route("/citygma_contact", name="citygma_contact", methods={"POST"})
+     */
+    public function citygma_contact(Request $request, \Swift_Mailer $mailer)
+    {
+        $values = json_decode($request->getContent());
+        if(isset($values->email,$values->subject,$values->message)) {
+            $message = (new \Swift_Message($values->subject))
+                ->setFrom($values->email)
+                ->setTo('flipiste@free.fr')
+                ->setBody(
+                    $this->renderView(
+                    // templates/emails/registration.html.twig
+                        'mails/citygmaContact.html.twig',
+                        [
+                            'email' => $values->email,
+                            'message' => $values->message
+                        ]),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
+
+            $data = [
+                'status' => 201,
+                'message' => 'Le mail a bien été envoyé'
+            ];
+
+        }else {
+            $data = [
+                'status' => 500,
+                'message' => 'Le mail n\'a pas pu être envoyé veuillez réessayer'
+            ];
+        }
+
+        return new JsonResponse($data, 201);
+    }
+
+    /**
      * @Route("/login_admin", name="login_admin")
      */
     public function login_admin(Request $request, AuthenticationUtils $authenticationUtils)
