@@ -18,7 +18,7 @@ export default function ProfilPasswordChange(props) {
                 }}
                 validationSchema={Yup.object().shape({
                     oldPass: Yup.string().required('Veuillez renseigner votre mot de passe actuel'),
-                    newPass: Yup.string().required('Veuillez renseigner votre nouveau mot de passe'),
+                    newPass: Yup.string().required('Veuillez renseigner votre nouveau mot de passe').min(6, 'veuillez entrer au moins 6 caractères'),
                     confirmPass: Yup.string().required('Veuillez confirmer votre nouveau mot de passe')
                         .oneOf([Yup.ref('newPass'), null], 'Les mots de pass doivent concorder')
                 })}

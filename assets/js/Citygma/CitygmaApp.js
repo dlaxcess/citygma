@@ -8,6 +8,7 @@ import CitygmaAbout from "./Pages/CitygmaAbout";
 import CitygmaMentions from "./Pages/CitygmaMentions";
 import CitygmaProfil from "./Pages/CitygmaProfil";
 import CitygmaContact from "./Pages/CitygmaContact";
+import CitygmaGameInterface from "./Game/citygmaGameInterface";
 
 import { PrivateRoute } from "../auth/components/PrivateRoute";
 import { authenticationService } from '../auth/services/authenticationService';
@@ -57,6 +58,7 @@ export default class CitygmaApp extends Component {
                     <Route path="/contact" component={CitygmaContact} />
                     <Route path="/Mentions" component={CitygmaMentions} />
                     <PrivateRoute exact path="/profil" component={CitygmaProfil} />
+                    <PrivateRoute exact path="/jeu" component={CitygmaGameInterface} />
                 </Switch>
             </Fragment>
         )
