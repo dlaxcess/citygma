@@ -39,7 +39,7 @@ class CitygmaGameInterface extends Component {
         })
     }
 
-    
+
     handleViewportChange(viewport) {
         this.setState({ viewport: viewport });
     }
