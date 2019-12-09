@@ -5,7 +5,7 @@ export const PositionTable = () => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
 
     return (
-        
+
         <code>
             latitude: {latitude}<br/>
             longitude: {longitude}<br/>
