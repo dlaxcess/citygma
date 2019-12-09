@@ -15,7 +15,7 @@ class CitygmaGameInterface extends Component {
             viewport: {
                 width: "80vw",
                 height: "80vh",
-                latitude: 47.1378304,
+                latitude: 48.1378304,
                 longitude: -1.6875520000000002,
                 zoom: 12
             }
@@ -42,11 +42,12 @@ class CitygmaGameInterface extends Component {
 
     handleViewportChange(viewport) {
         this.setState({ viewport: viewport });
+
     }
 
 
     render() {
-        const {viewport} = this.state;
+
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
@@ -57,12 +58,14 @@ class CitygmaGameInterface extends Component {
                             onViewportChange={this.handleViewportChange}
                             mapboxApiAccessToken="pk.eyJ1IjoiZGxheGNlc3MiLCJhIjoiY2szeGhmY3lhMTZiNjNqb3A3MzVkMGJoaCJ9.jifnf4oofKKVa0qLnxqA6A"
                         >
-                            <Marker
-                                latitude={this.state.viewport.latitude}
-                                longitude={this.state.viewport.longitude}
-                                anchor="bottom">
-                                <h3>OOO</h3>
-                            </Marker>
+                            {this.state.viewport &&
+                                <Marker
+                                    latitude={this.state.viewport.latitude}
+                                    longitude={this.state.viewport.longitude}
+                                    anchor="bottom">
+                                    <h3>OOO</h3>
+                                </Marker>
+                            }
                             <GeolocateControl
                                 positionOptions={{ enableHighAccuracy: true }}
                                 trackUserLocation={true}
