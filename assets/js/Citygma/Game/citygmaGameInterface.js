@@ -11,11 +11,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { geolocated } from "react-geolocated";
 import { Marker } from "react-map-gl";
 
-import GoogleMapReact from 'google-map-react';
 
 import logo  from "../../../images/logo-citygma.png";
 
-import { usePosition } from 'use-position';
 
 
 class CitygmaGameInterface extends Component {
@@ -71,6 +69,15 @@ class CitygmaGameInterface extends Component {
             });
         });
 
+        // test boussole
+        const arrow = document.querySelector('#arrow');
+        console.log(arrow);
+
+        navigator.geolocation.watchPosition((data) => {
+            console.log(data);
+            arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+        });
+
 
         console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
     }
@@ -90,13 +97,14 @@ class CitygmaGameInterface extends Component {
 
 
     render() {
-        const AnyReactComponent = ({ logo }) => <div><img src={logo} alt="" /></div>;
 
 
 
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
+                    <div id="arrow"><img src={logo}/></div>
+
                     <button className="marronButton" onClick={() => {this.setState({userAdvance: null})}}>Revoir</button>
                     { this.state.videoEnded && "Video Finie" }
 
@@ -110,22 +118,6 @@ class CitygmaGameInterface extends Component {
                         </div>
                     }
 
-                    {this.state.userAdvance &&
-                    <div style={{height: '100vh', width: '100%'}}>
-                        <GoogleMapReact
-                            bootstrapURLKeys={{key: 'AIzaSyB_b0XlDR25dl5dbC92N5SiFYjlmUOvE34'}}
-                            defaultCenter={this.state.center}
-                            defaultZoom={this.state.zoom}
-                        >
-                            <AnyReactComponent
-                                lat={48.1378304}
-                                lng={-1.6875520000000002}
-                                logo={logo}
-                                text="My Marker"
-                            />
-                        </GoogleMapReact>
-                    </div>
-                    }
 
                     { this.state.userAdvance &&
                         <div>
@@ -157,7 +149,7 @@ class CitygmaGameInterface extends Component {
                         </div>
                     }
                     {this.props.coords && this.props.coords.latitude}
-                    <PositionTable viewport={this.state.viewport} handleViewportChange={this.handleViewportChange} />
+                    <PositionTable viewport={this.state.viewport} handleViewportChange={this.handleViewportChange} center={this.state.center} zoom={this.state.zoom} />
                 </div>
             </Fragment>
         );
