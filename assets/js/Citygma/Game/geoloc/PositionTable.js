@@ -29,8 +29,8 @@ export const PositionTable = (props) => {
                     longitude={longitude ? longitude : viewport.longitude}
                     draggable={true}
                     captureDrag={false}
-                    anchor="bottom">
-                    <img width="40" height="auto" src={logo}/>
+                    /*anchor="bottom"*/>
+                    <img width="30" height="auto" src={logo} style={{marginLeft: '-0.7rem', marginTop: '-0.4rem'}}/>
                 </Marker>
                 }
                 <GeolocateControl
