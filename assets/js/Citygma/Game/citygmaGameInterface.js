@@ -70,7 +70,7 @@ class CitygmaGameInterface extends Component {
         });
 
         // test boussole
-        const arrow = document.querySelector('#arrow');
+        const arrow = document.querySelector('#arrow>img');
         console.log(arrow);
 
         navigator.geolocation.watchPosition((data) => {
