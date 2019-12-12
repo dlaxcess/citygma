@@ -35,7 +35,17 @@ export default function AdventureTemplate(props) {
                                     </div>*/}
                                     <div>
                                         <div className="adventureLinks">
-                                            <NavLink to="/Jeu" className="marronButton white">Jouer</NavLink>
+                                            <NavLink to={{
+                                                pathname: "/Jeu",
+                                                state: {
+                                                    adventureId: cityAdventure.adventureId
+                                                }
+                                            }}
+                                                     className="marronButton white"
+                                            >
+                                                Jouer
+                                            </NavLink>
+
                                             <NavLink to="/Jeu" className="marronButton">Recommencer</NavLink>
                                         </div>
 

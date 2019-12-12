@@ -58,7 +58,7 @@ export default class CitygmaApp extends Component {
                     <Route path="/contact" component={CitygmaContact} />
                     <Route path="/Mentions" component={CitygmaMentions} />
                     <PrivateRoute exact path="/profil" component={CitygmaProfil} />
-                    <PrivateRoute exact path="/jeu" component={CitygmaGameInterface} />
+                    <PrivateRoute path="/jeu" component={CitygmaGameInterface} />
                 </Switch>
             </Fragment>
         )

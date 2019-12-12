@@ -65,4 +65,40 @@ class ApiController extends AbstractController
 
         return $this->json($cityAdventures);
     }
+
+    /**
+     * @Route("/CityAdventure", name="CityAdventure", methods={"POST"})
+     */
+    public function CityAdventure(Request $request)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->id)) {
+            $cityAdventure = $this->cityAdventuresRepository->find($values->id);
+
+            $cityAdventure = [
+                'adventureId' => $cityAdventure->getId(),
+                'adventureName' => $cityAdventure->getAdventureName(),
+                'adventureTown' => $cityAdventure->getAdventureTown(),
+                'adventurePictureFilename' => $cityAdventure->getAdventurePictureFilename(),
+                'adventureDuration' => $cityAdventure->getAdventureDuration(),
+                'adventureDescription' => $cityAdventure->getAdventureDescription(),
+                'videoAdventureIntroFilename' => $cityAdventure->getVideoAdventureIntroFilename(),
+                'videoLastEnigmaFilename' => $cityAdventure->getVideoLastEnigmaFilename(),
+                'lastEnigmaPictureFilename' => $cityAdventure->getLastEnigmaPictureFilename(),
+                'lastEnigmaQuestionText' => $cityAdventure->getLastEnigmaQuestionText(),
+                'lastEnigmaExpectedAnswer' => $cityAdventure->getLastEnigmaExpectedAnswer(),
+                'videoFinalSequenceFilename' => $cityAdventure->getVideoFinalSequenceFilename(),
+            ];
+
+            return $this->json($cityAdventure);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'L\'aventure n\a pas été trouvée'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
 }
