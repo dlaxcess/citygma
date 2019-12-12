@@ -15,7 +15,7 @@ import GoogleMapReact from 'google-map-react';
 
 import logo  from "../../../images/logo-citygma.png";
 
-import $ from 'jquery';
+import { usePosition } from 'use-position';
 
 
 class CitygmaGameInterface extends Component {
@@ -43,6 +43,7 @@ class CitygmaGameInterface extends Component {
         this.handleViewportChange = this.handleViewportChange.bind(this);
         this.handleBackToGameInterface = this.handleBackToGameInterface.bind(this);
         this.onVideoEnded = this.onVideoEnded.bind(this);
+
     }
 
     componentDidMount() {
@@ -70,7 +71,8 @@ class CitygmaGameInterface extends Component {
             });
         });
 
-        console.log(document.getElementsByClassName('mapboxgl-ctrl-icon mapboxgl-ctrl-geolocate'));
+
+        console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
     }
 
     handleBackToGameInterface() {
@@ -89,6 +91,8 @@ class CitygmaGameInterface extends Component {
 
     render() {
         const AnyReactComponent = ({ logo }) => <div><img src={logo} alt="" /></div>;
+
+
 
         return (
             <Fragment>
@@ -123,7 +127,7 @@ class CitygmaGameInterface extends Component {
                     </div>
                     }
 
-                    { !this.state.userAdvance &&
+                    { this.state.userAdvance &&
                         <div>
                             <ReactMapGL
                                 {...this.state.viewport}
@@ -153,7 +157,7 @@ class CitygmaGameInterface extends Component {
                         </div>
                     }
                     {this.props.coords && this.props.coords.latitude}
-                    <PositionTable />
+                    <PositionTable viewport={this.state.viewport} handleViewportChange={this.handleViewportChange} />
                 </div>
             </Fragment>
         );
