@@ -71,7 +71,7 @@ class CitygmaGameInterface extends Component {
         });
 
         // test boussole
-        const arrow = document.querySelector('#arrow>img');
+        /*const arrow = document.querySelector('#arrow>img');
 
         function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
@@ -87,10 +87,10 @@ class CitygmaGameInterface extends Component {
             console.log(data);
             arrow.style.transform = `rotate(${data.coords.heading}deg)`;
             document.getElementById("direction").innerHTML = data.coords.heading;
-        }, error, options);
+        }, error, options);*/
 
         // Boussole 2
-        /*if (window.DeviceOrientationEvent) {
+        if (window.DeviceOrientationEvent) {
             document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', function(eventData) {
                 // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
@@ -117,11 +117,11 @@ class CitygmaGameInterface extends Component {
 
             // Rotate the disc of the compass.
             // Laat de kompas schijf draaien.
-            var compassDisc = document.getElementById("arrow");
+            var compassDisc = document.getElementById("arrow>img");
             compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
             compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
             compassDisc.style.transform = "rotate("+ dir +"deg)";
-        }*/
+        }
 
         console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
     }
