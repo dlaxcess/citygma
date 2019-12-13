@@ -102,9 +102,13 @@ class CitygmaGameInterface extends Component {
                 // alpha: The direction the compass of the device aims to in degrees.
                 var dir = eventData.alpha;
 
-                // Call the function to use the data on the page.
-                // Roep de functie op om de data op de pagina te gebruiken.
-                deviceOrientationHandler(tiltLR, tiltFB, dir);
+                navigator.geolocation.getCurrentPosition(position => {
+                    const bearedDir = dir + getBearing(position.coords.latitude, position.coords.longitude, 48.111, -1.6794);
+
+                    // Call the function to use the data on the page.
+                    deviceOrientationHandler(tiltLR, tiltFB, bearedDir);
+                });
+
             }, false);
         } else {
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
@@ -121,6 +125,30 @@ class CitygmaGameInterface extends Component {
             compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
             compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
             compassDisc.style.transform = "rotate("+ dir +"deg)";
+        }
+
+        function toRadians(degrees) {
+            const pi = Math.PI;
+            return degrees * (pi/180);
+        }
+
+        function toDegrees(radians) {
+            const pi = Math.PI;
+            return radians * (180/pi);
+        }
+
+        function getBearing(lat1, long1, lat2, long2) {
+            const lat1Rad = toRadians(lat1);
+            const lat2Rad = toRadians(lat2);
+            const deltaLng = toRadians(long2 - long1);
+
+            const x = Math.cos(lat1Rad) * Math.sin(lat2Rad) - Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(deltaLng);
+            const y = Math.sin(deltaLng) * Math.cos(lat2Rad);
+            const bearingRad = Math.atan2(y, x);
+
+            const bearing = toDegrees(bearingRad);
+
+            return bearing;
         }
 
         console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
