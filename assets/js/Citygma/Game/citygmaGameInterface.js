@@ -42,6 +42,7 @@ class CitygmaGameInterface extends Component {
         this.handleBackToGameInterface = this.handleBackToGameInterface.bind(this);
         this.onVideoEnded = this.onVideoEnded.bind(this);
 
+
     }
 
     componentDidMount() {
@@ -70,17 +71,51 @@ class CitygmaGameInterface extends Component {
         });
 
         // test boussole
-        const arrow = document.querySelector('#arrow>img');
+        /*const arrow = document.querySelector('#arrow>img');
         console.log(arrow);
 
         navigator.geolocation.watchPosition((data) => {
             console.log(data);
             arrow.style.transform = `rotate(${data.coords.heading}deg)`;
-        });
+        });*/
 
+        // Boussole 2
+        if (window.DeviceOrientationEvent) {
+            document.getElementById("notice").innerHTML = "super ça marche.";
+            window.addEventListener('deviceorientation', function(eventData) {
+                // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
+                var tiltLR = eventData.gamma;
+
+                // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
+                var tiltFB = eventData.beta;
+
+                // alpha: The direction the compass of the device aims to in degrees.
+                var dir = eventData.alpha;
+
+                // Call the function to use the data on the page.
+                // Roep de functie op om de data op de pagina te gebruiken.
+                deviceOrientationHandler(tiltLR, tiltFB, dir);
+            }, false);
+        } else {
+            document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+        }
+
+        function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+            document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
+            document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
+            document.getElementById("direction").innerHTML = Math.ceil(dir);
+
+            // Rotate the disc of the compass.
+            // Laat de kompas schijf draaien.
+            var compassDisc = document.getElementById("arrow");
+            compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
+            compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
+            compassDisc.style.transform = "rotate("+ dir +"deg)";
+        }
 
         console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
     }
+
 
     handleBackToGameInterface() {
         this.setState({userAdvance: 1});
@@ -104,6 +139,10 @@ class CitygmaGameInterface extends Component {
             <Fragment>
                 <div id="GameInterfaceGenContainer">
                     <div id="arrow"><img src={logo}/></div>
+                    <div id="notice"></div>
+                    <div id="tiltLR"></div>
+                    <div id="tiltFB"></div>
+                    <div id="direction"></div>
 
                     <button className="marronButton" onClick={() => {this.setState({userAdvance: null})}}>Revoir</button>
                     { this.state.videoEnded && "Video Finie" }
