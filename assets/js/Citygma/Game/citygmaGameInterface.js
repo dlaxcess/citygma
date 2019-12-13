@@ -117,7 +117,7 @@ class CitygmaGameInterface extends Component {
 
             // Rotate the disc of the compass.
             // Laat de kompas schijf draaien.
-            var compassDisc = document.getElementById("arrow>img");
+            var compassDisc = document.querySelector('#arrow>img');
             compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
             compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
             compassDisc.style.transform = "rotate("+ dir +"deg)";
