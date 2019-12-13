@@ -71,16 +71,26 @@ class CitygmaGameInterface extends Component {
         });
 
         // test boussole
-        /*const arrow = document.querySelector('#arrow>img');
-        console.log(arrow);
+        const arrow = document.querySelector('#arrow>img');
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        const options = {
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0
+        };
 
         navigator.geolocation.watchPosition((data) => {
             console.log(data);
             arrow.style.transform = `rotate(${data.coords.heading}deg)`;
-        });*/
+            document.getElementById("direction").innerHTML = data.coords.heading;
+        }, error, options);
 
         // Boussole 2
-        if (window.DeviceOrientationEvent) {
+        /*if (window.DeviceOrientationEvent) {
             document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', function(eventData) {
                 // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
@@ -111,7 +121,7 @@ class CitygmaGameInterface extends Component {
             compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
             compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
             compassDisc.style.transform = "rotate("+ dir +"deg)";
-        }
+        }*/
 
         console.log(document.querySelector('.mapboxgl-ctrl-geolocate'));
     }
