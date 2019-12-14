@@ -3,6 +3,9 @@ import {usePosition} from './usePosition';
 import ReactMapGL, {GeolocateControl, Marker} from "react-map-gl";
 import logo from "../../../../images/logo-citygma.png";
 import GoogleMapReact from "google-map-react";
+//import { getDistance } from 'geolib';
+import * as geolib from 'geolib';
+
 
 const AnyReactComponent = ({ logo }) => <div><img src={logo} alt="" /></div>;
 
@@ -10,6 +13,8 @@ const AnyReactComponent = ({ logo }) => <div><img src={logo} alt="" /></div>;
 export const PositionTable = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
     const { viewport, handleViewportChange, center } = props;
+    const distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: 48.111, longitude: -1.6794}).toString();
+    //console.log(geolib.getDistance({latitude: 48.1378304, longitude: -1.6875520000000002},{latitude: 48.111, longitude: -1.6794}));
 
     const { mapOptions } = {
         disableDefaultUI: true,
@@ -26,7 +31,9 @@ export const PositionTable = (props) => {
             longitude: {longitude}<br/>
             timestamp: {timestamp}<br/>
             accuracy: {accuracy && `${accuracy}m`}<br/>
-            error: {error}
+            error: {error}<br/>
+
+            distance from mairie: {distance}
 
             <ReactMapGL
                 {...viewport}
