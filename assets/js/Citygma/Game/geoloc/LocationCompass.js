@@ -1,21 +1,21 @@
 import React from "react";
 
-export default function LocationCompass() {
+export default function LocationCompass(lat, long) {
 
     if (window.DeviceOrientationEvent) {
         document.getElementById("notice").innerHTML = "super ça marche.";
         window.addEventListener('deviceorientation', function(eventData) {
             // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
-            var tiltLR = eventData.gamma;
+            let tiltLR = eventData.gamma;
 
             // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
-            var tiltFB = eventData.beta;
+            let tiltFB = eventData.beta;
 
             // alpha: The direction the compass of the device aims to in degrees.
-            var dir = eventData.alpha;
+            let dir = eventData.alpha;
 
             navigator.geolocation.getCurrentPosition(position => {
-                const bearedDir = dir + getBearing(position.coords.latitude, position.coords.longitude, 48.111, -1.6794);
+                const bearedDir = dir + getBearing(position.coords.latitude, position.coords.longitude, lat, long);
 
                 // Call the function to use the data on the page.
                 deviceOrientationHandler(tiltLR, tiltFB, bearedDir);
@@ -32,7 +32,7 @@ export default function LocationCompass() {
         document.getElementById("direction").innerHTML = Math.ceil(dir);
 
         // Rotate the disc of the compass.
-        var compassDisc = document.querySelector('#arrow>img');
+        let compassDisc = document.querySelector('#arrow>img');
         compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
         compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
         compassDisc.style.transform = "rotate("+ dir +"deg)";

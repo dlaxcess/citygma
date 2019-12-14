@@ -7,21 +7,19 @@ import * as geolib from 'geolib';
 import logo from "../../../../images/logo-citygma.png";
 
 
+
 export const GeolocateComponent = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
     const { viewport, handleViewportChange, handleNearLocationDistance } = props;
     const distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: 48.111, longitude: -1.6794});
+
+
 
     if (distance < 40) {handleNearLocationDistance()}
 
     return (
 
         <code>
-            <div id="arrow"><img src={logo}/></div>
-            <div id="notice"></div>
-            <div id="tiltLR"></div>
-            <div id="tiltFB"></div>
-            <div id="direction"></div>
 
             latitude: {latitude}<br/>
             longitude: {longitude}<br/>

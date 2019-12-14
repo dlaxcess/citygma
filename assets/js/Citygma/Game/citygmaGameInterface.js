@@ -3,6 +3,8 @@ import { adventureService } from "./services/adventureService";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 import LocationCompass from "./geoloc/LocationCompass";
+import logo from "../../../images/logo-citygma.png";
+
 
 
 
@@ -22,7 +24,10 @@ export default class CitygmaGameInterface extends Component {
             // Game Data
             userAdvance: null,
             adventure: null,
-            videoEnded: false
+            videoPlaying: false,
+            videoUrl: '',
+            videoEnded: false,
+            geolocateShow: false,
         };
 
 
@@ -40,6 +45,7 @@ export default class CitygmaGameInterface extends Component {
         adventureService.getCityAdventure(adventureId)
             .then(adventure => {
                 this.setState({adventure: adventure});
+                this.setState({videoUrl: adventure.videoAdventureIntroFilename});
             });
 
         // Geolocation react-map-gl initialize
@@ -56,14 +62,21 @@ export default class CitygmaGameInterface extends Component {
             });
         });
 
-        // Compass Bearing
-        LocationCompass();
 
+        // Intro video playing
+        if (!this.state.userAdvance) {
+            this.setState({ videoPlaying: true });
+        }
     }
 
 
     handleBackToGameInterface() {
-        this.setState({userAdvance: 1});
+        this.setState({videoPlaying: false});
+        this.setState({ geolocateShow: true });
+
+
+        // Compass Bearing
+        LocationCompass(this.state.adventure.lastEnigmaLatitude, this.state.adventure.lastEnigmaLongitude);
     }
 
     onVideoEnded() {
@@ -76,7 +89,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleNearLocationDistance() {
-
+        this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, geolocateShow: false});
     }
 
 
@@ -87,26 +100,35 @@ export default class CitygmaGameInterface extends Component {
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
+                    <div id="arrow"><img src={logo}/></div>
+                    <div id="notice"></div>
+                    <div id="tiltLR"></div>
+                    <div id="tiltFB"></div>
+                    <div id="direction"></div>
 
 
-                    <button className="marronButton" onClick={() => {this.setState({userAdvance: null})}}>Revoir</button>
-                    { this.state.videoEnded && "Video Finie" }
+                    { this.state.videoEnded &&
+                        <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>
+                    }
 
-                    { this.state.userAdvance && this.state.adventure &&
+                    { this.state.videoPlaying && this.state.videoUrl &&
                         <div>
                             <VideoPlayerComponent
-                                videoUrl={this.state.adventure.videoAdventureIntroFilename}
+                                videoUrl={this.state.videoUrl}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
                             />
                         </div>
                     }
 
-                    <GeolocateComponent
-                        viewport={this.state.viewport}
-                        handleViewportChange={this.handleViewportChange}
-                        handleNearLocationDistance={this.handleNearLocationDistance}
-                    />
+                    { !this.state.videoPlaying && this.state.geolocateShow &&
+                        <GeolocateComponent
+                            viewport={this.state.viewport}
+                            handleViewportChange={this.handleViewportChange}
+                            handleNearLocationDistance={this.handleNearLocationDistance}
+                        />
+                    }
+
                 </div>
             </Fragment>
         );
