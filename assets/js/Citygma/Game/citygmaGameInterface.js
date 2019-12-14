@@ -126,6 +126,8 @@ export default class CitygmaGameInterface extends Component {
                             viewport={this.state.viewport}
                             handleViewportChange={this.handleViewportChange}
                             handleNearLocationDistance={this.handleNearLocationDistance}
+                            destinationLat={this.state.adventure.lastEnigmaLatitude}
+                            destinationLong={this.state.adventure.lastEnigmaLongitude}
                         />
                     }
 
