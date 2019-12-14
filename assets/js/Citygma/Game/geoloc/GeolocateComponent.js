@@ -1,32 +1,28 @@
 import React from 'react';
-import {usePosition} from './usePosition';
+import {usePosition} from 'use-position';
 import ReactMapGL, {GeolocateControl, Marker} from "react-map-gl";
-import logo from "../../../../images/logo-citygma.png";
-import GoogleMapReact from "google-map-react";
-//import { getDistance } from 'geolib';
+import "mapbox-gl/dist/mapbox-gl.css";
 import * as geolib from 'geolib';
 
+import logo from "../../../../images/logo-citygma.png";
 
-const AnyReactComponent = ({ logo }) => <div><img src={logo} alt="" /></div>;
 
-
-export const PositionTable = (props) => {
+export const GeolocateComponent = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
-    const { viewport, handleViewportChange, center } = props;
-    const distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: 48.111, longitude: -1.6794}).toString();
-    //console.log(geolib.getDistance({latitude: 48.1378304, longitude: -1.6875520000000002},{latitude: 48.111, longitude: -1.6794}));
+    const { viewport, handleViewportChange, handleNearLocationDistance } = props;
+    const distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: 48.111, longitude: -1.6794});
 
-    const { mapOptions } = {
-        disableDefaultUI: true,
-        mapTypeControl: true,
-        streetViewControl: true,
-        styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
-    };
-
+    if (distance < 40) {handleNearLocationDistance()}
 
     return (
 
         <code>
+            <div id="arrow"><img src={logo}/></div>
+            <div id="notice"></div>
+            <div id="tiltLR"></div>
+            <div id="tiltFB"></div>
+            <div id="direction"></div>
+
             latitude: {latitude}<br/>
             longitude: {longitude}<br/>
             timestamp: {timestamp}<br/>
@@ -58,20 +54,6 @@ export const PositionTable = (props) => {
 
             </ReactMapGL>
 
-            <div style={{height: '100vh', width: '100%'}}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: "AIzaSyB_b0XlDR25dl5dbC92N5SiFYjlmUOvE34" }}
-                    defaultCenter={props.center}
-                    defaultZoom={props.zoom}
-                    options={mapOptions}
-                >
-                    <AnyReactComponent
-                        lat={latitude ? latitude : 48.1378304}
-                        lng={longitude ? longitude : -1.6875520000000002}
-                        logo={logo}
-                    />
-                </GoogleMapReact>
-            </div>
         </code>
 
 
