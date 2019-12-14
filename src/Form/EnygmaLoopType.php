@@ -6,6 +6,7 @@ use App\Entity\EnygmaLoop;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +20,8 @@ class EnygmaLoopType extends AbstractType
         $builder
             ->add('storyOrder', TextType::class)
             ->add('enygmaName', TextType::class)
-            ->add('gpsCoord', TextType::class)
+            ->add('gpsCoordLatitude', NumberType::class)
+            ->add('gpsCoordLongitude', NumberType::class)
             ->add('compasActivate', CheckboxType::class, [
                 'label'    => 'Utiliser la boussole pour l\'enigme',
                 'required' => false,

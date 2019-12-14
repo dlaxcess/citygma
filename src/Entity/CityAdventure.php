@@ -78,6 +78,16 @@ class CityAdventure
      */
     private $enygmaLoops;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lastEnigmaLatitude;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lastEnigmaLongitude;
+
     public function __construct()
     {
         $this->enygmaLoops = new ArrayCollection();
@@ -247,6 +257,30 @@ class CityAdventure
                 $enygmaLoop->setCityAdventure(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastEnigmaLatitude(): ?float
+    {
+        return $this->lastEnigmaLatitude;
+    }
+
+    public function setLastEnigmaLatitude(?float $lastEnigmaLatitude): self
+    {
+        $this->lastEnigmaLatitude = $lastEnigmaLatitude;
+
+        return $this;
+    }
+
+    public function getLastEnigmaLongitude(): ?float
+    {
+        return $this->lastEnigmaLongitude;
+    }
+
+    public function setLastEnigmaLongitude(?float $lastEnigmaLongitude): self
+    {
+        $this->lastEnigmaLongitude = $lastEnigmaLongitude;
 
         return $this;
     }

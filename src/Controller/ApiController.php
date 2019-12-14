@@ -88,6 +88,8 @@ class ApiController extends AbstractController
                 'lastEnigmaQuestionText' => $cityAdventure->getLastEnigmaQuestionText(),
                 'lastEnigmaExpectedAnswer' => $cityAdventure->getLastEnigmaExpectedAnswer(),
                 'videoFinalSequenceFilename' => $cityAdventure->getVideoFinalSequenceFilename(),
+                'lastEnigmaLatitude' => $cityAdventure->getLastEnigmaLatitude(),
+                'lastEnigmaLongitude' => $cityAdventure->getLastEnigmaLongitude(),
             ];
 
             return $this->json($cityAdventure);

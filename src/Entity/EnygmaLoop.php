@@ -27,9 +27,14 @@ class EnygmaLoop
     private $enygmaName;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
-    private $gpsCoord;
+    private $gpsCoordLatitude;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $gpsCoordLongitude;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -95,14 +100,26 @@ class EnygmaLoop
         return $this;
     }
 
-    public function getGpsCoord(): ?string
+    public function getGpsCoordLatitude(): ?float
     {
-        return $this->gpsCoord;
+        return $this->gpsCoordLatitude;
     }
 
-    public function setGpsCoord(?string $gpsCoord): self
+    public function setGpsCoordLatitude(?float $gpsCoordLatitude): self
     {
-        $this->gpsCoord = $gpsCoord;
+        $this->gpsCoordLatitude = $gpsCoordLatitude;
+
+        return $this;
+    }
+
+    public function getGpsCoordLongitude(): ?float
+    {
+        return $this->gpsCoordLongitude;
+    }
+
+    public function setGpsCoordLongitude(?float $gpsCoordLongitude): self
+    {
+        $this->gpsCoordLongitude = $gpsCoordLongitude;
 
         return $this;
     }

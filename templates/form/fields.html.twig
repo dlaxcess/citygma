@@ -10,7 +10,10 @@
             </div>
             <div class="row">
                 <div class="col-md">{{ form_row(form.storyOrder) }}</div>
-                <div class="col-md">{{ form_row(form.gpsCoord) }}</div>
+                <div class="col-md">
+                    {{ form_row(form.gpsCoordLatitude) }}
+                    {{ form_row(form.gpsCoordLongitude) }}
+                </div>
                 <div class="col-md">{{ form_row(form.compasActivate) }}</div>
             </div>
             <div class="row">
