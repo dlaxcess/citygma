@@ -33,9 +33,14 @@ export default function LocationCompass(lat, long) {
 
         // Rotate the disc of the compass.
         let compassDisc = document.querySelector('#arrow>img');
+        let positionMarker = document.querySelector('#positionMarker');
         compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
         compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
         compassDisc.style.transform = "rotate("+ dir +"deg)";
+
+        positionMarker.style.webkitTransform = "rotate("+ dir +"deg)";
+        positionMarker.style.MozTransform = "rotate("+ dir +"deg)";
+        positionMarker.style.transform = "rotate("+ dir +"deg)";
     }
 
     function toRadians(degrees) {

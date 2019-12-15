@@ -22,11 +22,13 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             // Game Data
-            userAdvance: null,
+            userAdvance: 0,
             adventure: null,
+            enigmas: null,
             videoPlaying: false,
             videoUrl: '',
             videoEnded: false,
+            showCompass: false,
             geolocateShow: false,
         };
 
@@ -46,6 +48,12 @@ export default class CitygmaGameInterface extends Component {
             .then(adventure => {
                 this.setState({adventure: adventure});
                 this.setState({videoUrl: adventure.videoAdventureIntroFilename});
+            });
+
+        // Get adventure's enigmas
+        adventureService.getAdventureEnigmas(adventureId)
+            .then(enigmas => {
+                this.setState({enigmas});
             });
 
         // Geolocation react-map-gl initialize
@@ -71,12 +79,15 @@ export default class CitygmaGameInterface extends Component {
 
 
     handleBackToGameInterface() {
-        this.setState({videoPlaying: false});
-        this.setState({ geolocateShow: true });
+        if (!this.state.userAdvance) {
+            this.setState({userAdvance: 1, videoPlaying: true, videoUrl: this.state.enigmas[0].enigmaVideoIntroClue});
 
+        } else {
+            this.setState({videoPlaying: false, geolocateShow: true, showCompass: true});
 
-        // Compass Bearing
-        LocationCompass(this.state.adventure.lastEnigmaLatitude, this.state.adventure.lastEnigmaLongitude);
+            // Compass Bearing
+            LocationCompass(this.state.adventure.lastEnigmaLatitude, this.state.adventure.lastEnigmaLongitude);
+        }
     }
 
     onVideoEnded() {
@@ -89,31 +100,35 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleNearLocationDistance() {
-        this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, geolocateShow: false});
+        this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, geolocateShow: false, showCompass: false});
     }
 
 
     render() {
 
-        console.log(this.state.adventure);
+        console.log(this.state.enigmas);
+        console.log(this.state.videoUrl);
 
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
-                    <div id="arrow"><img src={logo}/></div>
-                    <div id="notice"></div>
-                    <div id="tiltLR"></div>
-                    <div id="tiltFB"></div>
-                    <div id="direction"></div>
+                    <div id="compass" className={this.state.showCompass ? 'compassVisible' : 'compassHidden'}>
+                        <div id="arrow"><img src={logo}/></div>
+                        <div id="notice"></div>
+                        <div id="tiltLR"></div>
+                        <div id="tiltFB"></div>
+                        <div id="direction"></div>
+                    </div>
 
 
-                    { this.state.videoEnded &&
+                    { this.state.videoEnded && false &&
                         <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>
                     }
 
                     { this.state.videoPlaying && this.state.videoUrl &&
                         <div>
                             <VideoPlayerComponent
+                                key={this.state.userAdvance}
                                 videoUrl={this.state.videoUrl}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}

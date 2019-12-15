@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component, Fragment} from 'react'
 
-import ReactPlayer from "react-player";
+import ReactPlayer, {player} from "react-player";
 import { uploadsDir } from "../../ConstData/uploadsDir";
 
 
@@ -9,7 +9,7 @@ export default class VideoPlayerComponent extends Component {
         super(props);
 
         this.state = {
-            url: null,
+            url: this.props.videoUrl,
             pip: false,
             playing: false,
             controls: false,
@@ -20,19 +20,35 @@ export default class VideoPlayerComponent extends Component {
             loaded: 0,
             duration: 0,
             playbackRate: 1.0,
-            loop: false
+            loop: false,
+
+            player: null,
+            showEndedButton: false
         };
 
+        this.load = this.load.bind(this);
         this.handlePlay = this.handlePlay.bind(this);
         this.handleEnded = this.handleEnded.bind(this);
+        this.ref = this.ref.bind(this);
 
         const {onVideoEnded} = this.props.onVideoEnded;
     }
 
     componentDidMount() {
         { this.props.videoUrl &&
-            this.setState({ url: `${uploadsDir.getUploadsDir()}${this.props.videoUrl}` });
+            this.setState({ playing: true });
+            document.querySelector("#videoPlay").click();
         }
+    }
+
+    load() {
+        this.state.player.seekTo(0);
+        this.setState({
+            playing: true,
+            played: 0,
+            loaded: 0,
+            pip: false
+        })
     }
 
     handlePlay() {
@@ -42,7 +58,13 @@ export default class VideoPlayerComponent extends Component {
 
     handleEnded() {
         this.props.onVideoEnded();
+        this.setState({showEndedButton: true});
     }
+
+    ref(player) {
+        this.setState({player: player});
+    }
+
 
 
     render() {
@@ -51,15 +73,21 @@ export default class VideoPlayerComponent extends Component {
         return (
             <section className='playerSection'>
                 <div>
-                    <button className="marronButton" onClick={this.handlePlay}>Lire</button>
-                    <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Retour</button>
+                    <button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>
+                    {this.state.showEndedButton &&
+                        <Fragment>
+                            <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Retour</button>
+                            <button id="videoRePlay" className="marronButton" onClick={this.load}>Revoir</button>
+                        </Fragment>
+                    }
                 </div>
                 <div className='player-wrapper'>
                     <ReactPlayer
+                        ref={this.ref}
                         className='react-player'
                         width='100%'
                         height='100%'
-                        url={url}
+                        url={`${uploadsDir.getUploadsDir()}${url}`}
                         pip={pip}
                         playing={playing}
                         controls={controls}

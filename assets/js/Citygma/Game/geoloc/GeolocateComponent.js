@@ -40,7 +40,7 @@ export const GeolocateComponent = (props) => {
                     latitude={latitude ? latitude : viewport.latitude}
                     longitude={longitude ? longitude : viewport.longitude}
                     /*anchor="bottom"*/>
-                    <img width="30" height="auto" src={logo} style={{marginLeft: '-0.7rem', marginTop: '-0.4rem'}}/>
+                    <img id="positionMarker" width="30" height="auto" src={logo} style={{marginLeft: '-0.7rem', marginTop: '-0.4rem'}}/>
                 </Marker>
                 }
                 <GeolocateControl

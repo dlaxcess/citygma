@@ -75,7 +75,7 @@ class ApiController extends AbstractController
         if (isset($values->id)) {
             $cityAdventure = $this->cityAdventuresRepository->find($values->id);
 
-            $cityAdventure = [
+            $cityAdventureJSON = [
                 'adventureId' => $cityAdventure->getId(),
                 'adventureName' => $cityAdventure->getAdventureName(),
                 'adventureTown' => $cityAdventure->getAdventureTown(),
@@ -92,12 +92,50 @@ class ApiController extends AbstractController
                 'lastEnigmaLongitude' => $cityAdventure->getLastEnigmaLongitude(),
             ];
 
-            return $this->json($cityAdventure);
+            return $this->json($cityAdventureJSON);
         }
         else {
             $data = [
                 'status' => 500,
                 'message' => 'L\'aventure n\a pas été trouvée'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/adventureEnigmas", name="adventureEnigmas", methods={"POST"})
+     */
+    public function adventureEnigmas(Request $request)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->adventureId)) {
+            $adventureEnigmasArray = $this->cityAdventuresRepository->find($values->adventureId)->getEnygmaLoops();
+            $adventureEnigmas = [];
+
+            foreach ($adventureEnigmasArray as $enygmaLoop) {
+                $adventureEnigmas[] = [
+                    'enigmaId' => $enygmaLoop->getId(),
+                    'enigmaStoryOrder' => $enygmaLoop->getStoryOrder(),
+                    'enigmaName' => $enygmaLoop->getEnygmaName(),
+                    'enigmaLat' => $enygmaLoop->getGpsCoordLatitude(),
+                    'enigmaLong' => $enygmaLoop->getGpsCoordLongitude(),
+                    'enigmaCompassActive' => $enygmaLoop->getCompasActivate(),
+                    'enigmaVideoIntroClue' => $enygmaLoop->getVideoIntroClueFilename(),
+                    'enigmaVideoHistoryInfo' => $enygmaLoop->getVideoHistoryInfoFilename(),
+                    'enigmaQuestionPicture' => $enygmaLoop->getEnygmaQuestionPictureFilename(),
+                    'enigmaQuestionText' => $enygmaLoop->getEnygmaQuestionText(),
+                    'enigmaExpectedAnswer' => $enygmaLoop->getEnigmaExpectedAnswer(),
+                ];
+            }
+
+            return $this->json($adventureEnigmas);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'Aucune enigme n\'a été trouvée'
             ];
 
             return new JsonResponse($data, 201);

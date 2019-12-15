@@ -3,7 +3,8 @@ import { handleResponse } from '../../../auth/helpers/handle-response';
 
 export const adventureService = {
     getCityAdventures,
-    getCityAdventure
+    getCityAdventure,
+    getAdventureEnigmas
 };
 
 function getCityAdventures() {
@@ -19,6 +20,21 @@ function getCityAdventure(id) {
     };
 
     return fetch('/api/CityAdventure', requestOptions)
+        .then(handleResponse)
+        .then(data => {
+
+            return data;
+        });
+}
+
+function getAdventureEnigmas(adventureId) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ adventureId })
+    };
+
+    return fetch('/api/adventureEnigmas', requestOptions)
         .then(handleResponse)
         .then(data => {
 
