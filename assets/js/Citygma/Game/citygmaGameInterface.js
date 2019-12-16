@@ -188,7 +188,7 @@ export default class CitygmaGameInterface extends Component {
         // Current Enigma
         const enigmaId =
             this.state.adventure && this.state.enigmas ?
-                (this.state.userAdvance > this.state.enigmas.length) ? null :
+                (this.state.userAdvance > this.state.enigmas.length) ? 'none' :
                     (this.state.userAdvance > 1) ? this.state.enigmas[this.state.userAdvance.toFixed() - 2].enigmaId : this.state.enigmas[0].enigmaId
                 : ''
         ;

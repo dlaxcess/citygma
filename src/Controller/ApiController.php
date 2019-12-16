@@ -154,7 +154,7 @@ class ApiController extends AbstractController
         if (isset($values->enigmaId,$values->adventureId,$values->enigmaAnswer)) {
             $correctAnswer = '';
 
-            if ($values->enigmaId) {
+            if ($values->enigmaId !== 'none') {
                 // Reponse à l'enigme
                 $correctAnswer = $this->enygmaLoopRepository->find($values->enigmaId)->getEnigmaExpectedAnswer();
 
