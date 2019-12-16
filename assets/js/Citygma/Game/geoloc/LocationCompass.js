@@ -15,10 +15,11 @@ export default function LocationCompass(lat, long) {
             let dir = eventData.alpha;
 
             navigator.geolocation.getCurrentPosition(position => {
-                const bearedDir = dir + getBearing(position.coords.latitude, position.coords.longitude, lat, long);
+                const fromNorthBearing = getBearing(position.coords.latitude, position.coords.longitude, lat, long);
+                const bearedDir = dir + fromNorthBearing;
 
                 // Call the function to use the data on the page.
-                deviceOrientationHandler(tiltLR, tiltFB, bearedDir);
+                deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
             });
 
         }, false);
@@ -26,7 +27,7 @@ export default function LocationCompass(lat, long) {
         document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
     }
 
-    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+    function deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, dir) {
         document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
         document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
         document.getElementById("direction").innerHTML = Math.ceil(dir);
@@ -38,9 +39,9 @@ export default function LocationCompass(lat, long) {
         compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
         compassDisc.style.transform = "rotate("+ dir +"deg)";
 
-        positionMarker.style.webkitTransform = "rotate("+ dir +"deg)";
-        positionMarker.style.MozTransform = "rotate("+ dir +"deg)";
-        positionMarker.style.transform = "rotate("+ dir +"deg)";
+        positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+        positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+        positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
     }
 
     function toRadians(degrees) {
