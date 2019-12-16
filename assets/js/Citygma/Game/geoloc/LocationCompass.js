@@ -66,9 +66,8 @@ export default function LocationCompass(lat, long) {
         let y = Math.sin(deltaLng) * Math.cos(lat2Rad);
         let bearingRad = Math.atan2(y, x);
 
-        let bearingDeg = toDegrees(bearingRad);
 
-        return bearingDeg;
+        return toDegrees(bearingRad);
     }
 
     function getBearings(eventData) {
