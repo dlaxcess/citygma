@@ -27,6 +27,8 @@ export default class CitygmaGameInterface extends Component {
             userAdvance: 0,
             adventure: null,
             enigmas: null,
+            currentLat : 48.1378304,
+            currentLong: -1.687552,
             videoPlaying: false,
             videoUrl: '',
             videoEnded: false,
@@ -60,6 +62,7 @@ export default class CitygmaGameInterface extends Component {
         adventureService.getAdventureEnigmas(adventureId)
             .then(enigmas => {
                 this.setState({enigmas});
+                thi.setState({currentLat: enigmas[0].enigmaLat, currentLong: enigmas[0].enigmaLong})
             });
 
         // Geolocation react-map-gl initialize
@@ -122,7 +125,7 @@ export default class CitygmaGameInterface extends Component {
                     this.setState({videoPlaying: false, geolocateShow: true, showCompass: true});
 
                     // Compass Bearing
-                    LocationCompass(this.state.enigmas[enigmaKey].enigmaLat, this.state.enigmas[enigmaKey].enigmaLong);
+                    LocationCompass(this.state.currentLat, this.state.currentLong);
 
                 } else if (this.isFloat(this.state.userAdvance)) {
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
@@ -145,21 +148,21 @@ export default class CitygmaGameInterface extends Component {
 
     handleNearLocationDistance() {
         if (this.state.userAdvance > this.state.enigmas.length) {
-            this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.5});
+            this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.5, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude});
 
         } else {
             const enigmaKey = this.state.userAdvance - 1;
             this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.5});
 
         }
-        window.removeEventListener('deviceorientation', LocationCompass.getBearings(), false);
+        window.removeEventListener('deviceorientation', LocationCompass.getBearings, false);
     }
 
     handleEnigmaGoodAnswer() {
         const enigmaKey = Math.round(this.state.userAdvance) - 1;
 
         if (this.state.enigmas[enigmaKey]) {
-            this.setState({showEnigma: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance)});
+            this.setState({showEnigma: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong});
         } else {
             if (this.isFloat(this.state.userAdvance)) {
                 if (this.state.userAdvance % 0.5 !== 0) {
@@ -169,6 +172,7 @@ export default class CitygmaGameInterface extends Component {
                 }
             }
         }
+        
     }
 
     onVideoEnded() {
