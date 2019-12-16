@@ -70,7 +70,7 @@ export default function LocationCompass(lat, long) {
         return toDegrees(bearingRad);
     }
 
-    function getBearings(eventData) {
+    /*function getBearings(eventData) {
         // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
         let tiltLR = eventData.gamma;
 
@@ -88,7 +88,7 @@ export default function LocationCompass(lat, long) {
             deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
         });
 
-    }
+    }*/
 
     // test boussole 2
     /*const arrow = document.querySelector('#arrow>img');
