@@ -4,7 +4,25 @@ export default function LocationCompass(lat, long) {
 
     if (window.DeviceOrientationEvent) {
         document.getElementById("notice").innerHTML = "super ça marche.";
-        window.addEventListener('deviceorientation', getBearings(eventData), false);
+        window.addEventListener('deviceorientation', function (eventData) {
+            // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
+            let tiltLR = eventData.gamma;
+
+            // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
+            let tiltFB = eventData.beta;
+
+            // alpha: The direction the compass of the device aims to in degrees.
+            let dir = eventData.alpha;
+
+            navigator.geolocation.getCurrentPosition(position => {
+                const fromNorthBearing = getBearing(position.coords.latitude, position.coords.longitude, lat, long);
+                const bearedDir = dir + fromNorthBearing;
+
+                // Call the function to use the data on the page.
+                deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+            });
+
+        }, false);
     } else {
         document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
     }
