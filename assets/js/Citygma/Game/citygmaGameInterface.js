@@ -62,7 +62,8 @@ export default class CitygmaGameInterface extends Component {
         adventureService.getAdventureEnigmas(adventureId)
             .then(enigmas => {
                 this.setState({enigmas});
-                this.setState({currentLat: enigmas[0].enigmaLat, currentLong: enigmas[0].enigmaLong})
+                this.setState({currentLat: enigmas[0].enigmaLat, currentLong: enigmas[0].enigmaLong});
+                
             });
 
         // Geolocation react-map-gl initialize
