@@ -15,8 +15,8 @@ export default function LocationCompass(lat, long) {
             let dir = eventData.alpha;
 
             navigator.geolocation.getCurrentPosition(position => {
-                const fromNorthBearing = getBearing(position.coords.latitude, position.coords.longitude, lat, long);
-                const bearedDir = dir + fromNorthBearing;
+                let fromNorthBearing = getBearing(position.coords.latitude, position.coords.longitude, lat, long);
+                let bearedDir = dir + fromNorthBearing;
 
                 // Call the function to use the data on the page.
                 deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
