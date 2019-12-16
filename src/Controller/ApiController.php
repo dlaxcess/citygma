@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Repository\CityAdventureRepository;
+use App\Repository\EnygmaLoopRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,10 +18,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     private $cityAdventuresRepository;
+    private $enygmaLoopRepository;
 
-    public function __construct(CityAdventureRepository $cityAdventureRepository)
+    public function __construct(CityAdventureRepository $cityAdventureRepository, EnygmaLoopRepository $enygmaLoopRepository)
     {
         $this->cityAdventuresRepository = $cityAdventureRepository;
+        $this->enygmaLoopRepository = $enygmaLoopRepository;
     }
 
     /**
@@ -139,6 +142,51 @@ class ApiController extends AbstractController
             ];
 
             return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/answerEnigma", name="answerEnigma", methods={"POST"})
+     */
+    public function answerEnigma(Request $request)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->enigmaId,$values->adventureId,$values->enigmaAnswer)) {
+            $correctAnswer = '';
+
+            if ($values->enigmaId) {
+                // Reponse à l'enigme
+                $correctAnswer = $this->enygmaLoopRepository->find($values->enigmaId)->getEnigmaExpectedAnswer();
+
+            } else {
+                // Reponse à l'enigme finale
+                $correctAnswer = $this->cityAdventuresRepository->find($values->adventureId)->getLastEnigmaExpectedAnswer();
+
+            }
+
+            if ($values->enigmaAnswer === $correctAnswer) {
+                $data = [
+                    'status' => 201,
+                    'message' => 'Bravo ! Bonne réponse !'
+                ];
+
+                return new JsonResponse($data, 201);
+            } else {
+                $data = [
+                    'status' => 500,
+                    'message' => 'Mauvaise réponse... cherchez encore !'
+                ];
+                return new JsonResponse($data, 500);
+            }
+
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'Aucune réponse renseignée'
+            ];
+
+            return new JsonResponse($data, 500);
         }
     }
 }

@@ -4,7 +4,8 @@ import { handleResponse } from '../../../auth/helpers/handle-response';
 export const adventureService = {
     getCityAdventures,
     getCityAdventure,
-    getAdventureEnigmas
+    getAdventureEnigmas,
+    answerEnigma
 };
 
 function getCityAdventures() {
@@ -35,6 +36,21 @@ function getAdventureEnigmas(adventureId) {
     };
 
     return fetch('/api/adventureEnigmas', requestOptions)
+        .then(handleResponse)
+        .then(data => {
+
+            return data;
+        });
+}
+
+function answerEnigma(enigmaId, adventureId, enigmaAnswer) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ enigmaId, adventureId, enigmaAnswer })
+    };
+
+    return fetch('/api/answerEnigma', requestOptions)
         .then(handleResponse)
         .then(data => {
 
