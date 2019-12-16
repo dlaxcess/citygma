@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
 import { adventureService } from "../services/adventureService";
+import { uploadsDir} from "../../ConstData/uploadsDir";
 
 
 export default function EnigmaQuestionAnswer(props) {
@@ -13,7 +14,8 @@ export default function EnigmaQuestionAnswer(props) {
     return (
         <Fragment>
             <h2>Question</h2>
-            <p>Bla bla bla</p>
+            <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/>
+            <p>{enigmaQuestionText}</p>
             <Formik
                 initialValues={{
                     enigmaAnswer: '',
