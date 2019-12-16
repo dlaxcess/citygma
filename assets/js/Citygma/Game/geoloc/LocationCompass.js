@@ -58,15 +58,15 @@ export default function LocationCompass(lat, long) {
     }
 
     function getBearing(lat1, long1, lat2, long2) {
-        const lat1Rad = toRadians(lat1);
-        const lat2Rad = toRadians(lat2);
-        const deltaLng = toRadians(long2 - long1);
+        let lat1Rad = toRadians(lat1);
+        let lat2Rad = toRadians(lat2);
+        let deltaLng = toRadians(long2 - long1);
 
-        const x = Math.cos(lat1Rad) * Math.sin(lat2Rad) - Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(deltaLng);
-        const y = Math.sin(deltaLng) * Math.cos(lat2Rad);
-        const bearingRad = Math.atan2(y, x);
+        let x = Math.cos(lat1Rad) * Math.sin(lat2Rad) - Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(deltaLng);
+        let y = Math.sin(deltaLng) * Math.cos(lat2Rad);
+        let bearingRad = Math.atan2(y, x);
 
-        const bearingDeg = toDegrees(bearingRad);
+        let bearingDeg = toDegrees(bearingRad);
 
         return bearingDeg;
     }
