@@ -146,11 +146,13 @@ export default class CitygmaGameInterface extends Component {
     handleNearLocationDistance() {
         if (this.state.userAdvance > this.state.enigmas.length) {
             this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.5});
+
         } else {
             const enigmaKey = this.state.userAdvance - 1;
             this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.5});
 
         }
+        window.removeEventListener('deviceorientation', LocationCompass.getBearings(), false);
     }
 
     handleEnigmaGoodAnswer() {
@@ -165,7 +167,7 @@ export default class CitygmaGameInterface extends Component {
                 }else {
                     this.setState({showEnigma: false, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance)});
                 }
-            } 
+            }
         }
     }
 
