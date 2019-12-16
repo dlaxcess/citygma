@@ -207,6 +207,20 @@ export default class CitygmaGameInterface extends Component {
             : ''
         ;
 
+        const destinationLat =
+            this.state.adventure && this.state.enigmas ?
+                (this.state.userAdvance > this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude :
+                    (this.state.userAdvance > 1) ? this.state.enigmas[this.state.userAdvance.toFixed() - 2].enigmaLat : this.state.enigmas[0].enigmaLat
+                : 48.1378304
+        ;
+
+        const destinationLong =
+            this.state.adventure && this.state.enigmas ?
+                (this.state.userAdvance > this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude :
+                    (this.state.userAdvance > 1) ? this.state.enigmas[this.state.userAdvance.toFixed() - 2].enigmaLong : this.state.enigmas[0].enigmaLong
+                : -1.6875520
+        ;
+
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
@@ -239,8 +253,8 @@ export default class CitygmaGameInterface extends Component {
                             viewport={this.state.viewport}
                             handleViewportChange={this.handleViewportChange}
                             handleNearLocationDistance={this.handleNearLocationDistance}
-                            destinationLat={this.state.adventure.lastEnigmaLatitude}
-                            destinationLong={this.state.adventure.lastEnigmaLongitude}
+                            destinationLat={destinationLat}
+                            destinationLong={destinationLong}
                         />
                     }
 
