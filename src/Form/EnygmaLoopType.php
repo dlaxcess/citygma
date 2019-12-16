@@ -21,10 +21,10 @@ class EnygmaLoopType extends AbstractType
             ->add('storyOrder', TextType::class)
             ->add('enygmaName', TextType::class)
             ->add('gpsCoordLatitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
             ])
             ->add('gpsCoordLongitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
             ])
             ->add('compasActivate', CheckboxType::class, [
                 'label'    => 'Utiliser la boussole pour l\'enigme',

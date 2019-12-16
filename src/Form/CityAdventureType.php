@@ -82,10 +82,10 @@ class CityAdventureType extends AbstractType
                 ],
             ])
             ->add('lastEnigmaLatitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
             ])
             ->add('lastEnigmaLongitude', NumberType::class, [
-                'scale' => 6,
+                'scale' => 7,
             ])
             ->add('lastEnigmaQuestionText', TextareaType::class)
             ->add('lastEnigmaExpectedAnswer', TextType::class)
