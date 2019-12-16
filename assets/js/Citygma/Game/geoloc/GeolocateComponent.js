@@ -11,7 +11,7 @@ import logo from "../../../../images/logo-citygma.png";
 export const GeolocateComponent = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
     const { viewport, handleViewportChange, handleNearLocationDistance, destinationLat, destinationLong } = props;
-    const distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: destinationLat, longitude: destinationLong});
+    let distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: destinationLat, longitude: destinationLong});
 
 
 

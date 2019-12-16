@@ -4,7 +4,7 @@ export default function LocationCompass(lat, long) {
 
     if (window.DeviceOrientationEvent) {
         document.getElementById("notice").innerHTML = "super ça marche.";
-        window.addEventListener('deviceorientation', function (eventData) {
+        window.addEventListener('deviceorientation', function _bearingListener(eventData) {
             // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
             let tiltLR = eventData.gamma;
 
