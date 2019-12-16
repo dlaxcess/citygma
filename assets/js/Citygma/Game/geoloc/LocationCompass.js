@@ -39,9 +39,12 @@ export default function LocationCompass(lat, long) {
         compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
         compassDisc.style.transform = "rotate("+ dir +"deg)";
 
-        positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
-        positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
-        positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+        if (positionMarker) {
+            positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+        }
+
     }
 
     function toRadians(degrees) {

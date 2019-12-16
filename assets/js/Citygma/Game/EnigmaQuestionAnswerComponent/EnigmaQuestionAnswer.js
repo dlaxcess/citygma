@@ -29,7 +29,7 @@ export default function EnigmaQuestionAnswer(props) {
                         .then(
                             data => {
 
-                                handleEnigmaGoodAnswer;
+                                handleEnigmaGoodAnswer();
                             },
                             error => {
                                 setSubmitting(false);
