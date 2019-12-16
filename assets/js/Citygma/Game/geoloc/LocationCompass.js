@@ -16,7 +16,7 @@ export default function LocationCompass(lat, long) {
 
             navigator.geolocation.getCurrentPosition(position => {
                 let fromNorthBearing = getBearing(position.coords.latitude, position.coords.longitude, lat, long);
-                let bearedDir = dir - getBearing(position.coords.latitude, position.coords.longitude, lat, long);
+                let bearedDir = dir + getBearing(position.coords.latitude, position.coords.longitude, lat, long);
 
                 // Call the function to use the data on the page.
                 deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
@@ -27,17 +27,17 @@ export default function LocationCompass(lat, long) {
         document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
     }
 
-    function deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, dir) {
+    function deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
         document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
         document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
-        document.getElementById("direction").innerHTML = Math.ceil(dir);
+        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
 
         // Rotate the disc of the compass.
         let compassDisc = document.querySelector('#arrow>img');
         let positionMarker = document.querySelector('#positionMarker');
-        compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
-        compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
-        compassDisc.style.transform = "rotate("+ dir +"deg)";
+        compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.MozTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.transform = "rotate("+ bearedDir +"deg)";
 
         if (positionMarker) {
             positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
