@@ -35,10 +35,10 @@ export default class VideoPlayerComponent extends Component {
     }
 
     componentDidMount() {
-        { this.props.videoUrl &&
+        {/* this.props.videoUrl &&
             this.setState({ playing: true });
             document.querySelector("#videoPlay").click();
-        }
+        */}
     }
 
     load() {
