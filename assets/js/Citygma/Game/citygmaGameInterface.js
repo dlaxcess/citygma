@@ -271,13 +271,13 @@ export default class CitygmaGameInterface extends Component {
         // alpha: The direction the compass of the device aims to in degrees.
         let dir = eventData.alpha;
 
-        this.handleReCenter();
+        //this.handleReCenter();
 
-        if (!eventData.absolute) {
+        /*if (!eventData.absolute) {
             this.setState({userDeviceAcceptCompass: false})
         } else {
             this.setState({userDeviceAcceptCompass: true});
-        }
+        }*/
 
         navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
