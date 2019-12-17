@@ -515,7 +515,7 @@ nav {
 
 // Page Profil joueur
 #profilContainer {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: #DEA000;
@@ -558,11 +558,9 @@ nav {
           align-items: center;
           margin-bottom: 1rem;
           margin-left: -2rem;
-          flex-wrap: wrap;
 
           h2 {
             margin-right: 3rem;
-            margin-bottom: 1.5rem;
           }
 
           .logoutButton {
