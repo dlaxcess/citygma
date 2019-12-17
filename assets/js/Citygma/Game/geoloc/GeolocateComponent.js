@@ -10,7 +10,7 @@ import logo from "../../../../images/logo-citygma.png";
 
 export const GeolocateComponent = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(true, {enableHighAccuracy: true});
-    const { viewport, handleViewportChange, handleNearLocationDistance, destinationLat, destinationLong, currentEnigmaActiveCompass } = props;
+    const { viewport, handleViewportChange, handleNearLocationDistance, destinationLat, destinationLong, currentEnigmaActiveCompass, handleReCenter } = props;
     let distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: destinationLat, longitude: destinationLong});
 
 
@@ -28,7 +28,7 @@ export const GeolocateComponent = (props) => {
             error: {error}<br/>
 
             distance from mairie: {distance}
-
+            <button className="marronButton" onClick={handleReCenter}>Recentrer</button>
             <ReactMapGL
                 {...viewport}
                 mapStyle="mapbox://styles/mapbox/outdoors-v11?optimize=true"

@@ -49,6 +49,8 @@ export default class CitygmaGameInterface extends Component {
 
         this.onVideoEnded = this.onVideoEnded.bind(this);
 
+        this.handleReCenter = this.handleReCenter.bind(this);
+
         this.bearingListener = this.bearingListener.bind(this);
         this.getBearing = this.getBearing.bind(this);
         this.activateCompass = this.activateCompass.bind(this);
@@ -189,7 +191,21 @@ export default class CitygmaGameInterface extends Component {
 
     handleViewportChange(viewport) {
         this.setState({ viewport: viewport });
+    }
 
+    handleReCenter() {
+        navigator.geolocation.getCurrentPosition(position => {
+            let newViewport = {
+                height: "80vh",
+                width: "80vw",
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                zoom: 16
+            };
+            this.setState({
+                viewport: newViewport
+            });
+        });
     }
 
     // Compass
@@ -254,6 +270,8 @@ export default class CitygmaGameInterface extends Component {
 
         // alpha: The direction the compass of the device aims to in degrees.
         let dir = eventData.alpha;
+
+        this.handleReCenter();
 
         if (!eventData.absolute) {
             this.setState({userDeviceAcceptCompass: false})
@@ -356,6 +374,7 @@ export default class CitygmaGameInterface extends Component {
                             destinationLat={destinationLat}
                             destinationLong={destinationLong}
                             currentEnigmaActiveCompass={this.state.currentEnigmaActiveCompass}
+                            handleReCenter={this.handleReCenter}
                         />
                     }
 
