@@ -43,7 +43,7 @@ export const GeolocateComponent = (props) => {
                     { currentEnigmaActiveCompass ?
                         <img id="positionMarker" width="30" height="auto" src={logo} style={{marginLeft: '-0.7rem', marginTop: '-0.4rem'}}/>
                     :
-                        <h2>O</h2>
+                        <h2 style={{marginLeft: '-0.7rem', marginTop: '-0.4rem'}}>O</h2>
                     }
                 </Marker>
                 }
