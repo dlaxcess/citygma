@@ -3,7 +3,7 @@ import { history } from "../../auth/helpers/history";
 import { adventureService } from "./services/adventureService";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
-import {locationCompassService} from "./geoloc/locationCompassService";
+//import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
 
