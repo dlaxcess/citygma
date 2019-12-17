@@ -260,7 +260,12 @@ export default class CitygmaGameInterface extends Component {
         let bearingRad = Math.atan2(y, x);
 
 
-        return this.toDegrees(bearingRad);
+        return this.wrap360(this.toDegrees(bearingRad));
+    }
+
+    wrap360(degrees) {
+        if (0<=degrees && degrees<360) return degrees; // avoid rounding due to arithmetic ops if within range
+        return (degrees%360+360) % 360; // sawtooth wave p:360, a:360
     }
 
     bearingListener(eventData) {
