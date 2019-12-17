@@ -8,12 +8,12 @@ export const locationCompassService = {
 function locationCompass(lat, long) {
     var latbis = lat;
     var longbis = long;
-    if (false) {
+    /*if (false) {
         document.getElementById("notice").innerHTML = "super ça marche.";
         window.addEventListener('deviceorientation', bearingListener, false);
     } else {
         document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-    }
+    }*/
 
     // test boussole 2
     /*const arrow = document.querySelector('#arrow>img');
@@ -78,7 +78,7 @@ function getBearing(lat1, long1, lat2, long2) {
     return toDegrees(bearingRad);
 }
 
-function bearingListener(eventData) {
+/*function bearingListener(eventData) {
     // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
     let tiltLR = eventData.gamma;
 
@@ -96,7 +96,7 @@ function bearingListener(eventData) {
         deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
     });
 
-}
+}*/
 
 function stopCompass() {
 
