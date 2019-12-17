@@ -3,7 +3,7 @@ import { history } from "../../auth/helpers/history";
 import { adventureService } from "./services/adventureService";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
-import LocationCompass from "./geoloc/LocationCompass";
+import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
 
@@ -45,6 +45,10 @@ export default class CitygmaGameInterface extends Component {
         this.handleEnigmaGoodAnswer = this.handleEnigmaGoodAnswer.bind(this);
 
         this.onVideoEnded = this.onVideoEnded.bind(this);
+
+        this.bearingListener = this.bearingListener.bind(this);
+        this.getBearing = this.getBearing.bind(this);
+        this.activateCompass = this.activateCompass.bind(this);
     }
 
 
@@ -115,7 +119,7 @@ export default class CitygmaGameInterface extends Component {
                 this.setState({videoPlaying: false, geolocateShow: true, showCompass: true});
 
                 // Compass Bearing
-                LocationCompass(this.state.adventure.lastEnigmaLatitude, this.state.adventure.lastEnigmaLongitude);
+                this.activateCompass();
             } else if (this.state.userAdvance === this.state.enigmas.length + 2) {
                 history.push('/profil');
             } else {
@@ -128,7 +132,7 @@ export default class CitygmaGameInterface extends Component {
                     console.log('current useradvance', this.state.userAdvance);
                     console.log(this.state.currentLat, this.state.currentLong);
                     // Compass Bearing
-                    LocationCompass(this.state.currentLat, this.state.currentLong);
+                    this.activateCompass();
 
 
                 } else if (this.isFloat(this.state.userAdvance)) {
@@ -140,10 +144,10 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour d'interface enigme
                     } else {
-                        this.setState({videoPlaying: false, geolocateShow: true, showCompass: true, showEnigma: false});
+                        this.setState({videoPlaying: false, geolocateShow: true, showCompass: true, showEnigma: false, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong});
 
                         // Compass Bearing
-                        LocationCompass(this.state.enigmas[enigmaKey].enigmaLat, this.state.enigmas[enigmaKey].enigmaLong);
+                        this.activateCompass();
                     }
                 }
             }
@@ -152,14 +156,14 @@ export default class CitygmaGameInterface extends Component {
 
     handleNearLocationDistance() {
         if (this.state.userAdvance > this.state.enigmas.length) {
-            this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.5, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude});
+            this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.5});
 
         } else {
             const enigmaKey = this.state.userAdvance - 1;
             this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong});
 
         }
-        window.removeEventListener('deviceorientation', LocationCompass._bearingListener, false);
+        document.removeEventListener('deviceorientation', this.bearingListener, false);
     }
 
     handleEnigmaGoodAnswer() {
@@ -172,7 +176,7 @@ export default class CitygmaGameInterface extends Component {
         } else {
             if (this.isFloat(this.state.userAdvance)) {
                 if (this.state.userAdvance % 0.5 !== 0) {
-                    this.setState({showEnigma: false, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance)});
+                    this.setState({showEnigma: false, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude});
                 }else {
                     this.setState({showEnigma: false, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance)});
                 }
@@ -187,6 +191,79 @@ export default class CitygmaGameInterface extends Component {
 
     handleViewportChange(viewport) {
         this.setState({ viewport: viewport });
+
+    }
+
+    // Compass
+    activateCompass() {
+        if (window.DeviceOrientationEvent) {
+            document.getElementById("notice").innerHTML = "super ça marche.";
+            window.addEventListener('deviceorientation', this.bearingListener, false);
+        } else {
+            document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+        }
+    }
+
+    deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
+        document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
+        document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
+        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
+
+        // Rotate the disc of the compass.
+        let compassDisc = document.querySelector('#arrow>img');
+        let positionMarker = document.querySelector('#positionMarker');
+        compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.MozTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.transform = "rotate("+ bearedDir +"deg)";
+
+        if (positionMarker) {
+            positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+        }
+
+    }
+
+    toRadians(degrees) {
+        const pi = Math.PI;
+        return degrees * (pi/180);
+    }
+
+    toDegrees(radians) {
+        const pi = Math.PI;
+        return radians * (180/pi);
+    }
+
+    getBearing(lat1, long1, lat2, long2) {
+        let lat1Rad = this.toRadians(lat1);
+        let lat2Rad = this.toRadians(lat2);
+        let deltaLng = this.toRadians(long2 - long1);
+
+        let x = Math.cos(lat1Rad) * Math.sin(lat2Rad) - Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(deltaLng);
+        let y = Math.sin(deltaLng) * Math.cos(lat2Rad);
+        let bearingRad = Math.atan2(y, x);
+
+
+        return this.toDegrees(bearingRad);
+    }
+
+    bearingListener(eventData) {
+        // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
+        let tiltLR = eventData.gamma;
+
+        // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
+        let tiltFB = eventData.beta;
+
+        // alpha: The direction the compass of the device aims to in degrees.
+        let dir = eventData.alpha;
+
+        navigator.geolocation.getCurrentPosition(position => {
+            let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+            let bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+
+            // Call the function to use the data on the page.
+            this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+        });
 
     }
 
