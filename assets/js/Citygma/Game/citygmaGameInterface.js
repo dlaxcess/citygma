@@ -30,6 +30,8 @@ export default class CitygmaGameInterface extends Component {
             currentLat : 48.1378304,
             currentLong: -1.687552,
             currentEnigmaActiveCompass: true,
+            userDeviceAcceptCompass: true,
+
             videoPlaying: false,
             videoUrl: '',
             videoEnded: false,
@@ -253,6 +255,12 @@ export default class CitygmaGameInterface extends Component {
         // alpha: The direction the compass of the device aims to in degrees.
         let dir = eventData.alpha;
 
+        if (!eventData.absolute) {
+            this.setState({userDeviceAcceptCompass: false})
+        } else {
+            this.setState({userDeviceAcceptCompass: true});
+        }
+
         navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
             let bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
@@ -316,7 +324,7 @@ export default class CitygmaGameInterface extends Component {
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
-                    <div id="compass" className={this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
+                    <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={logo}/></div>
                         <div id="notice"></div>
                         <div id="tiltLR"></div>
