@@ -58,7 +58,7 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        document.removeEventListener('deviceorientation', this.bearingListener, false);
+        //document.removeEventListener('deviceorientation', this.bearingListener, false);
 
         // Get current adventure
         const {adventureId} = this.props.location.state;
