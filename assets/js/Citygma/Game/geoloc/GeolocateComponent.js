@@ -47,11 +47,11 @@ export const GeolocateComponent = (props) => {
                     }
                 </Marker>
                 }
-                <GeolocateControl
+                {/*<GeolocateControl
                     positionOptions={{ enableHighAccuracy: true }}
                     trackUserLocation={true}
                     showUserLocation={true}
-                />
+                />*/}
 
 
             </ReactMapGL>
