@@ -283,7 +283,7 @@ export default class CitygmaGameInterface extends Component {
 
         navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            let bearedDir = dir - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+            let bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
 
             // Call the function to use the data on the page.
             this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
