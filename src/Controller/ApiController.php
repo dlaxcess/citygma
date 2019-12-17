@@ -164,7 +164,21 @@ class ApiController extends AbstractController
 
             }
 
-            if ($values->enigmaAnswer === $correctAnswer) {
+            $correctAnswerToLower = strtolower($correctAnswer);
+            $enigmaAnswer = strtolower($values->enigmaAnswer);
+
+            $enigmaCorrectAnswerWords = explode(" ", $correctAnswerToLower);
+            $answerIsCorrect = false;
+            foreach ($enigmaCorrectAnswerWords as $enigmaCorrectAnswerWord) {
+                if(preg_match('/'.$enigmaCorrectAnswerWord.'/', $enigmaAnswer) === 1) {
+                    $answerIsCorrect = true;
+                } else {
+                    $answerIsCorrect = false;
+                    break;
+                }
+            }
+
+            if ($answerIsCorrect) {
                 $data = [
                     'status' => 201,
                     'message' => 'Bravo ! Bonne réponse !'

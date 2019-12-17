@@ -29,6 +29,7 @@ export default class CitygmaGameInterface extends Component {
             enigmas: null,
             currentLat : 48.1378304,
             currentLong: -1.687552,
+            currentEnigmaActiveCompass: true,
             videoPlaying: false,
             videoUrl: '',
             videoEnded: false,
@@ -66,7 +67,7 @@ export default class CitygmaGameInterface extends Component {
         adventureService.getAdventureEnigmas(adventureId)
             .then(enigmas => {
                 this.setState({enigmas});
-                this.setState({currentLat: enigmas[0].enigmaLat, currentLong: enigmas[0].enigmaLong});
+                this.setState({currentLat: enigmas[0].enigmaLat, currentLong: enigmas[0].enigmaLong, currentEnigmaActiveCompass: enigmas[0].enigmaCompassActive});
 
             });
 
@@ -89,13 +90,6 @@ export default class CitygmaGameInterface extends Component {
         if (!this.state.userAdvance) {
             this.setState({ videoPlaying: true });
         }
-    }
-
-    isStrictInt(value)
-    {
-        var er = /^[0-9]+$/;
-
-        return ( er.test(value) ) ? true : false;
     }
 
 
@@ -171,6 +165,7 @@ export default class CitygmaGameInterface extends Component {
         const enigmaKey = Math.round(this.state.userAdvance) - 1;
 
         if (this.state.enigmas[enigmaKey]) {
+            this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
 
             this.setState({showEnigma: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong});
             console.log('aftergoodanswer', this.state.userAdvance);
@@ -321,7 +316,7 @@ export default class CitygmaGameInterface extends Component {
         return (
             <Fragment>
                 <div id="GameInterfaceGenContainer">
-                    <div id="compass" className={this.state.showCompass ? 'compassVisible' : 'compassHidden'}>
+                    <div id="compass" className={this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={logo}/></div>
                         <div id="notice"></div>
                         <div id="tiltLR"></div>
@@ -352,6 +347,7 @@ export default class CitygmaGameInterface extends Component {
                             handleNearLocationDistance={this.handleNearLocationDistance}
                             destinationLat={destinationLat}
                             destinationLong={destinationLong}
+                            currentEnigmaActiveCompass={this.state.currentEnigmaActiveCompass}
                         />
                     }
 
