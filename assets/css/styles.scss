@@ -558,9 +558,11 @@ nav {
           align-items: center;
           margin-bottom: 1rem;
           margin-left: -2rem;
+          flex-wrap: wrap;
 
           h2 {
             margin-right: 3rem;
+            margin-bottom: 1.5rem;
           }
 
           .logoutButton {
