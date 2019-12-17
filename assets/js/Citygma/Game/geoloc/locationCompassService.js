@@ -36,7 +36,7 @@ function locationCompass(lat, long) {
 }
 
 function deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
-    document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
+   /* document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
     document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
     document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
 
@@ -52,7 +52,7 @@ function deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
         positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
         positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
     }
-
+*/
 }
 
 function toRadians(degrees) {

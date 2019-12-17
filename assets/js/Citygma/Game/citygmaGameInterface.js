@@ -121,6 +121,7 @@ export default class CitygmaGameInterface extends Component {
                 // Compass Bearing
                 this.activateCompass();
             } else if (this.state.userAdvance === this.state.enigmas.length + 2) {
+                document.removeEventListener('deviceorientation', this.bearingListener, false);
                 history.push('/profil');
             } else {
                 // Retour Intro Enigme
