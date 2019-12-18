@@ -282,8 +282,16 @@ export default class CitygmaGameInterface extends Component {
         // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
         let tiltFB = eventData.beta;
 
+        let dir;
+
+        if(eventData.webkitCompassHeading) {
+            // Apple works only with this, alpha doesn't work
+            dir = eventData.webkitCompassHeading;
+        }
+        else dir = eventData.alpha;
+
         // alpha: The direction the compass of the device aims to in degrees.
-        let dir = eventData.alpha;
+        //let dir = eventData.alpha;
 
         //this.handleReCenter();
 
