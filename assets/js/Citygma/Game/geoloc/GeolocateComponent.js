@@ -19,7 +19,7 @@ export const GeolocateComponent = (props) => {
 
     return (
 
-        <code>
+        <div id="geolocateComponent">
             {/*
             latitude: {latitude}<br/>
             longitude: {longitude}<br/>
@@ -27,13 +27,15 @@ export const GeolocateComponent = (props) => {
             accuracy: {accuracy && `${accuracy}m`}<br/>
             error: {error}<br/>
             */}
-            distance from mairie: {distance}
-            <button className="marronButton" onClick={handleReCenter}>Recentrer</button>
+            <h3 id="distanceComponent">{distance} m</h3>
+            <button id="recenterButton" className="marronButton" onClick={handleReCenter}>Recentrer</button>
             <ReactMapGL
                 {...viewport}
                 mapStyle="mapbox://styles/mapbox/outdoors-v11?optimize=true"
                 onViewportChange={handleViewportChange}
                 mapboxApiAccessToken="pk.eyJ1IjoiZGxheGNlc3MiLCJhIjoiY2szeGhmY3lhMTZiNjNqb3A3MzVkMGJoaCJ9.jifnf4oofKKVa0qLnxqA6A"
+                height="100vh"
+                width="100vw"
             >
                 {viewport &&
                 <Marker
@@ -47,16 +49,16 @@ export const GeolocateComponent = (props) => {
                     }
                 </Marker>
                 }
-                <GeolocateControl
+                {/*<GeolocateControl
                     positionOptions={{ enableHighAccuracy: true }}
                     trackUserLocation={true}
                     showUserLocation={true}
-                />
+                />*/}
 
 
             </ReactMapGL>
 
-        </code>
+        </div>
 
 
     );

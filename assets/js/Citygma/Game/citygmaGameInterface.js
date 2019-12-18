@@ -19,8 +19,8 @@ export default class CitygmaGameInterface extends Component {
         this.state = {
             // react-map-gl
             viewport: {
-                width: "80vw",
-                height: "80vh",
+                width: "100vw",
+                height: "100vh",
                 latitude: 48.1378304,
                 longitude: -1.6875520000000002,
                 zoom: 16
@@ -58,9 +58,14 @@ export default class CitygmaGameInterface extends Component {
         this.activateCompass = this.activateCompass.bind(this);
     }
 
+    componentWillUnmount() {
+        this.props.toggleHeader(true);
+    }
+
 
     componentDidMount() {
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
+        this.props.toggleHeader(false);
 
         // Get current adventure
         const {adventureId} = this.props.location.state;
@@ -200,8 +205,8 @@ export default class CitygmaGameInterface extends Component {
     handleReCenter() {
         navigator.geolocation.getCurrentPosition(position => {
             let newViewport = {
-                height: "80vh",
-                width: "80vw",
+                height: "100vh",
+                width: "100vw",
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
                 zoom: 16
@@ -215,7 +220,7 @@ export default class CitygmaGameInterface extends Component {
     // Compass
     activateCompass() {
         if (window.DeviceOrientationEvent) {
-            document.getElementById("notice").innerHTML = "super ça marche.";
+            /*document.getElementById("notice").innerHTML = "super ça marche.";*/
             window.addEventListener('deviceorientation', this.bearingListener, false);
         } else {
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
@@ -223,9 +228,9 @@ export default class CitygmaGameInterface extends Component {
     }
 
     deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
-        document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
+        /*document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
         document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
-        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
+        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);*/
 
         // Rotate the disc of the compass.
         let compassDisc = document.querySelector('#arrow>img');
@@ -367,14 +372,12 @@ export default class CitygmaGameInterface extends Component {
                     }
 
                     { this.state.videoPlaying && this.state.videoUrl &&
-                        <div>
                             <VideoPlayerComponent
                                 key={this.state.userAdvance}
                                 videoUrl={this.state.videoUrl}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
                             />
-                        </div>
                     }
 
                     { !this.state.videoPlaying && this.state.geolocateShow &&

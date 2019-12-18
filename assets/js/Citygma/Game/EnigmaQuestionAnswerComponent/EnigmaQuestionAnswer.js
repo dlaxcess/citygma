@@ -12,9 +12,10 @@ export default function EnigmaQuestionAnswer(props) {
 
 
     return (
-        <Fragment>
-            <h2>Question</h2>
+        <section id="enigmaSection">
+
             <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/>
+            <h2>Enigme</h2>
             <p>{enigmaQuestionText}</p>
             <Formik
                 initialValues={{
@@ -61,6 +62,6 @@ export default function EnigmaQuestionAnswer(props) {
                     </Form>
                 )}
             </Formik>
-        </Fragment>
+        </section>
     );
 }

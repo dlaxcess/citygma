@@ -20,19 +20,26 @@ export default class CitygmaApp extends Component {
 
         this.state = {
             htmlElementClicked : null,
-            currentUser: null
+            currentUser: null,
+            showHeader: true,
         };
 
         this.logout = this.logout.bind(this);
+        this.toggleHeader = this.toggleHeader.bind(this);
     }
 
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
-    }
+        this.props.history.location.pathname !== "/Jeu" ? this.setState({showHeader: true}) : this.setState({showHeader: false});
+     }
 
     logout() {
         authenticationService.logout();
         history.push('/login');
+    }
+
+    toggleHeader(bool) {
+        this.setState({showHeader: bool});
     }
 
     render() {
@@ -44,7 +51,7 @@ export default class CitygmaApp extends Component {
         return (
 
             <Fragment>
-                { this.props.history.location.pathname !== "/jeu" &&
+                { this.state.showHeader &&
                 <CitygmaHeader
                     currentUser={currentUser}
                     onLogoutClick={this.logout}
@@ -62,7 +69,7 @@ export default class CitygmaApp extends Component {
                     <Route path="/contact" component={CitygmaContact} />
                     <Route path="/Mentions" component={CitygmaMentions} />
                     <PrivateRoute exact path="/profil" component={CitygmaProfil} />
-                    <PrivateRoute path="/jeu" component={CitygmaGameInterface} data={{currentUser: currentUser, onLogoutClick: this.logout}} />
+                    <PrivateRoute path="/jeu" component={CitygmaGameInterface} data={{currentUser: currentUser, onLogoutClick: this.logout, toggleHeader: this.toggleHeader}} />
                 </Switch>
             </Fragment>
         )

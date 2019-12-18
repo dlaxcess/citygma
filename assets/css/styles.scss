@@ -14,7 +14,7 @@ header {
   left: 0;
   height: 7rem;
   width: 100%;
-  background-color: #fdc53c/*#f9f9f8*/;
+  background-color: $orangeLight;
   padding: 0 3rem;
   display: flex;
   justify-content: space-between;
@@ -723,19 +723,106 @@ nav {
   }
 
 // Video Player
-  .player-wrapper {
-    position: relative;
-    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
-  }
-
-  .react-player {
+  .playerSection {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    #videoPlayerButtons {
+      z-index: 7100;
+      position: absolute;
+      left: 0;
+      bottom: 128vw;
+      width: 100vw;
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        margin: 0 2rem;
+      }
+    }
+
+    #playerBubulle {
+      position: absolute;
+      left: 0;
+      bottom: 10vw;
+      z-index: 7000;
+      width: 100vw;
+      height: 100%;
+      max-height: 143vw;
+      background-image: url("../images/bulle-game-interface.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+    }
+
+    #playerBackground {
+      z-index: 6000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: $orangeLight;
+    }
+
+    .player-wrapper {
+      z-index: 6100;
+      position: absolute;
+      bottom: 38vw;
+      left: 0;
+      width: 100vw;
+      height: 115vw;
+      //padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+    }
+
+    .react-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Geolocation component
+  #geolocateComponent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    #distanceComponent {
+      z-index: 6000;
+      position: absolute;
+      top: 10rem;
+      left: 3rem;
+    }
   }
 }
 
 // Compass
+#compass {
+  z-index: 6000;
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  width: 7rem;
+  height: 7rem;
+}
+
+#recenterButton {
+  z-index: 6000;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+}
+
 .compassVisible {
   display: block;
   opacity: 1;
@@ -746,6 +833,39 @@ nav {
   display: none;
   opacity: 0;
   visibility: hidden;
+}
+
+// Page d'énigme
+#enigmaSection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 3rem 3rem 50vw 3rem;
+
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+
+  #enigmaAnswerForm {
+    margin-bottom: 2rem;
+    width: 100%;
+
+    input {
+      width: 100%;
+      font-size: 2rem;
+      padding: 0.7rem;
+    }
+  }
 }
 
 // Banière de controle bas
