@@ -9,6 +9,7 @@ import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
 
+import "../../../../public/manifest";
 
 
 
