@@ -42,6 +42,7 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
         };
 
+        window.screen.orientation.lock('portrait');
         var lockFunction =  window.screen.orientation.lock;
         if (lockFunction.call(window.screen.orientation, 'portrait')) {
             console.log('Orientation locked')
