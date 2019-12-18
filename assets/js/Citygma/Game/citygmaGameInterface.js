@@ -9,7 +9,6 @@ import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
 
-import "../../../../public/manifest";
 
 
 
@@ -43,6 +42,7 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
         };
 
+        screen.orientation.lock('portrait');
         window.screen.orientation.lock('portrait');
         var lockFunction =  window.screen.orientation.lock;
         if (lockFunction.call(window.screen.orientation, 'portrait')) {
