@@ -709,7 +709,8 @@ nav {
 // Interface de jeu
 #GameInterfaceGenContainer {
   position: relative;
-  padding: 10rem 0;
+  width: 100vw;
+  height: 100vh;
 
   .mapboxgl-ctrl-group {
     width: 30px;

@@ -20,13 +20,13 @@ export const GeolocateComponent = (props) => {
     return (
 
         <code>
-
+            {/*
             latitude: {latitude}<br/>
             longitude: {longitude}<br/>
             timestamp: {timestamp}<br/>
             accuracy: {accuracy && `${accuracy}m`}<br/>
             error: {error}<br/>
-
+            */}
             distance from mairie: {distance}
             <button className="marronButton" onClick={handleReCenter}>Recentrer</button>
             <ReactMapGL
