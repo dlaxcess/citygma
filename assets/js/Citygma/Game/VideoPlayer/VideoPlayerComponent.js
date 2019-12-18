@@ -47,7 +47,8 @@ export default class VideoPlayerComponent extends Component {
             playing: true,
             played: 0,
             loaded: 0,
-            pip: false
+            pip: false,
+            showEndedButton: false
         })
     }
 
@@ -78,7 +79,7 @@ export default class VideoPlayerComponent extends Component {
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
                     {this.state.showEndedButton &&
                         <Fragment>
-                            <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Retour</button>
+                            <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                             <button id="videoRePlay" className="marronButton" onClick={this.load}>Revoir</button>
                         </Fragment>
                     }
