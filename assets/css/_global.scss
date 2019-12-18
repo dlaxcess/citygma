@@ -91,6 +91,37 @@ ul {
 }
 
 /********* Citygma Globals *********/
+// burger menus
+#burgerButton, #gameBurgerButton {
+  cursor: pointer;
+
+  .bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 2px;
+    background-color: $black;
+    margin: 8px 0;
+    @include transition(all .2s linear);
+  }
+
+  &:hover .bar1 {
+    width: 15px;
+  }
+
+  &.activeBurger {
+    &:hover .bar1 {
+      width: 30px;
+    }
+    .bar1 {
+      @include transform(rotate(-45deg) translate(-9px, 5px));
+    }
+    .bar2 {opacity: 0;}
+    .bar3 {
+      @include transform(rotate(45deg) translate(-8px, -6px));
+    }
+  }
+}
+
+// Buttons
 .marronButton {
   //display: table;
   background-color: $marron;

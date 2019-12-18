@@ -39,12 +39,16 @@ export default class CitygmaApp extends Component {
         const { htmlElementClicked } = this.state;
         const { currentUser } = this.state;
 
+        console.log(this.props.history.location.pathname);
+
         return (
+
             <Fragment>
+                { this.props.history.location.pathname !== "/Jeu" &&
                 <CitygmaHeader
                     currentUser={currentUser}
                     onLogoutClick={this.logout}
-                />
+                />}
                 <Switch>
                     <Route exact path="/"><CitygmaAppContainer/></Route>
                     <Route path="/login">
@@ -58,7 +62,7 @@ export default class CitygmaApp extends Component {
                     <Route path="/contact" component={CitygmaContact} />
                     <Route path="/Mentions" component={CitygmaMentions} />
                     <PrivateRoute exact path="/profil" component={CitygmaProfil} />
-                    <PrivateRoute path="/jeu" component={CitygmaGameInterface} />
+                    <PrivateRoute path="/jeu" component={CitygmaGameInterface} data={{currentUser: currentUser, onLogoutClick: this.logout}} />
                 </Switch>
             </Fragment>
         )

@@ -20,34 +20,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  #burgerButton {
-    cursor: pointer;
 
-    .bar1, .bar2, .bar3 {
-      width: 30px;
-      height: 2px;
-      background-color: $black;
-      margin: 8px 0;
-      @include transition(all .2s linear);
-    }
-
-    &:hover .bar1 {
-      width: 15px;
-    }
-
-    &.activeBurger {
-      &:hover .bar1 {
-        width: 30px;
-      }
-      .bar1 {
-        @include transform(rotate(-45deg) translate(-9px, 5px));
-      }
-      .bar2 {opacity: 0;}
-      .bar3 {
-        @include transform(rotate(45deg) translate(-8px, -6px));
-      }
-    }
-  }
 }
 
 nav {
@@ -735,7 +708,8 @@ nav {
 
 // Interface de jeu
 #GameInterfaceGenContainer {
-  padding: 10rem 3rem;
+  position: relative;
+  padding: 10rem 0;
 
   .mapboxgl-ctrl-group {
     width: 30px;
@@ -772,6 +746,118 @@ nav {
   opacity: 0;
   visibility: hidden;
 }
+
+// Banière de controle bas
+#gameControls {
+  z-index: 9000;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 45vw;
+  background-image: url("../images/bottom-game-interface.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+
+  #principalControlRow {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 2rem 1rem 2rem;
+
+    #gameCitygmaPicto {
+      img {
+        width: 6rem;
+        height: auto;
+      }
+    }
+  }
+
+  #pictoInterrog {
+    position: absolute;
+    left: 1rem;
+    bottom: 7.5rem;
+
+    img {
+      width: 3rem;
+      height: auto;
+    }
+  }
+
+  #pictoLoupe {
+    position: absolute;
+    left: 4.5rem;
+    bottom: 7rem;
+
+    img {
+      width: 4rem;
+      height: auto;
+    }
+  }
+
+  #pictoLivre {
+    position: absolute;
+    left: 8rem;
+    bottom: 4rem;
+
+    img {
+      width: 5rem;
+      height: auto;
+    }
+  }
+}
+
+#gameNav {
+  nav {
+    z-index: 8000;
+    position: fixed;
+    width: 32rem;
+    height: 70vh;
+    top: 100vh;
+    right: 0;
+    @include transition(all .2s linear);
+    background-color: #ffdc57;
+    padding: 3rem;
+    text-align: right;
+    @include border-radius(10px 10px 0 0);
+    box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
+
+    ul {
+      font-size: 2rem;
+
+      li {
+        cursor: pointer;
+        margin-bottom: 1rem;
+
+        p {
+          @include transition(margin-right .2s ease-in-out);
+        }
+
+        &:hover p {
+          margin-right: 2rem;
+        }
+      }
+    }
+
+    a {
+      color: black;
+    }
+
+    &.loggedNav {
+      &.openedNav {
+        top: calc(100vh - 20vw - 28rem);
+      }
+    }
+
+    &.openedNav {
+      top: calc(100vh - 20vw - 25rem);
+    }
+  }
+}
+
 
 
 

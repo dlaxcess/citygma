@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from "react";
 import { history } from "../../auth/helpers/history";
 import { adventureService } from "./services/adventureService";
+
+import GameControlsComponent from "./GameBottomControl/GameControlsComponent";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 //import {locationCompassService} from "./geoloc/locationCompassService";
@@ -301,6 +303,8 @@ export default class CitygmaGameInterface extends Component {
 
     render() {
 
+        const {currentUser, onLogoutClick} = this.props;
+
         console.log(this.state.enigmas);
         console.log(this.state.videoUrl);
         console.log(this.state.adventure);
@@ -394,6 +398,11 @@ export default class CitygmaGameInterface extends Component {
                             handleEnigmaGoodAnswer={this.handleEnigmaGoodAnswer}
                         />
                     }
+
+                    <GameControlsComponent
+                        currentUser={currentUser}
+                        onLogoutClick={onLogoutClick}
+                    />
 
                 </div>
             </Fragment>
