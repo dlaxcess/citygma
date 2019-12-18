@@ -44,7 +44,7 @@ export default class CitygmaApp extends Component {
         return (
 
             <Fragment>
-                { this.props.history.location.pathname !== "/Jeu" &&
+                { this.props.history.location.pathname !== "/jeu" &&
                 <CitygmaHeader
                     currentUser={currentUser}
                     onLogoutClick={this.logout}
