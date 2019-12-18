@@ -42,6 +42,15 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
         };
 
+        var lockFunction =  window.screen.orientation.lock;
+        if (lockFunction.call(window.screen.orientation, 'portrait')) {
+            console.log('Orientation locked')
+        } else {
+            console.error('There was a problem in locking the orientation')
+        }
+
+
+
 
         this.handleViewportChange = this.handleViewportChange.bind(this);
 
@@ -64,7 +73,10 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        //document.removeEventListener('deviceorientation', this.bearingListener, false);
+
+
+
+
         this.props.toggleHeader(false);
 
         // Get current adventure
