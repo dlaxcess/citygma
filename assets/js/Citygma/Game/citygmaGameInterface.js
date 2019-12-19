@@ -333,7 +333,7 @@ export default class CitygmaGameInterface extends Component {
         // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
         let tiltFB = eventData.beta;
 
-        let dir, webkitAlpha;
+        let dir, webkitAlpha, bearedDir;
 
         let compassDisc = document.querySelector('#arrow>img');
 
@@ -341,8 +341,11 @@ export default class CitygmaGameInterface extends Component {
             // Apple works only with this, alpha doesn't work
             dir = eventData.webkitCompassHeading;
 
+            navigator.geolocation.getCurrentPosition(position => {
+                bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
 
-            compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+                compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+            });
         }
         else {
             dir = eventData.alpha;
@@ -357,7 +360,7 @@ export default class CitygmaGameInterface extends Component {
 
         navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            let bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+            bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
             let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
 
             compassDisc.style.Transform = 'rotate(' + bearedDir + 'deg)';
