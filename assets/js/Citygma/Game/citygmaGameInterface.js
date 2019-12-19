@@ -83,8 +83,22 @@ export default class CitygmaGameInterface extends Component {
         }
     }
 
+    smolScreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+
     componentWillUnmount() {
         this.props.toggleHeader(true);
+
+        this.smolScreen();
     }
 
 
@@ -394,7 +408,7 @@ export default class CitygmaGameInterface extends Component {
 
         return (
             <Fragment>
-                <div id="GameInterfaceGenContainer">
+                <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={logo}/></div>
                         <div id="notice"></div>
