@@ -328,19 +328,47 @@ export default class CitygmaGameInterface extends Component {
 
     bearingListener(eventData) {
         // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
-        /*let tiltLR = eventData.gamma;
+        let tiltLR = eventData.gamma;
 
         // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
         let tiltFB = eventData.beta;
 
-        let dir;
+        let dir, webkitAlpha;
+
+        let compassDisc = document.querySelector('#arrow>img');
 
         if(eventData.webkitCompassHeading) {
             // Apple works only with this, alpha doesn't work
             dir = eventData.webkitCompassHeading;
+
+
+            compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
         }
-        else dir = eventData.alpha;*/
-        let tiltLR = 0;
+        else {
+            dir = eventData.alpha;
+            let webkitAlpha = dir;
+            if(!window.chrome) {
+                //Assume Android stock (this is crude, but good enough for our example) and apply offset
+                webkitAlpha = dir-270;
+            }
+
+
+        }
+
+        navigator.geolocation.getCurrentPosition(position => {
+            let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+            let bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+            let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+
+            compass.style.Transform = 'rotate(' + bearedDir + 'deg)';
+            compass.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
+            //Rotation is reversed for FF
+            compass.style.MozTransform = 'rotate(-' + bearedDir + 'deg)';
+
+            // Call the function to use the data on the page.
+            //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+        });
+        /*let tiltLR = 0;
         let tiltFB = 0;
 
         let coords = eventData.coords;
@@ -349,7 +377,7 @@ export default class CitygmaGameInterface extends Component {
         let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
         let bearedDir = this.wrap360(coords.heading + this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong));
 
-        this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
+        this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);*/
 
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
