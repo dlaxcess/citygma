@@ -296,7 +296,7 @@ export default class CitygmaGameInterface extends Component {
             positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
             positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
         }
-        navigator.geolocation.clearWatch(this.state.watchPositionId);
+        //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
     toRadians(degrees) {
