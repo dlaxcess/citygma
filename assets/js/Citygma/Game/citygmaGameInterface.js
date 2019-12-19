@@ -333,7 +333,7 @@ export default class CitygmaGameInterface extends Component {
         let bearingRad = Math.atan2(y, x);
 
 
-        return this.toDegrees(bearingRad);
+        return this.wrap360(this.toDegrees(bearingRad));
     }
 
     wrap360(degrees) {
