@@ -296,7 +296,7 @@ export default class CitygmaGameInterface extends Component {
             positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
             positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
         }
-
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
     toRadians(degrees) {
@@ -391,7 +391,7 @@ export default class CitygmaGameInterface extends Component {
 
         this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
 
-        navigator.geolocation.clearWatch(this.state.watchPositionId);
+
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
 
