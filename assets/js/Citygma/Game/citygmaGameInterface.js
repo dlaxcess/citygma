@@ -40,17 +40,9 @@ export default class CitygmaGameInterface extends Component {
             showCompass: false,
             geolocateShow: false,
             showEnigma: false,
-        };
 
-        screen.orientation.lock('portrait');
-        window.screen.orientation.lock('portrait');
-        var lockFunction =  window.screen.orientation.lock('portrait');
-        /*if (lockFunction.call(window.screen.orientation, 'portrait')) {
-            console.log('Orientation locked')
-            window.screen.orientation.lock('portrait');
-        } else {
-            console.error('There was a problem in locking the orientation')
-        }*/
+            watchPositionId: null,
+        };
 
 
 
@@ -98,15 +90,15 @@ export default class CitygmaGameInterface extends Component {
     componentWillUnmount() {
         this.props.toggleHeader(true);
 
-        this.smolScreen();
+        //this.smolScreen();
     }
+
+
 
 
     componentDidMount() {
         //this.fullScreen();
-        screen.orientation.lock("portrait");
-
-
+        //screen.orientation.lock("portrait");
 
         this.props.toggleHeader(false);
 
@@ -262,12 +254,28 @@ export default class CitygmaGameInterface extends Component {
 
     // Compass
     activateCompass() {
-        if (window.DeviceOrientationEvent) {
-            /*document.getElementById("notice").innerHTML = "super ça marche.";*/
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        let options;
+
+
+        options = {
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.bearingListener, error, options)});
+
+        /*if (window.DeviceOrientationEvent) {
+            //document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', this.bearingListener, false);
         } else {
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-        }
+        }*/
     }
 
     deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
@@ -320,7 +328,7 @@ export default class CitygmaGameInterface extends Component {
 
     bearingListener(eventData) {
         // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
-        let tiltLR = eventData.gamma;
+        /*let tiltLR = eventData.gamma;
 
         // beta: Tilting the device from the front to the back. Tilting the device to the front will result in a positive value.
         let tiltFB = eventData.beta;
@@ -331,7 +339,17 @@ export default class CitygmaGameInterface extends Component {
             // Apple works only with this, alpha doesn't work
             dir = eventData.webkitCompassHeading;
         }
-        else dir = eventData.alpha;
+        else dir = eventData.alpha;*/
+        let tiltLR = 0;
+        let tiltFB = 0;
+
+        let coords = eventData.coords;
+        let dir = coords.heading;
+
+        let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
+        let bearedDir = this.wrap360(dir + this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong));
+
+        this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
 
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
@@ -344,13 +362,13 @@ export default class CitygmaGameInterface extends Component {
             this.setState({userDeviceAcceptCompass: true});
         }*/
 
-        navigator.geolocation.getCurrentPosition(position => {
+        /*navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
             let bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
 
             // Call the function to use the data on the page.
             this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
-        });
+        });*/
 
     }
 
