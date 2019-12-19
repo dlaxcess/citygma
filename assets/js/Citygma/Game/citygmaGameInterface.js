@@ -368,6 +368,13 @@ export default class CitygmaGameInterface extends Component {
             //Rotation is reversed for FF
             compassDisc.style.MozTransform = 'rotate(-' + bearedDir + 'deg)';
 
+            let positionMarker = document.querySelector('#positionMarker');
+            if (positionMarker) {
+                positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+                positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+                positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+            }
+
             // Call the function to use the data on the page.
             //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
         });
