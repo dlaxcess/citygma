@@ -431,6 +431,7 @@ export default class CitygmaGameInterface extends Component {
                         <div id="arrow"><img src={logo}/></div>
                         <div id="notice"></div>
                         <div id="tiltLR"></div>
+                        <br/><br/><br/>
                         <div id="tiltFB"></div>
                         <div id="direction"></div>
                     </div>
