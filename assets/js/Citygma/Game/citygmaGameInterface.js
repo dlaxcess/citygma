@@ -344,12 +344,12 @@ export default class CitygmaGameInterface extends Component {
         let tiltFB = 0;
 
         let coords = eventData.coords;
-        let dir = coords.heading;
+        //let dir = coords.heading;
 
         let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
-        let bearedDir = this.wrap360(dir + this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong));
+        let bearedDir = this.wrap360(coords.heading + this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong));
 
-        this.deviceOrientationHandler(tiltLR, dir, fromNorthBearing, bearedDir);
+        this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
 
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
