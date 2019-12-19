@@ -279,9 +279,9 @@ export default class CitygmaGameInterface extends Component {
     }
 
     deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
-        /*document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);
+        /*document.getElementById("tiltLR").innerHTML = Math.ceil(tiltLR);*/
         document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
-        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);*/
+        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
 
         // Rotate the disc of the compass.
         let compassDisc = document.querySelector('#arrow>img');
@@ -349,7 +349,7 @@ export default class CitygmaGameInterface extends Component {
         let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
         let bearedDir = this.wrap360(dir + this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong));
 
-        this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+        this.deviceOrientationHandler(tiltLR, dir, fromNorthBearing, bearedDir);
 
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
