@@ -90,15 +90,15 @@ export default class CitygmaGameInterface extends Component {
     componentWillUnmount() {
         this.props.toggleHeader(true);
 
-        //this.smolScreen();
+        this.smolScreen();
     }
 
 
 
 
     componentDidMount() {
-        //this.fullScreen();
-        //screen.orientation.lock("portrait");
+        this.fullScreen();
+        screen.orientation.lock("portrait");
 
         this.props.toggleHeader(false);
 
