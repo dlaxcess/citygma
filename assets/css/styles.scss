@@ -1058,7 +1058,7 @@ nav {
 @media screen and (min-width: $min-breakpoint-desktopXL) {
   @import "front-desktop-xl";
 }
-
+/*
 // "LOCK" Screen
 @media only screen and (orientation:landscape){
   #citygma_container {
@@ -1110,6 +1110,7 @@ nav {
       height: 100vw;
       //right: 0;
       //top: 0;
+
       #distanceComponent {
         //right: 10rem;
         //top: 3rem;
@@ -1169,4 +1170,4 @@ nav {
       }
     }
   }
-}
+}*/
