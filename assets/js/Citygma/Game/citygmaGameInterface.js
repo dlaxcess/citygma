@@ -465,7 +465,7 @@ export default class CitygmaGameInterface extends Component {
 
         return (
             <Fragment>
-                <div id="GameInterfaceGenContainer">
+                <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={logo}/></div>
                         <div id="notice"></div>
