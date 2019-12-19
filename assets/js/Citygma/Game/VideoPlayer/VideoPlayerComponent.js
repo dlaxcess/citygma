@@ -86,6 +86,7 @@ export default class VideoPlayerComponent extends Component {
                 </div>
                 <div className='player-wrapper'>
                     <ReactPlayer
+                        autoPlay
                         ref={this.ref}
                         className='react-player'
                         width='100%'

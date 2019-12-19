@@ -90,7 +90,7 @@ export default class CitygmaGameInterface extends Component {
     componentWillUnmount() {
         this.props.toggleHeader(true);
 
-        this.smolScreen();
+        //this.smolScreen();
     }
 
 
