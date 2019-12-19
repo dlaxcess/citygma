@@ -391,6 +391,7 @@ export default class CitygmaGameInterface extends Component {
 
         this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
 
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
         // alpha: The direction the compass of the device aims to in degrees.
         //let dir = eventData.alpha;
 
