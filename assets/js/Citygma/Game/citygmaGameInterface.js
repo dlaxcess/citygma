@@ -99,7 +99,7 @@ export default class CitygmaGameInterface extends Component {
     componentDidMount() {
         this.fullScreen();
         screen.orientation.lock("portrait");
-        screen.mozOrientation.lock("portrait");
+        //screen.mozorientation.lock("portrait");
 
         this.props.toggleHeader(false);
 
