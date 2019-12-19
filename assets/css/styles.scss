@@ -1058,3 +1058,115 @@ nav {
 @media screen and (min-width: $min-breakpoint-desktopXL) {
   @import "front-desktop-xl";
 }
+
+// "LOCK" Screen
+@media only screen and (orientation:landscape){
+  #citygma_container {
+    height: 100vw;
+    //width: 100vh;
+    transform: rotate(90deg);
+  }
+
+  #GameInterfaceGenContainer {
+    //transform: rotate(90deg);
+    width: 100vh;
+    height: 100vw;
+    .playerSection {
+      width: 100vh;
+      height: 100vw;
+      right: 0;
+      top: 0;
+      #videoPlayerButtons {
+        //top: 0;
+        bottom: 128vh;
+        width: 100vh;
+      }
+      #playerBubulle {
+        //top: 0;
+        bottom: 10vh;
+        width: 100vh;
+        max-height: 143vh;
+      }
+      #playerBackground {
+        //right: 0;
+        //top: 0;
+        width: 100vh;
+        height: 100vw;
+      }
+      .player-wrapper {
+        //top: 0;
+        bottom: 38vh;
+        width: 100vh;
+        height: 115vh;
+      }
+
+      .react-player {
+        right: 0;
+        top: 0;
+      }
+    }
+    #geolocateComponent {
+      width: 100vh;
+      height: 100vw;
+      //right: 0;
+      //top: 0;
+      #distanceComponent {
+        //right: 10rem;
+        //top: 3rem;
+      }
+    }
+  }
+  #compass {
+    right: 3rem;
+    top: 3rem;
+  }
+  #recenterButton {
+    right: 3rem;
+    bottom: 3rem;
+  }
+  #enigmaSection {
+    right: 0;
+    top: 0;
+    width: 100vh;
+    height: 100vw;
+  }
+
+  #gameControls {
+    left: 0;
+    //top: 0;
+    width: 100vh;
+    height: 45vh;
+    #principalControlRow {
+      left: 0;
+      top: 0;
+    }
+    #pictoInterrog {
+      //top: 1rem;
+      //left: 7.5rem;
+    }
+    #pictoLoupe {
+      //top: 4.5rem;
+      //left: 7rem;
+    }
+    #pictoLivre {
+      //top: 8rem;
+      //left: 4rem;
+    }
+  }
+  #gameNav {
+    nav {
+      height: 70vw;
+      top: 100vw;
+      right: 28rem;
+      &.loggedNav {
+        &.openedNav {
+          top: calc(100vw - 20vh - 28rem);
+        }
+      }
+
+      &.openedNav {
+        top: calc(100vw - 20vh - 25rem);
+      }
+    }
+  }
+}
