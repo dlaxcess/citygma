@@ -402,6 +402,12 @@ export default class CitygmaGameInterface extends Component {
             });
         }
 
+        if (eventData.absolute) {
+            document.getElementById("tiltFB").innerHTML = eventData.absolute;
+        } else {
+            document.getElementById("tiltFB").innerHTML = "none";
+        }
+
 
 
         /*
