@@ -60,7 +60,7 @@ export default class CitygmaGameInterface extends Component {
         this.bearingListener = this.bearingListener.bind(this);
         this.getBearing = this.getBearing.bind(this);
         this.activateCompass = this.activateCompass.bind(this);
-        this.wtachPosbearingListener = this.wtachPosbearingListener.bind(this);
+        this.watchPosbearingListener = this.watchPosbearingListener.bind(this);
 
     }
 
@@ -93,6 +93,9 @@ export default class CitygmaGameInterface extends Component {
         this.props.toggleHeader(true);
 
         //this.smolScreen();
+
+        document.removeEventListener('deviceorientation', this.bearingListener, false);
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
 
@@ -106,14 +109,14 @@ export default class CitygmaGameInterface extends Component {
         } catch (err) {
             alert.error(err);
         }*/
-        addEventListener("orientationchange", function listener() {
+        /*addEventListener("orientationchange", function listener() {
             var rotate = 0 - screen.orientation;
 
             document.body.style.webkitTransform = "rotate(" + rotate + "deg)";
             document.body.style.MozTransform = "rotate(" + rotate + "deg)";
             document.body.style.transform = "rotate(" + rotate + "deg)";
             //screen.mozorientation.lock("portrait");
-        });
+        });*/
 
         this.props.toggleHeader(false);
 
@@ -222,6 +225,7 @@ export default class CitygmaGameInterface extends Component {
 
         }
         document.removeEventListener('deviceorientation', this.bearingListener, false);
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
     handleEnigmaGoodAnswer() {
@@ -270,7 +274,7 @@ export default class CitygmaGameInterface extends Component {
     // Compass
     activateCompass() {
 
-        /*function error(err) {
+        function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
         }
 
@@ -283,9 +287,9 @@ export default class CitygmaGameInterface extends Component {
             maximumAge: 0
         };
 
-        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.wtachPosbearingListener, error, options)});/**/
+        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
-        if (window.DeviceOrientationEvent) {
+        /*if (window.DeviceOrientationEvent) {
             //document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', this.bearingListener, false);
         } else {
@@ -342,7 +346,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-
+/*
         // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
         let tiltLR = eventData.gamma;
 
@@ -377,7 +381,7 @@ export default class CitygmaGameInterface extends Component {
             navigator.geolocation.getCurrentPosition(position => {
                 let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                 //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
-                let bearedDir = dir - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                let bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                 let webKitAlphaBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                 //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                 let mozBearedDir = fromNorthBearing - dir;
@@ -399,7 +403,7 @@ export default class CitygmaGameInterface extends Component {
             });
         }
 
-
+*/
 
 
         /*
@@ -507,7 +511,7 @@ export default class CitygmaGameInterface extends Component {
 
     }
 
-    wtachPosbearingListener(eventData) {
+    watchPosbearingListener(eventData) {
         let tiltLR = 0;
         let tiltFB = 0;
 
