@@ -353,7 +353,7 @@ export default class CitygmaGameInterface extends Component {
         if(eventData.webkitCompassHeading) {
             alpha = eventData.webkitCompassHeading;
             //Rotation is reversed for iOS
-            compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+            compass.style.WebkitTransform = 'rotate(' + alpha + 'deg)';
         }
         /*//non iOS
         else {
