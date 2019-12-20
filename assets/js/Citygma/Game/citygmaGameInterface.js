@@ -627,7 +627,7 @@ export default class CitygmaGameInterface extends Component {
     watchPosbearingListener(eventData) {
         let tiltLR = 0;
         let tiltFB = 0;
-        document.getElementById("tiltFB").innerHTML = "Youpiyoup";
+        //document.getElementById("tiltFB").innerHTML = "Youpiyoup";
         let coords = eventData.coords;
         //let dir = coords.heading;
 
