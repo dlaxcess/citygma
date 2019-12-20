@@ -293,6 +293,7 @@ export default class CitygmaGameInterface extends Component {
             //document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', this.bearingListener, false);
         } else {
+            document.getElementById("tiltFB").innerHTML = "Youpiyoup";
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
         }/**/
     }
