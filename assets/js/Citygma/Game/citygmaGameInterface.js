@@ -357,7 +357,7 @@ export default class CitygmaGameInterface extends Component {
         }
         //non iOS
         else {
-            alpha = eventData.alpha;
+            alpha = 0 - eventData.alpha;
             webkitAlpha = alpha;
             if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
@@ -365,7 +365,7 @@ export default class CitygmaGameInterface extends Component {
             }
         }
 
-        compass.style.transform = 'rotate(-' + alpha + 'deg)';
+        compass.style.transform = 'rotate(' + alpha + 'deg)';
         compass.style.WebkitTransform = 'rotate(-'+ webkitAlpha + 'deg)';
         //Rotation is reversed for FF
         compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
