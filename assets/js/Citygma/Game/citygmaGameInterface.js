@@ -350,7 +350,6 @@ export default class CitygmaGameInterface extends Component {
         let tiltFB = eventData.beta;
 
         let dir = 0;
-        let webkitAlpha = 0;
         let bearedDir = 0;
 
         let compassDisc = document.querySelector('#arrow>img');
@@ -369,36 +368,38 @@ export default class CitygmaGameInterface extends Component {
         }
         else {
             dir = eventData.alpha;
-            webkitAlpha = dir;
+            let webkitAlpha = dir;
             if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
                 webkitAlpha = dir-270;
             }
+
+            navigator.geolocation.getCurrentPosition(position => {
+                let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+                bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                let webKitAlphaBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+                //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                let mozBearedDir = fromNorthBearing - dir;
+
+                compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
+                compassDisc.style.WebkitTransform = 'rotate('+ webKitAlphaBearedDir + 'deg)';
+                //Rotation is reversed for FF
+                compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
+
+                let positionMarker = document.querySelector('#positionMarker');
+                if (positionMarker) {
+                    positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+                    positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+                    positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+                }
+
+                // Call the function to use the data on the page.
+                //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+            });
         }
 
-        navigator.geolocation.getCurrentPosition(position => {
-            let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
-            bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            let webKitAlphaBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
-            //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            let mozBearedDir = fromNorthBearing - dir;
 
-            compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
-            compassDisc.style.WebkitTransform = 'rotate('+ webKitAlphaBearedDir + 'deg)';
-            //Rotation is reversed for FF
-            compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
-
-            let positionMarker = document.querySelector('#positionMarker');
-            if (positionMarker) {
-                positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
-                positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
-                positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
-            }
-
-            // Call the function to use the data on the page.
-            //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
-        });
 
 
         /*
