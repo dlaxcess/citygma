@@ -346,8 +346,10 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        let alpha;
-        let webkitAlpha;
+        let tiltLR = eventData.gamma;
+        let tiltFB = eventData.beta;
+        let alpha, webkitAlpha;
+        
         let compass = document.querySelector('#arrow>img');
         //Check for iOS property
         if(eventData.webkitCompassHeading) {
