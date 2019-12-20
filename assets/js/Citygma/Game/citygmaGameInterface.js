@@ -395,7 +395,7 @@ export default class CitygmaGameInterface extends Component {
                 //compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
                 navigator.geolocation.getCurrentPosition(position => {
                     //let webebkitBearedDir = this.wrap360(this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha);
-                    bearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
+                    let webebkitBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
 
 
                     compassDisc.style.webkitTransform = "rotate("+ webebkitBearedDir +"deg)";
