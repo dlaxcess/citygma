@@ -518,7 +518,7 @@ export default class CitygmaGameInterface extends Component {
         let coords = eventData.coords;
         //let dir = coords.heading;
 
-        let bearedDir = 0;
+        let bearedDir/* = 0*/;
 
         let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
         bearedDir = /*this.wrap360(*/this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong) - coords.heading/*)*/;
