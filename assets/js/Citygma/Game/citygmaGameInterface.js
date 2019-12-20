@@ -302,7 +302,7 @@ export default class CitygmaGameInterface extends Component {
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
                     }else {
-
+                        alert('ça marche pas!!');
                         document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
 
                     }
