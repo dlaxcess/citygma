@@ -278,7 +278,7 @@ export default class CitygmaGameInterface extends Component {
 
 
         options = {
-            enableHighAccuracy: true,
+            enableHighAccuracy: false,
             timeout: 5000,
             maximumAge: 0
         };
