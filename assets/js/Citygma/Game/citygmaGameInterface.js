@@ -350,7 +350,7 @@ export default class CitygmaGameInterface extends Component {
         let tiltFB = eventData.beta;
 
         let dir = 0;
-        let webkitAlpha = 0;
+        let webkitAlpha;
         let bearedDir = 0;
 
         let compassDisc = document.querySelector('#arrow>img');
