@@ -292,24 +292,33 @@ export default class CitygmaGameInterface extends Component {
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
-        if (window.DeviceOrientationEvent) {
-            //document.getElementById("notice").innerHTML = "super ça marche.";
-                window.addEventListener('deviceorientation', this.bearingListener, false);
+        Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+            navigator.permissions.query({ name: "magnetometer" }),
+            navigator.permissions.query({ name: "gyroscope" })])
+            .then(results => {
+                if (results.every(result => result.state === "granted")) {
+                    if (window.DeviceOrientationEvent) {
+                        //document.getElementById("notice").innerHTML = "super ça marche.";
+                        window.addEventListener('deviceorientation', this.bearingListener, false);
 
-        } else {
+                    }else {
 
-            document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-            let options;
+                        document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+
+                    }
+                } else {
+                    let options;
 
 
-            options = {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            };
+                    options = {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    };
 
-            this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-        }/**/
+                    this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+                }
+            });
     }
 
     error(err) {
