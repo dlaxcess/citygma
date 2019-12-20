@@ -349,7 +349,7 @@ export default class CitygmaGameInterface extends Component {
         let tiltLR = eventData.gamma;
         let tiltFB = eventData.beta;
         let alpha, webkitAlpha;
-        
+
         let compass = document.querySelector('#arrow>img');
         //Check for iOS property
         if(eventData.webkitCompassHeading) {
@@ -360,11 +360,11 @@ export default class CitygmaGameInterface extends Component {
         //non iOS
         else {
             alpha = eventData.alpha;
-            let webkitAlpha = alpha;
-            if(!window.chrome) {
+            webkitAlpha = alpha;
+            /*if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
                 webkitAlpha = alpha-270;
-            }
+            }*/
             compass.style.Transform = 'rotate(' + alpha + 'deg)';
             compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
             //Rotation is reversed for FF
