@@ -270,7 +270,7 @@ export default class CitygmaGameInterface extends Component {
     // Compass
     activateCompass() {
 
-        /*function error(err) {
+        function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
         }
 
@@ -278,19 +278,19 @@ export default class CitygmaGameInterface extends Component {
 
 
         options = {
-            enableHighAccuracy: false,
+            enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
-        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.bearingListener, error, options)});*/
+        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.wtachPosbearingListener, error, options)});
 
-        if (window.DeviceOrientationEvent) {
+        /*if (window.DeviceOrientationEvent) {
             //document.getElementById("notice").innerHTML = "super ça marche.";
             window.addEventListener('deviceorientation', this.bearingListener, false);
         } else {
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-        }
+        }*/
     }
 
     deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
