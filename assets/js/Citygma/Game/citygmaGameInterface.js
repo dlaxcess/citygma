@@ -385,20 +385,20 @@ export default class CitygmaGameInterface extends Component {
         //if (eventData.absolute) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
-            let alpha, webkitAlpha, bearedDir;
+            let alpha, webkitAlpha, bearedDir, iOsBearedDir;
 
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
             if(eventData.webkitCompassHeading) {
-                alpha = eventData.webkitCompassHeading;
+                //alpha = eventData.webkitCompassHeading;
                 //Rotation is reversed for iOS
                 //compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
                 navigator.geolocation.getCurrentPosition(position => {
                     //let webebkitBearedDir = this.wrap360(this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha);
-                    let webebkitBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
+                    iOsBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.webkitCompassHeading;
 
 
-                    compassDisc.style.webkitTransform = "rotate("+ webebkitBearedDir +"deg)";
+                    compassDisc.style.webkitTransform = "rotate("+ iOsBearedDir +"deg)";
                 });
             }
             //non iOS
