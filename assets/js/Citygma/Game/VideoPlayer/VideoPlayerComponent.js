@@ -71,7 +71,7 @@ export default class VideoPlayerComponent extends Component {
     }
 
     play() {
-        this.player.play();
+        this.state.player.play();
     }
 
     pause() {
@@ -80,6 +80,7 @@ export default class VideoPlayerComponent extends Component {
 
     load() {
         this.player.load();
+
     }
 
     changeCurrentTime(seconds) {
@@ -161,7 +162,7 @@ export default class VideoPlayerComponent extends Component {
                     {/*this.state.showEndedButton*/true &&
                         <Fragment>
                             <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
-                            <button id="videoRePlay" className="marronButton" onClick={this.load}>Revoir</button>
+                            <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
                         </Fragment>
                     }
                 </div>
