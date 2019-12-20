@@ -171,7 +171,7 @@ export default class VideoPlayerComponent extends Component {
                         className="react-player"
                         ref={this.ref}
                         ended={this.handleEnded}
-                        autoPlay
+                        autoPlay="true"
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
                         <ControlBar autoHide={false} />
