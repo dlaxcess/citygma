@@ -33,6 +33,7 @@ export default class CitygmaGameInterface extends Component {
             currentLong: -1.687552,
             currentEnigmaActiveCompass: true,
             userDeviceAcceptCompass: true,
+            deviceOrientationAvailable: false,
 
             videoPlaying: false,
             videoUrl: '',
@@ -61,6 +62,8 @@ export default class CitygmaGameInterface extends Component {
         this.getBearing = this.getBearing.bind(this);
         this.activateCompass = this.activateCompass.bind(this);
         this.watchPosbearingListener = this.watchPosbearingListener.bind(this);
+        this.testDeviceOrientation = this.testDeviceOrientation.bind(this);
+
 
     }
 
@@ -291,11 +294,42 @@ export default class CitygmaGameInterface extends Component {
 
         if (window.DeviceOrientationEvent) {
             //document.getElementById("notice").innerHTML = "super ça marche.";
-            window.addEventListener('deviceorientation', this.bearingListener, false);
+            window.addEventListener('deviceorientation', this.testDeviceOrientation, false);
+            if (this.state.deviceOrientationAvailable) {
+                document.removeEventListener('deviceorientation', this.testDeviceOrientation, false);
+                window.addEventListener('deviceorientation', this.bearingListener, false);
+            } else {
+                let options;
+
+
+                options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                };
+
+                this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+
+                
+            }
+
+
         } else {
 
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
         }/**/
+    }
+
+    error(err) {
+        console.warn('ERROR(' + err.code + '): ' + err.message);
+    }
+
+    testDeviceOrientation(event) {
+        if (eventData.absolute) {
+            this.setState({deviceOrientationAvailable: true});
+        } else {
+            this.setState({deviceOrientationAvailable: false});
+        }
     }
 
     deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir) {
@@ -347,7 +381,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        if (eventData.absolute) {
+        //if (eventData.absolute) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
             let alpha, webkitAlpha, bearedDir;
@@ -404,7 +438,7 @@ export default class CitygmaGameInterface extends Component {
                 });
             }
 
-        } else {
+       /* } else {
 
 
             let options;
@@ -417,11 +451,11 @@ export default class CitygmaGameInterface extends Component {
             };
 
             this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});
-        }
+        //}
 
         function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
-        }
+        }*/
 
 
         /*
