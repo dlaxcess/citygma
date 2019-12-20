@@ -363,7 +363,7 @@ export default class CitygmaGameInterface extends Component {
             webkitAlpha = eventData.alpha;
             if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
-                webkitAlpha = alpha-270;
+                webkitAlpha = eventData.alpha-270;
             }
             compass.style.Transform = 'rotate(' + alpha + 'deg)';
             compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
