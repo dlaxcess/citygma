@@ -358,7 +358,9 @@ export default class CitygmaGameInterface extends Component {
             dir = eventData.webkitCompassHeading;
 
             navigator.geolocation.getCurrentPosition(position => {
-                bearedDir = /*this.wrap360(*/this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - dir/*)*/;
+                bearedDir = this.wrap360(this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - dir);
+                //bearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - dir;
+
 
                 compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
             });
@@ -368,14 +370,16 @@ export default class CitygmaGameInterface extends Component {
             let webkitAlpha = dir;
             if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
-                webkitAlpha = dir/*-270*/;
+                webkitAlpha = dir-270;
             }
         }
 
         navigator.geolocation.getCurrentPosition(position => {
             let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-            bearedDir = /*this.wrap360(*/dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong)/*)*/;
-            let webKitBearedDir = /*this.wrap360(*/webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong)/*)*/;
+            bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+            //bearedDir = dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+            let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+            //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
             let mozBearedDir = fromNorthBearing - dir;
 
             compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
