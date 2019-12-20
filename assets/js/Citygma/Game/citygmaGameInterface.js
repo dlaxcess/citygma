@@ -365,7 +365,7 @@ export default class CitygmaGameInterface extends Component {
             }
         }
 
-        compass.style.transform = 'rotate(' + alpha + 'deg)';
+        compass.style.transform = 'rotate(' + 0 + 'deg)';
         compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
         //Rotation is reversed for FF
         compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
