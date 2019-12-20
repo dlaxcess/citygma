@@ -360,7 +360,7 @@ export default class CitygmaGameInterface extends Component {
             navigator.geolocation.getCurrentPosition(position => {
                 bearedDir = /*this.wrap360(*/this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - dir/*)*/;
 
-                compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+                compassDisc.style.webkitTransform = "rotate(-"+ bearedDir +"deg)";
             });
         }
         else {
