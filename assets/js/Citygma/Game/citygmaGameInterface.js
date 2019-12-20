@@ -358,8 +358,8 @@ export default class CitygmaGameInterface extends Component {
         //non iOS
         else {
             alpha = eventData.alpha;
-            webkitAlpha = alpha;
-            if(window.chrome) {
+            webkitAlpha = alpha + 180;
+            if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
                 webkitAlpha = alpha-270;
             }
