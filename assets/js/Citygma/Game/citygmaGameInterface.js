@@ -294,29 +294,21 @@ export default class CitygmaGameInterface extends Component {
 
         if (window.DeviceOrientationEvent) {
             //document.getElementById("notice").innerHTML = "super ça marche.";
-            window.addEventListener('deviceorientation', this.testDeviceOrientation, false);
-            if (this.state.deviceOrientationAvailable) {
-                document.removeEventListener('deviceorientation', this.testDeviceOrientation, false);
                 window.addEventListener('deviceorientation', this.bearingListener, false);
-            } else {
-                let options;
-
-
-                options = {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                };
-
-                this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-
-                
-            }
-
 
         } else {
 
             document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+            let options;
+
+
+            options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
         }/**/
     }
 
