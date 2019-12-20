@@ -346,29 +346,29 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        var alpha;
-        var webkitAlpha;
+        let alpha;
         let compass = document.querySelector('#arrow>img');
         //Check for iOS property
         if(eventData.webkitCompassHeading) {
             alpha = eventData.webkitCompassHeading;
             //Rotation is reversed for iOS
-            compass.style.WebkitTransform = 'rotate(' + alpha + 'deg)';
+            compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
         }
-        /*//non iOS
+        //non iOS
         else {
             alpha = eventData.alpha;
-            webkitAlpha = alpha;
+            let webkitAlpha = alpha;
             if(!window.chrome) {
                 //Assume Android stock (this is crude, but good enough for our example) and apply offset
                 webkitAlpha = alpha-270;
             }
+            compass.style.Transform = 'rotate(' + alpha + 'deg)';
+            compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
+            //Rotation is reversed for FF
+            compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
         }
 
-        compass.style.Transform = 'rotate(' + alpha + 'deg)';
-        compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
-        //Rotation is reversed for FF
-        compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';*/
+
 
         /*
                 // gamma: Tilting the device from left to right. Tilting the device to the right will result in a positive value.
