@@ -428,7 +428,6 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        alert(eventData.alpha);
         if (eventData.alpha !== null) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
