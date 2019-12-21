@@ -305,8 +305,8 @@ export default class CitygmaGameInterface extends Component {
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
-                if (results.every(result => result.state === "granted") && this.state.deviceOrientationWorks) {
-                    if (window.DeviceOrientationEvent) {
+                if (results.every(result => result.state === "granted")) {
+                    if (window.DeviceOrientationEvent && this.state.deviceOrientationWorks) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
