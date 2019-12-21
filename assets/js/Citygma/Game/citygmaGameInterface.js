@@ -650,10 +650,10 @@ export default class CitygmaGameInterface extends Component {
         //let coords = eventData.coords;
         //let dir = coords.heading;
 
-        //let bearedDir;
+        let bearedDir = 0;
 
         let fromNorthBearing = this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong);
-        let bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) + eventData.coords.heading/*)*/;
+        bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.coords.heading/*)*/;
 
         document.getElementById("tiltFB").innerHTML = Math.ceil(eventData.coords.heading);
         document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
