@@ -312,12 +312,12 @@ export default class CitygmaGameInterface extends Component {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
-                    }/*else {
-                        //alert('ça marche pas!!');
+                    }else {
+                        alert('ça marche pas!!');
                         //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
 
 
-                        let options;
+                        /*let options;
 
 
                         options = {
@@ -326,8 +326,8 @@ export default class CitygmaGameInterface extends Component {
                             maximumAge: 0
                         };
 
-                        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-                    }*/
+                        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});*/
+                    }
 
 
                 } else {
