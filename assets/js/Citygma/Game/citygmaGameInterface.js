@@ -632,13 +632,13 @@ export default class CitygmaGameInterface extends Component {
         let tiltLR = 0;
         let tiltFB = 0;
         //document.getElementById("tiltFB").innerHTML = "Youpiyoup";
-        let coords = eventData.coords;
+        //let coords = eventData.coords;
         //let dir = coords.heading;
 
         //let bearedDir;
 
-        let fromNorthBearing = this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong);
-        let bearedDir = /*this.wrap360(*/this.getBearing(coords.latitude, coords.longitude, this.state.currentLat, this.state.currentLong) - coords.heading/*)*/;
+        let fromNorthBearing = this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong);
+        let bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.coords.heading/*)*/;
 
         this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
     }
