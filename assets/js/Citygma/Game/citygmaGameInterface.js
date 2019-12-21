@@ -96,7 +96,7 @@ export default class CitygmaGameInterface extends Component {
     componentWillUnmount() {
         this.props.toggleHeader(true);
 
-        //this.smolScreen();
+        this.smolScreen();
 
         document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);
@@ -106,7 +106,8 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        //this.fullScreen();
+        this.fullScreen();
+        screen.orientation.lock("portrait");
         /*try {
             await screen.orientation.lock("portrait");
             start();
@@ -694,7 +695,7 @@ export default class CitygmaGameInterface extends Component {
 
         return (
             <Fragment>
-                <div id="GameInterfaceGenContainer">
+                <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={boussole}/></div>
                         <div id="notice"></div>
