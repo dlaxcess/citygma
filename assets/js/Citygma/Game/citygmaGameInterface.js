@@ -640,7 +640,23 @@ export default class CitygmaGameInterface extends Component {
         let fromNorthBearing = this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong);
         let bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.coords.heading/*)*/;
 
-        this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
+        document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
+        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
+
+        // Rotate the disc of the compass.
+        let compassDisc = document.querySelector('#arrow>img');
+        let positionMarker = document.querySelector('#positionMarker');
+        compassDisc.style.webkitTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.MozTransform = "rotate("+ bearedDir +"deg)";
+        compassDisc.style.transform = "rotate("+ bearedDir +"deg)";
+
+        if (positionMarker) {
+            positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+            positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+        }
+
+        //this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
     }
 
 
