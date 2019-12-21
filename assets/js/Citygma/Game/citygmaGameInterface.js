@@ -298,8 +298,11 @@ export default class CitygmaGameInterface extends Component {
         };
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
-
-alert(window.DeviceOrientationEvent);
+        let heading;
+        window.onDeviceOrientation = function(e) {
+            heading = e.alpha;
+        };
+        alert(heading);
 
         Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
