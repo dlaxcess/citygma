@@ -299,14 +299,14 @@ export default class CitygmaGameInterface extends Component {
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
-alert(window.DeviceOrientationEvent);
+
 
         Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {
-                    if (typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+                    if (typeof DeviceMotionEvent.requestPermission !== 'function') {
                         if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                             //document.getElementById("notice").innerHTML = "super ça marche.";
                             window.addEventListener('deviceorientation', this.bearingListener, false);
