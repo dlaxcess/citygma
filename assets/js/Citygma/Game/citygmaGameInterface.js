@@ -298,7 +298,7 @@ export default class CitygmaGameInterface extends Component {
         };
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
-        
+
 
 
 
@@ -307,18 +307,15 @@ export default class CitygmaGameInterface extends Component {
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {
-                    if (typeof DeviceMotionEvent.requestPermission !== 'function') {
-                        if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
-                            //document.getElementById("notice").innerHTML = "super ça marche.";
-                            window.addEventListener('deviceorientation', this.bearingListener, false);
-                        }
 
-                    }else {
+                    if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
+                        //document.getElementById("notice").innerHTML = "super ça marche.";
+                        window.addEventListener('deviceorientation', this.bearingListener, false);
+
+                    }/*else {
                         //alert('ça marche pas!!');
                         //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-                        /*function error(err) {
-                            console.warn('ERROR(' + err.code + '): ' + err.message);
-                        }*/
+                        
 
                         let options;
 
@@ -330,7 +327,7 @@ export default class CitygmaGameInterface extends Component {
                         };
 
                         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-                    }
+                    }*/
 
 
                 } else {
@@ -431,11 +428,10 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        //if (eventData.absolute) {
+        if (eventData.alpha !== null) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
             let alpha, webkitAlpha, bearedDir, iOsBearedDir;
-alert(eventData.alpha);
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
             if(eventData.webkitCompassHeading) {
@@ -488,7 +484,7 @@ alert(eventData.alpha);
                 });
             }
 
-       /* } else {
+        } else {
 
 
             let options;
@@ -500,10 +496,10 @@ alert(eventData.alpha);
                 maximumAge: 0
             };
 
-            this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});
-        //}
+            this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+        }
 
-        function error(err) {
+        /*function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
         }*/
 
