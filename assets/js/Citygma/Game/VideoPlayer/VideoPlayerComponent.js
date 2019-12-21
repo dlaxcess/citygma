@@ -16,7 +16,7 @@ export default class VideoPlayerComponent extends Component {
 
             url: this.props.videoUrl,
             pip: false,
-            playing: true,
+            playing: false,
             controls: false,
             light: false,
             volume: 0.8,
@@ -27,7 +27,7 @@ export default class VideoPlayerComponent extends Component {
             playbackRate: 1.0,
             loop: false,
 
-            player: null,
+            player: {playing: false},
             showEndedButton: false
         };
 
@@ -47,6 +47,8 @@ export default class VideoPlayerComponent extends Component {
         this.ref = this.ref.bind(this);
 
         const {onVideoEnded} = this.props.onVideoEnded;
+
+
     }
 
     componentDidMount() {
@@ -54,7 +56,11 @@ export default class VideoPlayerComponent extends Component {
             this.setState({ playing: true });
             document.querySelector("#videoPlay").click();
         */}
-        //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+    }
+
+    componentDidUpdate() {
+
     }
 
     setMuted(muted) {
@@ -68,10 +74,19 @@ export default class VideoPlayerComponent extends Component {
         this.setState({
             player: state
         });
+
+        if (state.hasStarted) {
+            this.setState({playing: true});
+        }
+
+        if (state.ended) {
+            this.handleEnded()
+        }
+
     }
 
     play() {
-        this.state.player.play();
+        this.player.play();
     }
 
     pause() {
@@ -141,7 +156,7 @@ export default class VideoPlayerComponent extends Component {
 
     handleEnded() {
         this.props.onVideoEnded();
-        this.setState({showEndedButton: true});
+        this.setState({showEndedButton: true, playing: false});
     }
 
     ref(player) {
@@ -159,20 +174,23 @@ export default class VideoPlayerComponent extends Component {
                 <div id="playerBackground"></div>
                 <div id="videoPlayerButtons">
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
-                    {this.state.showEndedButton &&
+                    {this.state.showEndedButton && !this.state.playing &&
                         <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                     }
+                    {!this.state.playing &&
+                        <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
+                    }
 
-                    <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
                 </div>
 
                 <div className="player-wrapper">
                     <Player
                         className="react-player"
-                        ref={this.ref}
-                        ended={this.handleEnded}
+                        ref={player => {
+                            this.player = player;
+                        }}
                         autoPlay
-                        isActive
+                        ended={this.handleEnded}
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
                         <ControlBar autoHide={true} disableCompletely={true} />
