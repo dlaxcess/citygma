@@ -62,6 +62,8 @@ export default class CitygmaGameInterface extends Component {
         this.bearingListener = this.bearingListener.bind(this);
         this.getBearing = this.getBearing.bind(this);
         this.activateCompass = this.activateCompass.bind(this);
+        this.activeCompassWatchPosition = this.activeCompassWatchPosition.bind(this);
+
         this.watchPosbearingListener = this.watchPosbearingListener.bind(this);
         this.testDeviceOrientation = this.testDeviceOrientation.bind(this);
 
@@ -311,7 +313,7 @@ export default class CitygmaGameInterface extends Component {
 
                     }
                 } else {
-                    let options;
+                    /*let options;
 
 
                     options = {
@@ -320,13 +322,26 @@ export default class CitygmaGameInterface extends Component {
                         maximumAge: 0
                     };
 
-                    this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+                    this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});*/
+                    this.activeCompassWatchPosition();
                 }
             });
     }
 
     error(err) {
         console.warn('ERROR(' + err.code + '): ' + err.message);
+    }
+
+    activeCompassWatchPosition() {
+        let options;
+
+        options = {
+            enableHighAccuracy: true,
+            timeout: Infinity,
+            maximumAge: 0
+        };
+
+        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
     }
 
     testDeviceOrientation(event) {
