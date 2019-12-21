@@ -803,6 +803,11 @@ nav {
   }*/
 
   // Geolocation component
+  #positionMarker, #arrow>img {
+    transform-style: preserve-3d;
+  }
+  transform-style: preserve-3d;
+
   #geolocateComponent {
     position: absolute;
     top: 0;

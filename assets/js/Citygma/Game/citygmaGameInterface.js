@@ -315,7 +315,7 @@ export default class CitygmaGameInterface extends Component {
                     }/*else {
                         //alert('ça marche pas!!');
                         //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-                        
+
 
                         let options;
 
