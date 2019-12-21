@@ -306,7 +306,7 @@ export default class CitygmaGameInterface extends Component {
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {*/
-                    if (window.DeviceOrientationEvent && this.deviceOrientationWorks) {
+                    if (window.DeviceOrientationEvent && this.deviceOrientationWorks()) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
@@ -352,7 +352,7 @@ export default class CitygmaGameInterface extends Component {
     deviceOrientationWorks() {
 
         function absoluteTest(event) {
-            if (event.absolute) {
+            if (event.absolute == true) {
                 //this.setState({deviceOrientationWorksAbsolute: true});
                 document.removeEventListener('deviceorientation', absoluteTest, false);
                 return true;
