@@ -283,7 +283,7 @@ export default class CitygmaGameInterface extends Component {
     // Compass
     activateCompass() {
 
-        /*function error(err) {
+        function error(err) {
             console.warn('ERROR(' + err.code + '): ' + err.message);
         }
 
@@ -291,14 +291,14 @@ export default class CitygmaGameInterface extends Component {
 
 
         options = {
-            enableHighAccuracy: false,
+            enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
-        Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+        /*Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
@@ -313,19 +313,19 @@ export default class CitygmaGameInterface extends Component {
 
                     }
                 } else {
-                    /*let options;
+                    //let options;
 
 
-                    options = {
-                        enableHighAccuracy: true,
-                        timeout: Infinity,
-                        maximumAge: 0
-                    };
+                    //options = {
+                        //enableHighAccuracy: true,
+                        //timeout: Infinity,
+                        //maximumAge: 0
+                    //};
 
-                    this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});*/
+                    //this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
                     this.activeCompassWatchPosition();
                 }
-            });
+            });*/
     }
 
     error(err) {
