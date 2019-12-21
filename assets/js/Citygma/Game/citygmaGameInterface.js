@@ -298,11 +298,9 @@ export default class CitygmaGameInterface extends Component {
         };
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
-        let heading;
-        window.onDeviceOrientation = function(e) {
-            heading = e.alpha;
-        };
-        alert(heading);
+        
+
+
 
         Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
@@ -437,7 +435,7 @@ export default class CitygmaGameInterface extends Component {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
             let alpha, webkitAlpha, bearedDir, iOsBearedDir;
-
+alert(eventData.alpha);
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
             if(eventData.webkitCompassHeading) {
