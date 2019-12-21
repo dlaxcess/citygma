@@ -301,11 +301,11 @@ export default class CitygmaGameInterface extends Component {
 
         this.deviceOrientationWorks();
 
-        Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+        /*Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
-                if (results.every(result => result.state === "granted")) {
+                if (results.every(result => result.state === "granted")) {*/
                     if (window.DeviceOrientationEvent && this.state.deviceOrientationWorksAbsolute) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
@@ -328,7 +328,7 @@ export default class CitygmaGameInterface extends Component {
 
                         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});
                     }
-                } else {
+                /*} else {
                     //let options;
 
 
