@@ -789,6 +789,20 @@ nav {
     }
   }
 
+  .video-react-loading-spinner,
+  .video-react-big-play-button,
+  .video-react-big-play-button-left,
+  .big-play-button-hide,
+  .video-react-control-text,
+  .video-react-control-bar,
+  .video-react-control-bar-auto-hide,
+  .video-react-play-control,
+  .video-react-control,
+  .video-react-button,
+  /*.video-react-paused*/{
+    display: none;
+  }
+
   // Geolocation component
   #geolocateComponent {
     position: absolute;
