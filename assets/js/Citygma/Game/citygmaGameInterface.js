@@ -640,7 +640,7 @@ export default class CitygmaGameInterface extends Component {
         let fromNorthBearing = this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong);
         let bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.coords.heading/*)*/;
 
-        document.getElementById("tiltFB").innerHTML = Math.ceil(tiltFB);
+        document.getElementById("tiltFB").innerHTML = Math.ceil(eventData.coords.heading);
         document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
 
         // Rotate the disc of the compass.
