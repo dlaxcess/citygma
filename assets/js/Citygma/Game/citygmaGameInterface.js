@@ -306,37 +306,37 @@ export default class CitygmaGameInterface extends Component {
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {
-                    return this.deviceOrientationWorks();
+                    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                        if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
+                            //document.getElementById("notice").innerHTML = "super ça marche.";
+                            window.addEventListener('deviceorientation', this.bearingListener, false);
+                        }
+
+                    }else {
+                        //alert('ça marche pas!!');
+                        //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+                        /*function error(err) {
+                            console.warn('ERROR(' + err.code + '): ' + err.message);
+                        }*/
+
+                        let options;
+
+
+                        options = {
+                            enableHighAccuracy: true,
+                            timeout: 5000,
+                            maximumAge: 0
+                        };
+
+                        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+                    }
 
 
                 } else {
 
                     alert('ya pas !');
                 }
-            }).then(deviceOrientationWorksAbsolute => {
-            if (window.DeviceOrientationEvent && window.DeviceMotionEvent && deviceOrientationWorksAbsolute) {
-                //document.getElementById("notice").innerHTML = "super ça marche.";
-                window.addEventListener('deviceorientation', this.bearingListener, false);
-
-            }else {
-                //alert('ça marche pas!!');
-                //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-                /*function error(err) {
-                    console.warn('ERROR(' + err.code + '): ' + err.message);
-                }*/
-
-                let options;
-
-
-                options = {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                };
-
-                this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-            }
-        });/**/
+            });/**/
     }
 
     error(err) {
