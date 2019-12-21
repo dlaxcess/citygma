@@ -301,48 +301,42 @@ export default class CitygmaGameInterface extends Component {
 
 
 
-        /*Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+        Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
-                if (results.every(result => result.state === "granted")) {*/
-                    if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
-                        //document.getElementById("notice").innerHTML = "super ça marche.";
-                        window.addEventListener('deviceorientation', this.bearingListener, false);
-
-                    }else {
-                        //alert('ça marche pas!!');
-                        //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
-                        function error(err) {
-                            console.warn('ERROR(' + err.code + '): ' + err.message);
-                        }
-
-                        let options;
+                if (results.every(result => result.state === "granted")) {
+                    return this.deviceOrientationWorks();
 
 
-                        options = {
-                            enableHighAccuracy: true,
-                            timeout: 5000,
-                            maximumAge: 0
-                        };
+                } else {
 
-                        this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});
-                    }
-                /*} else {
-                    //let options;
-
-
-                    //options = {
-                        //enableHighAccuracy: true,
-                        //timeout: Infinity,
-                        //maximumAge: 0
-                    //};
-
-                    //this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
-                    //this.activeCompassWatchPosition();
                     alert('ya pas !');
                 }
-            });/**/
+            }).then(deviceOrientationWorksAbsolute => {
+            if (window.DeviceOrientationEvent && window.DeviceMotionEvent && deviceOrientationWorksAbsolute) {
+                //document.getElementById("notice").innerHTML = "super ça marche.";
+                window.addEventListener('deviceorientation', this.bearingListener, false);
+
+            }else {
+                //alert('ça marche pas!!');
+                //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
+                /*function error(err) {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                }*/
+
+                let options;
+
+
+                options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                };
+
+                this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
+            }
+        });/**/
     }
 
     error(err) {
@@ -350,7 +344,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     deviceOrientationWorks() {
-
+        let deviceOrientationWorksAbsolute =true;
         function absoluteTest(event) {
             if (event.absolute == true) {
                 //this.setState({deviceOrientationWorksAbsolute: true});
