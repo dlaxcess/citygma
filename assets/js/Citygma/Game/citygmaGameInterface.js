@@ -35,6 +35,7 @@ export default class CitygmaGameInterface extends Component {
             currentEnigmaActiveCompass: true,
             userDeviceAcceptCompass: true,
             deviceOrientationAvailable: false,
+            deviceOrientationWorksAbsolute: false,
 
             videoPlaying: false,
             videoUrl: '',
@@ -298,11 +299,13 @@ export default class CitygmaGameInterface extends Component {
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
+        this.deviceOrientationWorks();
+
         Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
-                if (results.every(result => result.state === "granted") && this.deviceOrientationWorks) {
+                if (results.every(result => result.state === "granted") && this.state.deviceOrientationWorks) {
                     if (window.DeviceOrientationEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
@@ -347,23 +350,19 @@ export default class CitygmaGameInterface extends Component {
     }
 
     deviceOrientationWorks() {
-        let deviceOrientationWorksAbsolute = true;
 
         function absoluteTest(event) {
             if (event.absolute) {
-                deviceOrientationWorksAbsolute = true;
+                this.setState({deviceOrientationWorksAbsolute: true});
             } else {
-                deviceOrientationWorksAbsolute = false;
+                this.setState({deviceOrientationWorksAbsolute: false});
             }
+            document.removeEventListener('deviceorientation', absoluteTest, false);
         }
 
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', absoluteTest, false);
         }
-
-        document.removeEventListener('deviceorientation', absoluteTest, false);
-
-        return deviceOrientationWorksAbsolute;
 
         /*let options;
 
