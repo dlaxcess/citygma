@@ -41,7 +41,7 @@ export default class VideoPlayerComponent extends Component {
         this.setMuted = this.setMuted.bind(this);
 
 
-        this.load = this.load.bind(this);
+        /*this.load = this.load.bind(this);*/
         this.handlePlay = this.handlePlay.bind(this);
         this.handleEnded = this.handleEnded.bind(this);
         this.ref = this.ref.bind(this);
@@ -75,11 +75,11 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        if (state.isActive) {
+        if (this.state.player.hasStarted) {
             this.setState({playing: true});
         }
 
-        if (state.ended) {
+        if (this.state.player.ended) {
             this.handleEnded()
         }
 
