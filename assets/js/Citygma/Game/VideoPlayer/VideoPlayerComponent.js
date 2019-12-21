@@ -159,12 +159,11 @@ export default class VideoPlayerComponent extends Component {
                 <div id="playerBackground"></div>
                 <div id="videoPlayerButtons">
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
-                    {/*this.state.showEndedButton*/true &&
-                        <Fragment>
-                            <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
-                            <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
-                        </Fragment>
+                    {this.state.showEndedButton &&
+                        <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                     }
+
+                    <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
                 </div>
 
                 <div className="player-wrapper">
@@ -173,10 +172,10 @@ export default class VideoPlayerComponent extends Component {
                         ref={this.ref}
                         ended={this.handleEnded}
                         autoPlay
-                        disableCompletely={true}
+                        isActive
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
-                        <ControlBar autoHide={true} />
+                        <ControlBar autoHide={true} disableCompletely={true} />
                     </Player>
                 </div>
                 {/*
