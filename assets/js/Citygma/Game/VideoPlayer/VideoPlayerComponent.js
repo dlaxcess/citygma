@@ -60,7 +60,7 @@ export default class VideoPlayerComponent extends Component {
     }
 
     componentDidUpdate() {
-
+        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
     setMuted(muted) {
@@ -75,7 +75,7 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        if (state.hasStarted) {
+        if (state.isActive) {
             this.setState({playing: true});
         }
 

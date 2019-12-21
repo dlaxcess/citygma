@@ -79,6 +79,8 @@ export default class CitygmaGameInterface extends Component {
         } else if (document.documentElement.msRequestFullscreen) {
             document.documentElement.msRequestFullscreen();
         }
+
+        screen.orientation.lock("portrait");
     }
 
     smolScreen() {
@@ -107,7 +109,7 @@ export default class CitygmaGameInterface extends Component {
 
     componentDidMount() {
         this.fullScreen();
-        screen.orientation.lock("portrait");
+        //screen.orientation.lock("portrait");
         /*try {
             await screen.orientation.lock("portrait");
             start();
