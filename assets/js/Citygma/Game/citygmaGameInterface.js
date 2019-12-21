@@ -8,6 +8,7 @@ import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 //import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
+import boussole from "../../../images/boussole.png";
 
 
 
@@ -695,7 +696,7 @@ export default class CitygmaGameInterface extends Component {
             <Fragment>
                 <div id="GameInterfaceGenContainer">
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
-                        <div id="arrow"><img src={logo}/></div>
+                        <div id="arrow"><img src={boussole}/></div>
                         <div id="notice"></div>
                         <div id="tiltLR"></div>
                         <br/><br/><br/>
