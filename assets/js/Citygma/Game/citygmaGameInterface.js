@@ -299,14 +299,14 @@ export default class CitygmaGameInterface extends Component {
 
         this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, error, options)});/**/
 
-        this.deviceOrientationWorks();
+
 
         /*Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {*/
-                    if (window.DeviceOrientationEvent && this.state.deviceOrientationWorksAbsolute) {
+                    if (window.DeviceOrientationEvent && this.deviceOrientationWorks) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
@@ -353,11 +353,15 @@ export default class CitygmaGameInterface extends Component {
 
         function absoluteTest(event) {
             if (event.absolute) {
-                this.setState({deviceOrientationWorksAbsolute: true});
+                //this.setState({deviceOrientationWorksAbsolute: true});
+                document.removeEventListener('deviceorientation', absoluteTest, false);
+                return true;
             } else {
-                this.setState({deviceOrientationWorksAbsolute: false});
+                //this.setState({deviceOrientationWorksAbsolute: false});
+                document.removeEventListener('deviceorientation', absoluteTest, false);
+                return false;
             }
-            document.removeEventListener('deviceorientation', absoluteTest, false);
+
         }
 
         if (window.DeviceOrientationEvent) {
