@@ -695,6 +695,7 @@ export default class CitygmaGameInterface extends Component {
 
         return (
             <Fragment>
+                <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous plais, pour le bon fonctionnement du jeu, veuillez passez votre écran en mode portrait :)</h2></div>
                 <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={boussole}/></div>

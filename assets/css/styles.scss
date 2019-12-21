@@ -1058,6 +1058,31 @@ nav {
 @media screen and (min-width: $min-breakpoint-desktopXL) {
   @import "front-desktop-xl";
 }
+
+@media only screen and (orientation:landscape) {
+  #landscapePleaseChangeOrientation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 5rem;
+  }
+
+  #GameInterfaceGenContainer {
+    display: none;
+  }
+}
+
+@media only screen and (orientation:portrait) {
+  #landscapePleaseChangeOrientation {
+    display: none;
+  }
+
+  #GameInterfaceGenContainer {
+    display: block;
+  }
+}
 /*
 // "LOCK" Screen
 @media only screen and (orientation:landscape){
