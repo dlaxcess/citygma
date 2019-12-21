@@ -178,7 +178,7 @@ export default class VideoPlayerComponent extends Component {
                         <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                     }
                     {!this.state.playing &&
-                        <button id="videoRePlay" className="marronButton" onClick={this.play}>Revoir</button>
+                        <button id="videoRePlay" className="marronButton" onClick={this.play}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
                     }
 
                 </div>
