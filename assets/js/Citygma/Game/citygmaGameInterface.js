@@ -27,6 +27,7 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             // Game Data
+            showEnterGameScreen: true,
             userAdvance: 0,
             adventure: null,
             enigmas: null,
@@ -50,6 +51,7 @@ export default class CitygmaGameInterface extends Component {
 
 
 
+        this.handleStartGame = this.handleStartGame.bind(this);
         this.handleViewportChange = this.handleViewportChange.bind(this);
 
         this.handleBackToGameInterface = this.handleBackToGameInterface.bind(this);
@@ -162,10 +164,7 @@ export default class CitygmaGameInterface extends Component {
         });
 
 
-        // Intro video playing
-        if (!this.state.userAdvance) {
-            this.setState({ videoPlaying: true });
-        }
+
     }
 
 
@@ -175,6 +174,13 @@ export default class CitygmaGameInterface extends Component {
 
     isFloat(n){
         return Number(n) === n && n % 1 !== 0;
+    }
+
+    handleStartGame() {
+        // Intro video playing
+        if (!this.state.userAdvance) {
+            this.setState({ videoPlaying: true, showEnterGameScreen: false });
+        }
     }
 
     handleBackToGameInterface() {
@@ -758,6 +764,16 @@ export default class CitygmaGameInterface extends Component {
                 <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous plais, pour le bon fonctionnement du jeu, veuillez passez votre écran en mode portrait :)</h2></div>
                 */}
                 <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
+                    { this.state.showEnterGameScreen &&
+                    <div id="enterGameScreen">
+                        <h2>Mises en garde ...</h2>
+                        <p>Bienvenue sur citygma, sans vouloir faire de la pub pour chrome, pour une meilleure expérience de jeu, nous vous conseillons d'utiliser l'explorateur internet, chrome.</p>
+                        <button className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de voiloir commencer l'aventure ?</button>
+
+                    </div>
+                    }
+
+
                     <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={boussole}/></div>
                         <div id="notice"></div>
