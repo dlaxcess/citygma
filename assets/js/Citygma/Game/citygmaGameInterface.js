@@ -9,6 +9,7 @@ import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
 import boussole from "../../../images/boussole.png";
+import {NavLink} from "react-router-dom";
 
 
 
@@ -766,6 +767,7 @@ export default class CitygmaGameInterface extends Component {
                 <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     { this.state.showEnterGameScreen &&
                     <div id="enterGameScreen">
+                        <NavLink to="/Profil">...Retour, j'ai trop peur...</NavLink>
                         <h2>Mises en garde ...</h2>
                         <p>Bienvenue sur citygma, sans vouloir faire de la pub pour chrome, pour une meilleure expérience de jeu, nous vous conseillons d'utiliser l&lsquo;explorateur internet, chrome.</p>
                         <p>Si par malheur votre boussole reste bloquée vers le haut de votre écran... alors fiez vous uniquement à la distance...!</p>
