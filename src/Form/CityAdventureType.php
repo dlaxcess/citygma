@@ -43,7 +43,7 @@ class CityAdventureType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '4096k',
                         'mimeTypes' => [
                             'video/mp4',
                             'video/webm'
@@ -58,7 +58,7 @@ class CityAdventureType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '4096k',
                         'mimeTypes' => [
                             'video/mp4',
                             'video/webm'
@@ -95,7 +95,7 @@ class CityAdventureType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '4096k',
                         'mimeTypes' => [
                             'video/mp4',
                             'video/webm'
