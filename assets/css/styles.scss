@@ -803,6 +803,11 @@ nav {
   .video-react-button{
     display: none;
   }*/
+  .video-react-big-play-button,
+  .video-react-big-play-button-left,
+  .big-play-button-hide {
+    display: none;
+  }
 
   // Geolocation component
   #positionMarker, #arrow>img {
