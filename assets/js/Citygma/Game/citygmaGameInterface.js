@@ -114,7 +114,10 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        this.fullScreen();
+        document.removeEventListener('deviceorientation', this.bearingListener, false);
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
+
+        //this.fullScreen();
         //screen.orientation.lock("portrait");
         /*try {
             await screen.orientation.lock("portrait");
@@ -320,7 +323,7 @@ export default class CitygmaGameInterface extends Component {
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
                     }else {
-                        alert('ça marche pas!!');
+                        alert('Votre téléphone n\'est pas équipé de système permettant la détection de son orientation.');
                         //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund.";
 
 
@@ -339,7 +342,7 @@ export default class CitygmaGameInterface extends Component {
 
                 } else {
 
-                    alert('ya pas !');
+                    alert('Vous devez activer le partage de la géolocalisation de votre téléphone si vous souhaitez que la boussole fonctionne.');
                 }
             });/**/
     }
@@ -459,7 +462,7 @@ export default class CitygmaGameInterface extends Component {
                 webkitAlpha = eventData.alpha;
                 if(!window.chrome) {
                     //Assume Android stock (this is crude, but good enough for our example) and apply offset
-                    webkitAlpha = eventData.alpha-270;
+                    webkitAlpha = eventData.alpha - 270;
                 }
                 /*compass.style.Transform = 'rotate(' + alpha + 'deg)';
                 compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
@@ -764,7 +767,7 @@ export default class CitygmaGameInterface extends Component {
                 {/*
                 <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous plais, pour le bon fonctionnement du jeu, veuillez passez votre écran en mode portrait :)</h2></div>
                 */}
-                <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
+                <div id="GameInterfaceGenContainer">
                     { this.state.showEnterGameScreen &&
                     <div id="enterGameScreen">
                         <NavLink to="/Profil">...Retour, j'ai trop peur...</NavLink>

@@ -12,9 +12,12 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EnygmaLoopType extends AbstractType
 {
+    private const VIDEO_MAX_SIZE = 10000000;
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -36,7 +39,7 @@ class EnygmaLoopType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '8000000k',
+                        'maxSize' => '8192k',
                         'mimeTypes' => [
                             'video/mp4',
                             'video/webm'
