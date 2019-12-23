@@ -117,7 +117,7 @@ export default class CitygmaGameInterface extends Component {
         document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);
 
-        //this.fullScreen();
+        this.fullScreen();
         //screen.orientation.lock("portrait");
         /*try {
             await screen.orientation.lock("portrait");
@@ -767,7 +767,7 @@ export default class CitygmaGameInterface extends Component {
                 {/*
                 <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous plais, pour le bon fonctionnement du jeu, veuillez passez votre écran en mode portrait :)</h2></div>
                 */}
-                <div id="GameInterfaceGenContainer">
+                <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     { this.state.showEnterGameScreen &&
                     <div id="enterGameScreen">
                         <NavLink to="/Profil">...Retour, j'ai trop peur...</NavLink>
