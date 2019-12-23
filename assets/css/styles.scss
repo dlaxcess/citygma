@@ -1116,8 +1116,7 @@ nav {
   @import "front-desktop-xl";
 }
 
-/*
-@media only screen and (orientation:landscape) {
+@media only screen and (orientation:landscape) and (min-width: 480px) {
   #landscapePleaseChangeOrientation {
     display: flex;
     justify-content: center;
@@ -1140,7 +1139,7 @@ nav {
   #GameInterfaceGenContainer {
     display: block;
   }
-}*/
+}
 /*
 // "LOCK" Screen
 @media only screen and (orientation:landscape){
