@@ -36,7 +36,7 @@ class EnygmaLoopType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '8192k',
+                        'maxSize' => '8M',
                         'mimeTypes' => [
                             'video/mp4',
                             'video/webm'
