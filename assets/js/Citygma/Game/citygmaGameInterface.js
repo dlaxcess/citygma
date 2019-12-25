@@ -289,7 +289,7 @@ export default class CitygmaGameInterface extends Component {
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
                 if (results.every(result => result.state === "granted")) {*/
-                    alert('active compass autorise');
+                    //alert('active compass autorise');
                     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
@@ -402,7 +402,7 @@ export default class CitygmaGameInterface extends Component {
             let alpha, webkitAlpha, bearedDir, iOsBearedDir;
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
-            alert(eventData.webkitCompassHeading);
+            //alert(eventData.webkitCompassHeading);
 
             if(eventData.webkitCompassHeading) {
 
@@ -415,8 +415,8 @@ export default class CitygmaGameInterface extends Component {
 
 
                     compassDisc.style.webkitTransform = "rotate("+ iOsBearedDir +"deg)";
-                    compassDisc.style.transform = 'rotate(' + iOsBearedDir + 'deg)';
-                    compassDisc.style.MozTransform = 'rotate(' + iOsBearedDir + 'deg)';
+                    /*compassDisc.style.transform = 'rotate(' + iOsBearedDir + 'deg)';
+                    compassDisc.style.MozTransform = 'rotate(' + iOsBearedDir + 'deg)';*/
                 });
             }
             //non iOS
