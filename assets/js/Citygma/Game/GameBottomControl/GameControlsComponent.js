@@ -14,24 +14,39 @@ export default class GameControlsComponent extends Component {
 
         this.state = {
             burgerClicked : false,
+            showHelp: false,
         };
 
         this.burgerIconClick = this.burgerIconClick.bind(this);
+        this.helpPictoClicked = this.helpPictoClicked.bind(this);
     }
 
     burgerIconClick(burgerClicked) {
         burgerClicked === false ? this.setState({ burgerClicked : true }) : this.setState({ burgerClicked : false });
     }
 
+    helpPictoClicked() {
+        this.state.showHelp ? this.setState({showHelp: false}) : this.setState({showHelp: true});
+    }
+
     render() {
         const { burgerClicked } = this.state;
-        const {currentUser, onLogoutClick} = this.props;
+        const {currentUser, onLogoutClick, onPersoPictoClick} = this.props;
 
         return (
             <Fragment>
+                <div id="pageHelp" className={this.state.showHelp ? 'openedHelp' : ''}>
+                    <span id="helpClose" onClick={this.helpPictoClicked}>X</span>
+                    <h2>Aide</h2>
+                    <div id="helpContainer">
+                        <div id="helpContent">
+                            <p>Pour ouvrir le message courrant de l&lsquo;aventure, veuillez cliquer sur le logo de citygma en bas à gauche de l&lsquo;écran</p>
+                        </div>
+                    </div>
+                </div>
                 <div id="gameControls">
                     <div id="principalControlRow">
-                        <div id="gameCitygmaPicto"><img src={logoGame} alt="logo-game"/></div>
+                        <div id="gameCitygmaPicto"><img src={logoGame} alt="logo-game" onClick={onPersoPictoClick}/></div>
                         <div id="gameBurgerButton" title="Menu principal"
                              className={burgerClicked === true ? 'activeBurger' : ''}
                              onClick={() => this.burgerIconClick(burgerClicked)}
@@ -41,7 +56,7 @@ export default class GameControlsComponent extends Component {
                             <div className="bar3"></div>
                         </div>
                     </div>
-                    <div id="pictoInterrog"><img src={pictoInterrog} alt=""/></div>
+                    <div id="pictoInterrog"><img src={pictoInterrog} alt="" onClick={this.helpPictoClicked}/></div>
                     <div id="pictoLoupe"><img src={pictoLoupe} alt=""/></div>
                     <div id="pictoLivre"><img src={pictoLivre} alt=""/></div>
                 </div>

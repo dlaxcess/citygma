@@ -925,6 +925,54 @@ nav {
   }
 }
 
+// Page aide
+#pageHelp {
+  z-index: 7900;
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  @include transition(all .2s linear);
+  background-color: $orangeBack;
+  text-align: center;
+  padding: 2rem;
+
+  &.openedHelp {
+    top: 0;
+  }
+
+  #helpClose {
+    position: absolute;
+    top: 2.2rem;
+    right: 2.5rem;
+    font-size: 2rem;
+    border: 1px solid $blackTitle;
+    @include border-radius(1.5rem);
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+  }
+
+  h2 {
+    color: $marron;
+    margin-bottom: 1.5rem;
+  }
+
+  #helpContainer {
+    border: 4px solid white;
+    border-image-source: url("../images/cadre.png");
+    border-image-slice: 12;
+    border-image-width: 2;
+    padding: 4px;
+
+    #helpContent {
+      background-color: $whiteBubble;
+      padding: 1rem;
+    }
+  }
+}
+
 // Banière de controle bas
 #gameControls {
   z-index: 9000;
