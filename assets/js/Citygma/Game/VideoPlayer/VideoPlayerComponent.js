@@ -16,7 +16,7 @@ export default class VideoPlayerComponent extends Component {
 
             url: this.props.videoUrl,
             pip: false,
-            playing: false,
+            playing: true,
             controls: false,
             light: false,
             volume: 0.8,
@@ -56,11 +56,11 @@ export default class VideoPlayerComponent extends Component {
             this.setState({ playing: true });
             document.querySelector("#videoPlay").click();
         */}
-        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
     componentDidUpdate() {
-        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
     setMuted(muted) {
@@ -93,10 +93,10 @@ export default class VideoPlayerComponent extends Component {
         this.player.pause();
     }
 
-    load() {
+    /*load() {
         this.player.load();
 
-    }
+    }*/
 
     changeCurrentTime(seconds) {
         return () => {
@@ -132,6 +132,17 @@ export default class VideoPlayerComponent extends Component {
             });
             this.player.load();
         };
+    }
+
+    load() {
+        this.state.player.seekTo(0);
+        this.setState({
+            playing: true,
+            played: 0,
+            loaded: 0,
+            pip: false,
+            showEndedButton: false
+        })
     }
 
 
