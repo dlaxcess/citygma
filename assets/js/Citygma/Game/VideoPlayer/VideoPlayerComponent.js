@@ -183,7 +183,7 @@ export default class VideoPlayerComponent extends Component {
 
                 </div>
 
-                <div className="player-wrapper">
+                {/*<div className="player-wrapper">
                     <Player
                         className="react-player"
                         ref={player => {
@@ -196,8 +196,8 @@ export default class VideoPlayerComponent extends Component {
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
                         <ControlBar autoHide={true} disableCompletely={true} />
                     </Player>
-                </div>
-                {/*
+                </div>*/}
+
                 <div className='player-wrapper'>
                     <ReactPlayer
                         autoPlay
@@ -228,7 +228,7 @@ export default class VideoPlayerComponent extends Component {
                         onProgress={this.handleProgress}
                         onDuration={this.handleDuration}
                     />
-                </div>*/}
+                </div>
             </section>
         );
     }
