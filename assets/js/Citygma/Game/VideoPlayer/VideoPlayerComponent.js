@@ -188,7 +188,6 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
-                        autoPlay
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
