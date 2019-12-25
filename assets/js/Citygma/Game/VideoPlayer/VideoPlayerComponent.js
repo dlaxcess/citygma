@@ -189,8 +189,8 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         autoPlay
-                        webkit-playsinline={true}
-                        playsInline={true}
+                        webkit-playsinline
+                        playsInline
                         ended={this.handleEnded}
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
