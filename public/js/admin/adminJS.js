@@ -137,7 +137,9 @@ $(document).ready(function() {
         let $media = $('' +
             '<div><video controls width="300" autoPlay="true" muted="true">' +
             '<source src="/uploads/cityAdventures/'+ fileName +'"' +
-                    ' type="video/webm">' +
+                    ' type="video/mp4">' +
+            '<source src="/uploads/cityAdventures/'+ fileName +'"' +
+            ' type="video/webm">' +
             'Sorry, your browser doesn\'t support embedded videos.' +
             '</video></div>' +
             '');
