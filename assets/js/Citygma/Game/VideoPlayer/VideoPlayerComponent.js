@@ -57,6 +57,7 @@ export default class VideoPlayerComponent extends Component {
             document.querySelector("#videoPlay").click();
         */}
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        this.setState({url: this.props.videoUrl});
     }
 
     componentDidUpdate() {
@@ -86,6 +87,7 @@ export default class VideoPlayerComponent extends Component {
     }
 
     play() {
+        this.setState({url: this.props.videoUrl});
         this.player.play();
     }
 
