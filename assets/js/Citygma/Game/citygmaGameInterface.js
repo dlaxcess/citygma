@@ -118,7 +118,12 @@ export default class CitygmaGameInterface extends Component {
         document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);
 
-        //this.fullScreen();
+        let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        let iOSsec = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+        //console.log(iOS, iOSsec);
+        if (!iOS && !iOSsec) {
+            this.fullScreen();
+        }
 
         this.props.toggleHeader(false);
 
