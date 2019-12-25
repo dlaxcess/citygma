@@ -283,7 +283,7 @@ export default class CitygmaGameInterface extends Component {
 
     // Compass
     activateCompass() {
-
+        alert('active compass');
         Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
