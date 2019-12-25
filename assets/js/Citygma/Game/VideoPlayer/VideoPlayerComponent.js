@@ -56,11 +56,11 @@ export default class VideoPlayerComponent extends Component {
             this.setState({ playing: true });
             document.querySelector("#videoPlay").click();
         */}
-        //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
     componentDidUpdate() {
-        //this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+        this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
     setMuted(muted) {
@@ -93,10 +93,10 @@ export default class VideoPlayerComponent extends Component {
         this.player.pause();
     }
 
-    /*load() {
+    load() {
         this.player.load();
 
-    }*/
+    }
 
     changeCurrentTime(seconds) {
         return () => {
@@ -134,7 +134,7 @@ export default class VideoPlayerComponent extends Component {
         };
     }
 
-    load() {
+    /*load() {
         this.state.player.seekTo(0);
         this.setState({
             playing: true,
@@ -143,7 +143,7 @@ export default class VideoPlayerComponent extends Component {
             pip: false,
             showEndedButton: false
         })
-    }
+    }*/
 
 
 
@@ -177,27 +177,28 @@ export default class VideoPlayerComponent extends Component {
                         <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                     }
                     {!this.state.playing &&
-                        <button id="videoRePlay" className="marronButton" onClick={this.load}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
+                        <button id="videoRePlay" className="marronButton" onClick={this.play}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
                     }
 
                 </div>
 
-                {/*<div className="player-wrapper">
+                <div className="player-wrapper">
                     <Player
                         className="react-player"
                         ref={player => {
                             this.player = player;
                         }}
                         autoPlay
+                        webkit-playsinline={true}
                         playsInline={true}
                         ended={this.handleEnded}
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
                         <ControlBar autoHide={true} disableCompletely={true} />
                     </Player>
-                </div>*/}
+                </div>
 
-                <div className='player-wrapper'>
+                {/*<div className='player-wrapper'>
                     <ReactPlayer
                         autoPlay
                         webkit-playsinline={true}
@@ -228,7 +229,7 @@ export default class VideoPlayerComponent extends Component {
                         onProgress={this.handleProgress}
                         onDuration={this.handleDuration}
                     />
-                </div>
+                </div>*/}
             </section>
         );
     }
