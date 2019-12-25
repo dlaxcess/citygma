@@ -119,21 +119,6 @@ export default class CitygmaGameInterface extends Component {
         navigator.geolocation.clearWatch(this.state.watchPositionId);
 
         this.fullScreen();
-        //screen.orientation.lock("portrait");
-        /*try {
-            await screen.orientation.lock("portrait");
-            start();
-        } catch (err) {
-            alert.error(err);
-        }*/
-        /*addEventListener("orientationchange", function listener() {
-            var rotate = 0 - screen.orientation;
-
-            document.body.style.webkitTransform = "rotate(" + rotate + "deg)";
-            document.body.style.MozTransform = "rotate(" + rotate + "deg)";
-            document.body.style.transform = "rotate(" + rotate + "deg)";
-            //screen.mozorientation.lock("portrait");
-        });*/
 
         this.props.toggleHeader(false);
 
