@@ -582,7 +582,7 @@ export default class CitygmaGameInterface extends Component {
                     </div>
 
 
-                    { this.state.videoEnded && false &&
+                    { /*this.state.videoEnded && false*/ true &&
                         <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>
                     }
 
