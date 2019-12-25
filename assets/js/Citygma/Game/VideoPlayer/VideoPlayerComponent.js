@@ -190,8 +190,6 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
-                        webkit-playsinline
-                        playsInline
                         ended={this.handleEnded}
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} />
