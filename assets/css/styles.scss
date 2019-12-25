@@ -528,6 +528,7 @@ nav {
 
         #profilName {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           margin-bottom: 1rem;
           margin-left: -2rem;
