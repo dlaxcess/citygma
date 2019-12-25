@@ -118,7 +118,7 @@ export default class CitygmaGameInterface extends Component {
         document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);
 
-        //this.fullScreen();
+        this.fullScreen();
 
         this.props.toggleHeader(false);
 
@@ -587,8 +587,8 @@ export default class CitygmaGameInterface extends Component {
                     </div>
 
 
-                    { /*this.state.videoEnded && false*/ true &&
-                        <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>
+                    { /*this.state.videoEnded && false true &&
+                        <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>*/
                     }
 
                     { this.state.videoPlaying && this.state.videoUrl &&
