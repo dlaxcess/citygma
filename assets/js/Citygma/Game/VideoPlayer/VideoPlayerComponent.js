@@ -16,7 +16,7 @@ export default class VideoPlayerComponent extends Component {
 
             url: this.props.videoUrl,
             pip: false,
-            playing: true,
+            playing: false,
             controls: false,
             light: false,
             volume: 0.8,
