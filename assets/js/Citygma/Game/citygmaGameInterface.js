@@ -403,6 +403,7 @@ export default class CitygmaGameInterface extends Component {
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
             if(eventData.webkitCompassHeading) {
+                alert(eventData.webkitCompassHeading);
                 //alpha = eventData.webkitCompassHeading;
                 //Rotation is reversed for iOS
                 //compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
