@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {Route} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
 import {Switch} from "react-router";
 import CitygmaHeader from "../Header/CitygmaHeader";
 import CitygmaAppContainer from "./CitygmaAppContainer";
@@ -19,6 +19,7 @@ export default class CitygmaApp extends Component {
         super(props);
 
         this.state = {
+            showCookiesAcceptation: true,
             htmlElementClicked : null,
             currentUser: null,
             showHeader: true,
@@ -26,11 +27,13 @@ export default class CitygmaApp extends Component {
 
         this.logout = this.logout.bind(this);
         this.toggleHeader = this.toggleHeader.bind(this);
+        this.handleCookieAccptationClick = this.handleCookieAccptationClick.bind(this);
     }
 
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
         this.props.history.location.pathname !== "/Jeu" ? this.setState({showHeader: true}) : this.setState({showHeader: false});
+
      }
 
     logout() {
@@ -40,6 +43,10 @@ export default class CitygmaApp extends Component {
 
     toggleHeader(bool) {
         this.setState({showHeader: bool});
+    }
+
+    handleCookieAccptationClick() {
+        this.setState({showCookiesAcceptation: false})
     }
 
     render() {
@@ -56,6 +63,14 @@ export default class CitygmaApp extends Component {
                     currentUser={currentUser}
                     onLogoutClick={this.logout}
                 />}
+
+                { this.state.showCookiesAcceptation &&
+                <div id="cookiesAcceptation">
+                    <p>Ce site utilise des cookies uniquement liés à sont fonctionnement</p>
+                    <button className="marronButton" onClick={this.handleCookieAccptationClick}>Ok</button> <NavLink to="/Mentions"  onClick={this.handleCookieAccptationClick}><button className="marronButton">Mentions légales</button></NavLink>
+                </div>
+                }
+
                 <Switch>
                     <Route exact path="/"><CitygmaAppContainer/></Route>
                     <Route path="/login">

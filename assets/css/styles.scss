@@ -23,6 +23,19 @@ header {
 
 }
 
+#cookiesAcceptation {
+  z-index: 9800;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 30vw;
+  background-color: $whiteBubble;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid $blackTitle;
+}
+
 nav {
   z-index: 8000;
   position: fixed;
