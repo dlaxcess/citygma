@@ -148,18 +148,6 @@ export default class VideoPlayerComponent extends Component {
 
 
 
-
-    load() {
-        this.state.player.seekTo(0);
-        this.setState({
-            playing: true,
-            played: 0,
-            loaded: 0,
-            pip: false,
-            showEndedButton: false
-        })
-    }
-
     handlePlay() {
         console.log('onPlay');
         this.setState({ playing: true });
@@ -188,8 +176,8 @@ export default class VideoPlayerComponent extends Component {
                     {/*this.state.showEndedButton && !this.state.playing*/true &&
                         <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>
                     }
-                    {this.state.playing &&
-                        <button id="videoRePlay" className="marronButton" onClick={this.play}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
+                    {!this.state.playing &&
+                        <button id="videoRePlay" className="marronButton" onClick={this.load}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
                     }
 
                 </div>
