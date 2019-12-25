@@ -284,11 +284,11 @@ export default class CitygmaGameInterface extends Component {
     // Compass
     activateCompass() {
 
-        Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+        /*Promise.all([navigator.permissions.query({ name: "accelerometer" }),
             navigator.permissions.query({ name: "magnetometer" }),
             navigator.permissions.query({ name: "gyroscope" })])
             .then(results => {
-                if (results.every(result => result.state === "granted")) {
+                if (results.every(result => result.state === "granted")) {*/
                     alert('active compass autorise');
                     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
@@ -299,10 +299,10 @@ export default class CitygmaGameInterface extends Component {
                     }
 
 
-                } else {
+                /*} else {
                     alert('Vous devez activer le partage de la géolocalisation de votre téléphone si vous souhaitez que la boussole fonctionne.');
                 }
-            });
+            });*/
     }
 
     error(err) {
