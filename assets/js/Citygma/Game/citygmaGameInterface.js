@@ -412,6 +412,8 @@ export default class CitygmaGameInterface extends Component {
 
 
                     compassDisc.style.webkitTransform = "rotate("+ iOsBearedDir +"deg)";
+                    compassDisc.style.transform = 'rotate(' + iOsBearedDir + 'deg)';
+                    compassDisc.style.MozTransform = 'rotate(' + iOsBearedDir + 'deg)';
                 });
             }
             //non iOS
