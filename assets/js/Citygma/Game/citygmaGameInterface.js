@@ -498,8 +498,8 @@ export default class CitygmaGameInterface extends Component {
         let fromNorthBearing = this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong);
         bearedDir = /*this.wrap360(*/this.getBearing(eventData.coords.latitude, eventData.coords.longitude, this.state.currentLat, this.state.currentLong) - eventData.coords.heading/*)*/;
 
-        document.getElementById("tiltFB").innerHTML = Math.ceil(eventData.coords.heading);
-        document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
+        //document.getElementById("tiltFB").innerHTML = Math.ceil(eventData.coords.heading);
+        //document.getElementById("direction").innerHTML = Math.ceil(bearedDir);
 
         // Rotate the disc of the compass.
         let compassDisc = document.querySelector('#arrow>img');
@@ -577,7 +577,7 @@ export default class CitygmaGameInterface extends Component {
                 <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     { this.state.showEnterGameScreen &&
                     <div id="enterGameScreen">
-                        <NavLink to="/Profil">...Retour, j'ai trop peur...</NavLink>
+                        <NavLink to="/Profil">...Retour, j&lsquo;ai trop peur...</NavLink>
                         <h2>Mises en garde ...</h2>
                         <p>Bienvenue sur citygma, sans vouloir faire de la pub pour chrome, pour une meilleure expérience de jeu, nous vous conseillons d'utiliser l&lsquo;explorateur internet, chrome.</p>
                         <p>Si par malheur votre boussole reste bloquée vers le haut de votre écran... alors fiez vous uniquement à la distance...!</p>
