@@ -46,14 +46,16 @@ export default class CitygmaContact extends Component {
                                 initialValues={{
                                     email: this.state.user ? this.state.user.email : '',
                                     subject: '',
-                                    message: ''
+                                    message: '',
+                                    confirm: '',
                                 }}
                                 validationSchema={Yup.object().shape({
                                     email: Yup.string().email('Veuillez renseigner une adresse email valide'),
                                     subject: Yup.string().required('Veuillez renseigner le sujet'),
-                                    message: Yup.string().required('Veuillez écrire un message')
+                                    message: Yup.string().required('Veuillez écrire un message'),
+                                    confirm: Yup.boolean().required('Vous devez confirmer la mention légale')
                                 })}
-                                onSubmit={({email, subject, message}, {setStatus, setSubmitting, resetForm}) => {
+                                onSubmit={({email, subject, message, confirm}, {setStatus, setSubmitting, resetForm}) => {
                                     setStatus();
 
                                     mailerService.sendMail(email, subject, message)
@@ -97,6 +99,11 @@ export default class CitygmaContact extends Component {
                                                        className={'form-control' + (errors.message && touched.message ? ' is-invalid' : '')}
                                                        placeholder="Entrez votre message ici"/>
                                                 <ErrorMessage name="message" component="div" className="invalid-feedback"/>
+                                            </div>
+                                            <div id="contactConfirm">
+                                                <label htmlFor="confirm">En cochant cette case vous acceptez que votre email soit utilisé afin de vous répondre</label>
+                                                <input id="mailConfirm" name="confirm" type="checkbox" className={'form-control' + (errors.subject && touched.subject ? ' is-invalid' : '')}/>
+                                                <ErrorMessage name="confirm" component="div" className="invalid-feedback"/>
                                             </div>
                                             <div id="contactSubmitForm">
                                                 <button className="marronButton" type="submit" disabled={isSubmitting}>Envoyer</button>
