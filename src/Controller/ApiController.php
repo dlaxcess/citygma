@@ -3,8 +3,12 @@
 
 namespace App\Controller;
 
+use App\Entity\UserAdvance;
 use App\Repository\CityAdventureRepository;
 use App\Repository\EnygmaLoopRepository;
+use App\Repository\UserAdvanceRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,11 +21,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ApiController extends AbstractController
 {
+    private $userRepository;
+    private $userAdvanceRepository;
     private $cityAdventuresRepository;
     private $enygmaLoopRepository;
 
-    public function __construct(CityAdventureRepository $cityAdventureRepository, EnygmaLoopRepository $enygmaLoopRepository)
+    public function __construct(UserRepository $userRepository, UserAdvanceRepository $userAdvanceRepository, CityAdventureRepository $cityAdventureRepository, EnygmaLoopRepository $enygmaLoopRepository)
     {
+        $this->userRepository = $userRepository;
+        $this->userAdvanceRepository = $userAdvanceRepository;
         $this->cityAdventuresRepository = $cityAdventureRepository;
         $this->enygmaLoopRepository = $enygmaLoopRepository;
     }
@@ -38,6 +46,7 @@ class ApiController extends AbstractController
             'username' => $user->getName(),
             'email' => $user->getEmail(),
             'roles' => $user->getRoles(),
+            //'adventuresUserAdvance' => [$user->getUserAdvances()],
         ]);
     }
 
@@ -139,6 +148,125 @@ class ApiController extends AbstractController
             $data = [
                 'status' => 500,
                 'message' => 'Aucune enigme n\'a été trouvée'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/setUserAdvance", name="setUserAdvance", methods={"POST"})
+     */
+    public function setUserAdvance(Request $request, EntityManagerInterface $entityManager)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->userId,$values->adventureId, $values->userAdvance)) {
+            $user = $this->userRepository->find($values->userId);
+            $userAdvances = $user->getUserAdvances();
+
+            $advantureUserAdvanceExists = false;
+
+            if ($userAdvances) {
+                foreach ($userAdvances as $userAdvance) {
+                    if ($userAdvance->getAdventureId() === $values->adventureId) {
+                        $userAdvance->setAdvanceValue($values->userAdvance);
+                        $advantureUserAdvanceExists = true;
+                    }
+                }
+            }
+
+            if ($advantureUserAdvanceExists === false) {
+                $newUserAdvance = new UserAdvance();
+                $newUserAdvance
+                    ->setAdventureId($values->adventureId)
+                    ->setAdvanceValue($values->userAdvance)
+                ;
+
+                $user->addUserAdvance($newUserAdvance);
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            $data = [
+                'status' => 201,
+                'message' => 'Niveau de joueur enregistré'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'De mauvaises données ont été envoyées'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/getUserAdvance", name="getUserAdvance", methods={"POST"})
+     */
+    public function getUserAdvance(Request $request)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->userId,$values->adventureId)) {
+            //$user = $this->userAdvanceRepository->find($values->userId);
+            $userAdvanceEntity = $this->userAdvanceRepository->findOneBy(['user' => $values->userId, 'adventureId' => $values->adventureId]);
+            $userAdvance = 0;
+
+            if ($userAdvanceEntity) {
+                $userAdvance = $userAdvanceEntity->getAdvanceValue();
+            }
+
+            $data = [
+                'userAdvance' => $userAdvance,
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'De mauvaises données ont été envoyées'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+
+    /**
+     * @Route("/resetUserAdvance", name="resetUserAdvance", methods={"POST"})
+     */
+    public function resetUserAdvance(Request $request, EntityManagerInterface $entityManager)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->userId,$values->adventureId)) {
+
+            $userAdvanceEntity = $this->userAdvanceRepository->findOneBy(['user' => $values->userId, 'adventureId' => $values->adventureId]);
+
+
+            if ($userAdvanceEntity) {
+                $userAdvanceEntity->setAdvanceValue(0);
+
+                $entityManager->persist($userAdvanceEntity);
+                $entityManager->flush();
+            }
+
+            $data = [
+                'status' => 201,
+                'message' => 'Avancé du joueur réinitialisée'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'De mauvaises données ont été envoyées'
             ];
 
             return new JsonResponse($data, 201);

@@ -3,6 +3,7 @@ import { authenticationService } from '../../auth/services/authenticationService
 import {userService} from "../../auth/services/userService";
 import { history } from "../../auth/helpers/history";
 import {adventureService } from "../Game/services/adventureService";
+import { Redirect } from "react-router";
 
 import AdventureTemplate from "./ProfilComponents/AdventureTemplate";
 import ProfilForm from "./ProfilComponents/ProfilForm";
@@ -27,6 +28,7 @@ export default class CitygmaProfil extends Component {
 
         this.handleUserDataChange = this.handleUserDataChange.bind(this);
         this.handleUserPasswordChange = this.handleUserPasswordChange.bind(this);
+        this.resetAdventureUserData = this.resetAdventureUserData.bind(this);
     }
 
     componentDidMount() {
@@ -70,6 +72,18 @@ export default class CitygmaProfil extends Component {
         history.push('/login');
     }
 
+    resetAdventureUserData(adventureId) {
+        let userId = this.state.user ? this.state.user.id : 0;
+        userService.resetUserAdvance(userId, adventureId)
+            .then(data => {
+                console.log(data);
+                history.push({
+                    pathname: '/Jeu',
+                    state: {adventureId: adventureId}
+                });
+            });
+    }
+
     render() {
         const { currentUser, user, cityAdventures } = this.state;
 
@@ -90,7 +104,9 @@ export default class CitygmaProfil extends Component {
                             </div>
 
                             <div id="profilAdventures">
-                                <AdventureTemplate cityAdventures={cityAdventures}/>
+                                <AdventureTemplate
+                                    cityAdventures={cityAdventures}
+                                    resetAdventureUserData={this.resetAdventureUserData} />
                             </div>
 
                             <div id="profilForm">

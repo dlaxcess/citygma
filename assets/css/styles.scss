@@ -1181,12 +1181,12 @@ nav {
 
     &.loggedNav {
       &.openedNav {
-        top: calc(100vh - 20vw - 28rem);
+        top: calc(100vh - 20vw - 32rem);
       }
     }
 
     &.openedNav {
-      top: calc(100vh - 20vw - 25rem);
+      top: calc(100vh - 20vw - 29rem);
     }
   }
 }

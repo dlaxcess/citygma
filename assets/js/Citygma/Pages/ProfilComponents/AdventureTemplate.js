@@ -1,6 +1,8 @@
 import React, {Fragment} from "react";
 import { uploadsDir } from "../../ConstData/uploadsDir";
 import {NavLink} from "react-router-dom";
+import { userService } from "../../../auth/services/userService";
+import { history} from "../../../auth/helpers/history";
 
 export default function AdventureTemplate(props) {
 
@@ -46,7 +48,8 @@ export default function AdventureTemplate(props) {
                                                 Jouer
                                             </NavLink>
 
-                                            <NavLink to="/Jeu" className="marronButton">Recommencer</NavLink>
+
+                                            <button className="marronButton" onClick={() => { props.resetAdventureUserData(cityAdventure.adventureId) }}>Recommencer</button>
                                         </div>
 
                                     </div>

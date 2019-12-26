@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -39,6 +41,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserAdvance", mappedBy="user", cascade={"persist"})
+     */
+    private $userAdvances;
+
+    public function __construct()
+    {
+        $this->userAdvances = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -128,5 +140,36 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|UserAdvance[]
+     */
+    public function getUserAdvances(): Collection
+    {
+        return $this->userAdvances;
+    }
+
+    public function addUserAdvance(UserAdvance $userAdvance): self
+    {
+        if (!$this->userAdvances->contains($userAdvance)) {
+            $this->userAdvances[] = $userAdvance;
+            $userAdvance->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAdvance(UserAdvance $userAdvance): self
+    {
+        if ($this->userAdvances->contains($userAdvance)) {
+            $this->userAdvances->removeElement($userAdvance);
+            // set the owning side to null (unless already changed)
+            if ($userAdvance->getUser() === $this) {
+                $userAdvance->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

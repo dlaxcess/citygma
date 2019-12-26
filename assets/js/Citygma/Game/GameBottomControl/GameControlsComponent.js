@@ -53,7 +53,7 @@ export default class GameControlsComponent extends Component {
         let enigmasElements = enigmas.map((enigma, index) => {
             if (index < enigmaAdvance) {
                 return (
-                    <div className="noteBookRaw">
+                    <div key={index} className="noteBookRaw">
                         <h3>{enigma.enigmaName}</h3>
                         <button className="marronButton">Revoir</button>
                     </div>
