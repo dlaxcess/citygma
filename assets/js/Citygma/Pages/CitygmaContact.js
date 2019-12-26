@@ -47,13 +47,13 @@ export default class CitygmaContact extends Component {
                                     email: this.state.user ? this.state.user.email : '',
                                     subject: '',
                                     message: '',
-                                    confirm: '',
+                                    confirm: false,
                                 }}
                                 validationSchema={Yup.object().shape({
                                     email: Yup.string().email('Veuillez renseigner une adresse email valide'),
                                     subject: Yup.string().required('Veuillez renseigner le sujet'),
                                     message: Yup.string().required('Veuillez écrire un message'),
-                                    confirm: Yup.boolean().required('Vous devez confirmer la mention légale')
+                                    confirm: Yup.boolean().oneOf([true], 'Vous devez confirmer la mention légale').required('Vous devez confirmer la mention légale')
                                 })}
                                 onSubmit={({email, subject, message, confirm}, {setStatus, setSubmitting, resetForm}) => {
                                     setStatus();
@@ -102,7 +102,10 @@ export default class CitygmaContact extends Component {
                                             </div>
                                             <div id="contactConfirm">
                                                 <label htmlFor="confirm">En cochant cette case vous acceptez que votre email soit utilisé afin de vous répondre</label>
-                                                <input id="mailConfirm" name="confirm" type="checkbox" className={'form-control' + (errors.subject && touched.subject ? ' is-invalid' : '')}/>
+                                                <Field id="Confirm"
+                                                       name="confirm" type="checkbox"
+                                                       className={'form-control' + (errors.message && touched.message ? ' is-invalid' : '')}
+                                                       />
                                                 <ErrorMessage name="confirm" component="div" className="invalid-feedback"/>
                                             </div>
                                             <div id="contactSubmitForm">
