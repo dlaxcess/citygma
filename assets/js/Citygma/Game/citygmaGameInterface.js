@@ -244,6 +244,8 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleBackToGameInterface() {
+        document.removeEventListener('deviceorientation', this.bearingListener, false);
+        navigator.geolocation.clearWatch(this.state.watchPositionId);
         // Intro
         if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
