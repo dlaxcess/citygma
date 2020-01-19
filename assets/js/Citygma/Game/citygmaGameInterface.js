@@ -207,8 +207,8 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        document.removeEventListener('deviceorientation', this.bearingListener, false);
-        navigator.geolocation.clearWatch(this.state.watchPositionId);
+        /*document.removeEventListener('deviceorientation', this.bearingListener, false);
+        navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro video playing
         if (!this.state.userAdvance) {
             this.setState({videoPlaying: true, showEnterGameScreen: false});
@@ -244,7 +244,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleBackToGameInterface() {
-        
+
         // Intro
         if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
