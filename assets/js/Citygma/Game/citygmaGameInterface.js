@@ -218,11 +218,13 @@ export default class CitygmaGameInterface extends Component {
             // Compass Bearing
             this.activateCompass();
         }else if (this.state.userAdvance > this.state.enigmas.length + 1 && this.isFloat(this.state.userAdvance)) {
-            if (this.state.userAdvance % 0.5 === 0) {
+            /*if (this.state.userAdvance % 0.5 === 0) {*/
                 this.setState({videoPlaying: false, geolocateShow: false, showCompass: false, showEnigma: true, showEnterGameScreen: false});
-            } else {
+            /*} else {
                 this.setState({videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, geolocateShow: false, showCompass: false});
-            }
+            }*/
+        }else if (this.state.userAdvance === this.state.enigmas.length + 2) {
+            this.setState({videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, geolocateShow: false, showCompass: false});
         }else {
             if (this.isInt(this.state.userAdvance)) {
                 const enigmaKey = this.state.userAdvance - 1;
