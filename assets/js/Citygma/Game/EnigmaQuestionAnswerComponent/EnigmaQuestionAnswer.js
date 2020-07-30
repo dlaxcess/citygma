@@ -13,7 +13,7 @@ export default function EnigmaQuestionAnswer(props) {
 
     return (
         <Fragment>
-            { alert(enigmaQuestionText) }
+
         { showCurrentEnigma ?
             <section id="enigmaSection">
                 <span id="closeEnigma" onClick={onLoupeClick}>X</span>
@@ -21,6 +21,7 @@ export default function EnigmaQuestionAnswer(props) {
                 <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/>
                 <h2>Enigme</h2>
                 <p>{enigmaQuestionText}</p>
+                <p>{ enigmaQuestionText }</p>
                 <Formik
                     initialValues={{
                         enigmaAnswer: '',
