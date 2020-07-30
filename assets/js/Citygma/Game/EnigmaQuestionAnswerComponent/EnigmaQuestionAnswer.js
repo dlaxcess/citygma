@@ -13,7 +13,7 @@ export default function EnigmaQuestionAnswer(props) {
 
     return (
         <Fragment>
-
+            { alert(enigmaQuestionText) }
         { showCurrentEnigma ?
             <section id="enigmaSection">
                 <span id="closeEnigma" onClick={onLoupeClick}>X</span>
