@@ -21,7 +21,7 @@ export default function EnigmaQuestionAnswer(props) {
                 <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/>
                 <h2>Enigme</h2>
                 <p>{enigmaQuestionText}</p>
-                <p>{ enigmaQuestionText }</p>
+                <p>{ enigmaId }</p>
                 <Formik
                     initialValues={{
                         enigmaAnswer: '',
