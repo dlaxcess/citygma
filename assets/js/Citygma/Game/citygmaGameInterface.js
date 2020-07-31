@@ -488,10 +488,10 @@ export default class CitygmaGameInterface extends Component {
             let alpha, webkitAlpha, bearedDir, iOsBearedDir;
             let compassDisc = document.querySelector('#arrow>img');
             //Check for iOS property
-            /* A VIRER */alert("avec alpha");/* A VIRER */
+            /* A VIRER alert("avec alpha");/* A VIRER */
 
             if(eventData.webkitCompassHeading) {
-                /* A VIRER */alert("avec IOS");/* A VIRER */
+                /* A VIRER alert("avec IOS");/* A VIRER */
                 //alpha = eventData.webkitCompassHeading;
                 //Rotation is reversed for iOS
                 //compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
@@ -507,31 +507,33 @@ export default class CitygmaGameInterface extends Component {
             }
             //non iOS
             else {
-                /* A VIRER */alert("avec tel giro");/* A VIRER */
+                /* A VIRER alert("avec tel giro");/* A VIRER */
                 alpha = eventData.alpha;
                 webkitAlpha = eventData.alpha;
                 if(!window.chrome) {
                     //Assume Android stock (this is crude, but good enough for our example) and apply offset
                     webkitAlpha = eventData.alpha - 270;
-                    /* A VIRER */alert("avec truc chelou -270");/* A VIRER */
+                    /* A VIRER alert("avec truc chelou -270");/* A VIRER */
                 }
                 /*compass.style.Transform = 'rotate(' + alpha + 'deg)';
                 compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
                 //Rotation is reversed for FF
                 compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';*/
-                /* A VIRER */alert("Puis gros bordel differents explorateurs");/* A VIRER */
+                /* A VIRER alert("Puis gros bordel differents explorateurs");/* A VIRER */
                 navigator.geolocation.getCurrentPosition(position => {
                     let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                     bearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                     //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-                    let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
+                    /* test milou *** let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha; *** tet milou */
+                    let mozBearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
                     //Rotation is reversed for FF
-                    compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
+                    /* test milou *** compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)'; *** test milou */
+                    compassDisc.style.MozTransform = 'rotate(-' + mozBearedDir + 'deg)';
 
                     let positionMarker = document.querySelector('#positionMarker');
                     if (positionMarker) {
@@ -547,7 +549,7 @@ export default class CitygmaGameInterface extends Component {
 
         } else {
 
-            /* A VIRER */alert("Sans alpha avec watchPosition au lieu de listener");/* A VIRER */
+            /* A VIRER alert("Sans alpha avec watchPosition au lieu de listener");/* A VIRER */
             let options;
 
 
