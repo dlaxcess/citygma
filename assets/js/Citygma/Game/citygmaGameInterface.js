@@ -528,8 +528,8 @@ export default class CitygmaGameInterface extends Component {
                     //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
 
-                    compassDisc.style.transform = 'rotate(-' + bearedDir + 'deg)';
-                    compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
+                    compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
+                    compassDisc.style.WebkitTransform = 'rotate(-'+ webKitBearedDir + 'deg)';
                     //Rotation is reversed for FF
                     /* test milou *** compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)'; *** test milou */
                     compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
