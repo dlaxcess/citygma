@@ -524,15 +524,15 @@ export default class CitygmaGameInterface extends Component {
                     let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                     bearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-                    let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
-                    //let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                    //let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+                    let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
-                    compassDisc.style.WebkitTransform = 'rotate(-'+ webKitBearedDir + 'deg)';
+                    compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
                     //Rotation is reversed for FF
                     /* test milou *** compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)'; *** test milou */
-                    compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
+                    compassDisc.style.MozTransform = 'rotate(-' + mozBearedDir + 'deg)';
 
                     let positionMarker = document.querySelector('#positionMarker');
                     if (positionMarker) {
