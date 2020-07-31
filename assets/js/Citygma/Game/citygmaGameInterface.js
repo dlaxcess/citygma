@@ -533,7 +533,7 @@ export default class CitygmaGameInterface extends Component {
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
                     //Rotation is reversed for FF
                     /* test milou *** compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)'; *** test milou */
-                    compassDisc.style.MozTransform = 'rotate(-' + mozBearedDir + 'deg)';
+                    compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
 
                     let positionMarker = document.querySelector('#positionMarker');
                     if (positionMarker) {
