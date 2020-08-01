@@ -557,7 +557,7 @@ export default class CitygmaGameInterface extends Component {
                     let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
 
-                    alert('ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);
+                    /*alert('ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
@@ -592,13 +592,13 @@ export default class CitygmaGameInterface extends Component {
                 navigator.geolocation.getCurrentPosition(position => {
                     let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
-                    bearedDir = alpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                    bearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
                     //let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                     /* TEL MILOU let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);*/
-                    let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
-                    let mozBearedDir = - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
+                    let webKitBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - webkitAlpha;
+                    let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) + alpha;
 
-                    alert('NON ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);
+                    /*alert('NON ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
