@@ -385,11 +385,22 @@ export default class CitygmaGameInterface extends Component {
             // The `absolute` property of the event tells us whether
             // or not the degrees are absolute.
         }
+        if (window.DeviceOrientationAbsoluteEvent) {
+            alert('active compass window.DeviceorientationabsoluteEvent absolute 2');
+            //window.addEventListener("DeviceOrientationAbsoluteEvent", deviceOrientationListener);
+        } // If not, check if the device sends any orientation data
+        else if(window.DeviceOrientationEvent){
+            alert('active compass window.DeviceorientationEvent pas absolute 2');
+            //window.addEventListener("deviceorientation", deviceOrientationListener);
+        } // Send an alert if the device isn't compatible
+        else {
+            alert("Sorry, try again on a compatible mobile device!");
+        }
+
                     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
-                        alert('active compass normal');
                     }else {
                         alert('Votre téléphone n\'est pas équipé de système permettant la détection de son orientation.');
                     }
@@ -492,6 +503,12 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
+        if (eventData.absolute) {
+            alert("utilisation absolute nord");
+        } else {
+            alert("utilisation position initiale");
+        }
+
         if (eventData.alpha !== null) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
