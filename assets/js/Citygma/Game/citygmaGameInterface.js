@@ -503,11 +503,11 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        if (eventData.absolute) {
+        /*if (eventData.absolute) {
             alert("utilisation absolute nord");
         } else {
             alert("utilisation position initiale");
-        }
+        }*/
 
         if (eventData.alpha !== null) {
             let tiltLR = eventData.gamma;
@@ -555,6 +555,8 @@ export default class CitygmaGameInterface extends Component {
                     /* TEL MILOU let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);*/
                     let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = alpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+
+                    alert('from north:'+ alpha + 'bearing:'+ fromNorthBearing);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
