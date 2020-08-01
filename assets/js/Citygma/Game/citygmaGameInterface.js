@@ -503,11 +503,11 @@ export default class CitygmaGameInterface extends Component {
     }
 
     bearingListener(eventData) {
-        if (eventData.absolute) {
+        /*if (eventData.absolute) {
             alert("utilisation absolute nord");
         } else {
             alert("utilisation position initiale");
-        }
+        }*/
 
         if (eventData.alpha !== null) {
             let tiltLR = eventData.gamma;
@@ -533,7 +533,8 @@ export default class CitygmaGameInterface extends Component {
                 });
             }
             //non iOS
-            else {
+            // MON TEL
+            else if (eventData.absolute){
                 /* A VIRER alert("avec tel giro");/* A VIRER */
                 alpha = eventData.alpha;
                 webkitAlpha = eventData.alpha;
@@ -555,6 +556,47 @@ export default class CitygmaGameInterface extends Component {
                     /* TEL MILOU let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);*/
                     let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
+
+                    /*alert('from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
+
+                    compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
+                    compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
+                    //Rotation is reversed for FF
+                    /* test milou *** compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)'; *** test milou */
+                    compassDisc.style.MozTransform = 'rotate(' + mozBearedDir + 'deg)';
+
+                    let positionMarker = document.querySelector('#positionMarker');
+                    if (positionMarker) {
+                        positionMarker.style.webkitTransform = "rotate("+ fromNorthBearing +"deg)";
+                        positionMarker.style.MozTransform = "rotate("+ fromNorthBearing +"deg)";
+                        positionMarker.style.transform = "rotate("+ fromNorthBearing +"deg)";
+                    }
+
+                    // Call the function to use the data on the page.
+                    //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
+                });
+            // TEL MILOU POSITION NON ABSOLUE VERS LE NORD
+            } else {
+                alpha = eventData.alpha;
+                webkitAlpha = eventData.alpha;
+                if(!window.chrome) {
+                    //Assume Android stock (this is crude, but good enough for our example) and apply offset
+                    webkitAlpha = eventData.alpha - 270;
+                    /* A VIRER alert("avec truc chelou -270");/* A VIRER */
+                }
+                /*compass.style.Transform = 'rotate(' + alpha + 'deg)';
+                compass.style.WebkitTransform = 'rotate(' + webkitAlpha + 'deg)';
+                //Rotation is reversed for FF
+                compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';*/
+                /* A VIRER alert("Puis gros bordel differents explorateurs");/* A VIRER */
+                navigator.geolocation.getCurrentPosition(position => {
+                    let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                    //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+                    bearedDir = alpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                    //let webKitBearedDir = this.wrap360(webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
+                    /* TEL MILOU let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);*/
+                    let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
+                    let mozBearedDir = - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
 
                     /*alert('from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
 
