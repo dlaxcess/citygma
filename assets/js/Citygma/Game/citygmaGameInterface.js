@@ -376,10 +376,19 @@ export default class CitygmaGameInterface extends Component {
             .then(results => {
                 if (results.every(result => result.state === "granted")) {*/
                     //alert('active compass autorise');
+        if ('ondeviceorientationabsolute' in window) {
+            alert('active compass deviceorientationabsolute event');
+        } else if ('ondeviceorientation' in window) {
+            alert('active compass deviceorientation pas absolute event');
+            // We can still listen for deviceorientation events.
+            // The `absolute` property of the event tells us whether
+            // or not the degrees are absolute.
+        }
                     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
                         window.addEventListener('deviceorientation', this.bearingListener, false);
 
+                        alert('active compass normal');
                     }else {
                         alert('Votre téléphone n\'est pas équipé de système permettant la détection de son orientation.');
                     }
@@ -501,8 +510,8 @@ export default class CitygmaGameInterface extends Component {
 
 
                     compassDisc.style.webkitTransform = "rotate("+ iOsBearedDir +"deg)";
-                    /*compassDisc.style.transform = 'rotate(' + iOsBearedDir + 'deg)';
-                    compassDisc.style.MozTransform = 'rotate(' + iOsBearedDir + 'deg)';*/
+                    compassDisc.style.transform = 'rotate(' + iOsBearedDir + 'deg)';
+                    compassDisc.style.MozTransform = 'rotate(' + iOsBearedDir + 'deg)';
                 });
             }
             //non iOS
