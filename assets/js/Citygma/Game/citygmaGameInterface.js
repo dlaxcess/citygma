@@ -376,7 +376,7 @@ export default class CitygmaGameInterface extends Component {
             .then(results => {
                 if (results.every(result => result.state === "granted")) {*/
                     //alert('active compass autorise');
-        if ('ondeviceorientationabsolute' in window) {
+        /*if ('ondeviceorientationabsolute' in window) {
             alert('active compass deviceorientationabsolute event');
         }
         if ('ondeviceorientation' in window) {
@@ -395,7 +395,7 @@ export default class CitygmaGameInterface extends Component {
         } // Send an alert if the device isn't compatible
         else {
             alert("Sorry, try again on a compatible mobile device!");
-        }
+        }*/
 
                     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
                         //document.getElementById("notice").innerHTML = "super ça marche.";
