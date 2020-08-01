@@ -378,7 +378,8 @@ export default class CitygmaGameInterface extends Component {
                     //alert('active compass autorise');
         if ('ondeviceorientationabsolute' in window) {
             alert('active compass deviceorientationabsolute event');
-        } else if ('ondeviceorientation' in window) {
+        }
+        if ('ondeviceorientation' in window) {
             alert('active compass deviceorientation pas absolute event');
             // We can still listen for deviceorientation events.
             // The `absolute` property of the event tells us whether
