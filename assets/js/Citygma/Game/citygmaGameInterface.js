@@ -590,6 +590,7 @@ export default class CitygmaGameInterface extends Component {
                 compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';*/
                 /* A VIRER alert("Puis gros bordel differents explorateurs");/* A VIRER */
                 navigator.geolocation.getCurrentPosition(position => {
+                    let initalFromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, -135.000000, 90.000000);
                     let fromNorthBearing = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     //bearedDir = this.wrap360(dir + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong));
                     bearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
@@ -598,7 +599,7 @@ export default class CitygmaGameInterface extends Component {
                     let webKitBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - webkitAlpha;
                     let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) + alpha;
 
-                    alert('NON ABSOLUTE : from initial point:'+ alpha + 'bearing from north:'+ fromNorthBearing);
+                    alert('NON ABSOLUTE : from initial point:'+ alpha + 'bearing my pos from north:' + initalFromNorthBearing + 'bearing destination from north:'+ fromNorthBearing);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
