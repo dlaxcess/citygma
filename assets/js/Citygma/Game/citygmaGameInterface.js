@@ -509,7 +509,7 @@ export default class CitygmaGameInterface extends Component {
             alert("utilisation position initiale");
         }*/
 
-        if (eventData.alpha !== null && eventData.absolute !== false) {
+        if (eventData.alpha !== null && eventData.absolute !== null) {
             let tiltLR = eventData.gamma;
             let tiltFB = eventData.beta;
             let alpha, webkitAlpha, bearedDir, iOsBearedDir;
