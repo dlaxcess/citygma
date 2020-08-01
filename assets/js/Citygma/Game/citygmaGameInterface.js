@@ -557,7 +557,7 @@ export default class CitygmaGameInterface extends Component {
                     let webKitBearedDir = webkitAlpha + this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
 
-                    /*alert('from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
+                    alert('ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
@@ -598,7 +598,7 @@ export default class CitygmaGameInterface extends Component {
                     let webKitBearedDir = webkitAlpha - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong);
                     let mozBearedDir = - this.getBearing(position.coords.latitude, position.coords.longitude, this.state.currentLat, this.state.currentLong) - alpha;
 
-                    /*alert('from north:'+ alpha + 'bearing:'+ fromNorthBearing);*/
+                    alert('NON ABSOLUTE : from north:'+ alpha + 'bearing:'+ fromNorthBearing);
 
                     compassDisc.style.transform = 'rotate(' + bearedDir + 'deg)';
                     compassDisc.style.WebkitTransform = 'rotate('+ webKitBearedDir + 'deg)';
