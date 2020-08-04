@@ -15,7 +15,7 @@ export const GeolocateComponent = (props) => {
 
 
 
-    if (distance < 40) {handleNearLocationDistance()}
+    if (distance < 20) {handleNearLocationDistance()}
 
     return (
 
