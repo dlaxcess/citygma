@@ -534,7 +534,7 @@ export default class CitygmaGameInterface extends Component {
             }
             //non iOS
             // MON TEL
-            else if (eventData.absolute){
+            else {
                 /* A VIRER alert("avec tel giro");/* A VIRER */
                 alpha = eventData.alpha;
                 webkitAlpha = eventData.alpha;
@@ -575,18 +575,6 @@ export default class CitygmaGameInterface extends Component {
                     // Call the function to use the data on the page.
                     //this.deviceOrientationHandler(tiltLR, tiltFB, fromNorthBearing, bearedDir);
                 });
-            // TEL MILOU POSITION NON ABSOLUE VERS LE NORD
-            } else {
-                let options;
-
-
-                options = {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                };
-
-                this.setState({watchPositionId: navigator.geolocation.watchPosition(this.watchPosbearingListener, this.error, options)});
             }
 
         } else {
