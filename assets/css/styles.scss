@@ -879,6 +879,12 @@ nav {
     width: 100vw;
     height: 100vh;
 
+    #test {
+      position: fixed;
+      top: 50vh;
+      z-index: 999;
+    }
+
     #distanceComponent {
       z-index: 6000;
       position: absolute;
