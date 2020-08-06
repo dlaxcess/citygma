@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 
 const defaultSettings = {
-    enableHighAccuracy: true/*false*/,
+    enableHighAccuracy: false,
     timeout: 5000/*Infinity*/,
-    maximumAge: 3000/*0*/,
+    maximumAge: 0,
 };
 
 export const usePosition = (watch = false, settings = defaultSettings) => {
