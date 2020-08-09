@@ -29,7 +29,7 @@ export default class CitygmaGameInterface extends Component {
                 longitude: -1.6875520000000002,
                 zoom: 16
             },
-            distanceDeclenchement: 2,
+            destinationPrecision: 2,
             // Game Data
             showEnterGameScreen: true,
             user: null,
@@ -169,7 +169,7 @@ export default class CitygmaGameInterface extends Component {
                             }
 
                             this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
-                            alert(this.state.enigmas[enigmaKey].loopCatchPositionDistance);
+                            
                         });
 
                 });
@@ -729,7 +729,7 @@ export default class CitygmaGameInterface extends Component {
                             handleNearLocationDistance={this.handleNearLocationDistance}
                             destinationLat={destinationLat}
                             destinationLong={destinationLong}
-                            destinationPrecision={this.state.distanceDeclenchement}
+                            destinationPrecision={this.state.destinationPrecision}
                             currentEnigmaActiveCompass={this.state.currentEnigmaActiveCompass}
                             handleReCenter={this.handleReCenter}
                         />
