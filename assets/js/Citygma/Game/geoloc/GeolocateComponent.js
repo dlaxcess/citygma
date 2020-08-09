@@ -10,12 +10,12 @@ import logo from "../../../../images/logo-citygma.png";
 
 export const GeolocateComponent = (props) => {
     const { latitude, longitude, timestamp, accuracy, error } = usePosition(false, {enableHighAccuracy: true});
-    const { viewport, handleViewportChange, handleNearLocationDistance, destinationLat, destinationLong, currentEnigmaActiveCompass, handleReCenter } = props;
+    const { viewport, handleViewportChange, handleNearLocationDistance, destinationLat, destinationLong, destinationPrecision, currentEnigmaActiveCompass, handleReCenter } = props;
     let distance = latitude && geolib.getDistance({latitude: latitude, longitude: longitude},{latitude: destinationLat, longitude: destinationLong});
 
 
 
-    if (distance < 20) {handleNearLocationDistance()}
+    if (distance < destinationPrecision) {handleNearLocationDistance()}
 
     return (
 
