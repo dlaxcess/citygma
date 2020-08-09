@@ -168,7 +168,7 @@ export default class CitygmaGameInterface extends Component {
                                 enigmaKey = Math.round(data.userAdvance) -2;
                             }
 
-                            this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
+                            this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchpositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
                         });
 
                 });
