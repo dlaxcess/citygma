@@ -23,6 +23,24 @@ class EnygmaLoopType extends AbstractType
         $builder
             ->add('storyOrder', TextType::class)
             ->add('enygmaName', TextType::class)
+            ->add('loopPictoMarker', FileType::class, [
+                'label' => 'Marker Gps de la loop',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez selectionner une image JPG ou PNG valide',
+                    ])
+                ],
+            ])
+            ->add('loopWebLink', TextType::class)
+            ->add('loopCatchPositionDistance', NumberType::class)
+            ->add('loopDescription', TextareaType::class)
             ->add('gpsCoordLatitude', NumberType::class, [
                 'scale' => 6,
             ])
@@ -31,6 +49,10 @@ class EnygmaLoopType extends AbstractType
             ])
             ->add('compasActivate', CheckboxType::class, [
                 'label'    => 'Utiliser la boussole pour l\'enigme',
+                'required' => false,
+            ])
+            ->add('loopUseCompass', CheckboxType::class, [
+                'label'    => 'Utiliser le compas mobile pour la loop d\'énigme',
                 'required' => false,
             ])
             ->add('videoIntroClueFilename', FileType::class, [
@@ -62,6 +84,18 @@ class EnygmaLoopType extends AbstractType
                         'mimeTypesMessage' => 'Veuillez selectionner une vidéo MPEG valide',
                     ])
                 ],
+            ])
+            ->add('loopFirstVidOff', CheckboxType::class, [
+                'label'    => 'Désactiver la première vidéo de la loop d\'énigme',
+                'required' => false,
+            ])
+            ->add('loopMapOff', CheckboxType::class, [
+                'label'    => 'Désactiver la map pour la loop d\'énigme',
+                'required' => false,
+            ])
+            ->add('loopQuestionOff', CheckboxType::class, [
+                'label'    => 'Désactiver la question de la loop d\'énigme',
+                'required' => false,
             ])
             ->add('enygmaQuestionPictureFilename', FileType::class, [
                 'label' => 'Image d\'illustration de la question de l\'enigme',

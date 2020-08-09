@@ -35,6 +35,9 @@
                         <div class="col-md">
                             {{ form_row(form.adventureDuration) }}
                         </div>
+                        <div class="col-md">
+                            {{ form_row(form.pointOfInterest) }}
+                        </div>
                     </div>
 
                     <div class="row descriptionAdventRow200">
@@ -55,8 +58,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             {{ form_row(form.adventureDescription) }}
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                {{ form_label(form.pictoMarker) }}
+                                {% if cityAdventure.pictoMarker %}
+                                    <div>
+                                        <img src="{{ imgUploadDir ~ cityAdventure.pictoMarker }}" alt="" />
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.pictoMarker) }}
+
+                                <small>{{ form_help(form.pictoMarker) }}</small>
+
+                                <div class="form-error">
+                                    {{ form_errors(form.pictoMarker) }}
+                                </div>
+                            </div>
+                            <div>
+                                {{ form_row(form.adventureWebLink) }}
+                            </div>
                         </div>
                     </div>
 
@@ -137,6 +160,20 @@
                     {# form_row(form.videoAdventureIntroFilename) #}
 
                     {# form_row(form.videoLastEnigmaFilename) #}
+                    <div class="row descriptionAdventRow100">
+                        <div class="col-md">
+                            {{ form_row(form.adventureLastVidOff) }}
+                        </div>
+                        <div class="col-md">
+                            {{ form_row(form.adventureMapOff) }}
+                        </div>
+                        <div class="col-md">
+                            {{ form_row(form.adventureFinalQuestionOff) }}
+                        </div>
+                        <div class="col-md">
+                            {{ form_row(form.adventureUseCompass) }}
+                        </div>
+                    </div>
 
                     <div class="row descriptionAdventRow100">
                         <div class="col-md-4">
@@ -160,6 +197,7 @@
                             <div class="row">
                                 <div class="col-md-6">{{ form_row(form.lastEnigmaLatitude) }}</div>
                                 <div class="col-md-6">{{ form_row(form.lastEnigmaLongitude) }}</div>
+                                <div class="col-md-6">{{ form_row(form.catchPositionDistance) }}</div>
                             </div>
                             {{ form_row(form.lastEnigmaQuestionText) }}
                             {{ form_row(form.lastEnigmaExpectedAnswer) }}

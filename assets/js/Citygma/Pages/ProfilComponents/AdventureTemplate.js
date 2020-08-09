@@ -60,7 +60,10 @@ export default function AdventureTemplate(props) {
                                     <div><b>Durée :</b> {cityAdventure.adventureDuration}</div>
                                 </div>
                             </div>
-                            <p><b>Description :</b> {cityAdventure.adventureDescription}</p>
+                            <p>
+                                <b>Description :</b> {cityAdventure.adventureDescription}<br/>
+                                <b>{cityAdventure.adventureWebLink}</b>
+                            </p>
                         </div>
                     </div>
                 </div>

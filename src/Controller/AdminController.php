@@ -130,6 +130,7 @@ class AdminController extends AbstractController
             $videoLastEnigmaFile = $form['videoLastEnigmaFilename']->getData();
             $lastEnigmaPictureFile = $form['lastEnigmaPictureFilename']->getData();
             $videoFinalSequenceFile = $form['videoFinalSequenceFilename']->getData();
+            $adventurePictoMarkerFile = $form['pictoMarker']->getData();
 
             if ($adventurePictureFile) {
                 $adventurePictureFileName = $fileUploader->upload($adventurePictureFile);
@@ -150,6 +151,10 @@ class AdminController extends AbstractController
             if ($videoFinalSequenceFile) {
                 $videoFinalSequenceFileName = $fileUploader->upload($videoFinalSequenceFile);
                 $cityAdventure->setVideoFinalSequenceFilename($videoFinalSequenceFileName);
+            }
+            if ($adventurePictoMarkerFile) {
+                $adventurePictoMarkerFileName = $fileUploader->upload($adventurePictoMarkerFile);
+                $cityAdventure->setPictoMarker($adventurePictoMarkerFileName);
             }
 
             $cityAdventureEnigmas = $cityAdventure->getEnygmaLoops();
@@ -172,6 +177,7 @@ class AdminController extends AbstractController
                 $videoIntroClueFile = $enigmaEntry->get('videoIntroClueFilename')->getData();
                 $videoHistoryInfoFile = $enigmaEntry->get('videoHistoryInfoFilename')->getData();
                 $enygmaQuestionPictureFile = $enigmaEntry->get('enygmaQuestionPictureFilename')->getData();
+                $loopPictoMarkerFile = $enigmaEntry->get('loopPictoMarker')->getData();
 
                 if ($videoIntroClueFile) {
                     $videoIntroClueFileName = $fileUploader->upload($videoIntroClueFile);
@@ -186,6 +192,11 @@ class AdminController extends AbstractController
                 if ($enygmaQuestionPictureFile) {
                     $enygmaQuestionPictureFileName = $fileUploader->upload($enygmaQuestionPictureFile);
                     $cityAdventureEnigmasOrderedArray[$i]->setEnygmaQuestionPictureFilename($enygmaQuestionPictureFileName);
+                }
+
+                if ($loopPictoMarkerFile) {
+                    $loopPictoMarkerFileName = $fileUploader->upload($loopPictoMarkerFile);
+                    $cityAdventureEnigmasOrderedArray[$i]->setLoopPictoMarker($loopPictoMarkerFileName);
                 }
 
                 $i++;
@@ -260,6 +271,7 @@ class AdminController extends AbstractController
                 'videoIntroClueFilename' => $enigmaLoop->getVideoIntroClueFilename(),
                 'videoHistoryInfoFilename' => $enigmaLoop->getVideoHistoryInfoFilename(),
                 'enygmaQuestionPictureFilename' => $enigmaLoop->getEnygmaQuestionPictureFilename(),
+                'loopPictoMarker' => $enigmaLoop->getLoopPictoMarker(),
             ];
         }
 

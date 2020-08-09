@@ -88,6 +88,46 @@ class CityAdventure
      */
     private $lastEnigmaLongitude;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictoMarker;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $adventureWebLink;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $pointOfInterest;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $catchPositionDistance;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adventureLastVidOff;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adventureMapOff;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adventureFinalQuestionOff;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adventureUseCompass;
+
     public function __construct()
     {
         $this->enygmaLoops = new ArrayCollection();
@@ -281,6 +321,102 @@ class CityAdventure
     public function setLastEnigmaLongitude(?float $lastEnigmaLongitude): self
     {
         $this->lastEnigmaLongitude = $lastEnigmaLongitude;
+
+        return $this;
+    }
+
+    public function getPictoMarker(): ?string
+    {
+        return $this->pictoMarker;
+    }
+
+    public function setPictoMarker(?string $pictoMarker): self
+    {
+        $this->pictoMarker = $pictoMarker;
+
+        return $this;
+    }
+
+    public function getAdventureWebLink(): ?string
+    {
+        return $this->adventureWebLink;
+    }
+
+    public function setAdventureWebLink(?string $adventureWebLink): self
+    {
+        $this->adventureWebLink = $adventureWebLink;
+
+        return $this;
+    }
+
+    public function getPointOfInterest(): ?bool
+    {
+        return $this->pointOfInterest;
+    }
+
+    public function setPointOfInterest(?bool $pointOfInterest): self
+    {
+        $this->pointOfInterest = $pointOfInterest;
+
+        return $this;
+    }
+
+    public function getCatchPositionDistance(): ?int
+    {
+        return $this->catchPositionDistance;
+    }
+
+    public function setCatchPositionDistance(?int $catchPositionDistance): self
+    {
+        $this->catchPositionDistance = $catchPositionDistance;
+
+        return $this;
+    }
+
+    public function getAdventureLastVidOff(): ?bool
+    {
+        return $this->adventureLastVidOff;
+    }
+
+    public function setAdventureLastVidOff(?bool $adventureLastVidOff): self
+    {
+        $this->adventureLastVidOff = $adventureLastVidOff;
+
+        return $this;
+    }
+
+    public function getAdventureMapOff(): ?bool
+    {
+        return $this->adventureMapOff;
+    }
+
+    public function setAdventureMapOff(?bool $adventureMapOff): self
+    {
+        $this->adventureMapOff = $adventureMapOff;
+
+        return $this;
+    }
+
+    public function getAdventureFinalQuestionOff(): ?bool
+    {
+        return $this->adventureFinalQuestionOff;
+    }
+
+    public function setAdventureFinalQuestionOff(?bool $adventureFinalQuestionOff): self
+    {
+        $this->adventureFinalQuestionOff = $adventureFinalQuestionOff;
+
+        return $this;
+    }
+
+    public function getAdventureUseCompass(): ?bool
+    {
+        return $this->adventureUseCompass;
+    }
+
+    public function setAdventureUseCompass(?bool $adventureUseCompass): self
+    {
+        $this->adventureUseCompass = $adventureUseCompass;
 
         return $this;
     }

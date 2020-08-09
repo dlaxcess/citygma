@@ -7,6 +7,37 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">{{ form_row(form.enygmaName) }}</div>
+                <div class="col">
+                    {{ form_row(form.loopPictoMarker) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">{{ form_row(form.loopDescription) }}</div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">{{ form_row(form.loopWebLink) }}</div>
+                        <div class="col-md-12">{{ form_row(form.loopCatchPositionDistance) }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    {{ form_row(form.loopDescription) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    {{ form_row(form.loopFirstVidOff) }}
+                </div>
+                <div class="col-md">
+                    {{ form_row(form.loopMapOff) }}
+                </div>
+                <div class="col-md">
+                    {{ form_row(form.loopQuestionOff) }}
+                </div>
+                <div class="col-md">
+                    {{ form_row(form.loopUseCompass) }}
+                </div>
             </div>
             <div class="row">
                 <div class="col-md">{{ form_row(form.storyOrder) }}</div>

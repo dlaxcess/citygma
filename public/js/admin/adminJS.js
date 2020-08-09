@@ -41,6 +41,9 @@ $(document).ready(function() {
                     if (data[indexEnigme].enygmaQuestionPictureFilename) {
                         addImage($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_enygmaQuestionPictureFilename').parent().parent().children('label'), indexEnigme, data, 'enygmaQuestionPictureFilename');
                     }
+                    if (data[indexEnigme].loopPictoMarker) {
+                        addImage($(this).find('#city_adventure_enygmaLoops_'+ indexEnigme +'_loopPictoMarker').parent().parent().children('label'), indexEnigme, data, 'loopPictoMarker');
+                    }
 
                     enigmeReorder();
 

@@ -47,6 +47,16 @@ class User implements UserInterface
      */
     private $userAdvances;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $userMailingOk;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $userNickName;
+
     public function __construct()
     {
         $this->userAdvances = new ArrayCollection();
@@ -169,6 +179,30 @@ class User implements UserInterface
                 $userAdvance->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserMailingOk(): ?bool
+    {
+        return $this->userMailingOk;
+    }
+
+    public function setUserMailingOk(?bool $userMailingOk): self
+    {
+        $this->userMailingOk = $userMailingOk;
+
+        return $this;
+    }
+
+    public function getUserNickName(): ?string
+    {
+        return $this->userNickName;
+    }
+
+    public function setUserNickName(?string $userNickName): self
+    {
+        $this->userNickName = $userNickName;
 
         return $this;
     }

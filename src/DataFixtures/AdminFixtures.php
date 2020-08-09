@@ -21,8 +21,8 @@ class AdminFixtures extends Fixture
     {
         $user = new User();
         $user->setUsername('Philou');
-        $user->setEmail("phil@gmail.com");
-        $user->setPassword($this->encoder->encodePassword($user, 6420));
+        $user->setEmail("contact.philippe.perou@gmail.com");
+        $user->setPassword($this->encoder->encodePassword($user, "https://-&-&aA6420642//monCul"));
         $user->setRoles(['ROLE_ADMIN']);
 
 

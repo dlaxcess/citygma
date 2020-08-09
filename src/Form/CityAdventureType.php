@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\CityAdventure;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -36,7 +37,27 @@ class CityAdventureType extends AbstractType
                 ],
             ])
             ->add('adventureDuration', TextType::class)
+            ->add('pointOfInterest', CheckboxType::class, [
+                'label'    => 'Déclarer comme Point d\'intérêt',
+                'required' => false,
+            ])
             ->add('adventureDescription', TextareaType::class)
+            ->add('pictoMarker', FileType::class, [
+                'label' => 'Marker Gps de l\'aventure',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez selectionner une image JPG ou PNG valide',
+                    ])
+                ],
+            ])
+            ->add('adventureWebLink', TextType::class)
             ->add('videoAdventureIntroFilename', FileType::class, [
                 'label' => 'Vidéo d\'intro de l\'aventure',
                 'mapped' => false,
@@ -67,6 +88,22 @@ class CityAdventureType extends AbstractType
                     ])
                 ],
             ])
+            ->add('adventureLastVidOff', CheckboxType::class, [
+                'label'    => 'Désactiver la vidéo d\'énigme finale',
+                'required' => false,
+            ])
+            ->add('adventureMapOff', CheckboxType::class, [
+                'label'    => 'Désactiver la carte pour l\'énigme finale',
+                'required' => false,
+            ])
+            ->add('adventureFinalQuestionOff', CheckboxType::class, [
+                'label'    => 'Désactiver la Question d\'énigme finale',
+                'required' => false,
+            ])
+            ->add('adventureUseCompass', CheckboxType::class, [
+                'label'    => 'Activer le compas mobile',
+                'required' => false,
+            ])
             ->add('lastEnigmaPictureFilename', FileType::class, [
                 'label' => 'Image de dernière énigme l\'aventure',
                 'mapped' => false,
@@ -87,6 +124,7 @@ class CityAdventureType extends AbstractType
             ->add('lastEnigmaLongitude', NumberType::class, [
                 'scale' => 6,
             ])
+            ->add('catchPositionDistance', NumberType::class)
             ->add('lastEnigmaQuestionText', TextareaType::class)
             ->add('lastEnigmaExpectedAnswer', TextType::class)
             ->add('videoFinalSequenceFilename', FileType::class, [

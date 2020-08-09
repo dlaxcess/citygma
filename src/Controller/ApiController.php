@@ -72,6 +72,7 @@ class ApiController extends AbstractController
                 'lastEnigmaQuestionText' => $cityAdventureObject->getLastEnigmaQuestionText(),
                 'lastEnigmaExpectedAnswer' => $cityAdventureObject->getLastEnigmaExpectedAnswer(),
                 'videoFinalSequenceFilename' => $cityAdventureObject->getVideoFinalSequenceFilename(),
+                'adventureWebLink' => $cityAdventureObject->getAdventureWebLink(),
             ];
         }
 
@@ -102,6 +103,14 @@ class ApiController extends AbstractController
                 'videoFinalSequenceFilename' => $cityAdventure->getVideoFinalSequenceFilename(),
                 'lastEnigmaLatitude' => $cityAdventure->getLastEnigmaLatitude(),
                 'lastEnigmaLongitude' => $cityAdventure->getLastEnigmaLongitude(),
+                'pictoMarker' => $cityAdventure->getPictoMarker(),
+                'adventureWebLink' => $cityAdventure->getAdventureWebLink(),
+                'pointOfInterest' => $cityAdventure->getPointOfInterest(),
+                'catchPositionDistance' => $cityAdventure->getCatchPositionDistance(),
+                'adventureLastVidOff' => $cityAdventure->getAdventureLastVidOff(),
+                'adventureMapOff' => $cityAdventure->getAdventureMapOff(),
+                'adventureFinalQuestionOff' => $cityAdventure->getAdventureFinalQuestionOff(),
+                'adventureUseCompass' => $cityAdventure->getAdventureUseCompass(),
             ];
 
             return $this->json($cityAdventureJSON);
@@ -139,6 +148,14 @@ class ApiController extends AbstractController
                     'enigmaQuestionPicture' => $enygmaLoop->getEnygmaQuestionPictureFilename(),
                     'enigmaQuestionText' => $enygmaLoop->getEnygmaQuestionText(),
                     'enigmaExpectedAnswer' => $enygmaLoop->getEnigmaExpectedAnswer(),
+                    'loopPictoMarkerFilename' => $enygmaLoop->getLoopPictoMarker(),
+                    'loopDescription' => $enygmaLoop->getLoopDescription(),
+                    'loopWebLink' => $enygmaLoop->getLoopWebLink(),
+                    'loopCatchPositionDistance' => $enygmaLoop->getLoopCatchPositionDistance(),
+                    'loopFirstVidOff' => $enygmaLoop->getLoopFirstVidOff(),
+                    'loopMapOff' => $enygmaLoop->getLoopMapOff(),
+                    'loopQuestionOff' => $enygmaLoop->getLoopQuestionOff(),
+                    'loopUseCompass' => $enygmaLoop->getLoopUseCompass(),
                 ];
             }
 
