@@ -26,6 +26,7 @@ export const GeolocateComponent = (props) => {
                 timestamp: {timestamp}<br/>
                 accuracy: {accuracy && `${accuracy}m`}<br/>
                 error: {error}<br/>
+                dist declanchmt: {destinationPrecision}<br/>
             </div>
 
             <h3 id="distanceComponent">{distance} m</h3>
