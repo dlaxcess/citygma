@@ -58,7 +58,6 @@ export default class VideoPlayerComponent extends Component {
         */}
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-        setTimeout(this.setMuted(false), 1000);
     }
 
     componentDidUpdate() {
@@ -168,6 +167,8 @@ export default class VideoPlayerComponent extends Component {
 
     render() {
         const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
+
+        setTimeout(this.setMuted(false), 1000);
 
         return (
             <section className='playerSection'>
