@@ -58,7 +58,7 @@ export default class VideoPlayerComponent extends Component {
         */}
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
-        setTimeout(this.setMuted(false), 50);
+        setTimeout(this.setMuted(false), 1000);
     }
 
     componentDidUpdate() {
