@@ -20,7 +20,7 @@ export default class VideoPlayerComponent extends Component {
             controls: false,
             light: false,
             volume: 0.8,
-            muted: false,
+            muted: true,
             played: 0,
             loaded: 0,
             duration: 0,
@@ -189,7 +189,6 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         autoPlay
-                        muted
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
