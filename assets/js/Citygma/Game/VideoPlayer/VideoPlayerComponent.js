@@ -20,7 +20,7 @@ export default class VideoPlayerComponent extends Component {
             controls: false,
             light: false,
             volume: 0.8,
-            muted: false,
+            muted: true,
             played: 0,
             loaded: 0,
             duration: 0,
@@ -57,6 +57,8 @@ export default class VideoPlayerComponent extends Component {
             document.querySelector("#videoPlay").click();
         */}
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+
+        setTimeout(this.setMuted(false), 50);
     }
 
     componentDidUpdate() {
