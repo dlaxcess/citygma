@@ -193,7 +193,7 @@ export default class VideoPlayerComponent extends Component {
                         playsInline
                         ended={this.handleEnded}
                     >
-                        <source src={`${uploadsDir.getUploadsDir()}${url}`} type="video/mp4" />
+                        <source src={`${uploadsDir.getUploadsDir()}${url}`} />
                         <ControlBar autoHide={true} disableCompletely={true} />
                     </Player>
                 </div>
