@@ -14,7 +14,7 @@ export default class VideoPlayerComponent extends Component {
         this.state = {
             source: this.props.videoUrl,
             displayVideo: this.props.displayVideo,
-            videoPlaying: this.props.videoPlaying,
+
 
             url: this.props.videoUrl,
             pip: false,
@@ -29,7 +29,10 @@ export default class VideoPlayerComponent extends Component {
             playbackRate: 1.0,
             loop: false,
 
-            player: {playing: false},
+            player: {
+                playing: false,
+                videoPlaying: this.props.videoPlaying,
+            },
             showEndedButton: false
         };
 
@@ -73,6 +76,7 @@ export default class VideoPlayerComponent extends Component {
                 document.getElementById("videoRePlay").dispatchEvent(evt);
             }
         }, 5000);*/
+
     }
 
     setMuted(muted) {
@@ -93,8 +97,8 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        if (this.state.videoPlaying) {
-            this.play();
+        if (this.state.player.videoPlaying) {
+            this.player.play();
         }
 
         if (this.state.player.hasStarted) {
@@ -200,10 +204,11 @@ export default class VideoPlayerComponent extends Component {
             //}
             this.setMuted(false);
         }, 1000);*/
+        const cssDisplayVideo = displayVideo ? 'displayVideo' : 'hideVideo';
 
         return (
             /*setTimeout(this.setMuted(false), 1000);*/
-            <section className={'playerSection' + displayVideo ? 'displayVideo' : 'hideVideo'}>
+            <section className={`playerSection ${cssDisplayVideo}`}>
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
                 <div id="videoPlayerButtons">
@@ -223,7 +228,7 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
-                        autoPlay
+                        /*autoPlay*/
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
