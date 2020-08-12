@@ -101,9 +101,9 @@ export default class VideoPlayerComponent extends Component {
         if (this.state.player.videoPlaying) {
             //this.player.play();
 
-            var evt = document.createEvent("MouseEvents");
+            /*var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            document.getElementById("videoRePlay").dispatchEvent(evt);
+            document.getElementById("videoRePlay").dispatchEvent(evt);*/
         }
 
         /*if (!this.props.displaySound) {
@@ -242,7 +242,7 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         /*muted*/
-                        autoPlay
+                        /*autoPlay*/
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
