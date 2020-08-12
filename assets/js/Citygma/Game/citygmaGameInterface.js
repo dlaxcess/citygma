@@ -30,7 +30,7 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             destinationPrecision: 2,
-            displayVideo: true,
+            displayVideo: false,
             // Game Data
             showEnterGameScreen: true,
             user: null,
@@ -272,8 +272,7 @@ export default class CitygmaGameInterface extends Component {
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
 
-                    this.setState({videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
-
+                    this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: false, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
                     // Compass Bearing
                     this.activateCompass();
                     this.storeUserAdvance(this.state.userAdvance);
