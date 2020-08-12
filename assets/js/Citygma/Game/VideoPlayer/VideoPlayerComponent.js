@@ -19,8 +19,8 @@ export default class VideoPlayerComponent extends Component {
             playing: false,
             controls: false,
             light: false,
-            volume: 0.8,
-            muted: true,
+            volume: 0,
+            muted: false,
             played: 0,
             loaded: 0,
             duration: 0,
@@ -168,9 +168,10 @@ export default class VideoPlayerComponent extends Component {
     render() {
         const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
 
-        setTimeout(this.setMuted(false), 1000);
+
 
         return (
+            /*setTimeout(this.setMuted(false), 1000);*/
             <section className='playerSection'>
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
