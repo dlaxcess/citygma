@@ -19,7 +19,7 @@ export default class VideoPlayerComponent extends Component {
             playing: false,
             controls: false,
             light: false,
-            volume: 1,
+            volume: 0.8,
             muted: true,
             played: 0,
             loaded: 0,
@@ -39,6 +39,7 @@ export default class VideoPlayerComponent extends Component {
         this.changePlaybackRateRate = this.changePlaybackRateRate.bind(this);
         this.changeVolume = this.changeVolume.bind(this);
         this.setMuted = this.setMuted.bind(this);
+        this.setUnMutedTimedOut = this.setUnMutedTimedOut.bind(this);
 
 
         /*this.load = this.load.bind(this);*/
@@ -78,6 +79,12 @@ export default class VideoPlayerComponent extends Component {
         };
     }
 
+    setUnMutedTimedOut() {
+        return () => {
+            this.player.muted = false;
+        };
+    }
+
     handleStateChange(state) {
         // copy player state to this component's state
         this.setState({
@@ -86,6 +93,8 @@ export default class VideoPlayerComponent extends Component {
 
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
+
+            /*var timeOutID = window.setTimeout( this.setState({muted: false}), 1000);*/
         }
 
         if (this.state.player.ended) {
