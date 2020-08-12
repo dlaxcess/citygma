@@ -30,6 +30,7 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             destinationPrecision: 2,
+            displayVideo: false,
             // Game Data
             showEnterGameScreen: true,
             user: null,
@@ -271,7 +272,7 @@ export default class CitygmaGameInterface extends Component {
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
 
-                    this.setState({videoPlaying: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
+                    this.setState({videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
 
                     // Compass Bearing
                     this.activateCompass();
@@ -305,7 +306,7 @@ export default class CitygmaGameInterface extends Component {
             this.storeUserAdvance(this.state.userAdvance + 0.5);
         } else {
             const enigmaKey = this.state.userAdvance - 1;
-            this.setState({/*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
+            this.setState({/*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(this.state.userAdvance + 0.5);
         }
@@ -717,6 +718,7 @@ export default class CitygmaGameInterface extends Component {
                             <VideoPlayerComponent
                                 key={this.state.userAdvance}
                                 videoUrl={this.state.videoUrl}
+                                displayVideo={this.state.displayVideo}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
                             />

@@ -13,6 +13,7 @@ export default class VideoPlayerComponent extends Component {
 
         this.state = {
             source: this.props.videoUrl,
+            displayVideo: this.props.displayVideo,
 
             url: this.props.videoUrl,
             pip: false,
@@ -184,7 +185,7 @@ export default class VideoPlayerComponent extends Component {
 
 
     render() {
-        const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
+        const { url, displayVideo, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
 
         /*var timeOutID = window.setTimeout( function () {
             //if (true) {
@@ -197,7 +198,7 @@ export default class VideoPlayerComponent extends Component {
 
         return (
             /*setTimeout(this.setMuted(false), 1000);*/
-            <section className='playerSection'>
+            <section className={'playerSection' + displayVideo ? 'displayVideo' : 'hideVideo'}>
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
                 <div id="videoPlayerButtons">

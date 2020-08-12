@@ -146,3 +146,13 @@ ul {
     }
   }
 }
+
+.displayVideo {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hideVideo {
+  visibility: hidden;
+  opacity: 0;
+}
