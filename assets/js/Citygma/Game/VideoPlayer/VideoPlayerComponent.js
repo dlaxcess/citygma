@@ -94,7 +94,7 @@ export default class VideoPlayerComponent extends Component {
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
 
-            /*var timeOutID = window.setTimeout( this.setState({muted: false}), 1000);*/
+            var timeOutID = window.setTimeout( this.setState({muted: false}), 1000);
         }
 
         if (this.state.player.ended) {
