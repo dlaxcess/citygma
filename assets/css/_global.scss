@@ -150,9 +150,21 @@ ul {
 .displayVideo {
   visibility: visible;
   opacity: 1;
+  display: block;
+
+  * {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .hideVideo {
   visibility: hidden;
   opacity: 0;
+  display: none;
+
+  * {
+    visibility: visible;
+    opacity: 1;
+  }
 }

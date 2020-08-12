@@ -14,6 +14,7 @@ export default class VideoPlayerComponent extends Component {
         this.state = {
             source: this.props.videoUrl,
             displayVideo: this.props.displayVideo,
+            videoPlaying: this.props.videoPlaying,
 
             url: this.props.videoUrl,
             pip: false,
@@ -91,6 +92,10 @@ export default class VideoPlayerComponent extends Component {
         this.setState({
             player: state
         });
+
+        if (this.state.videoPlaying) {
+            this.play();
+        }
 
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
