@@ -272,7 +272,7 @@ export default class CitygmaGameInterface extends Component {
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
 
-                    this.setState({videoPlaying: false, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
+                    this.setState({videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
 
                     // Compass Bearing
                     this.activateCompass();
@@ -725,7 +725,7 @@ export default class CitygmaGameInterface extends Component {
                             />
                     }
 
-                    { !this.state.videoPlaying && this.state.geolocateShow &&
+                    { /*!this.state.videoPlaying && */this.state.geolocateShow &&
                         <GeolocateComponent
                             viewport={this.state.viewport}
                             handleViewportChange={this.handleViewportChange}

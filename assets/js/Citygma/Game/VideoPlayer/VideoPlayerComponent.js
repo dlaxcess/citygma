@@ -13,7 +13,7 @@ export default class VideoPlayerComponent extends Component {
 
         this.state = {
             source: this.props.videoUrl,
-            displayVideo: this.props.displayVideo,
+
 
 
             url: this.props.videoUrl,
@@ -32,6 +32,7 @@ export default class VideoPlayerComponent extends Component {
             player: {
                 playing: false,
                 videoPlaying: this.props.videoPlaying,
+                displaySound: this.props.displayVideo,
             },
             showEndedButton: false
         };
@@ -99,6 +100,14 @@ export default class VideoPlayerComponent extends Component {
 
         if (this.state.player.videoPlaying) {
             this.player.play();
+        }
+
+        if (!this.props.displayVideo) {
+            this.player.muted = true;
+        }
+
+        if (this.props.displayVideo) {
+            this.player.muted = false;
         }
 
         if (this.state.player.hasStarted) {
@@ -194,7 +203,7 @@ export default class VideoPlayerComponent extends Component {
 
 
     render() {
-        const { url, displayVideo, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
+        const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
 
         /*var timeOutID = window.setTimeout( function () {
             //if (true) {
