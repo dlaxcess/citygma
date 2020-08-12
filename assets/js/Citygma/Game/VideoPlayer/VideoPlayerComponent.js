@@ -59,7 +59,7 @@ export default class VideoPlayerComponent extends Component {
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
         var timeOutID = window.setTimeout( function () {
-            if (true) {
+            if (!this.state.showEndedButton) {
                 var evt = document.createEvent("MouseEvents");
                 evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
                 document.getElementById("videoRePlay").dispatchEvent(evt);
