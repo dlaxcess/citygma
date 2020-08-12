@@ -204,7 +204,7 @@ export default class VideoPlayerComponent extends Component {
             //}
             this.setMuted(false);
         }, 1000);*/
-        const cssDisplayVideo = displayVideo ? 'displayVideo' : 'hideVideo';
+        const cssDisplayVideo = this.props.displayVideo ? 'displayVideo' : 'hideVideo';
 
         return (
             /*setTimeout(this.setMuted(false), 1000);*/
