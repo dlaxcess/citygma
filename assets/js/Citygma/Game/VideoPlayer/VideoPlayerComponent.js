@@ -192,6 +192,7 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
+                        volume
                         autoPlay
                         webkit-playsinline
                         playsInline
