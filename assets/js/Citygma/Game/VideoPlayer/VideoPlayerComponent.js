@@ -174,7 +174,7 @@ export default class VideoPlayerComponent extends Component {
                 evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
                 document.getElementById("videoRePlay").dispatchEvent(evt);
             }
-        }, 1000);
+        }, 5000);
 
         return (
             /*setTimeout(this.setMuted(false), 1000);*/
