@@ -169,9 +169,11 @@ export default class VideoPlayerComponent extends Component {
         const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state;
 
         var timeOutID = window.setTimeout( function () {
-            var evt = document.createEvent("MouseEvents");
-            evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            document.getElementById("videoRePlay").dispatchEvent(evt);
+                if (!this.state.playing && !this.state.showEndedButton) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                document.getElementById("videoRePlay").dispatchEvent(evt);
+            }
         }, 1000);
 
         return (
