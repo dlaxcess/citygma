@@ -340,7 +340,7 @@ export default class CitygmaGameInterface extends Component {
         if (this.state.enigmas[enigmaKey]) {
             this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
 
-            this.setState({showEnigma: false, videoPlayerKey: Math.round(this.state.userAdvance), /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/ videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
+            this.setState({showEnigma: false, /*videoPlayerKey: Math.round(this.state.userAdvance), /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/ videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(Math.round(this.state.userAdvance));
 
