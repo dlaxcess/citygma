@@ -295,7 +295,14 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour Video apres point GPS boucle atteinds (Envoi enigme boucle)
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.3) {
-                        this.setState({userAdvance: this.state.userAdvance + 0.1, videoPlaying: false, displayVideo: false, showEnigma: true/*, userAdvance: this.state.userAdvance + 0.2*/, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+                        this.setState({userAdvance: this.state.userAdvance + 0.1, videoPlayerKey: this.state.userAdvance + 0.1, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+
+                        const enigmaKey = Math.round(this.state.userAdvance) - 1;
+                        if (this.state.enigmas[enigmaKey]) {
+                            this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue});
+                        } else {
+                            this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename});
+                        }
 
                         this.storeUserAdvance(this.state.userAdvance + 0.1);
                     } /*else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.2)
