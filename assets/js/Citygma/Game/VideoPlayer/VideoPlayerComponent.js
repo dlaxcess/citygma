@@ -67,7 +67,7 @@ export default class VideoPlayerComponent extends Component {
 
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         this.player.subscribeToStateChange(this.handleStateChange.bind(this));
 
         /*var timeOutID = window.setTimeout( function () {
@@ -77,6 +77,23 @@ export default class VideoPlayerComponent extends Component {
                 document.getElementById("videoRePlay").dispatchEvent(evt);
             }
         }, 5000);*/
+        if (!this.props.displayVideo) {
+            //if(this.props.displayVideo !== prevProps.displayVideo) {
+                this.pause();
+            //}
+        }
+
+        if (this.props.displayVideo) {
+            if(this.props.displayVideo !== prevProps.displayVideo) {
+            this.play();
+            }
+        }
+
+        if (this.props.videoPlaying && this.props.displayVideo) {
+            if(this.props.videoPlaying !== prevProps.videoPlaying && this.props.displayVideo !== prevProps.displayVideo) {
+                this.play();
+            }
+        }
 
     }
 
@@ -98,15 +115,11 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        if (this.state.player.videoPlaying && !this.state.player.displaySound) {
-            this.player.play();
-            if(!this.state.player.displaySound ) {
-                var timeOutID = window.setTimeout( function () {
-                    this.player.pause();
-                }, 100);
-            } /*else {
-                this.player.load();
-            }*/
+        console.log('playingchange: ' + this.props.videoPlaying + 'soundChange: ' + this.props.displayVideo);
+
+        if (this.state.player.videoPlaying && this.state.player.displaySound) {
+            //var timeOutID = window.setTimeout( this.play, 2000);
+            this.play();
 
             /*var timeOutID = window.setTimeout( function () {
                     var evt = document.createEvent("MouseEvents");
@@ -115,9 +128,24 @@ export default class VideoPlayerComponent extends Component {
             }, 1000);*/
         }
 
-        if(this.state.player.videoPlaying && this.state.player.displaySound ) {
-            this.player.play();
+        /*if (!this.state.player.videoPlaying && !this.state.player.displaySound) {
+            this.pause();
         }
+
+        if (this.state.player.videoPlaying && !this.state.player.displaySound) {
+            this.pause();
+        }*/
+
+        /*if (!this.state.player.displaySound) {
+            //this.play();
+            this.pause();
+            this.setState({playing: false});
+        }
+
+        if (this.state.player.displaySound) {
+            this.play();
+            this.setState({playing: true});
+        }*/
 
         /*if (!this.props.displaySound) {
             this.player.muted = false;
@@ -258,7 +286,7 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         /*muted*/
-                        /*autoPlay*/
+                        autoPlay
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}

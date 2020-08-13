@@ -32,7 +32,7 @@ export default class CitygmaGameInterface extends Component {
             destinationPrecision: 2,
             videoPlaying: false,
             displayVideo: false,
-            videoPlayerKey: 0,
+            videoPlayerKey: 1,
             // Game Data
             showEnterGameScreen: true,
             user: null,
@@ -695,6 +695,9 @@ export default class CitygmaGameInterface extends Component {
                 : -1.6875520
         ;
 
+        const displayVideo = this.state.displayVideo;
+        const videoPlaying = this.state.videoPlaying;
+
         return (
             <Fragment>
 
@@ -733,8 +736,8 @@ export default class CitygmaGameInterface extends Component {
                             <VideoPlayerComponent
                                 key={this.state.videoPlayerKey}
                                 videoUrl={this.state.videoUrl}
-                                displayVideo={this.state.displayVideo}
-                                videoPlaying={this.state.videoPlaying}
+                                displayVideo={displayVideo}
+                                videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
                             />
