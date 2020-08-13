@@ -283,7 +283,7 @@ export default class CitygmaGameInterface extends Component {
                 } else if (this.isFloat(this.state.userAdvance)) {
 
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
-                    //console.log('enigmakey: ' + enigmaKey);
+                    alert('useradvance: ' + this.state.userAdvance);
                     //this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                     // Activation GPS boucle
                     if(this.state.userAdvance % 0.5 === 0) {
