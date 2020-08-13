@@ -354,7 +354,7 @@ export default class CitygmaGameInterface extends Component {
                 console.log('useradvance :' + this.state.userAdvance)
                 // Retour enigme Dernière boucle ( envoi video indice enigme finale )
                 if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.4) {
-                    this.setState({currentEnigmaActiveCompass: true, showEnigma: false, videoPlayerKey: this.state.userAdvance, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false});
+                    this.setState({currentEnigmaActiveCompass: true, showEnigma: false, /*videoPlayerKey: this.state.userAdvance, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false});
                     this.storeUserAdvance(Math.round(this.state.userAdvance));
                 // Retour enigme FINALE
                 }else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.2) {
