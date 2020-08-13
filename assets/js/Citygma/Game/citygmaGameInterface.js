@@ -281,7 +281,7 @@ export default class CitygmaGameInterface extends Component {
                     this.storeUserAdvance(this.state.userAdvance + 0.5);
 
                 } else if (this.isFloat(this.state.userAdvance)) {
-                    console.log('useradvance :' + this.state.userAdvance)
+
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
                     //console.log('enigmakey: ' + enigmaKey);
                     //this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
@@ -295,12 +295,11 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour Video apres point GPS boucle atteinds (Envoi enigme boucle)
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.4) {
-                        this.setState({videoPlaying: false, displayVideo: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.2, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+                        this.setState({videoPlaying: false, displayVideo: false, showEnigma: true/*, userAdvance: this.state.userAdvance + 0.2*/, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
 
-                        this.storeUserAdvance(this.state.userAdvance + 0.2);
-                    } /*else {
-                        console.log('userAdvance: ' + this.state.userAdvance);
-                        this.setState({showEnigma: true, showEnterGameScreen: false});
+                        //this.storeUserAdvance(this.state.userAdvance + 0.2);
+                    } /*else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.2)
+                        this.setState({videoPlaying: false, displayVideo: false, showEnigma: true, showEnterGameScreen: false});
                     }*/
                 }
             }
@@ -341,6 +340,7 @@ export default class CitygmaGameInterface extends Component {
         // Retour enigme DERNIERE BOUCLE & enigme finale
         } else {
             if (this.isFloat(this.state.userAdvance)) {
+                console.log('useradvance :' + this.state.userAdvance)
                 // Retour enigme Dernière boucle ( envoi video indice enigme finale )
                 if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.4) {
                     this.setState({currentEnigmaActiveCompass: true, showEnigma: false, videoPlayerKey: this.state.userAdvance, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false});
