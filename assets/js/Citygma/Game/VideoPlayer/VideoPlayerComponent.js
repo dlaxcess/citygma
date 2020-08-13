@@ -98,14 +98,25 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        if (this.state.player.videoPlaying) {
-            //this.player.play();
+        if (this.state.player.videoPlaying && !this.state.player.displaySound) {
+            this.player.play();
+            if(!this.state.player.displaySound ) {
+                var timeOutID = window.setTimeout( function () {
+                    this.player.pause();
+                }, 100);
+            } /*else {
+                this.player.load();
+            }*/
 
-            var timeOutID = window.setTimeout( function () {
+            /*var timeOutID = window.setTimeout( function () {
                     var evt = document.createEvent("MouseEvents");
                     evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
                     document.getElementById("videoRePlay").dispatchEvent(evt);
-            }, 1000);
+            }, 1000);*/
+        }
+
+        if(this.state.player.videoPlaying && this.state.player.displaySound ) {
+            this.player.play();
         }
 
         /*if (!this.props.displaySound) {
@@ -119,6 +130,9 @@ export default class VideoPlayerComponent extends Component {
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
 
+            /*if(this.state.player.displaySound) {
+                this.player.play();
+            }*/
             //var timeOutID = window.setTimeout( this.setUnMutedTimedOut(), 2000);
             //this.setState({muted: false});
         }
