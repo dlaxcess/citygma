@@ -276,7 +276,7 @@ export default class CitygmaGameInterface extends Component {
                 // Lecture video intro de boucle
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
-                    this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.videoPlayerKey + 0.5, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false});
+                    this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false});
 
                     this.storeUserAdvance(this.state.userAdvance + 0.5);
 
