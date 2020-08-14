@@ -292,7 +292,7 @@ export default class CitygmaGameInterface extends Component {
                         if (this.state.enigmas[testKey]) {
                             this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                         } else {
-                            this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename});
+                            this.setState({videoUrl: this.state.adventure.videoFinalSequenceFilename/*videoLastEnigmaFilename*/});
                         }
 
                         this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlayerKey: this.state.userAdvance + 0.3, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
