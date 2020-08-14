@@ -308,13 +308,15 @@ export default class CitygmaGameInterface extends Component {
                         if (this.state.enigmas[enigmaKey]) {
                             this.setState({userAdvance: this.state.userAdvance + 0.1, videoPlayerKey: this.state.userAdvance + 0.1, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
                         } else {
-                            this.setState({userAdvance: this.state.userAdvance + 0.2,/* videoPlayerKey: this.state.userAdvance + 0.1,*/ videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+                            this.setState({userAdvance: this.state.userAdvance + 0.2, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlayerKey: this.state.userAdvance + 0.1, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
                         }
 
 
                         this.storeUserAdvance(this.state.userAdvance + 0.1);
-                    } /*else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.2)
-                        this.setState({videoPlaying: false, displayVideo: false, showEnigma: true, showEnterGameScreen: false});
+                    } /*else if (Math.round((this.state.userAdvance % 0.5)*100)/100 ===0.2) {
+                        this.setState({userAdvance: this.state.userAdvance + 0.1, videoPlaying: false, displayVideo: false, showEnigma: true, showEnterGameScreen: false});
+
+                        this.storeUserAdvance(this.state.userAdvance + 0.1);
                     }*/
                 }
             }
