@@ -263,7 +263,7 @@ export default class CitygmaGameInterface extends Component {
         } else {
             // Enigmes finies >> Derniere phase GPS
             if (this.state.userAdvance === this.state.enigmas.length + 1) {
-                this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlaying: false, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                this.setState({videoPlayerKey: this.state.userAdvance + 0.1, videoUrl: this.state.adventure.videoFinalSequenceFilename, userAdvance: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
 
                 this.storeUserAdvance(this.state.userAdvance + 0.5);
                 // Compass Bearing
@@ -290,12 +290,12 @@ export default class CitygmaGameInterface extends Component {
                         //alert(Math.round(this.state.userAdvance) - 1);
                         let testKey = Math.round(this.state.userAdvance - 2);
                         if (this.state.enigmas[testKey]) {
-                            this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
+                            this.setState({videoPlayerKey: this.state.userAdvance + 0.3, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                         } else {
-                            this.setState({videoUrl: this.state.adventure.videoFinalSequenceFilename/*videoLastEnigmaFilename*/});
+
                         }
 
-                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlayerKey: this.state.userAdvance + 0.3, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
                         // Compass Bearing
                         this.activateCompass();
                         this.storeUserAdvance(this.state.userAdvance + 0.2);
