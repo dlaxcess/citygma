@@ -287,7 +287,7 @@ export default class CitygmaGameInterface extends Component {
                     //this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                     // Activation GPS boucle
                     if(this.state.userAdvance % 0.5 === 0) {
-                        console.log(Math.round(this.state.userAdvance) - 1);
+                        alert(Math.round(this.state.userAdvance) - 1);
                         if (this.state.enigmas[Math.round(this.state.userAdvance) - 1]) {
                             this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                         } else {
