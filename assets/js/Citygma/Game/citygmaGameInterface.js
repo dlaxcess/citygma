@@ -266,7 +266,7 @@ export default class CitygmaGameInterface extends Component {
                     // Compass Bearing
                     this.activateCompass();
                 // Envoi video intro boucle
-                } else if (this.state.userAdvance % 0.5 === 0) {
+                } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0) {
                     alert(this.state.userAdvance);
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
 
@@ -375,7 +375,7 @@ export default class CitygmaGameInterface extends Component {
         // Retour enigme boucle avec autres enigmes en suuite (envoi boucle suivante)
         if (this.state.enigmas[enigmaKey]) {
             this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
-            alert(this.state.userAdvance);
+            alert(Math.round(((Math.round(this.state.userAdvance) + 0.5) % 0.5)*100)/100);
             this.setState({videoPlayerKey: this.state.userAdvance, showEnigma: false, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance) + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(Math.round(this.state.userAdvance) + 0.5);
@@ -383,7 +383,7 @@ export default class CitygmaGameInterface extends Component {
         // Retour enigme DERNIERE BOUCLE & enigme finale
         } else {
             if (this.isFloat(this.state.userAdvance)) {
-                alert(Math.round((this.state.userAdvance % 0.5)*100)/100);
+
                 // Retour enigme Dernière boucle ( envoi video indice enigme finale )
                 if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
                     this.setState({currentEnigmaActiveCompass: true, showEnigma: false, /*videoPlayerKey: this.state.userAdvance, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false});
