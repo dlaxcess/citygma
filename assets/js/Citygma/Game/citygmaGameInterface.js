@@ -376,10 +376,11 @@ export default class CitygmaGameInterface extends Component {
         // Retour enigme boucle avec autres enigmes en suuite (envoi boucle suivante)
         if (this.state.enigmas[enigmaKey]) {
             this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
-            alert(Math.round(this.state.userAdvance) + 0.5);
+            let newUserAdvance = Math.round(this.state.userAdvance) + 0.5;
+            alert(newUserAdvance);
             this.setState({videoPlayerKey: this.state.userAdvance, showEnigma: false, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance) + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
-            this.storeUserAdvance(Math.round(this.state.userAdvance) + 0.5);
+            this.storeUserAdvance(newUserAdvance);
 
         // Retour enigme DERNIERE BOUCLE & enigme finale
         } else {
