@@ -358,7 +358,7 @@ export default class CitygmaGameInterface extends Component {
 
         // Retour GPS atteinds Boucle
         } else {
-            alert(this.state.userAdvance);
+
             const enigmaKey = Math.round(this.state.userAdvance) - 2;
             this.setState({videoPlayerKey: this.state.userAdvance, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
@@ -374,7 +374,7 @@ export default class CitygmaGameInterface extends Component {
         // Retour enigme boucle avec autres enigmes en suuite (envoi boucle suivante)
         if (this.state.enigmas[enigmaKey]) {
             this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
-
+            alert(this.state.userAdvance);
             this.setState({videoPlayerKey: this.state.userAdvance, showEnigma: false, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance) + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(Math.round(this.state.userAdvance) + 0.5);
