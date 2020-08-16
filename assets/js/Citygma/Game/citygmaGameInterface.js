@@ -225,9 +225,9 @@ export default class CitygmaGameInterface extends Component {
             this.activateCompass();
         }else if (this.state.userAdvance > this.state.enigmas.length + 1 && this.isFloat(this.state.userAdvance)) {
             if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.2) {
-                this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoPlaying: true, displayVideo: false, videoUrl: this.state.adventure.videoFinalSequenceFilename, geolocateShow: false, showCompass: false, showEnigma: true, showEnterGameScreen: false});
+                this.setState({videoPlayerKey: this.state.userAdvance, videoPlaying: true, displayVideo: false, videoUrl: this.state.adventure.videoFinalSequenceFilename, geolocateShow: false, showCompass: false, showEnigma: true, showEnterGameScreen: false});
             } else if (this.state.userAdvance % 0.5 === 0) {
-                this.setState({videoPlayerKey: this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
+                this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
 
                 // Compass Bearing
                 this.activateCompass();
