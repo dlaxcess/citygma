@@ -211,6 +211,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
+        alert(this.state.userAdvance);
         /*document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro de l'aventure video playing
