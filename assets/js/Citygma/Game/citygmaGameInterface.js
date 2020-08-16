@@ -233,24 +233,43 @@ export default class CitygmaGameInterface extends Component {
                 this.activateCompass();
             }
         }else if (this.state.userAdvance === this.state.enigmas.length + 2) {
-            alert(this.state.userAdvance);
+
             this.setState({videoPlayerKey: this.state.userAdvance - 0.3, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
 
         }else {
-            if (this.isInt(this.state.userAdvance)) {
+            if (this.isInt(this.state.userAdvance) && this.state.userAdvance === 1) {
                 const enigmaKey = this.state.userAdvance - 1;
                 this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
-                this.setState({videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false, geolocateShow: false, showCompass: false, showEnigma: false});
+                this.setState({videoPlayerKey: this.state.userAdvance, videoPlaying: true, displayVideo: true, videoUrl: adventure.videoAdventureIntroFilename, showEnterGameScreen: false, geolocateShow: false, showCompass: false, showEnigma: false});
 
             } else if (this.isFloat(this.state.userAdvance)) {
-                const enigmaKey = Math.round(this.state.userAdvance) - 2;
-                console.log('test', this.state.userAdvance % 0.5);
-                if(this.state.userAdvance % 0.5 === 0) {
-                    console.log('test', this.state.userAdvance % 0.);
-                    this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, showEnigma: false, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
-                } else if (this.state.userAdvance % 0.5 !== 0) {
-                    console.log('test', this.state.userAdvance % 0.5);
-                    this.setState({showEnigma: true, showEnterGameScreen: false});
+                // Envoi enigme
+                if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
+                    const enigmaKey = Math.round(this.state.userAdvance) - 1;
+
+                    if (this.state.enigmas[enigmaKey]) {
+                        this.setState({videoPlayerKey: this.state.userAdvance, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+                    } else {
+                        this.setState({videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlayerKey: this.state.userAdvance + 0.1, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+                    }
+                // Envoi video info historique
+                } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.3) {
+                    const enigmaKey = Math.round(this.state.userAdvance) - 2;
+
+                    this.setState({videoPlayerKey: this.state.userAdvance, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, /*currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance,*/ showEnterGameScreen: false});
+                // Envoie GPS
+                } if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.2) {
+                    const enigmaKey = Math.round(this.state.userAdvance) - 2;
+
+                    this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false});
+                    // Compass Bearing
+                    this.activateCompass();
+                // Envoi video intro boucle
+                } else if (this.state.userAdvance % 0.5 === 0) {
+                    const enigmaKey = Math.round(this.state.userAdvance) - 2;
+
+                    this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, showEnigma: false, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance});
+
                 }
             }
         }
@@ -295,7 +314,7 @@ export default class CitygmaGameInterface extends Component {
                         //alert(Math.round(this.state.userAdvance) - 1);
                         let testKey = Math.round(this.state.userAdvance - 2);
                         if (this.state.enigmas[testKey]) {
-                            this.setState({videoPlayerKey: this.state.userAdvance + 0.3, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
+                            this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                         } else {
 
                         }
@@ -340,7 +359,7 @@ export default class CitygmaGameInterface extends Component {
         } else {
             console.log('VIDEO 3?');
             const enigmaKey = Math.round(this.state.userAdvance) - 2;
-            this.setState({/*videoPlayerKey: this.state.userAdvance + 0.1, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
+            this.setState({videoPlayerKey: this.state.userAdvance, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(this.state.userAdvance + 0.1);
         }
