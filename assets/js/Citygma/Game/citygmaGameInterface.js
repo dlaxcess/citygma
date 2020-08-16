@@ -358,7 +358,7 @@ export default class CitygmaGameInterface extends Component {
 
         // Retour GPS atteinds Boucle
         } else {
-            console.log('VIDEO 3?');
+            alert(this.state.userAdvance);
             const enigmaKey = Math.round(this.state.userAdvance) - 2;
             this.setState({videoPlayerKey: this.state.userAdvance, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
