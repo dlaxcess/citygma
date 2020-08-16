@@ -261,7 +261,7 @@ export default class CitygmaGameInterface extends Component {
                 } if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.2) {
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
 
-                    this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false});
+                    this.setState({videoPlayerKey: this.state.userAdvance, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false});
                     // Compass Bearing
                     this.activateCompass();
                 // Envoi video intro boucle
