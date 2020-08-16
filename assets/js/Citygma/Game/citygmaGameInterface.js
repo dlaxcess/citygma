@@ -266,6 +266,7 @@ export default class CitygmaGameInterface extends Component {
                     this.activateCompass();
                 // Envoi video intro boucle
                 } else if (this.state.userAdvance % 0.5 === 0) {
+                    alert(this.state.userAdvance);
                     const enigmaKey = Math.round(this.state.userAdvance) - 2;
 
                     this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, showEnigma: false, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance});
