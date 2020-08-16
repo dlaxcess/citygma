@@ -254,13 +254,13 @@ export default class CitygmaGameInterface extends Component {
     handleBackToGameInterface() {
 
         // Intro
-        if (!this.state.userAdvance) {
+        /*if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
             this.setState({userAdvance: 1, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false});
 
             this.storeUserAdvance(1);
 
-        } else {
+        } else {*/
             // Enigmes finies >> Derniere phase GPS
             if (this.state.userAdvance === this.state.enigmas.length + 1) {
                 this.setState({videoPlayerKey: this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename, userAdvance: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
@@ -320,7 +320,7 @@ export default class CitygmaGameInterface extends Component {
                     }*/
                 }
             }
-        }
+        /*}*/
     }
 
     handleNearLocationDistance() {
