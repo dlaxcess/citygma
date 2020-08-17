@@ -215,7 +215,7 @@ export default class CitygmaGameInterface extends Component {
         /*document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro de l'aventure video playing
-        if (!this.state.userAdvance) {
+        if (!this.state.userAdvance || this.state.userAdvance === 1) {
             this.setState({userAdvance: 1, videoPlayerKey: 1, videoPlaying: true, displayVideo: true, showEnterGameScreen: false});
 
             this.storeUserAdvance(1);
@@ -238,12 +238,12 @@ export default class CitygmaGameInterface extends Component {
             this.setState({videoPlayerKey: this.state.userAdvance - 0.3, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
 
         }else {
-            if (this.state.userAdvance === 1) {
+            /*if (this.state.userAdvance === 1) {
                 const enigmaKey = this.state.userAdvance - 1;
                 this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
                 this.setState({videoPlayerKey: 1, videoPlaying: true, displayVideo: true, videoUrl: adventure.videoAdventureIntroFilename, showEnterGameScreen: false, geolocateShow: false, showCompass: false, showEnigma: false});
 
-            } else if (this.isFloat(this.state.userAdvance)) {
+            } else */if (this.isFloat(this.state.userAdvance)) {
 
                 // Envoi enigme
                 if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
