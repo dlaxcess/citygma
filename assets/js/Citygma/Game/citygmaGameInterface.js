@@ -5,7 +5,7 @@ import { userService } from "../../auth/services/userService";
 
 import GameControlsComponent from "./GameBottomControl/GameControlsComponent";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
-import { GeolocateComponent } from "./geoloc/GeolocateComponent";
+import GeolocateComponent from "./geoloc/GeolocateComponent";
 //import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
 import logo from "../../../images/logo-citygma.png";
