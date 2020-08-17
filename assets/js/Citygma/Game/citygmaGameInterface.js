@@ -238,10 +238,10 @@ export default class CitygmaGameInterface extends Component {
             this.setState({videoPlayerKey: this.state.userAdvance - 0.3, videoUrl: this.state.adventure.videoFinalSequenceFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
 
         }else {
-            if (this.isInt(this.state.userAdvance) && this.state.userAdvance === 1) {
+            if (this.state.userAdvance === 1) {
                 const enigmaKey = this.state.userAdvance - 1;
                 this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
-                this.setState({videoPlayerKey: this.state.userAdvance, videoPlaying: true, displayVideo: true, videoUrl: adventure.videoAdventureIntroFilename, showEnterGameScreen: false, geolocateShow: false, showCompass: false, showEnigma: false});
+                this.setState({videoPlayerKey: 1, videoPlaying: true, displayVideo: true, videoUrl: adventure.videoAdventureIntroFilename, showEnterGameScreen: false, geolocateShow: false, showCompass: false, showEnigma: false});
 
             } else if (this.isFloat(this.state.userAdvance)) {
 
