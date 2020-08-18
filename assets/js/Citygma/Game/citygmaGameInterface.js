@@ -117,6 +117,10 @@ export default class CitygmaGameInterface extends Component {
         }
     }
 
+    enableNosleep() {
+
+    }
+
     componentWillUnmount() {
         this.props.toggleHeader(true);
 
@@ -130,7 +134,7 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        var noSleep = new NoSleep();
+        /*var noSleep = new NoSleep();
         var enterGameButton = document.querySelector("#enterGameButton");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
@@ -139,7 +143,7 @@ export default class CitygmaGameInterface extends Component {
 
         }, false);
 
-        this.setState({noSleep: noSleep});
+        this.setState({noSleep: noSleep});*/
 
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
@@ -228,7 +232,9 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        alert(this.state.userAdvance);
+        var noSleep = new NoSleep();
+        noSleep.enable();
+        this.setState({noSleep: noSleep});
         /*document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro de l'aventure video playing
