@@ -41,8 +41,8 @@ export default class CitygmaApp extends Component {
         let noSleep = new NoSleep();
         //let enterGameButton = document.querySelector("#profilAdventures");
 
-        document.addEventListener('click', function enableNoSleep() {
-            document.removeEventListener('click', enableNoSleep, false);
+        window.addEventListener('click', function enableNoSleep() {
+            window.removeEventListener('click', enableNoSleep, false);
             noSleep.enable();
 
         }, false);
