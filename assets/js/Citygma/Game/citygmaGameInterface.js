@@ -56,7 +56,7 @@ export default class CitygmaGameInterface extends Component {
 
             watchPositionId: null,
 
-            noSleep: new NoSleep(),
+            noSleep: null,
         };
 
 
@@ -130,14 +130,17 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        //var noSleep = new NoSleep();
-        //this.setState({noSleep: noSleep});
-        var enterGameButton = document.querySelector("#enterGameButton");
+        let noSleep = new NoSleep();
+        let enterGameButton = document.querySelector("#enterGameButton");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
             document.removeEventListener('click', enableNoSleep, false);
-            this.state.noSleep.enable();
+            noSleep.enable();
+
         }, false);
+
+        this.setState({noSleep: noSleep});
+
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
 
