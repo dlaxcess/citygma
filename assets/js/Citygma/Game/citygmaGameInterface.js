@@ -55,6 +55,8 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
 
             watchPositionId: null,
+
+            noSleep: null,
         };
 
 
@@ -120,7 +122,7 @@ export default class CitygmaGameInterface extends Component {
 
         this.smolScreen();
 
-        noSleep.disable();
+        this.state.noSleep.disable();
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
@@ -129,6 +131,7 @@ export default class CitygmaGameInterface extends Component {
 
     componentDidMount() {
         var noSleep = new NoSleep();
+        this.setState({noSleep: noSleep});
         var enterGameButton = document.querySelector("#enterGameButton");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
