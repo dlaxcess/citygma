@@ -130,8 +130,8 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        let noSleep = new NoSleep();
-        let enterGameButton = document.querySelector("#enterGameButton");
+        var noSleep = new NoSleep();
+        var enterGameButton = document.querySelector("#enterGameButton");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
             document.removeEventListener('click', enableNoSleep, false);
