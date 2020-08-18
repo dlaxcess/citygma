@@ -33,6 +33,15 @@ export default class CitygmaProfil extends Component {
 
     componentDidMount() {
         userService.getCurrentUser().then(user => this.setState({ user }));
+
+        let noSleep = new NoSleep();
+        let enterGameButton = document.querySelector("#profilAdventures");
+
+        enterGameButton.addEventListener('click', function enableNoSleep() {
+            document.removeEventListener('click', enableNoSleep, false);
+            noSleep.enable();
+
+        }, false);
     }
 
     handleUserDataChange(username, email, password, setStatus, setSubmitting) {
