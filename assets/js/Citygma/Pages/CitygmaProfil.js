@@ -36,14 +36,14 @@ export default class CitygmaProfil extends Component {
     componentDidMount() {
         userService.getCurrentUser().then(user => this.setState({ user }));
 
-        let noSleep = new NoSleep();
+        /*let noSleep = new NoSleep();
         let enterGameButton = document.querySelector("#profilAdventures");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
             document.removeEventListener('click', enableNoSleep, false);
             noSleep.enable();
 
-        }, false);
+        }, false);*/
     }
 
     handleUserDataChange(username, email, password, setStatus, setSubmitting) {
@@ -114,7 +114,7 @@ export default class CitygmaProfil extends Component {
                                 Si vous souhaitez redémarrer l'aventure depuis le début, cliquez sur &quot;Recommencer&quot;</p>
                             </div>
 
-                            <div id="profilAdventures">
+                            <div id="profilAdventures" onClick={(new NoSleep()).enable}>
                                 <AdventureTemplate
                                     cityAdventures={cityAdventures}
                                     resetAdventureUserData={this.resetAdventureUserData} />
