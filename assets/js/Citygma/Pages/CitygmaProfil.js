@@ -9,6 +9,8 @@ import AdventureTemplate from "./ProfilComponents/AdventureTemplate";
 import ProfilForm from "./ProfilComponents/ProfilForm";
 import ProfilPasswordChange from "./ProfilComponents/ProfilPasswordChange";
 
+import NoSleep from 'nosleep.js';
+
 
 export default class CitygmaProfil extends Component {
     constructor(props) {
