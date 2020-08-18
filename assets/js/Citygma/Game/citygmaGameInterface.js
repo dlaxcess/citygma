@@ -55,8 +55,6 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
 
             watchPositionId: null,
-
-            noSleep: new NoSleep(),
         };
 
 
@@ -85,6 +83,7 @@ export default class CitygmaGameInterface extends Component {
 
         this.watchPosbearingListener = this.watchPosbearingListener.bind(this);
         this.testDeviceOrientation = this.testDeviceOrientation.bind(this);
+
 
 
     }
@@ -121,19 +120,20 @@ export default class CitygmaGameInterface extends Component {
 
         this.smolScreen();
 
-        this.state.noSleep.disable();
+        noSleep.disable();
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
-    
+
 
 
     componentDidMount() {
+        var noSleep = new NoSleep();
         var enterGameButton = document.querySelector("#enterGameButton");
 
         enterGameButton.addEventListener('click', function enableNoSleep() {
             document.removeEventListener('click', enableNoSleep, false);
-            this.state.noSleep.enable();
+            noSleep.enable();
         }, false);
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
