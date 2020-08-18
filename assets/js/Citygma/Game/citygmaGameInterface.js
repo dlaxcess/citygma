@@ -86,6 +86,8 @@ export default class CitygmaGameInterface extends Component {
         this.watchPosbearingListener = this.watchPosbearingListener.bind(this);
         this.testDeviceOrientation = this.testDeviceOrientation.bind(this);
 
+        this.enableNoSleep = this.enableNoSleep.bind(this);
+
 
 
     }
@@ -231,15 +233,19 @@ export default class CitygmaGameInterface extends Component {
         return Number(n) === n && n % 1 !== 0;
     }
 
-    handleStartGame() {
-        (new NoSleep()).enable();
-        /*let noSleep = null;
-        if (noSleep) noSleep.disable();
+    enableNoSleep(noSleep) {
+        if (noSleep) noSleep.disable(); // Just to be sure if you forgot to disable.
         noSleep = new NoSleep();
+        nosleep.enable();
 
-        noSleep.enable();
+        this.setState({noSleep: noSleep});
+    }
 
-        this.setState({noSleep: noSleep});*/
+    handleStartGame() {
+        //(new NoSleep()).enable();
+        let noSleep = null;
+        this.enableNoSleep(noSleep);
+
         /*document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro de l'aventure video playing
