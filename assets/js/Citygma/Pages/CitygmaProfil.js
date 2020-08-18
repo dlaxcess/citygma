@@ -114,7 +114,7 @@ export default class CitygmaProfil extends Component {
                                 Si vous souhaitez redémarrer l'aventure depuis le début, cliquez sur &quot;Recommencer&quot;</p>
                             </div>
 
-                            <div id="profilAdventures" onClick={(new NoSleep()).enable()}>
+                            <div id="profilAdventures">
                                 <AdventureTemplate
                                     cityAdventures={cityAdventures}
                                     resetAdventureUserData={this.resetAdventureUserData} />

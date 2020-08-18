@@ -14,6 +14,8 @@ import { PrivateRoute } from "../auth/components/PrivateRoute";
 import { authenticationService } from '../auth/services/authenticationService';
 import { history } from "../auth/helpers/history";
 
+import NoSleep from 'nosleep.js';
+
 export default class CitygmaApp extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +25,8 @@ export default class CitygmaApp extends Component {
             htmlElementClicked : null,
             currentUser: null,
             showHeader: true,
+
+            noSleep: null,
         };
 
         this.logout = this.logout.bind(this);
@@ -34,7 +38,22 @@ export default class CitygmaApp extends Component {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
         this.props.history.location.pathname !== "/Jeu" ? this.setState({showHeader: true}) : this.setState({showHeader: false});
 
+        let noSleep = new NoSleep();
+        //let enterGameButton = document.querySelector("#profilAdventures");
+
+        document.addEventListener('click', function enableNoSleep() {
+            document.removeEventListener('click', enableNoSleep, false);
+            noSleep.enable();
+
+        }, false);
+
+        this.setState({noSleep: noSleep});
+
      }
+
+    componentWillUnmount() {
+        this.state.noSleep.disable();
+    }
 
     logout() {
         authenticationService.logout();
