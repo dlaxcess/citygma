@@ -232,8 +232,12 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        var noSleep = new NoSleep();
+        let noSleep = null;
+        if (noSleep) noSleep.disable();
+        noSleep = new NoSleep();
+
         noSleep.enable();
+        
         this.setState({noSleep: noSleep});
         /*document.removeEventListener('deviceorientation', this.bearingListener, false);
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
