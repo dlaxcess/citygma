@@ -3,6 +3,8 @@ import { history } from "../../auth/helpers/history";
 import { adventureService } from "./services/adventureService";
 import { userService } from "../../auth/services/userService";
 
+import NoSleep from 'nosleep.js';
+
 import GameControlsComponent from "./GameBottomControl/GameControlsComponent";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
@@ -53,7 +55,10 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
 
             watchPositionId: null,
+
+            noSleep: new NoSleep(),
         };
+
 
 
 
@@ -116,14 +121,20 @@ export default class CitygmaGameInterface extends Component {
 
         this.smolScreen();
 
+        this.state.noSleep.disable();
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
-
-
+    
 
 
     componentDidMount() {
+        var enterGameButton = document.querySelector("#enterGameButton");
+
+        enterGameButton.addEventListener('click', function enableNoSleep() {
+            document.removeEventListener('click', enableNoSleep, false);
+            this.state.noSleep.enable();
+        }, false);
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
 
@@ -758,7 +769,7 @@ export default class CitygmaGameInterface extends Component {
                         <p>Si par malheur votre boussole reste bloquée vers le haut de votre écran... alors fiez vous uniquement à la distance...!</p>
                         <p>Si votre boussole indique plusieurs directions aléatoires à la suite, afin qu'elle commence à donner une direction fiable, veuillez marcher pendant au moins 20m avant de vous y fier réellement...</p>
                         <p>Si vous avez besoin d&lsquo;aide, cliquez sur le point d&lsquo;interogation sur l&lsquo;interface de jeu</p>
-                        <button className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de voiloir commencer l'aventure ?</button>
+                        <button id="enterGameButton" className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de voiloir commencer l'aventure ?</button>
 
                     </div>
                     }
