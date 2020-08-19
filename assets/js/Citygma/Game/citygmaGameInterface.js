@@ -237,7 +237,7 @@ export default class CitygmaGameInterface extends Component {
     enableNoSleep() {
         //var noSleep = new NoSleep();
         if (this.state.noSleep) this.state.noSleep.disable(); // Just to be sure if you forgot to disable.
-        let noSleep = new NoSleep()
+        let noSleep = new NoSleep();
 
         noSleep.enable();
 
@@ -247,8 +247,8 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        //this.enableNoSleep();
-        (new NoSleep()).enable();
+        this.enableNoSleep();
+        //(new NoSleep()).enable();
 
         this.setState({videoPlaying: true});
 
