@@ -337,7 +337,7 @@ export default class CitygmaGameInterface extends Component {
         } else {*/
             // Enigmes finies >> Derniere phase GPS
             if (this.state.userAdvance === this.state.enigmas.length + 1) {
-                this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, userAdvance: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, userAdvance: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false});
 
                 this.storeUserAdvance(this.state.userAdvance + 0.5);
                 // Compass Bearing
