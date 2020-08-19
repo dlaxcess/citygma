@@ -22,7 +22,7 @@ export default class VideoPlayerComponent extends Component {
             controls: false,
             light: false,
             volume: 0.8,
-            muted: true,
+            muted: false,
             played: 0,
             loaded: 0,
             duration: 0,
@@ -158,8 +158,7 @@ export default class VideoPlayerComponent extends Component {
 
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
-
-            this.setMuted(false);
+            
             /*if(this.state.player.displaySound) {
                 this.player.play();
             }*/
