@@ -32,7 +32,7 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             destinationPrecision: 2,
-            videoPlaying: true,
+            videoPlaying: false,
             displayVideo: false,
             videoPlayerKey: 1,
             // Game Data

@@ -77,14 +77,17 @@ export default class VideoPlayerComponent extends Component {
                 document.getElementById("videoRePlay").dispatchEvent(evt);
             }
         }, 5000);*/
-        if (!this.props.displayVideo) {
-            //if(this.props.displayVideo !== prevProps.displayVideo) {
-                this.pause();
-            //}
+
+        if (this.props.videoPlaying) {
+            if(this.props.videoPlaying !== prevProps.videoPlaying) {
+                this.play();
+            }
         }
 
-        if (!this.props.videoPlaying) {
+        if (!this.props.displayVideo) {
+            //if(this.props.displayVideo !== prevProps.displayVideo) {
             this.pause();
+            //}
         }
 
         if (this.props.displayVideo) {
