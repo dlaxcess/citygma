@@ -245,7 +245,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        this.enableNoSleep();
+
         //(new NoSleep()).enable();
         /*let noSleep = null;
         this.enableNoSleep(noSleep);*/
@@ -257,6 +257,8 @@ export default class CitygmaGameInterface extends Component {
             this.setState({userAdvance: 1, videoPlayerKey: 1, videoPlaying: true, displayVideo: true, showEnterGameScreen: false});
 
             this.storeUserAdvance(1);
+
+            this.enableNoSleep();
         }else if (this.state.userAdvance === this.state.enigmas.length + 1) {
             this.setState({videoPlayerKey: this.state.userAdvance, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
 
