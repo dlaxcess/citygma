@@ -55,6 +55,8 @@ export default class CitygmaGameInterface extends Component {
             showEnigma: false,
 
             watchPositionId: null,
+
+            noSleep: null,
         };
 
 
