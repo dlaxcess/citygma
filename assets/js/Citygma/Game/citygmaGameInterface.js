@@ -232,7 +232,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     enableNoSleep() {
-        let noSleep = new NoSleep();
+        var noSleep = new NoSleep();
         noSleep.enable();
 
         this.setState({noSleep: noSleep});
