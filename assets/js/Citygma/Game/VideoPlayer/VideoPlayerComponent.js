@@ -90,7 +90,7 @@ export default class VideoPlayerComponent extends Component {
         }
 
         if (this.props.videoPlaying && this.props.displayVideo) {
-            this.setMuted(false);
+            //this.setMuted(false);
             if(this.props.videoPlaying !== prevProps.videoPlaying && this.props.displayVideo !== prevProps.displayVideo) {
                 this.play();
             }
@@ -159,6 +159,7 @@ export default class VideoPlayerComponent extends Component {
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
 
+            this.setMuted(false);
             /*if(this.state.player.displaySound) {
                 this.player.play();
             }*/
