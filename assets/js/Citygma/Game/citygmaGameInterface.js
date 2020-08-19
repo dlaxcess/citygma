@@ -318,7 +318,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleBackToGameInterface() {
-
+        this.setState({videoPlaying: true});
         // Intro
         /*if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
@@ -329,7 +329,7 @@ export default class CitygmaGameInterface extends Component {
         } else {*/
             // Enigmes finies >> Derniere phase GPS
             if (this.state.userAdvance === this.state.enigmas.length + 1) {
-                this.setState({videoPlayerKey: this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename, userAdvance: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                this.setState({videoPlayerKey: this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename, userAdvance: this.state.userAdvance + 0.5,/* videoPlaying: true,*/ displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
 
                 this.storeUserAdvance(this.state.userAdvance + 0.5);
                 // Compass Bearing
@@ -829,7 +829,7 @@ export default class CitygmaGameInterface extends Component {
                             />*/
                     }
 
-                    { this.state.adventure &&
+                    { this.state.videoPlaying && this.state.adventure &&
                         <Fragment>
                             <VideoPlayerComponent
                                 key={this.state.adventure.videoAdventureIntroFilename}
@@ -858,7 +858,7 @@ export default class CitygmaGameInterface extends Component {
                         </Fragment>
                     }
 
-                    { this.state.enigmas && this.state.enigmas.map((enigma) => (
+                    { this.state.videoPlaying && this.state.enigmas && this.state.enigmas.map((enigma) => (
                         <Fragment>
                             <VideoPlayerComponent
                                 key={enigma.enigmaVideoIntroClue}

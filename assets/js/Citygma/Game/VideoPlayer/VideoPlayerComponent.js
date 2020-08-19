@@ -78,21 +78,20 @@ export default class VideoPlayerComponent extends Component {
             }
         }, 5000);*/
 
-        if (this.props.videoPlaying) {
+        /*if (this.props.videoPlaying) {
             if(this.props.videoPlaying !== prevProps.videoPlaying) {
-                this.play();
 
                 if (!this.props.displayVideo) {
                     this.pause();
                 }
             }
-        }
-
-        /*if (!this.props.displayVideo) {
-            //if(this.props.displayVideo !== prevProps.displayVideo) {
-            this.pause();
-            //}
         }*/
+
+        if (!this.props.displayVideo) {
+            if(this.props.displayVideo === prevProps.displayVideo) {
+            this.pause();
+            }
+        }
 
         if (this.props.displayVideo) {
             if(this.props.displayVideo !== prevProps.displayVideo) {
@@ -130,16 +129,11 @@ export default class VideoPlayerComponent extends Component {
 
         console.log('playingchange: ' + this.props.videoPlaying + 'soundChange: ' + this.props.displayVideo);
 
-        if (this.state.player.videoPlaying && this.state.player.displaySound) {
+        /*if (this.state.player.videoPlaying && this.state.player.displaySound) {
             //var timeOutID = window.setTimeout( this.play, 2000);
             this.play();
 
-            /*var timeOutID = window.setTimeout( function () {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initMouseEvent("click", true, true, window,0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    document.getElementById("videoRePlay").dispatchEvent(evt);
-            }, 1000);*/
-        }
+        }*/
 
         /*if (!this.state.player.videoPlaying && !this.state.player.displaySound) {
             this.pause();
@@ -299,7 +293,7 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         /*muted = {this.state.muted}*/
-                        /*autoPlay*/
+                        autoPlay
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
