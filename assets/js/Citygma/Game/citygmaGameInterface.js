@@ -32,7 +32,7 @@ export default class CitygmaGameInterface extends Component {
                 zoom: 16
             },
             destinationPrecision: 2,
-            videoPlaying: false,
+            videoPlaying: true,
             displayVideo: false,
             videoPlayerKey: 1,
             // Game Data
@@ -254,11 +254,10 @@ export default class CitygmaGameInterface extends Component {
         navigator.geolocation.clearWatch(this.state.watchPositionId);*/
         // Intro de l'aventure video playing
         if (!this.state.userAdvance || this.state.userAdvance === 1) {
-            this.setState({userAdvance: 1, videoPlayerKey: 1, videoPlaying: true, displayVideo: true, showEnterGameScreen: false});
+            this.setState({userAdvance: 1, videoPlayerKey: this.state.adventure.videoAdventureIntroFilename, videoUrl: this.state.adventure.videoAdventureIntroFilename, videoPlaying: true, displayVideo: true, showEnterGameScreen: false});
 
             this.storeUserAdvance(1);
 
-            this.enableNoSleep();
         }else if (this.state.userAdvance === this.state.enigmas.length + 1) {
             this.setState({videoPlayerKey: this.state.userAdvance, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
 
@@ -343,7 +342,7 @@ export default class CitygmaGameInterface extends Component {
                 // Lecture video intro de boucle
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
-                    this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.userAdvance + 0.5, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false});
+                    this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoIntroClue/*this.state.userAdvance + 0.5*/, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false});
 
                     this.storeUserAdvance(this.state.userAdvance + 0.5);
 
@@ -357,7 +356,7 @@ export default class CitygmaGameInterface extends Component {
                         //alert(Math.round(this.state.userAdvance) - 1);
                         let testKey = Math.round(this.state.userAdvance - 2);
                         if (this.state.enigmas[testKey]) {
-                            this.setState({videoPlayerKey: this.state.userAdvance + 0.2, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
+                            this.setState({videoPlayerKey: 0/*, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo*/});
                         } else {
 
                         }
@@ -402,7 +401,7 @@ export default class CitygmaGameInterface extends Component {
         } else {
 
             const enigmaKey = Math.round(this.state.userAdvance) - 2;
-            this.setState({videoPlayerKey: this.state.userAdvance, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, */videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
+            this.setState({videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: this.state.userAdvance + 0.1, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false});
 
             this.storeUserAdvance(this.state.userAdvance + 0.1);
         }
@@ -818,7 +817,7 @@ export default class CitygmaGameInterface extends Component {
                         <button className="marronButton" onClick={() => {this.setState({videoPlaying: true, geolocateShow: false})}}>Revoir</button>*/
                     }
 
-                    { this.state.videoUrl &&
+                    { /*this.state.videoUrl &&
                             <VideoPlayerComponent
                                 key={this.state.videoPlayerKey}
                                 videoUrl={this.state.videoUrl}
@@ -826,8 +825,58 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
-                            />
+                            />*/
                     }
+
+                    { this.state.adventure &&
+                        <Fragment>
+                            <VideoPlayerComponent
+                                key={this.state.adventure.videoAdventureIntroFilename}
+                                videoUrl={this.state.adventure.videoAdventureIntroFilename}
+                                displayVideo={this.state.adventure.videoAdventureIntroFilename === this.state.videoPlayerKey}
+                                videoPlaying={videoPlaying}
+                                handleBackToGameInterface={this.handleBackToGameInterface}
+                                onVideoEnded={this.onVideoEnded}
+                            />
+                            <VideoPlayerComponent
+                                key={this.state.adventure.videoLastEnigmaFilename}
+                                videoUrl={this.state.adventure.videoLastEnigmaFilename}
+                                displayVideo={this.state.adventure.videoLastEnigmaFilename === this.state.videoPlayerKey}
+                                videoPlaying={videoPlaying}
+                                handleBackToGameInterface={this.handleBackToGameInterface}
+                                onVideoEnded={this.onVideoEnded}
+                            />
+                            <VideoPlayerComponent
+                                key={this.state.adventure.videoFinalSequenceFilename}
+                                videoUrl={this.state.adventure.videoFinalSequenceFilename}
+                                displayVideo={this.state.adventure.videoFinalSequenceFilename === this.state.videoPlayerKey}
+                                videoPlaying={videoPlaying}
+                                handleBackToGameInterface={this.handleBackToGameInterface}
+                                onVideoEnded={this.onVideoEnded}
+                            />
+                        </Fragment>
+                    }
+
+                    { this.state.enigmas && this.state.enigmas.map((enigma) => (
+                        <Fragment>
+                            <VideoPlayerComponent
+                                key={enigma.enigmaVideoIntroClue}
+                                videoUrl={enigma.enigmaVideoIntroClue}
+                                displayVideo={enigma.enigmaVideoIntroClue === this.state.videoPlayerKey}
+                                videoPlaying={videoPlaying}
+                                handleBackToGameInterface={this.handleBackToGameInterface}
+                                onVideoEnded={this.onVideoEnded}
+                            />
+                            <VideoPlayerComponent
+                                key={enigma.enigmaVideoHistoryInfo}
+                                videoUrl={enigma.enigmaVideoHistoryInfo}
+                                displayVideo={enigma.enigmaVideoHistoryInfo === this.state.videoPlayerKey}
+                                videoPlaying={videoPlaying}
+                                handleBackToGameInterface={this.handleBackToGameInterface}
+                                onVideoEnded={this.onVideoEnded}
+                            />
+                        </Fragment>
+                    ))}
 
                     { /*!this.state.videoPlaying && */this.state.geolocateShow &&
                         <GeolocateComponent
