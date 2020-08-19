@@ -83,6 +83,10 @@ export default class VideoPlayerComponent extends Component {
             //}
         }
 
+        if (!this.props.videoPlaying) {
+            this.pause();
+        }
+
         if (this.props.displayVideo) {
             if(this.props.displayVideo !== prevProps.displayVideo) {
             this.play();
