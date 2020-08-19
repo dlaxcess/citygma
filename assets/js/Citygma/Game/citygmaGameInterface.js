@@ -236,12 +236,13 @@ export default class CitygmaGameInterface extends Component {
 
     enableNoSleep() {
         //var noSleep = new NoSleep();
-        if (this.state.noSleep) this.state.noSleep.disable(); // Just to be sure if you forgot to disable.
-        let noSleep = new NoSleep();
+        if (this.noSleep) this.noSleep.disable(); // Just to be sure if you forgot to disable.
+        //let noSleep = new NoSleep();
 
-        noSleep.enable();
 
-        this.setState({noSleep: noSleep});
+        this.noSleep.enable();
+
+        //this.setState({noSleep: noSleep});
 
         //this.setState({noSleep: noSleep});
     }
@@ -250,10 +251,10 @@ export default class CitygmaGameInterface extends Component {
         /*var noSleep = new NoSleep();
         noSleep.enable();
         this.setState({noSleep: noSleep});*/
-        //this.enableNoSleep();
+        this.enableNoSleep();
         //(new NoSleep()).enable();
-        this.noSleep.enable();
-        this.setState({noSleep: this.noSleep});
+        //this.noSleep.enable();
+        //this.setState({noSleep: this.noSleep});
 
         this.setState({videoPlaying: true});
 
