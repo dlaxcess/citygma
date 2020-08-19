@@ -136,6 +136,7 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
+        this.setState({noSleep: new NoSleep()});
         /*var noSleep = new NoSleep();
         var enterGameButton = document.querySelector("#enterGameButton");
 
@@ -234,10 +235,10 @@ export default class CitygmaGameInterface extends Component {
     }
 
     enableNoSleep() {
-        var noSleep = new NoSleep();
-        noSleep.enable();
+        //var noSleep = new NoSleep();
+        this.state.noSleep.enable();
 
-        this.setState({noSleep: noSleep});
+        //this.setState({noSleep: noSleep});
     }
 
     handleStartGame() {
