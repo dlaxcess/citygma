@@ -158,7 +158,7 @@ export default class VideoPlayerComponent extends Component {
 
         if (this.state.player.hasStarted) {
             this.setState({playing: true});
-            
+
             /*if(this.state.player.displaySound) {
                 this.player.play();
             }*/
@@ -286,7 +286,7 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
-                        muted = {this.state.muted}
+                        /*muted = {this.state.muted}*/
                         autoPlay
                         webkit-playsinline
                         playsInline
