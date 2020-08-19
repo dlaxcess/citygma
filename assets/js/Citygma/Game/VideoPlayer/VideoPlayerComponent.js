@@ -247,8 +247,8 @@ export default class VideoPlayerComponent extends Component {
     }
 
     handleEnded() {
-        this.props.onVideoEnded();
         this.setState({showEndedButton: true, playing: false});
+        this.props.onVideoEnded();
     }
 
     ref(player) {
