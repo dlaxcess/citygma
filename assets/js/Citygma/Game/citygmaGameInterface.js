@@ -361,7 +361,7 @@ export default class CitygmaGameInterface extends Component {
 
                         }
 
-                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlaying: false, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
                         // Compass Bearing
                         //this.activateCompass();
                         this.storeUserAdvance(this.state.userAdvance + 0.2);
