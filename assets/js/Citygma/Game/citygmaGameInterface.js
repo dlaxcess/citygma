@@ -128,6 +128,8 @@ export default class CitygmaGameInterface extends Component {
 
         this.smolScreen();
 
+        if (this.noSleep) this.noSleep.disable();
+
         //this.state.noSleep.disable();
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
