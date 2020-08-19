@@ -362,14 +362,14 @@ export default class CitygmaGameInterface extends Component {
                     // Activation GPS boucle
                     if(this.state.userAdvance % 0.5 === 0) {
                         //alert(Math.round(this.state.userAdvance) - 1);
-                        let testKey = Math.round(this.state.userAdvance - 2);
-                        if (this.state.enigmas[testKey]) {
+                        let enigmaKey = Math.round(this.state.userAdvance - 2);
+                        if (this.state.enigmas[enigmaKey]) {
                             this.setState({videoPlayerKey: 0/*, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo*/});
                         } else {
 
                         }
 
-                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlaying: true, displayVideo: false, geolocateShow: true, showCompass: true, showEnterGameScreen: false});
+                        this.setState({userAdvance: this.state.userAdvance + 0.2, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false});
                         // Compass Bearing
                         //this.activateCompass();
                         this.storeUserAdvance(this.state.userAdvance + 0.2);
