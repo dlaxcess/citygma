@@ -86,8 +86,6 @@ export default class CitygmaGameInterface extends Component {
 
         this.enableNoSleep = this.enableNoSleep.bind(this);
 
-        this.noSleep = new NoSleep();
-
 
 
     }
@@ -233,16 +231,15 @@ export default class CitygmaGameInterface extends Component {
         return Number(n) === n && n % 1 !== 0;
     }
 
-    enableNoSleep(noSleep) {
-        if (noSleep) noSleep.disable(); // Just to be sure if you forgot to disable.
-        noSleep = new NoSleep();
+    enableNoSleep() {
+        let noSleep = new NoSleep();
         noSleep.enable();
 
         this.setState({noSleep: noSleep});
     }
 
     handleStartGame() {
-        this.noSleep.enable();
+        this.enableNoSleep();
         //(new NoSleep()).enable();
         /*let noSleep = null;
         this.enableNoSleep(noSleep);*/
