@@ -247,10 +247,11 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
-        this.enableNoSleep();
+        //this.enableNoSleep();
+        (new NoSleep()).enable();
 
         this.setState({videoPlaying: true});
-        //(new NoSleep()).enable();
+
 
 
 
