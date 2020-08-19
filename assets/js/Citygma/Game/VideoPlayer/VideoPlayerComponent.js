@@ -287,7 +287,7 @@ export default class VideoPlayerComponent extends Component {
                         ref={player => {
                             this.player = player;
                         }}
-                        muted
+                        muted = {this.state.muted}
                         autoPlay
                         webkit-playsinline
                         playsInline
