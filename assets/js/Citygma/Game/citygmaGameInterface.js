@@ -86,6 +86,8 @@ export default class CitygmaGameInterface extends Component {
 
         this.enableNoSleep = this.enableNoSleep.bind(this);
 
+        this.noSleep = new NoSleep();
+
 
 
     }
@@ -240,6 +242,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
+        this.noSleep.enable();
         //(new NoSleep()).enable();
         /*let noSleep = null;
         this.enableNoSleep(noSleep);*/

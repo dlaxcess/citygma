@@ -25,8 +25,6 @@ export default class CitygmaApp extends Component {
             htmlElementClicked : null,
             currentUser: null,
             showHeader: true,
-
-            noSleep: null,
         };
 
         this.logout = this.logout.bind(this);
@@ -37,17 +35,6 @@ export default class CitygmaApp extends Component {
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
         this.props.history.location.pathname !== "/Jeu" ? this.setState({showHeader: true}) : this.setState({showHeader: false});
-
-        let noSleep = new NoSleep();
-        //let enterGameButton = document.querySelector("#profilAdventures");
-
-        window.addEventListener('click', function enableNoSleep() {
-            window.removeEventListener('click', enableNoSleep, false);
-            noSleep.enable();
-
-        }, false);
-
-        this.setState({noSleep: noSleep});
 
      }
 
