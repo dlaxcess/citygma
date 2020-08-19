@@ -81,18 +81,23 @@ export default class VideoPlayerComponent extends Component {
         if (this.props.videoPlaying) {
             if(this.props.videoPlaying !== prevProps.videoPlaying) {
                 this.play();
+
+                if (!this.props.displayVideo) {
+                    this.pause();
+                }
             }
         }
 
-        if (!this.props.displayVideo) {
+        /*if (!this.props.displayVideo) {
             //if(this.props.displayVideo !== prevProps.displayVideo) {
             this.pause();
             //}
-        }
+        }*/
 
         if (this.props.displayVideo) {
             if(this.props.displayVideo !== prevProps.displayVideo) {
-            this.play();
+                this.play();
+
             }
         }
 
@@ -294,7 +299,7 @@ export default class VideoPlayerComponent extends Component {
                             this.player = player;
                         }}
                         /*muted = {this.state.muted}*/
-                        autoPlay
+                        /*autoPlay*/
                         webkit-playsinline
                         playsInline
                         ended={this.handleEnded}
