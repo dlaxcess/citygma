@@ -272,6 +272,8 @@ export default class CitygmaGameInterface extends Component {
             this.storeUserAdvance(1);
 
         }else if (this.state.userAdvance === this.state.enigmas.length + 1) {
+
+            
             this.setState({videoPlayerKey: this.state.adventure.videoLastEnigmaFilename, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
 
             // Compass Bearing
@@ -370,10 +372,39 @@ export default class CitygmaGameInterface extends Component {
             if (this.state.userAdvance - 0.7 > this.state.enigmas.length) {
                 if (this.isFloat(this.state.userAdvance)) {
 
-                    // Retour dernière video hisorique boucles envoi question enigme dernière boucle
+                    // Retour dernière video hisorique boucles envoi question enigme dernière boucle d'enigme
                     if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.3) {
-                        this.setState({userAdvance: this.state.userAdvance + 0.1, /*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.2*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
-                        this.storeUserAdvance(this.state.userAdvance + 0.1);
+
+                        this.setState({/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.2*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false});
+
+
+                        // Cas pas video indice final
+                        if (this.state.adventure.adventureLastVidOff) {
+
+                            // Cas pas GPS Final
+                            if (this.state.adventure.adventureMapOff) {
+
+                                // cas pas question finale non plus
+                                if (this.state.adventure.adventureFinalQuestionOff) {
+                                    this.setState({userAdvance: this.state.userAdvance + 0.7});
+                                    this.storeUserAdvance(this.state.userAdvance + 0.7);
+
+                                // Cas question finale
+                                } else {
+                                    this.setState({userAdvance: this.state.userAdvance + 0.5});
+                                    this.storeUserAdvance(this.state.userAdvance + 0.5);
+                                }
+
+                            } else {
+                                this.setState({userAdvance: Math.round(this.state.userAdvance)});
+                                this.storeUserAdvance(Math.round(this.state.userAdvance));
+                            }
+
+
+                        } else {
+                            this.setState({userAdvance: this.state.userAdvance + 0.1});
+                            this.storeUserAdvance(this.state.userAdvance + 0.1);
+                        }
 
                     // Retour question enigme Dernière boucle ( envoi video indice enigme finale )
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
