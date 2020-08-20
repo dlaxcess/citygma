@@ -1027,13 +1027,13 @@ export default class CitygmaGameInterface extends Component {
                         this.state.adventure.adventureFinalQuestionOff ?
                             (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                                 (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
-                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                             (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
-                        : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                    : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                         (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
-                    : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                     (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
-                : ''
+            : ''
         ;
 
         /*let enigmaQuestionText = '';
@@ -1099,13 +1099,13 @@ export default class CitygmaGameInterface extends Component {
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
                             (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
-                                (this.state.userAdvance > 1.7) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                                (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
                             : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
-                            (this.state.userAdvance > 1.5) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                            (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
                         : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
-                        (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                        (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
                     : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
-                    (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                    (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
                 : ''
         ;
 
