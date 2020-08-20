@@ -273,7 +273,7 @@ export default class CitygmaGameInterface extends Component {
 
         }else if (this.state.userAdvance === this.state.enigmas.length + 1) {
 
-            
+
             this.setState({videoPlayerKey: this.state.adventure.videoLastEnigmaFilename, videoUrl: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance});
 
             // Compass Bearing
@@ -889,43 +889,262 @@ export default class CitygmaGameInterface extends Component {
         {this.state.user && console.log('currentUser', this.state.user.id);}
 
         // Current Enigma
-        const enigmaId =
+        let enigmaId = '';
+
+        if (this.state.adventure && this.state.enigmas) {
+            if (this.state.adventure.adventureLastVidOff) {
+                if (this.state.adventure.adventureMapOff) {
+                    if (this.state.adventure.adventureFinalQuestionOff) {
+                        if (this.state.userAdvance > 1.7 + this.state.enigmas.length) {
+                            enigmaId = 'none';
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaId = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId;
+                            } else {
+                                enigmaId = this.state.enigmas[0].enigmaId;
+                            }
+                        }
+                    } else {
+                        if (this.state.userAdvance > 1.5 + this.state.enigmas.length) {
+                            enigmaId = 'none';
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaId = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId;
+                            } else {
+                                enigmaId = this.state.enigmas[0].enigmaId;
+                            }
+                        }
+                    }
+                } else {
+                    if (this.state.userAdvance > 1 + this.state.enigmas.length) {
+                        enigmaId = 'none';
+                    } else {
+                        if (this.state.userAdvance > 1) {
+                            enigmaId = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId;
+                        } else {
+                            enigmaId = this.state.enigmas[0].enigmaId;
+                        }
+                    }
+                }
+            } else {
+                if (this.state.userAdvance >= 1 + this.state.enigmas.length) {
+                    enigmaId = 'none';
+                } else {
+                    if (this.state.userAdvance > 1) {
+                        enigmaId = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId;
+                    } else {
+                        enigmaId = this.state.enigmas[0].enigmaId;
+                    }
+                }
+            }
+        }
+
+        /*const enigmaId =
             this.state.adventure && this.state.enigmas ?
                 (this.state.userAdvance >= 1 + this.state.enigmas.length) ? 'none' :
                     (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
                 : ''
-        ;
+        ;*/
 
 
-        const enigmaQuestionPicture =
+        let enigmaQuestionPicture = '';
+
+        if (this.state.adventure && this.state.enigmas) {
+            if (this.state.adventure.adventureLastVidOff) {
+                if (this.state.adventure.adventureMapOff) {
+                    if (this.state.adventure.adventureFinalQuestionOff) {
+                        if (this.state.userAdvance > 1.7 + this.state.enigmas.length) {
+                            enigmaQuestionPicture = this.state.adventure.lastEnigmaPictureFilename;
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaQuestionPicture = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture;
+                            } else {
+                                enigmaQuestionPicture = this.state.enigmas[0].enigmaQuestionPicture;
+                            }
+                        }
+                    } else {
+                        if (this.state.userAdvance > 1.5 + this.state.enigmas.length) {
+                            enigmaQuestionPicture = this.state.adventure.lastEnigmaPictureFilename;
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaQuestionPicture = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture;
+                            } else {
+                                enigmaQuestionPicture = this.state.enigmas[0].enigmaQuestionPicture;
+                            }
+                        }
+                    }
+                } else {
+                    if (this.state.userAdvance > 1 + this.state.enigmas.length) {
+                        enigmaQuestionPicture = this.state.adventure.lastEnigmaPictureFilename;
+                    } else {
+                        if (this.state.userAdvance > 1) {
+                            enigmaQuestionPicture = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture;
+                        } else {
+                            enigmaQuestionPicture = this.state.enigmas[0].enigmaQuestionPicture;
+                        }
+                    }
+                }
+            } else {
+                if (this.state.userAdvance >= 1 + this.state.enigmas.length) {
+                    enigmaQuestionPicture = this.state.adventure.lastEnigmaPictureFilename;
+                } else {
+                    if (this.state.userAdvance > 1) {
+                        enigmaQuestionPicture = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture;
+                    } else {
+                        enigmaQuestionPicture = this.state.enigmas[0].enigmaQuestionPicture;
+                    }
+                }
+            }
+        }
+
+        /*const enigmaQuestionPicture =
             this.state.adventure && this.state.enigmas ?
                 (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                     (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
             : ''
-        ;
+        ;*/
 
-        const enigmaQuestionText =
+        let enigmaQuestionText = '';
+
+        if (this.state.adventure && this.state.enigmas) {
+            if (this.state.adventure.adventureLastVidOff) {
+                if (this.state.adventure.adventureMapOff) {
+                    if (this.state.adventure.adventureFinalQuestionOff) {
+                        if (this.state.userAdvance > 1.7 + this.state.enigmas.length) {
+                            enigmaQuestionText = this.state.adventure.lastEnigmaQuestionText;
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaQuestionText = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText;
+                            } else {
+                                enigmaQuestionText = this.state.enigmas[0].enigmaQuestionText;
+                            }
+                        }
+                    } else {
+                        if (this.state.userAdvance > 1.5 + this.state.enigmas.length) {
+                            enigmaQuestionText = this.state.adventure.lastEnigmaQuestionText;
+                        } else {
+                            if (this.state.userAdvance > 1) {
+                                enigmaQuestionText = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText;
+                            } else {
+                                enigmaQuestionText = this.state.enigmas[0].enigmaQuestionText;
+                            }
+                        }
+                    }
+                } else {
+                    if (this.state.userAdvance > 1 + this.state.enigmas.length) {
+                        enigmaQuestionText = this.state.adventure.lastEnigmaQuestionText;
+                    } else {
+                        if (this.state.userAdvance > 1) {
+                            enigmaQuestionText = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText;
+                        } else {
+                            enigmaQuestionText = this.state.enigmas[0].enigmaQuestionText;
+                        }
+                    }
+                }
+            } else {
+                if (this.state.userAdvance >= 1 + this.state.enigmas.length) {
+                    enigmaQuestionText = this.state.adventure.lastEnigmaQuestionText;
+                } else {
+                    if (this.state.userAdvance > 1) {
+                        enigmaQuestionText = this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText;
+                    } else {
+                        enigmaQuestionText = this.state.enigmas[0].enigmaQuestionText;
+                    }
+                }
+            }
+        }
+
+        /*const enigmaQuestionText =
             this.state.adventure && this.state.enigmas ?
                 (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
                     (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
             : ''
-        ;
+        ;*/
 
-        const destinationLat =
+        let destinationLat = 48.1378304;
+
+        if (this.state.adventure && this.state.enigmas) {
+            if (this.state.adventure.adventureLastVidOff) {
+                if (this.state.adventure.adventureMapOff) {
+                    if (this.state.adventure.adventureFinalQuestionOff) {
+                        if (this.state.userAdvance > 1.7 + this.state.enigmas.length) {
+                            destinationLat = this.state.adventure.lastEnigmaLatitude;
+                        } else {
+                            destinationLat = this.state.currentLat;
+                        }
+                    } else {
+                        if (this.state.userAdvance > 1.5 + this.state.enigmas.length) {
+                            destinationLat = this.state.adventure.lastEnigmaLatitude;
+                        } else {
+                            destinationLat = this.state.currentLat;
+                        }
+                    }
+                } else {
+                    if (this.state.userAdvance > 1 + this.state.enigmas.length) {
+                        destinationLat = this.state.adventure.lastEnigmaLatitude;
+                    } else {
+                        destinationLat = this.state.currentLat;
+                    }
+                }
+            } else {
+                if (this.state.userAdvance >= 1 + this.state.enigmas.length) {
+                    destinationLat = this.state.adventure.lastEnigmaLatitude;
+                } else {
+                    destinationLat = this.state.currentLat;
+                }
+            }
+        }
+
+        /*const destinationLat =
             this.state.adventure && this.state.enigmas && this.state.currentLat ?
                 (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude :
                     this.state.currentLat
                     //(this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 1].enigmaLat : this.state.enigmas[0].enigmaLat
                 : 48.1378304
-        ;
+        ;*/
 
-        const destinationLong =
+
+        let destinationLong = -1.6875520;
+
+        if (this.state.adventure && this.state.enigmas) {
+            if (this.state.adventure.adventureLastVidOff) {
+                if (this.state.adventure.adventureMapOff) {
+                    if (this.state.adventure.adventureFinalQuestionOff) {
+                        if (this.state.userAdvance > 1.7 + this.state.enigmas.length) {
+                            destinationLat = this.state.adventure.lastEnigmaLongitude;
+                        } else {
+                            destinationLat = this.state.currentLong;
+                        }
+                    } else {
+                        if (this.state.userAdvance > 1.5 + this.state.enigmas.length) {
+                            destinationLat = this.state.adventure.lastEnigmaLongitude;
+                        } else {
+                            destinationLat = this.state.currentLong;
+                        }
+                    }
+                } else {
+                    if (this.state.userAdvance > 1 + this.state.enigmas.length) {
+                        destinationLat = this.state.adventure.lastEnigmaLongitude;
+                    } else {
+                        destinationLat = this.state.currentLong;
+                    }
+                }
+            } else {
+                if (this.state.userAdvance >= 1 + this.state.enigmas.length) {
+                    destinationLat = this.state.adventure.lastEnigmaLongitude;
+                } else {
+                    destinationLat = this.state.currentLong;
+                }
+            }
+        }
+
+        /*const destinationLong =
             this.state.adventure && this.state.enigmas && this.state.currentLong ?
                 (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude :
                     this.state.currentLong
                     //(this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 1].enigmaLong : this.state.enigmas[0].enigmaLong
                 : -1.6875520
-        ;
+        ;*/
 
         const displayVideo = this.state.displayVideo;
         const videoPlaying = this.state.videoPlaying;
