@@ -385,12 +385,14 @@ export default class CitygmaGameInterface extends Component {
                             // Cas pas de question ensuite non plus
                             if (this.state.adventure.adventureFinalQuestionOff) {
                                 let newUserAdvance = Math.round(this.state.userAdvance) + 0.7;
-                                this.setState({newUserAdvance});
+                                this.setState({userAdvance: newUserAdvance});
+                                this.storeUserAdvance(newUserAdvance);
 
                             // Cas avec question en suite
                             } else {
                                 let newUserAdvance = Math.round(this.state.userAdvance) + 0.5;
-                                this.setState({newUserAdvance});
+                                this.setState({userAdvance: newUserAdvance});
+                                this.storeUserAdvance(newUserAdvance);
                             }
 
                         // Cas Dernier GPS apres video
