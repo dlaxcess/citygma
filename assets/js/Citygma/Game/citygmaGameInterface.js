@@ -951,10 +951,10 @@ export default class CitygmaGameInterface extends Component {
                 this.state.adventure.adventureLastVidOff ?
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
-                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? 'none' :
-                                (this.state.userAdvance > 1.7) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
-                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? 'none' :
-                            (this.state.userAdvance > 1.5) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+                            (this.state.userAdvance >= 1.7 + this.state.enigmas.length) ? 'none' :
+                                (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+                        : (this.state.userAdvance >= 1.5 + this.state.enigmas.length) ? 'none' :
+                            (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
                     : (this.state.userAdvance > 1 + this.state.enigmas.length) ? 'none' :
                         (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
                 : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? 'none' :
@@ -1025,9 +1025,9 @@ export default class CitygmaGameInterface extends Component {
                 this.state.adventure.adventureLastVidOff ?
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
-                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                            (this.state.userAdvance >= 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                                 (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
-                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                        : (this.state.userAdvance >= 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                             (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
                     : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
                         (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
@@ -1098,9 +1098,9 @@ export default class CitygmaGameInterface extends Component {
                 this.state.adventure.adventureLastVidOff ?
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
-                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                            (this.state.userAdvance >= 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
                                 (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
-                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                            : (this.state.userAdvance >= 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
                             (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
                         : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
                         (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionText : this.state.enigmas[0].enigmaQuestionText
@@ -1156,8 +1156,8 @@ export default class CitygmaGameInterface extends Component {
                 this.state.adventure.adventureLastVidOff ?
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
-                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
-                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+                            (this.state.userAdvance >= 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+                        : (this.state.userAdvance >= 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
                     : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
                 : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
             : 48.1378304
@@ -1211,8 +1211,8 @@ export default class CitygmaGameInterface extends Component {
                 this.state.adventure.adventureLastVidOff ?
                     this.state.adventure.adventureMapOff ?
                         this.state.adventure.adventureFinalQuestionOff ?
-                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
-                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                            (this.state.userAdvance >= 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                            : (this.state.userAdvance >= 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
                         : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
                     : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
                 : -1.6875520
