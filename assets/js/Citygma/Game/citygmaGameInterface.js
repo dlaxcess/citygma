@@ -889,7 +889,7 @@ export default class CitygmaGameInterface extends Component {
         {this.state.user && console.log('currentUser', this.state.user.id);}
 
         // Current Enigma
-        let enigmaId = '';
+        /*let enigmaId = '';
 
         if (this.state.adventure && this.state.enigmas) {
             if (this.state.adventure.adventureLastVidOff) {
@@ -937,7 +937,7 @@ export default class CitygmaGameInterface extends Component {
                     }
                 }
             }
-        }
+        }*/
 
         /*const enigmaId =
             this.state.adventure && this.state.enigmas ?
@@ -946,8 +946,24 @@ export default class CitygmaGameInterface extends Component {
                 : ''
         ;*/
 
+        const enigmaId =
+            this.state.adventure && this.state.enigmas ?
+                this.state.adventure.adventureLastVidOff ?
+                    this.state.adventure.adventureMapOff ?
+                        this.state.adventure.adventureFinalQuestionOff ?
+                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? 'none' :
+                                (this.state.userAdvance > 1.7) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? 'none' :
+                            (this.state.userAdvance > 1.5) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+                    : (this.state.userAdvance > 1 + this.state.enigmas.length) ? 'none' :
+                        (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+                : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? 'none' :
+                    (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
+            : ''
+        ;
 
-        let enigmaQuestionPicture = '';
+
+        /*let enigmaQuestionPicture = '';
 
         if (this.state.adventure && this.state.enigmas) {
             if (this.state.adventure.adventureLastVidOff) {
@@ -995,7 +1011,7 @@ export default class CitygmaGameInterface extends Component {
                     }
                 }
             }
-        }
+        }*/
 
         /*const enigmaQuestionPicture =
             this.state.adventure && this.state.enigmas ?
@@ -1004,7 +1020,23 @@ export default class CitygmaGameInterface extends Component {
             : ''
         ;*/
 
-        let enigmaQuestionText = '';
+        const enigmaQuestionPicture =
+            this.state.adventure && this.state.enigmas ?
+                this.state.adventure.adventureLastVidOff ?
+                    this.state.adventure.adventureMapOff ?
+                        this.state.adventure.adventureFinalQuestionOff ?
+                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                                (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
+                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                            (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
+                        : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                        (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
+                    : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaPictureFilename :
+                    (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionPicture
+                : ''
+        ;
+
+        /*let enigmaQuestionText = '';
 
         if (this.state.adventure && this.state.enigmas) {
             if (this.state.adventure.adventureLastVidOff) {
@@ -1052,7 +1084,7 @@ export default class CitygmaGameInterface extends Component {
                     }
                 }
             }
-        }
+        }*/
 
         /*const enigmaQuestionText =
             this.state.adventure && this.state.enigmas ?
@@ -1061,7 +1093,23 @@ export default class CitygmaGameInterface extends Component {
             : ''
         ;*/
 
-        let destinationLat = 48.1378304;
+        const enigmaQuestionText =
+            this.state.adventure && this.state.enigmas ?
+                this.state.adventure.adventureLastVidOff ?
+                    this.state.adventure.adventureMapOff ?
+                        this.state.adventure.adventureFinalQuestionOff ?
+                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                                (this.state.userAdvance > 1.7) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                            (this.state.userAdvance > 1.5) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                        : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                        (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                    : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaQuestionText :
+                    (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaQuestionPicture : this.state.enigmas[0].enigmaQuestionText
+                : ''
+        ;
+
+        /*let destinationLat = 48.1378304;
 
         if (this.state.adventure && this.state.enigmas) {
             if (this.state.adventure.adventureLastVidOff) {
@@ -1093,7 +1141,7 @@ export default class CitygmaGameInterface extends Component {
                     destinationLat = this.state.currentLat;
                 }
             }
-        }
+        }*/
 
         /*const destinationLat =
             this.state.adventure && this.state.enigmas && this.state.currentLat ?
@@ -1103,8 +1151,20 @@ export default class CitygmaGameInterface extends Component {
                 : 48.1378304
         ;*/
 
+        const destinationLat =
+            this.state.adventure && this.state.enigmas ?
+                this.state.adventure.adventureLastVidOff ?
+                    this.state.adventure.adventureMapOff ?
+                        this.state.adventure.adventureFinalQuestionOff ?
+                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+                        : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+                    : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+                : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLatitude : this.state.currentLat
+            : 48.1378304
+        ;
 
-        let destinationLong = -1.6875520;
+
+        /*let destinationLong = -1.6875520;
 
         if (this.state.adventure && this.state.enigmas) {
             if (this.state.adventure.adventureLastVidOff) {
@@ -1136,7 +1196,7 @@ export default class CitygmaGameInterface extends Component {
                     destinationLat = this.state.currentLong;
                 }
             }
-        }
+        }*/
 
         /*const destinationLong =
             this.state.adventure && this.state.enigmas && this.state.currentLong ?
@@ -1145,6 +1205,18 @@ export default class CitygmaGameInterface extends Component {
                     //(this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 1].enigmaLong : this.state.enigmas[0].enigmaLong
                 : -1.6875520
         ;*/
+
+        const destinationLong =
+            this.state.adventure && this.state.enigmas ?
+                this.state.adventure.adventureLastVidOff ?
+                    this.state.adventure.adventureMapOff ?
+                        this.state.adventure.adventureFinalQuestionOff ?
+                            (this.state.userAdvance > 1.7 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                            : (this.state.userAdvance > 1.5 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                        : (this.state.userAdvance > 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                    : (this.state.userAdvance >= 1 + this.state.enigmas.length) ? this.state.adventure.lastEnigmaLongitude : this.state.currentLong
+                : -1.6875520
+        ;
 
         const displayVideo = this.state.displayVideo;
         const videoPlaying = this.state.videoPlaying;
