@@ -1224,7 +1224,7 @@ export default class CitygmaGameInterface extends Component {
         return (
             <Fragment>
 
-                <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous plais, pour le bon fonctionnement du jeu, veuillez passez votre écran en mode portrait :)</h2></div>
+                <div id="landscapePleaseChangeOrientation"><h2>S&lsquo;il vous pla&icirc;t, pour le bon fonctionnement du jeu, veuillez passer votre écran en mode portrait :)</h2></div>
 
                 <div id="GameInterfaceGenContainer" onClick={this.fullScreen}>
                     { this.state.showEnterGameScreen &&
@@ -1235,7 +1235,7 @@ export default class CitygmaGameInterface extends Component {
                         <p>Si par malheur votre boussole reste bloquée vers le haut de votre écran... alors fiez vous uniquement à la distance...!</p>
                         <p>Si votre boussole indique plusieurs directions aléatoires à la suite, afin qu'elle commence à donner une direction fiable, veuillez marcher pendant au moins 20m avant de vous y fier réellement...</p>
                         <p>Si vous avez besoin d&lsquo;aide, cliquez sur le point d&lsquo;interogation sur l&lsquo;interface de jeu</p>
-                        <button id="enterGameButton" className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de voiloir commencer l'aventure ?</button>
+                        <button id="enterGameButton" className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de vouloir commencer l'aventure ?</button>
 
                     </div>
                     }
