@@ -445,7 +445,6 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour Gps coordonnées finales de l'aventure Envoie question derniere enigme de l'aventure OU PAS
                     } else if(this.state.userAdvance % 0.5 === 0) {
-
                         this.setState({/*videoPlayerKey: this.state.userAdvance + 0.2, */videoPlaying: true, displayVideo: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.2, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                         this.storeUserAdvance(this.state.userAdvance + 0.2);

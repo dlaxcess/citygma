@@ -15,7 +15,7 @@ export default function EnigmaQuestionAnswer(props) {
         <Fragment>
 
         { showCurrentEnigma ?
-            <section id="enigmaSection">
+            <section key={enigmaId} id="enigmaSection">
                 <span id="closeEnigma" onClick={onLoupeClick}>X</span>
 
                 <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/>
