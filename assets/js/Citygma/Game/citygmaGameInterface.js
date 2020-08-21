@@ -393,21 +393,21 @@ export default class CitygmaGameInterface extends Component {
 
                                 // cas pas question finale non plus
                                 if (this.state.adventure.adventureFinalQuestionOff) {
-                                    let newUserAdvance = Math.round(this.state.userAdvance) + 0.7;
-                                    this.setState({userAdvance: newUserAdvance});
-                                    this.storeUserAdvance(newUserAdvance);
+                                    let modifiedUserAdvance = Math.round(this.state.userAdvance) + 0.7;
+                                    this.setState({userAdvance: modifiedUserAdvance});
+                                    this.storeUserAdvance(modifiedUserAdvance);
 
                                 // Cas question finale
                                 } else {
-                                    let newUserAdvance = Math.round(this.state.userAdvance) + 0.5;
-                                    this.setState({userAdvance: newUserAdvance});
-                                    this.storeUserAdvance(newUserAdvance);
+                                    let modifiedUserAdvance = Math.round(this.state.userAdvance) + 0.5;
+                                    this.setState({userAdvance: modifiedUserAdvance});
+                                    this.storeUserAdvance(modifiedUserAdvance);
                                 }
 
                             } else {
-                                let newUserAdvance = Math.round(this.state.userAdvance);
-                                this.setState({userAdvance: newUserAdvance});
-                                this.storeUserAdvance(newUserAdvance);
+                                let modifiedUserAdvance = Math.round(this.state.userAdvance);
+                                this.setState({userAdvance: modifiedUserAdvance});
+                                this.storeUserAdvance(modifiedUserAdvance);
                             }
 
 
@@ -460,7 +460,7 @@ export default class CitygmaGameInterface extends Component {
 
                 // Enigmes finies >> Derniere phase GPS
                 } else if (this.state.userAdvance === this.state.enigmas.length + 1) {
-                    this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
+                    this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false, showEnigma: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                     if (this.state.adventure.adventureFinalQuestionOff) {
                         this.setState({userAdvance: this.state.userAdvance + 0.7});
