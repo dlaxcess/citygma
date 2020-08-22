@@ -257,11 +257,7 @@ export default class VideoPlayerComponent extends Component {
 
     handleEnded() {
         this.setState({showEndedButton: true, playing: false});
-        this.props.onVideoEnded(/*this.state.skipVideo*/);
-
-        /*if (this.state.skipVideo) {
-            this.props.handleBackToGameInterface();
-        }*/
+        this.props.onVideoEnded();
     }
 
     ref(player) {
