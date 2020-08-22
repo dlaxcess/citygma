@@ -125,7 +125,7 @@ export default class CitygmaGameInterface extends Component {
             document.msExitFullscreen();
         }
     }
-    
+
 
     componentWillUnmount() {
         this.props.toggleHeader(true);
@@ -771,10 +771,14 @@ export default class CitygmaGameInterface extends Component {
 
     }*/
 
-    onVideoEnded() {
+    onVideoEnded(skipVideo) {
         this.setState({videoEnded: true});
         //this.setState({videoPlaying: false})
         this.enableNoSleep();
+
+        if (skipVideo) {
+            this.handleBackToGameInterface();
+        }
     }
 
     handleReloadCurrentVideo() {
