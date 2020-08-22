@@ -125,10 +125,7 @@ export default class CitygmaGameInterface extends Component {
             document.msExitFullscreen();
         }
     }
-
-    enableNosleep() {
-
-    }
+    
 
     componentWillUnmount() {
         this.props.toggleHeader(true);
@@ -147,7 +144,7 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
-        this.setState({noSleep: new NoSleep()});
+        //this.setState({noSleep: new NoSleep()});
         /*var noSleep = new NoSleep();
         var enterGameButton = document.querySelector("#enterGameButton");
 
@@ -1463,6 +1460,7 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
+                                skipVideo = {false}
                             />
                             <VideoPlayerComponent
                                 key={this.state.adventure.videoLastEnigmaFilename}
@@ -1471,6 +1469,7 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
+                                skipVideo = {false}
                             />
                             <VideoPlayerComponent
                                 key={this.state.adventure.videoFinalSequenceFilename}
@@ -1479,6 +1478,7 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
+                                skipVideo = {false}
                             />
                         </Fragment>
                     }
@@ -1492,6 +1492,7 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
+                                skipVideo = {false}
                             />
                             <VideoPlayerComponent
                                 key={enigma.enigmaVideoHistoryInfo}
@@ -1500,6 +1501,7 @@ export default class CitygmaGameInterface extends Component {
                                 videoPlaying={videoPlaying}
                                 handleBackToGameInterface={this.handleBackToGameInterface}
                                 onVideoEnded={this.onVideoEnded}
+                                skipVideo = {enigma.loopQuestionOff}
                             />
                         </Fragment>
                     ))}

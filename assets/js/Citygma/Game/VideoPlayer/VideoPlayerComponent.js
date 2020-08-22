@@ -34,7 +34,8 @@ export default class VideoPlayerComponent extends Component {
                 videoPlaying: this.props.videoPlaying,
                 displaySound: this.props.displayVideo,
             },
-            showEndedButton: false
+            showEndedButton: false,
+            skipVideo: this.props.skipVideo,
         };
 
         this.play = this.play.bind(this);
@@ -249,6 +250,9 @@ export default class VideoPlayerComponent extends Component {
     handleEnded() {
         this.setState({showEndedButton: true, playing: false});
         this.props.onVideoEnded();
+        if (this.state.skipVideo) {
+            this.props.handleBackToGameInterface();
+        }
     }
 
     ref(player) {
