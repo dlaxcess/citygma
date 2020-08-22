@@ -260,6 +260,7 @@ export default class CitygmaGameInterface extends Component {
         /*var noSleep = new NoSleep();
         noSleep.enable();
         this.setState({noSleep: noSleep});*/
+        this.noSleep = new NoSleep();
         this.enableNoSleep();
         //(new NoSleep()).enable();
         //this.noSleep.enable();
@@ -474,7 +475,8 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleBackToGameInterface() {
-        console.log('useradvance backgame :' + this.state.userAdvance);
+
+        this.enableNoSleep();
         // Intro
         /*if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
