@@ -244,7 +244,7 @@ export default class CitygmaGameInterface extends Component {
 
     enableNoSleep() {
         //var noSleep = new NoSleep();
-        if (this.noSleep) this.noSleep.disable(); // Just to be sure if you forgot to disable.
+        //if (this.noSleep) this.noSleep.disable(); // Just to be sure if you forgot to disable.
         this.noSleep = new NoSleep();
 
 
