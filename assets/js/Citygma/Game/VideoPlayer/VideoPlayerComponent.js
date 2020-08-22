@@ -87,6 +87,14 @@ export default class VideoPlayerComponent extends Component {
                 }
             }
         }*/
+        if (this.props.skipVideo) {
+            if (!this.state.playing) {
+                if (this.state.playing !== prevState.playing) {
+                    this.props.handleBackToGameInterface();
+                }
+            }
+        }
+
 
         if (!this.props.displayVideo) {
             if(this.props.displayVideo === prevProps.displayVideo) {
@@ -249,7 +257,7 @@ export default class VideoPlayerComponent extends Component {
 
     handleEnded() {
         this.setState({showEndedButton: true, playing: false});
-        this.props.onVideoEnded(this.state.skipVideo);
+        this.props.onVideoEnded(/*this.state.skipVideo*/);
 
         /*if (this.state.skipVideo) {
             this.props.handleBackToGameInterface();

@@ -771,14 +771,14 @@ export default class CitygmaGameInterface extends Component {
 
     }*/
 
-    onVideoEnded(skipVideo) {
+    onVideoEnded(/*skipVideo*/) {
         this.setState({videoEnded: true});
         //this.setState({videoPlaying: false})
         this.enableNoSleep();
 
-        if (skipVideo) {
+        /*if (skipVideo) {
             this.handleBackToGameInterface();
-        }
+        }*/
     }
 
     handleReloadCurrentVideo() {
