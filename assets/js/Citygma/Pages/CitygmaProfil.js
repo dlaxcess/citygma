@@ -84,15 +84,23 @@ export default class CitygmaProfil extends Component {
     }
 
     resetAdventureUserData(adventureId) {
-        let userId = this.state.user ? this.state.user.id : 0;
-        userService.resetUserAdvance(userId, adventureId)
-            .then(data => {
-                console.log(data);
-                history.push({
-                    pathname: '/Jeu',
-                    state: {adventureId: adventureId}
+        if ( confirm( "Êtes vous vraiment sûr de vouloir recommencer l'aventure depuis le tout début !?" ) ) {
+            // Code à éxécuter si le l'utilisateur clique sur "OK"
+            let userId = this.state.user ? this.state.user.id : 0;
+            userService.resetUserAdvance(userId, adventureId)
+                .then(data => {
+                    console.log(data);
+                    history.push({
+                        pathname: '/Jeu',
+                        state: {adventureId: adventureId}
+                    });
                 });
-            });
+        } else {
+            // Code à éxécuter si l'utilisateur clique sur "Annuler"
+           
+        }
+
+
     }
 
     render() {
