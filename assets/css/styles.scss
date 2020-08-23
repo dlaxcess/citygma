@@ -1175,9 +1175,9 @@ nav {
           @include transition(margin-right .2s ease-in-out);
         }
 
-        &:hover p {
+        /*&:hover p {
           margin-right: 2rem;
-        }
+        }*/
       }
     }
 
