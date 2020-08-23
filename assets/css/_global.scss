@@ -103,14 +103,7 @@ ul {
     @include transition(all .2s linear);
   }
 
-  &:hover .bar1 {
-    width: 15px;
-  }
-
   &.activeBurger {
-    &:hover .bar1 {
-      width: 30px;
-    }
     .bar1 {
       @include transform(rotate(-45deg) translate(-9px, 5px));
     }
