@@ -31,6 +31,11 @@ class UserAdvance
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $goodAnswersValue;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class UserAdvance
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getGoodAnswersValue(): ?string
+    {
+        return $this->goodAnswersValue;
+    }
+
+    public function setGoodAnswersValue(?string $goodAnswersValue): self
+    {
+        $this->goodAnswersValue = $goodAnswersValue;
 
         return $this;
     }
