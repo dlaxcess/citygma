@@ -6,7 +6,9 @@ export const userService = {
     getCurrentUser,
     setCurrentUserAdvance,
     getCurrentUserAdvance,
-    resetUserAdvance
+    resetUserAdvance,
+    setCurrentUserGoodAnswersAdvance,
+    getCurrentUserGoodAnswersAdvance
 };
 
 function getCurrentUser() {
@@ -39,4 +41,22 @@ function resetUserAdvance(userId, adventureId) {
         body: JSON.stringify({ userId, adventureId })
     };
     return fetch("/api/resetUserAdvance", requestOptions).then(handleResponse);
+}
+
+function setCurrentUserGoodAnswersAdvance(userId, adventureId, goodAnswersAdvance) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ userId, adventureId, goodAnswersAdvance })
+    };
+    return fetch("/api/setGoodAnswersAdvance", requestOptions).then(handleResponse);
+}
+
+function getCurrentUserGoodAnswersAdvance(userId, adventureId) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({ userId, adventureId })
+    };
+    return fetch("/api/getGoodAnswersAdvance", requestOptions).then(handleResponse);
 }

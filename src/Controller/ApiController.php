@@ -268,6 +268,7 @@ class ApiController extends AbstractController
 
             if ($userAdvanceEntity) {
                 $userAdvanceEntity->setAdvanceValue(0);
+                $userAdvanceEntity->setGoodAnswersValue(null);
 
                 $entityManager->persist($userAdvanceEntity);
                 $entityManager->flush();
@@ -346,6 +347,91 @@ class ApiController extends AbstractController
             ];
 
             return new JsonResponse($data, 500);
+        }
+    }
+
+    /**
+     * @Route("/setGoodAnswersAdvance", name="setGoodAnswersAdvance", methods={"POST"})
+     */
+    public function setGoodAnswersAdvance(Request $request, EntityManagerInterface $entityManager)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->userId,$values->adventureId, $values->goodAnswersAdvance)) {
+            $user = $this->userRepository->find($values->userId);
+            $userAdvances = $user->getUserAdvances();
+
+            $advantureUserAdvanceExists = false;
+
+            if ($userAdvances) {
+                foreach ($userAdvances as $userAdvance) {
+                    if ($userAdvance->getAdventureId() === $values->adventureId) {
+                        $userAdvance->setGoodAnswersValue(json_encode($values->goodAnswersAdvance));
+                        $advantureUserAdvanceExists = true;
+                    }
+                }
+            }
+
+            if ($advantureUserAdvanceExists === false) {
+                $newUserAdvance = new UserAdvance();
+                $newUserAdvance
+                    ->setAdventureId($values->adventureId)
+                    ->setGoodAnswersValue(json_encode($values->goodAnswersAdvance));
+                ;
+
+                $user->addUserAdvance($newUserAdvance);
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            $data = [
+                'status' => 201,
+                'message' => 'Niveau de réponse aux énigmes de joueur enregistré'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'De mauvaises données ont été envoyées'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+    }
+
+    /**
+     * @Route("/getGoodAnswersAdvance", name="getGoodAnswersAdvance", methods={"POST"})
+     */
+    public function getGoodAnswersAdvance(Request $request)
+    {
+        $values = json_decode($request->getContent());
+        if (isset($values->userId,$values->adventureId)) {
+            //$user = $this->userAdvanceRepository->find($values->userId);
+            $userAdvanceEntity = $this->userAdvanceRepository->findOneBy(['user' => $values->userId, 'adventureId' => $values->adventureId]);
+            $userGoodAnswersAdvance = null;
+
+            if ($userAdvanceEntity) {
+                $userGoodAnswersAdvance = $userAdvanceEntity->getGoodAnswersValue();
+            }
+
+            if ($userGoodAnswersAdvance) {
+                $data = json_decode($userGoodAnswersAdvance, true);
+            } else {
+                $data = null;
+            }
+
+            return new JsonResponse($data, 201);
+        }
+        else {
+            $data = [
+                'status' => 500,
+                'message' => 'De mauvaises données ont été envoyées'
+            ];
+
+            return new JsonResponse($data, 201);
         }
     }
 }

@@ -39,6 +39,8 @@ export default class CitygmaGameInterface extends Component {
             showEnterGameScreen: true,
             user: null,
             userAdvance: 0,
+            userGoodAnswersAdvance: {},
+
             adventure: null,
             enigmas: null,
 
@@ -74,6 +76,8 @@ export default class CitygmaGameInterface extends Component {
         this.handleViewportChange = this.handleViewportChange.bind(this);
 
         this.storeUserAdvance = this.storeUserAdvance.bind(this);
+        this.storeUserGoodAnswersAdvance = this.storeUserGoodAnswersAdvance.bind(this);
+        this.updateUserGoodAnswersAdvance = this.updateUserGoodAnswersAdvance.bind(this);
 
         this.handleBackToGameInterface = this.handleBackToGameInterface.bind(this);
         //this.handleNearLocationDistance = this.handleNearLocationDistance.bind(this);
@@ -205,7 +209,15 @@ export default class CitygmaGameInterface extends Component {
 
                             this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
 
-                        });
+                    });
+
+                    //mise à jour userGoodAnswerAdvance
+                    userService.getCurrentUserGoodAnswersAdvance(user.id, adventureId)
+                        .then(data => {
+                            if (data) {
+                                this.setState({userGoodAnswersAdvance: data});
+                            }
+                        })
 
                 });
             });
@@ -234,6 +246,21 @@ export default class CitygmaGameInterface extends Component {
             })
     }
 
+    storeUserGoodAnswersAdvance(goodAnswersAdvance) {
+        userService.setCurrentUserGoodAnswersAdvance(this.state.user.id, this.state.adventure.adventureId, goodAnswersAdvance)
+            .then(data => {
+                console.log(data);
+            })
+    }
+
+    updateUserGoodAnswersAdvance(enigmaId) {
+        let goodAnswers = this.state.userGoodAnswersAdvance;
+        goodAnswers[enigmaId] = true;
+        this.setState({useGoodAnswersAdvance: goodAnswers});
+
+        return goodAnswers;
+    }
+
 
     isInt(n){
         return Number(n) === n && n % 1 === 0;
@@ -257,6 +284,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleStartGame() {
+
         /*var noSleep = new NoSleep();
         noSleep.enable();
         this.setState({noSleep: noSleep});*/
@@ -479,7 +507,7 @@ export default class CitygmaGameInterface extends Component {
         }
     }
 
-    handleBackToGameInterface() {
+    handleBackToGameInterface(goodAnswer = null, enigmaId = null) {
 
         this.enableNoSleep();
         // Intro
@@ -533,6 +561,12 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour question enigme Dernière boucle ( envoi video indice enigme finale )
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
+                        // Enregistrement de goodanswer dans le state et en bdd
+                        if (goodAnswer === true) {
+                            let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
+                            this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
+                        }
+
                         this.setState({currentEnigmaActiveCompass: true, showEnigma: false, videoPlayerKey: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                         // cas pas de GPS apres video
@@ -566,6 +600,12 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour question enigme FINALE envoie video de FIN
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.2) {
+                        // Enregistrement de goodanswer dans le state et en bdd
+                        if (goodAnswer === true) {
+                            let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
+                            this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
+                        }
+
                         //alert('useradvance: ' + this.state.userAdvance);
                         this.setState({showEnigma: false, videoPlayerKey: this.state.adventure.videoFinalSequenceFilename/*this.state.userAdvance*/, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), showEnterGameScreen: false});
                         this.storeUserAdvance(Math.round(this.state.userAdvance));
@@ -607,6 +647,12 @@ export default class CitygmaGameInterface extends Component {
                     //this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                     // Activation GPS boucle
                     if(this.state.userAdvance % 0.5 === 0) {
+                        // Enregistrement de goodanswer dans le state et en bdd
+                        if (goodAnswer === true) {
+                            let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
+                            this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
+                        }
+
                         //alert(Math.round(this.state.userAdvance) - 1);
                         let enigmaKey = Math.round(this.state.userAdvance - 2);
                         if (this.state.enigmas[enigmaKey]) {
@@ -713,6 +759,12 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour question enigme boucle avec autres enigmes en suuite (envoi boucle suivante)
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.4) {
+                        // Enregistrement de goodanswer dans le state et en bdd
+                        if (goodAnswer === true) {
+                            let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
+                            this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
+                        }
+
                         const enigmaKey = Math.round(this.state.userAdvance) - 1;
 
                         this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
@@ -1535,18 +1587,20 @@ export default class CitygmaGameInterface extends Component {
                             adventureId={this.state.adventure.adventureId}
                             enigmaQuestionPicture={enigmaQuestionPicture}
                             enigmaQuestionText={enigmaQuestionText}
-                            handleEnigmaGoodAnswer={this.handleBackToGameInterface}
+                            handleBackToGameInterface={this.handleBackToGameInterface}
                         />
                     }
 
-                    {this.state.enigmas &&
+                    {this.state.enigmas && this.state.adventure &&
                     <GameControlsComponent
                         currentUser={currentUser}
                         onLogoutClick={this.props.onLogoutClick}
                         onPersoPictoClick={this.handleReloadCurrentVideo}
                         onLoupeClick={this.handleLoupeClick}
                         userAdvance={this.state.userAdvance}
+                        adventure={this.state.adventure}
                         enigmas={this.state.enigmas}
+                        userGoodAnswersAdvance = {this.state.userGoodAnswersAdvance}
                     />
                     }
 

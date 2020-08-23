@@ -16,10 +16,12 @@ export default class GameControlsComponent extends Component {
             burgerClicked : false,
             showHelp: false,
             showNote: false,
+            showQuestions: false,
         };
 
         this.burgerIconClick = this.burgerIconClick.bind(this);
         this.helpPictoClicked = this.helpPictoClicked.bind(this);
+        this.loupeClicked = this.loupeClicked.bind(this);
         this.notePictoClicked = this.notePictoClicked.bind(this);
     }
 
@@ -29,9 +31,19 @@ export default class GameControlsComponent extends Component {
 
     helpPictoClicked() {
         this.state.showHelp ? this.setState({showHelp: false}) : this.setState({showHelp: true});
+        this.state.showQuestions && this.setState({showQuestions: false});
+        this.state.showNote && this.setState({showNote: false});
+    }
+
+    loupeClicked() {
+        this.state.showHelp && this.setState({showHelp: false});
+        this.state.showQuestions ? this.setState({showQuestions: false}) : this.setState({showQuestions: true});
+        this.state.showNote && this.setState({showNote: false});
     }
 
     notePictoClicked() {
+        this.state.showHelp && this.setState({showHelp: false});
+        this.state.showQuestions && this.setState({showQuestions: false});
         this.state.showNote ? this.setState({showNote: false}) : this.setState({showNote: true});
     }
 
@@ -41,7 +53,7 @@ export default class GameControlsComponent extends Component {
 
     render() {
         const { burgerClicked } = this.state;
-        const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, enigmas} = this.props;
+        const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance} = this.props;
 
         let enigmaAdvance;
 
@@ -53,7 +65,7 @@ export default class GameControlsComponent extends Component {
         let enigmasElements = enigmas.map((enigma, index) => {
             if (index < enigmaAdvance) {
                 return (
-                    <div key={enigma.enigmaId} className="noteBookRaw">
+                    <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                         <h3>{enigma.enigmaName}</h3>
                         <button className="marronButton">Revoir</button>
                     </div>
@@ -61,6 +73,19 @@ export default class GameControlsComponent extends Component {
             }
         });
 
+        let questionsRecapElements = enigmas.map((enigma, index) => {
+            if (index < enigmaAdvance) {
+                if (!enigma.loopQuestionOff) {
+                    return (
+                            <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                                <h3>{enigma.enigmaName}</h3>
+                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
+                            </div>
+
+                    );
+                }
+            }
+        });
 
 
         /*let displayEnigmas;
@@ -83,13 +108,22 @@ export default class GameControlsComponent extends Component {
                         </div>
                     </div>
                 </div>
+                <div id="questionsRecap" className={this.state.showQuestions ? 'openedQuestions' : ''}>
+                    <span id="questionsClose" onClick={this.loupeClicked}>X</span>
+                    <h2>Récap des énigmes</h2>
+                    <div>
+                        {(enigmas && questionsRecapElements) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
+                    </div>
+                </div>
                 <div id="noteBook" className={this.state.showNote ? 'openedNote' : ''}>
                     <span id="noteClose" onClick={this.notePictoClicked}>X</span>
                     <h2>Notes aux benêts</h2>
-                    <div id="noteContainer">
-                        <div id="noteContent">
-                            {(enigmas && enigmasElements[0]) ? enigmasElements : "Rien encore de noté !"}
+                    <div>
+                        <div key="intro" className="noteContainer noteContent noteBookRaw">
+                            <h3>Vidéo d'introduction</h3>
+                            <button className="marronButton">Revoir</button>
                         </div>
+                        {(enigmas && enigmasElements[0]) ? enigmasElements : "Rien encore de noté !"}
                     </div>
                 </div>
                 <div id="gameControls">
@@ -105,7 +139,7 @@ export default class GameControlsComponent extends Component {
                         </div>
                     </div>
                     <div id="pictoInterrog"><img src={pictoInterrog} alt="" onClick={this.helpPictoClicked}/></div>
-                    <div id="pictoLoupe"><img src={pictoLoupe} alt="" onClick={onLoupeClick}/></div>
+                    <div id="pictoLoupe"><img src={pictoLoupe} alt="" onClick={this.loupeClicked}/></div>
                     <div id="pictoLivre"><img src={pictoLivre} alt="" onClick={this.notePictoClicked}/></div>
                 </div>
                 <div id="gameNav">
