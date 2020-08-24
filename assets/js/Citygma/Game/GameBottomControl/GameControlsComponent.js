@@ -93,7 +93,7 @@ export default class GameControlsComponent extends Component {
         });
 
         let questionsRecapElements = enigmas.map((enigma, index) => {
-            if (index < enigmaAdvance && userAdvance >= index + 1.9) {
+            if (index < enigmaAdvance && userAdvance > index + 2.7) {
                 if (!enigma.loopQuestionOff) {
                     return (
                         <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
@@ -128,7 +128,7 @@ export default class GameControlsComponent extends Component {
                     <span id="questionsClose" onClick={this.loupeClicked}>X</span>
                     <h2>Récap des énigmes</h2>
                     <div>
-                        {(enigmas && questionsRecapElements.find(element => typeof element != 'undefined' )/*[0]*/) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
+                        {(enigmas && questionsRecapElements.find(element => typeof element != 'undefined' )/*[0]*/) ? questionsRecapElements : "Pas encore d'énigme passée !"}
                     </div>
                 </div>
                 <div id="noteBook" className={this.state.showNote ? 'openedNote' : ''}>
