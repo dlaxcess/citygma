@@ -112,7 +112,7 @@ export default class GameControlsComponent extends Component {
                     <span id="questionsClose" onClick={this.loupeClicked}>X</span>
                     <h2>Récap des énigmes</h2>
                     <div>
-                        {(enigmas && questionsRecapElements) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
+                        {(enigmas && questionsRecapElements[0]) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
                     </div>
                 </div>
                 <div id="noteBook" className={this.state.showNote ? 'openedNote' : ''}>
