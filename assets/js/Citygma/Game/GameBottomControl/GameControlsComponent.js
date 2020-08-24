@@ -55,7 +55,7 @@ export default class GameControlsComponent extends Component {
         const { burgerClicked } = this.state;
         const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance} = this.props;
 
-        let enigmaAdvance;
+        let enigmaAdvance = 0;
 
         if (userAdvance > 0.5/* && this.isFloat(userAdvance)*/) {
             enigmaAdvance = Math.round(userAdvance) -1;
