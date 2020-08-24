@@ -74,7 +74,7 @@ export default class GameControlsComponent extends Component {
         });
 
         let questionsRecapElements = enigmas.map((enigma, index) => {
-            if (index < enigmaAdvance && userAdvance >= index + 1.8) {
+            if (index < enigmaAdvance && userAdvance >= index + 1.9) {
                 if (!enigma.loopQuestionOff) {
                     return (
                             <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
