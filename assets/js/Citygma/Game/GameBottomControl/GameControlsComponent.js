@@ -63,13 +63,32 @@ export default class GameControlsComponent extends Component {
 
 
         let enigmasElements = enigmas.map((enigma, index) => {
-            if (index < enigmaAdvance) {
-                return (
-                    <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
-                        <h3>{enigma.enigmaName}</h3>
-                        <button className="marronButton">Revoir</button>
-                    </div>
-                );
+            if (index < enigmaAdvance && userAdvance >= index + 1.5 && userAdvance < index + 1.8) {
+                if (!enigma.loopFirstVidOff) {
+                    return (
+                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                            <h3>{enigma.enigmaName}</h3>
+                            <button className="marronButton">Revoir video indice</button>
+                        </div>
+                    );
+                }
+            } else if (index < enigmaAdvance && userAdvance >= index + 1.8) {
+                if (enigma.loopFirstVidOff) {
+                    return (
+                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                            <h3>{enigma.enigmaName}</h3>
+                            <button className="marronButton">Revoir video info historique</button>
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                            <h3>{enigma.enigmaName}</h3>
+                            <button className="marronButton">Revoir video indice </button>
+                            <button className="marronButton">Revoir video info historique</button>
+                        </div>
+                    );
+                }
             }
         });
 
@@ -124,6 +143,14 @@ export default class GameControlsComponent extends Component {
                             <button className="marronButton">Revoir</button>
                         </div>
                         {(enigmas && enigmasElements[0]) ? enigmasElements : "Rien encore de noté !"}
+                        { enigmaAdvance > enigmas.length ?
+                            <Fragment>
+                                <div key="fin" className="noteContainer noteContent noteBookRaw">
+                                <h3>Vidéo d'indice final</h3>
+                                <button className="marronButton">Revoir</button>
+                                </div>
+                            </Fragment> : ''
+                        }
                     </div>
                 </div>
                 <div id="gameControls">
