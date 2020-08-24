@@ -154,7 +154,7 @@ export default class GameControlsComponent extends Component {
                             <button className="marronButton">Revoir</button>
                         </div>
                         {(enigmas && enigmasElements[0]) && enigmasElements }
-                        { enigmaAdvance > enigmas.length ?
+                        { (enigmaAdvance > enigmas.length && !adventure.adventureLastVidOff) ?
                             <Fragment>
                                 <div key="fin" className="noteContainer noteContent noteBookRaw">
                                 <h3>Vidéo d'indice final</h3>
