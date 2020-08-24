@@ -57,7 +57,7 @@ export default class GameControlsComponent extends Component {
 
         let enigmaAdvance;
 
-        if (userAdvance > 0 && this.isFloat(userAdvance)) {
+        if (userAdvance > 0.5/* && this.isFloat(userAdvance)*/) {
             enigmaAdvance = Math.round(userAdvance) -1;
         }
 
