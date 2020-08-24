@@ -509,13 +509,13 @@ export default class CitygmaGameInterface extends Component {
 
     handleBackToGameInterface(goodAnswer = null, enigmaId = null) {
 
-        if (this.noSleep) {
+        /*if (this.noSleep) {
             this.noSleep.disable();
             this.noSleep = new NoSleep();
         } else {
             this.noSleep = new NoSleep();
         }
-        this.enableNoSleep();
+        this.enableNoSleep();*/
         // Intro
         /*if (!this.state.userAdvance) {
             const enigmaKey = this.state.userAdvance;
@@ -530,6 +530,8 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour dernière video hisorique boucles envoi question enigme dernière boucle d'enigme
                     if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.3) {
+                        this.enableNoSleep();
+
                         let enigmaKey = Math.round(this.state.userAdvance - 2);
                         this.setState({/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.2*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
@@ -600,6 +602,8 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour Gps coordonnées finales de l'aventure Envoie question derniere enigme de l'aventure OU PAS
                     } else if(this.state.userAdvance % 0.5 === 0) {
+                        this.enableNoSleep();
+
                         this.setState({/*videoPlayerKey: this.state.userAdvance + 0.2, */videoPlaying: true, displayVideo: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.2, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                         this.storeUserAdvance(this.state.userAdvance + 0.2);
@@ -620,6 +624,8 @@ export default class CitygmaGameInterface extends Component {
 
                 // Enigmes finies >> Derniere phase GPS
                 } else if (this.state.userAdvance === this.state.enigmas.length + 1) {
+                    this.enableNoSleep();
+
                     this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false, showEnigma: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                     if (this.state.adventure.adventureFinalQuestionOff) {
@@ -653,6 +659,7 @@ export default class CitygmaGameInterface extends Component {
                     //this.setState({videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo});
                     // Activation GPS boucle
                     if(this.state.userAdvance % 0.5 === 0) {
+                        this.enableNoSleep();
                         // Enregistrement de goodanswer dans le state et en bdd
                         if (goodAnswer === true) {
                             let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
@@ -675,6 +682,7 @@ export default class CitygmaGameInterface extends Component {
 
                     // Retour Video apres point GPS boucle atteinds (Envoi enigme boucle)
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.3) {
+                        this.enableNoSleep();
 
                         const enigmaKey = Math.round(this.state.userAdvance) - 2;
                         const nextEnigmaKey = enigmaKey + 1;
