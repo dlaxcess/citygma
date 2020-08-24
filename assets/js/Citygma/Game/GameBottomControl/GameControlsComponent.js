@@ -96,21 +96,18 @@ export default class GameControlsComponent extends Component {
             if (index < enigmaAdvance && userAdvance >= index + 1.9) {
                 if (!enigma.loopQuestionOff) {
                     return (
-                            <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
-                                <h3>{enigma.enigmaName}</h3>
-                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
-                            </div>
+                        <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                            <h3>{enigma.enigmaName}</h3>
+                            { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
+                        </div>
 
                     );
+                } else {
+                    return;
                 }
             }
         });
 
-
-        /*let displayEnigmas;
-        for (let i = 0; i < 0; i++) {
-            displayEnigmas += `<p>${enigmas[i].enigmaName}</p>`;
-        }*/console.log('enigmasElements',enigmasElements);
 
         return (
             <Fragment>
@@ -131,7 +128,7 @@ export default class GameControlsComponent extends Component {
                     <span id="questionsClose" onClick={this.loupeClicked}>X</span>
                     <h2>Récap des énigmes</h2>
                     <div>
-                        {(enigmas && questionsRecapElements[0]) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
+                        {(enigmas && questionsRecapElements.find(element => typeof element != 'undefined' )/*[0]*/) ? questionsRecapElements : "Pas encore d'énigme à résoudre !"}
                     </div>
                 </div>
                 <div id="noteBook" className={this.state.showNote ? 'openedNote' : ''}>
@@ -142,7 +139,7 @@ export default class GameControlsComponent extends Component {
                             <h3>Vidéo d'introduction</h3>
                             <button className="marronButton">Revoir</button>
                         </div>
-                        {(enigmas && enigmasElements[0]) ? enigmasElements : "Rien encore de noté !"}
+                        {(enigmas && enigmasElements[0]) && enigmasElements }
                         { enigmaAdvance > enigmas.length ?
                             <Fragment>
                                 <div key="fin" className="noteContainer noteContent noteBookRaw">
