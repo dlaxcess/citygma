@@ -10,7 +10,8 @@ import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 //import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
-import logo from "../../../images/logo-citygma.png";
+import LateEnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/LateEnigmaQuestionAnswer";
+//import logo from "../../../images/logo-citygma.png";
 import boussole from "../../../images/boussole.png";
 import {NavLink} from "react-router-dom";
 import {authenticationService} from "../../auth/services/authenticationService";
@@ -65,7 +66,12 @@ export default class CitygmaGameInterface extends Component {
 
             watchPositionId: null,
 
-            /*noSleep: null,*/
+            showLateQuestionAnswer: false,
+            lateAnswer: {
+                enigmaId: 0,
+                enigmaQuestionPicture: '',
+                enigmaQuestionText: '',
+            }
         };
 
 
@@ -98,6 +104,8 @@ export default class CitygmaGameInterface extends Component {
         this.testDeviceOrientation = this.testDeviceOrientation.bind(this);
 
         this.enableNoSleep = this.enableNoSleep.bind(this);
+
+        this.handleBackFromLastQuestionAnswer = this.handleBackFromLastQuestionAnswer.bind(this);
 
         this.noSleep = /*new NoSleep()*/null;
 
@@ -1137,6 +1145,10 @@ export default class CitygmaGameInterface extends Component {
         //this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
     }
 
+    handleBackFromLastQuestionAnswer(goodAnswer = false, enigmaId = null) {
+
+    }
+
 
 
 
@@ -1616,6 +1628,18 @@ export default class CitygmaGameInterface extends Component {
                         enigmas={this.state.enigmas}
                         userGoodAnswersAdvance = {this.state.userGoodAnswersAdvance}
                     />
+                    }
+
+                    { this.state.showLateQuestionAnswer &&
+                        <LateEnigmaQuestionAnswer
+                            showCurrentEnigma={true}
+                            onLoupeClick={this.handleLoupeClick}
+                            enigmaId={this.state.lateAnswer.enigmaId}
+                            adventureId={this.state.adventure.adventureId}
+                            enigmaQuestionPicture={this.state.lateAnswer.enigmaQuestionPicture}
+                            enigmaQuestionText={this.state.lateAnswer.enigmaQuestionText}
+                            handleBackFromLastQuestionAnswer={this.handleBackFromLastQuestionAnswer}
+                        />
                     }
 
                 </div>

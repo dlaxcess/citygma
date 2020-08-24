@@ -8,14 +8,14 @@ import { uploadsDir} from "../../ConstData/uploadsDir";
 
 export default function EnigmaQuestionAnswer(props) {
 
-    const { showCurrentEnigma, onLoupeClick, enigmaId, adventureId, enigmaQuestionPicture, enigmaQuestionText, handleBackToGameInterface/*handleEnigmaGoodAnswer*/ } = props;
+    const { showCurrentEnigma, onLoupeClick, enigmaId, adventureId, enigmaQuestionPicture, enigmaQuestionText, handleBackFromLastQuestionAnswer/*handleEnigmaGoodAnswer*/ } = props;
 
 
     return (
         <Fragment>
 
         { showCurrentEnigma ?
-            <section key={enigmaId} id="enigmaSection">
+            <section key={enigmaId + "Last"} id="enigmaSection">
 
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
                 <h2>Enigme</h2>
