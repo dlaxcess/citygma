@@ -71,7 +71,9 @@ export default class CitygmaGameInterface extends Component {
                 enigmaId: 0,
                 enigmaQuestionPicture: '',
                 enigmaQuestionText: '',
-            }
+            },
+
+
         };
 
 
@@ -105,6 +107,7 @@ export default class CitygmaGameInterface extends Component {
 
         this.enableNoSleep = this.enableNoSleep.bind(this);
 
+        this.handleDisplayLateEnigmaQuestion = this.handleDisplayLateEnigmaQuestion.bind(this);
         this.handleBackFromLastQuestionAnswer = this.handleBackFromLastQuestionAnswer.bind(this);
 
         this.noSleep = /*new NoSleep()*/null;
@@ -1145,8 +1148,23 @@ export default class CitygmaGameInterface extends Component {
         //this.deviceOrientationHandler(tiltLR, coords.heading, fromNorthBearing, bearedDir);
     }
 
-    handleBackFromLastQuestionAnswer(goodAnswer = false, enigmaId = null) {
+    handleDisplayLateEnigmaQuestion(enigmaId, enigmaQuestionPicture, enigmaQuestionText) {
+        let lateAnsewer = {
+            enigmaId: enigmaId,
+            enigmaQuestionPicture: enigmaQuestionPicture,
+            enigmaQuestionText: enigmaQuestionText,
+        }
+        this.setState({showLateQuestionAnswer: true, lateAnswer: lateAnsewer});
 
+    }
+
+    handleBackFromLastQuestionAnswer(goodAnswer = false, enigmaId = null) {
+        this.setState({showLateQuestionAnswer: false});
+
+        if (goodAnswer === true) {
+            let newGoodAnswersAdvance = this.updateUserGoodAnswersAdvance(enigmaId);
+            this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
+        }
     }
 
 
@@ -1618,16 +1636,18 @@ export default class CitygmaGameInterface extends Component {
                     }
 
                     {this.state.enigmas && this.state.adventure &&
-                    <GameControlsComponent
-                        currentUser={currentUser}
-                        onLogoutClick={this.props.onLogoutClick}
-                        onPersoPictoClick={this.handleReloadCurrentVideo}
-                        onLoupeClick={this.handleLoupeClick}
-                        userAdvance={this.state.userAdvance}
-                        adventure={this.state.adventure}
-                        enigmas={this.state.enigmas}
-                        userGoodAnswersAdvance = {this.state.userGoodAnswersAdvance}
-                    />
+                        <GameControlsComponent
+                            currentUser={currentUser}
+                            onLogoutClick={this.props.onLogoutClick}
+                            onPersoPictoClick={this.handleReloadCurrentVideo}
+                            onLoupeClick={this.handleLoupeClick}
+                            userAdvance={this.state.userAdvance}
+                            adventure={this.state.adventure}
+                            enigmas={this.state.enigmas}
+                            userGoodAnswersAdvance = {this.state.userGoodAnswersAdvance}
+                            handleDisplayLateEnigmaQuestion = {this.handleDisplayLateEnigmaQuestion}
+                            handleBackFromLastQuestionAnswer = {this.handleBackFromLastQuestionAnswer}
+                        />
                     }
 
                     { this.state.showLateQuestionAnswer &&
@@ -1641,6 +1661,7 @@ export default class CitygmaGameInterface extends Component {
                             handleBackFromLastQuestionAnswer={this.handleBackFromLastQuestionAnswer}
                         />
                     }
+
 
                 </div>
             </Fragment>

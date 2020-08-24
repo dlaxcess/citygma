@@ -6,6 +6,7 @@ import logoGame from "../../../../images/logo-citygma.png";
 import pictoInterrog from "../../../../images/picto-interogation.png";
 import pictoLoupe from "../../../../images/picto-loupe.png";
 import pictoLivre from "../../../../images/picto-livre.png";
+import LateEnigmaQuestionAnswer from "../EnigmaQuestionAnswerComponent/LateEnigmaQuestionAnswer";
 
 
 export default class GameControlsComponent extends Component {
@@ -17,12 +18,14 @@ export default class GameControlsComponent extends Component {
             showHelp: false,
             showNote: false,
             showQuestions: false,
+
         };
 
         this.burgerIconClick = this.burgerIconClick.bind(this);
         this.helpPictoClicked = this.helpPictoClicked.bind(this);
         this.loupeClicked = this.loupeClicked.bind(this);
         this.notePictoClicked = this.notePictoClicked.bind(this);
+        this.handleQuestionClick = this.handleQuestionClick.bind(this);
     }
 
     burgerIconClick(burgerClicked) {
@@ -51,9 +54,14 @@ export default class GameControlsComponent extends Component {
         return Number(n) === n && n % 1 !== 0;
     }
 
+    handleQuestionClick(id, questionPicture, questionText) {
+        this.props.handleDisplayLateEnigmaQuestion(id, questionPicture, questionText);
+        this.setState({showQuestions: false});
+    }
+
     render() {
         const { burgerClicked } = this.state;
-        const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance} = this.props;
+        const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance, handleDisplayLateEnigmaQuestion} = this.props;
 
         let enigmaAdvance = 0;
 
@@ -99,7 +107,7 @@ export default class GameControlsComponent extends Component {
                     return (
                         <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
                             <h3>{enigma.enigmaName}</h3>
-                            { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
+                            { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
                         </div>
 
                     );
@@ -112,7 +120,7 @@ export default class GameControlsComponent extends Component {
                         return (
                             <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
                                 <h3>{enigma.enigmaName}</h3>
-                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
+                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
                             </div>
 
                         );
@@ -188,6 +196,7 @@ export default class GameControlsComponent extends Component {
                         onLogoutClick={onLogoutClick}
                     />
                 </div>
+
             </Fragment>
         );
     }

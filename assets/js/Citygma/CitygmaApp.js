@@ -14,7 +14,6 @@ import { PrivateRoute } from "../auth/components/PrivateRoute";
 import { authenticationService } from '../auth/services/authenticationService';
 import { history } from "../auth/helpers/history";
 
-import NoSleep from 'nosleep.js';
 
 export default class CitygmaApp extends Component {
     constructor(props) {
@@ -39,7 +38,7 @@ export default class CitygmaApp extends Component {
      }
 
     componentWillUnmount() {
-        this.state.noSleep.disable();
+
     }
 
     logout() {
