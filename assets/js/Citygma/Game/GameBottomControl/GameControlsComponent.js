@@ -93,7 +93,8 @@ export default class GameControlsComponent extends Component {
         });
 
         let questionsRecapElements = enigmas.map((enigma, index) => {
-            if (index < enigmaAdvance && userAdvance > index + 2.7) {
+            if (index < enigmaAdvance && index < enigmas.length -1) {
+                if (userAdvance >= index + 2.7)
                 if (!enigma.loopQuestionOff) {
                     return (
                         <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
@@ -105,6 +106,19 @@ export default class GameControlsComponent extends Component {
                 } else {
                     return;
                 }
+            } else if (index === enigmas.length -1) {
+                if (userAdvance > index + 2.7)
+                    if (!enigma.loopQuestionOff) {
+                        return (
+                            <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                                <h3>{enigma.enigmaName}</h3>
+                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton">Re-tenter l'énigme</button> }
+                            </div>
+
+                        );
+                    } else {
+                        return;
+                    }
             }
         });
 
