@@ -26,6 +26,7 @@ export default class GameControlsComponent extends Component {
         this.loupeClicked = this.loupeClicked.bind(this);
         this.notePictoClicked = this.notePictoClicked.bind(this);
         this.handleQuestionClick = this.handleQuestionClick.bind(this);
+        this.handleVideoReplayClick = this.handleVideoReplayClick.bind(this);
     }
 
     burgerIconClick(burgerClicked) {
@@ -59,6 +60,10 @@ export default class GameControlsComponent extends Component {
         this.setState({showQuestions: false});
     }
 
+    handleVideoReplayClick(playbackVideoUrl) {
+        this.props.handleDisplayPlaybackVideo(playbackVideoUrl);
+    }
+
     render() {
         const { burgerClicked } = this.state;
         const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance, handleDisplayLateEnigmaQuestion} = this.props;
@@ -76,7 +81,7 @@ export default class GameControlsComponent extends Component {
                     return (
                         <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
-                            <button className="marronButton">Revoir video indice</button>
+                            <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoIntroClue)}>Revoir video indice</button>
                         </div>
                     );
                 }
@@ -85,15 +90,15 @@ export default class GameControlsComponent extends Component {
                     return (
                         <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
-                            <button className="marronButton">Revoir video info historique</button>
+                            <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoHistoryInfo)}>Revoir video info historique</button>
                         </div>
                     );
                 } else {
                     return (
                         <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
-                            <button className="marronButton">Revoir video indice </button>
-                            <button className="marronButton">Revoir video info historique</button>
+                            <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoIntroClue)}>Revoir video indice </button>
+                            <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoHistoryInfo)}>Revoir video info historique</button>
                         </div>
                     );
                 }
@@ -159,14 +164,14 @@ export default class GameControlsComponent extends Component {
                     <div>
                         <div key="intro" className="noteContainer noteContent noteBookRaw">
                             <h3>Vidéo d'introduction</h3>
-                            <button className="marronButton">Revoir</button>
+                            <button className="marronButton" onClick={() => this.handleVideoReplayClick(adventure.videoAdventureIntroFilename)}>Revoir</button>
                         </div>
                         {(enigmas && enigmasElements[0]) && enigmasElements }
                         { (enigmaAdvance > enigmas.length && !adventure.adventureLastVidOff) ?
                             <Fragment>
                                 <div key="fin" className="noteContainer noteContent noteBookRaw">
                                 <h3>Vidéo d'indice final</h3>
-                                <button className="marronButton">Revoir</button>
+                                <button className="marronButton" onClick={() => this.handleVideoReplayClick(adventure.videoLastEnigmaFilename)}>Revoir</button>
                                 </div>
                             </Fragment> : ''
                         }

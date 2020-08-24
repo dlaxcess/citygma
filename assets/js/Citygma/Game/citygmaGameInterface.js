@@ -7,6 +7,7 @@ import NoSleep from 'nosleep.js';
 
 import GameControlsComponent from "./GameBottomControl/GameControlsComponent";
 import VideoPlayerComponent from "./VideoPlayer/VideoPlayerComponent";
+
 import { GeolocateComponent } from "./geoloc/GeolocateComponent";
 //import {locationCompassService} from "./geoloc/locationCompassService";
 import EnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/EnigmaQuestionAnswer";
@@ -15,6 +16,7 @@ import LateEnigmaQuestionAnswer from "./EnigmaQuestionAnswerComponent/LateEnigma
 import boussole from "../../../images/boussole.png";
 import {NavLink} from "react-router-dom";
 import {authenticationService} from "../../auth/services/authenticationService";
+import PlaybackVideoPlayerComponent from "./VideoPlayer/PlaybackVideoPlayerComponent";
 
 
 
@@ -73,6 +75,9 @@ export default class CitygmaGameInterface extends Component {
                 enigmaQuestionText: '',
             },
 
+            showPlaybackVideo: false,
+            playbackVideoUrl: '',
+
 
         };
 
@@ -109,6 +114,9 @@ export default class CitygmaGameInterface extends Component {
 
         this.handleDisplayLateEnigmaQuestion = this.handleDisplayLateEnigmaQuestion.bind(this);
         this.handleBackFromLastQuestionAnswer = this.handleBackFromLastQuestionAnswer.bind(this);
+
+        this.handleDisplayPlaybackVideo = this.handleDisplayPlaybackVideo.bind(this);
+        this.handleBackFromPlaybackVideo = this.handleBackFromPlaybackVideo.bind(this);
 
         this.noSleep = /*new NoSleep()*/null;
 
@@ -1167,6 +1175,14 @@ export default class CitygmaGameInterface extends Component {
         }
     }
 
+    handleDisplayPlaybackVideo(playbackVideoUrl) {
+        this.setState({showPlaybackVideo: true, playbackVideoUrl: playbackVideoUrl});
+    }
+
+    handleBackFromPlaybackVideo() {
+        this.setState({showPlaybackVideo: false});
+    }
+
 
 
 
@@ -1647,6 +1663,8 @@ export default class CitygmaGameInterface extends Component {
                             userGoodAnswersAdvance = {this.state.userGoodAnswersAdvance}
                             handleDisplayLateEnigmaQuestion = {this.handleDisplayLateEnigmaQuestion}
                             handleBackFromLastQuestionAnswer = {this.handleBackFromLastQuestionAnswer}
+                            handleDisplayPlaybackVideo = {this.handleDisplayPlaybackVideo}
+                            handleBackFromPlaybackVideo = {this.handleBackFromPlaybackVideo}
                         />
                     }
 
@@ -1662,6 +1680,17 @@ export default class CitygmaGameInterface extends Component {
                         />
                     }
 
+                    { this.state.showPlaybackVideo &&
+                        <PlaybackVideoPlayerComponent
+                            key={'playback' + this.state.playbackVideoUrl}
+                            videoUrl={this.state.playbackVideoUrl}
+                            displayVideo={true}
+                            videoPlaying={true}
+                            handleBackFromPlaybackVideo={this.handleBackFromPlaybackVideo}
+                            onVideoEnded={this.onVideoEnded}
+                            skipVideo = {false}
+                        />
+                    }
 
                 </div>
             </Fragment>
