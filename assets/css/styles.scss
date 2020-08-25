@@ -893,12 +893,12 @@ nav {
       background-color: lighten(#d6b56b, 15%);
       border: 2px solid #222222;
       border-radius: 25px;
-      padding: 1.2rem;
+      padding: 0.7rem 1.2rem;
 
       #distanceComponentValue {
         font-family: $title-font-family;
         font-weight: bold;
-        font-size: 3rem;
+        font-size: 2rem;
       }
     }
   }
