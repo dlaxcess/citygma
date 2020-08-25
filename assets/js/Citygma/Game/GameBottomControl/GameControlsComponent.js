@@ -86,7 +86,7 @@ export default class GameControlsComponent extends Component {
             if (index < enigmaAdvance && userAdvance >= index + 1.5 && userAdvance < index + 1.8) {
                 if (!enigma.loopFirstVidOff) {
                     return (
-                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                        <div key={'playbackLink' + enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
                             <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoIntroClue)}>Revoir video indice</button>
                         </div>
@@ -95,14 +95,14 @@ export default class GameControlsComponent extends Component {
             } else if (index < enigmaAdvance && userAdvance >= index + 1.8) {
                 if (enigma.loopFirstVidOff) {
                     return (
-                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                        <div key={'playbackLink' + enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
                             <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoHistoryInfo)}>Revoir video info historique</button>
                         </div>
                     );
                 } else {
                     return (
-                        <div key={enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
+                        <div key={'playbackLink' + enigma.enigmaId} className="noteContainer noteContent noteBookRaw">
                             <h3>{enigma.enigmaName}</h3>
                             <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoIntroClue)}>Revoir video indice </button>
                             <button className="marronButton" onClick={() => this.handleVideoReplayClick(enigma.enigmaVideoHistoryInfo)}>Revoir video info historique</button>
@@ -117,7 +117,7 @@ export default class GameControlsComponent extends Component {
                 if (userAdvance >= index + 2.7)
                 if (!enigma.loopQuestionOff) {
                     return (
-                        <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                        <div key={'question' + enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
                             <h3>{enigma.enigmaName}</h3>
                             { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
                         </div>
@@ -130,7 +130,7 @@ export default class GameControlsComponent extends Component {
                 if (userAdvance > index + 2.7)
                     if (!enigma.loopQuestionOff) {
                         return (
-                            <div key={enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                            <div key={'question' + enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
                                 <h3>{enigma.enigmaName}</h3>
                                 { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
                             </div>
