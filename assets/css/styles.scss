@@ -1002,7 +1002,7 @@ nav {
 #pageHelp {
   z-index: 7900;
   position: fixed;
-  bottom: -100vh;
+  top: 100vh;
   left: 0;
   height: 100vh;
   width: 100vw;
@@ -1013,7 +1013,7 @@ nav {
   padding: 2rem;
 
   &.openedHelp {
-    bottom: 0;
+    top: 0;
   }
 
   #helpClose {
@@ -1058,13 +1058,13 @@ nav {
   @include transition(all .2s linear);
   background-color: $orangeLight;
   text-align: center;
-  padding: 2rem 2rem 45vw 2rem;
+  padding: 2rem 2rem 50vw 2rem;
   border: 1px solid $blackTitle;
   @include border-radius(1.5rem);
   box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
 
   &.openedQuestions {
-    bottom: 0;
+    bottom: -5vh;
   }
 
   #questionsClose {
@@ -1113,13 +1113,13 @@ nav {
   @include transition(all .2s linear);
   background-color: $orangeLight;
   text-align: center;
-  padding: 2rem 2rem 45vw 2rem;
+  padding: 2rem 2rem 50vw 2rem;
   border: 1px solid $blackTitle;
   @include border-radius(1.5rem);
   box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
 
   &.openedNote {
-    bottom: 0;
+    bottom: -5vh;
   }
 
   #noteClose {
