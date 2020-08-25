@@ -284,7 +284,7 @@ export default class VideoPlayerComponent extends Component {
             <section className="playerSection playbackPlayer">
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
-                <div id="videoPlayerButtons">
+                <div className="videoPlayerButtons">
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
 
                     {!this.state.playing &&

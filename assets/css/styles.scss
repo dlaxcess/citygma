@@ -784,16 +784,16 @@ nav {
 
 // Video Player
   .playerSection {
-    position: fixed;
+    position: absolute;
     top: 0;
     /*left: 0;*/
     bottom: 0;
     width: 100vw;
     height: 100vh;
 
-    #videoPlayerButtons {
-      z-index: 7100;
-      position: fixed;
+    .videoPlayerButtons {
+      z-index: 8001;
+      position: absolute;
       left: 0;
       bottom: 128vw;
       width: 100vw;
