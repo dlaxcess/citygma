@@ -67,7 +67,9 @@ export const GeolocateComponent = (props) => {
                 dist declanchmt: {destinationPrecision}<br/>
             </div>
 
-            <h3 id="distanceComponent">{distance} m</h3>
+            <div id="distanceComponent">
+                <p id="distanceComponentValue">{distance} m</p>
+            </div>
             <button id="recenterButton" className="marronButton" onClick={handleReCenter}>Recentrer</button>
             <ReactMapGL
                 {...viewport}

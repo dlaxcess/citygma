@@ -888,8 +888,18 @@ nav {
     #distanceComponent {
       z-index: 6000;
       position: absolute;
-      top: 14rem;
-      left: 6rem;
+      top: 3rem;
+      left: 3rem;
+      background-color: lighten(#d6b56b, 15%);
+      border: 2px solid #222222;
+      border-radius: 25px;
+      padding: 1.2rem;
+
+      #distanceComponentValue {
+        font-family: $title-font-family;
+        font-weight: bold;
+        font-size: 3rem;
+      }
     }
   }
 }
