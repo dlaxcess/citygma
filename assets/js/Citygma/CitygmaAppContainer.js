@@ -32,16 +32,16 @@ export default function CitygmaAppContainer() {
                     <div id="homepageText">
                         <div id="homepageTextScroll">
                             <div id="homepageTitle">
-                                <h2>L'AGENCE CITYGMA A BESOIN DE VOUS POUR<br/>SAUVER LA CITÉ RENNAISE&nbsp;!</h2>
+                                <h2>INTÉGREZ L'AGENCE CITYGMA ET AIDEZ<br/>LES P'TITS BATEAUX RENNES<br/>À PERCER LES SECRETS DU CANAL D'ILLE ET RANCE&nbsp;!</h2>
                             </div>
-                            <div id="homepageTextContainer">
+                            {/*<div id="homepageTextContainer">
                                 <p>Assistés de votre smartphone, déambulez dans les rues de Rennes au coeur d’une
                                     affaire brûlante.
                                     Résolvez des énigmes, suivez une piste grâce à votre GPS, plongez dans
                                     l’histoire de la ville et faites preuve d’audace&nbsp;!</p>
                                 <p>Cliquez sur JOUER pour obtenir les dossiers confidentiels et commencer
                                     l’aventure&nbsp;!</p>
-                            </div>
+                            </div>*/}
                         </div>
                     </div>
                     <div id="homepageTextBorder"></div>

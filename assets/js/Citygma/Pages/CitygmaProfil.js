@@ -118,7 +118,7 @@ export default class CitygmaProfil extends Component {
                                     {currentUser && <div className="logoutButton" onClick={this.logout}>Déconnexion</div>}
                                 </div>
 
-                                <p>Choisissez votre aventure et cliquez sur &quot;Jouer&quot; pour commencer la partie, ou cliquez sur &quot;Continuer&quot; pour reprendre l'histoire là où vous en étiez.<br/>
+                                <p>Choisissez votre aventure et cliquez sur &quot;Jouer&quot; pour commencer la partie, ou pour reprendre l'histoire là où vous en étiez.<br/>
                                 Si vous souhaitez redémarrer l'aventure depuis le début, cliquez sur &quot;Recommencer&quot;</p>
                             </div>
 

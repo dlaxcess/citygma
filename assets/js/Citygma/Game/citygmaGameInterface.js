@@ -1536,11 +1536,10 @@ export default class CitygmaGameInterface extends Component {
                     <div id="enterGameScreen">
                         <NavLink to="/Profil">...Retour, j&lsquo;ai trop peur...</NavLink>
                         <h2>Mises en garde ...</h2>
-                        <p>Bienvenue sur citygma, sans vouloir faire de la pub pour chrome, pour une meilleure expérience de jeu, nous vous conseillons d'utiliser l&lsquo;explorateur internet, chrome.</p>
-                        <p>Si par malheur votre boussole reste bloquée vers le haut de votre écran... alors fiez vous uniquement à la distance...!</p>
-                        <p>Si votre boussole indique plusieurs directions aléatoires à la suite, afin qu'elle commence à donner une direction fiable, veuillez marcher pendant au moins 20m avant de vous y fier réellement...</p>
-                        <p>Si vous avez besoin d&lsquo;aide, cliquez sur le point d&lsquo;interogation sur l&lsquo;interface de jeu</p>
-                        <button id="enterGameButton" className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de voiloir commencer l'aventure ?</button>
+                        <p>Vous n'avez qu'une heure pour résoudre l'énigme du foutu trésor du vieil Aëlig !</p>
+                        <p>Si vous avez besoin d&lsquo;aide, cliquez sur le point d&lsquo;interrogation en bas de l&lsquo;interface de jeu...</p>
+
+                        <button id="enterGameButton" className="marronButton" onClick={this.handleStartGame}>Êtes vous sûr de vouloir commencer l'aventure ?</button>
 
                     </div>
                     }
