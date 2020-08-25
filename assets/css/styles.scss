@@ -1010,7 +1010,7 @@ nav {
   @include transition(all .2s linear);
   background-color: $orangeBack;
   text-align: center;
-  padding: 2rem 2rem 30vh 2rem;
+  padding: 2rem 2rem 35vh 2rem;
 
   &.openedHelp {
     top: 0;
