@@ -161,7 +161,7 @@ export default class GameControlsComponent extends Component {
                             <p>En cliquant sur le livre, vous ouvrez vos notes. Dés que vous découvrez un nouveau lieu, les informations vues lui correspondant sont enregistrées dedans.</p>
                             <br/>
                             <img src={logoGame} alt="logo-game"/>
-                            <p>Pour ouvrir le message courrant de l&lsquo;aventure, veuillez cliquer sur le logo de citygma en bas à gauche de l&lsquo;écran</p>
+                            <p>Pour revenir au jeu, cliquez sur le logo de Citygma.</p>
 
                         </div>
                     </div>
