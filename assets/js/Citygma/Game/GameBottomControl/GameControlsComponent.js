@@ -153,6 +153,7 @@ export default class GameControlsComponent extends Component {
                         <div id="helpContent">
                             <img src={`${uploadsDir.getUploadsDir()}${adventure.pictoMarker}`} alt=""/>
                             <p>Suivez la bonne direction grâce au marker sur la carte. La pointe indique la direction à suivre</p>
+                            <p>Sur la carte, en haut à gauche de l'écran, est indiquée la distance qui vous sépare de la prochaine étape</p>
                             <br/>
                             <img src={pictoLoupe} alt=""/>
                             <p>En cliquant sur la loupe vous ouvrez l&lsquo;interface permettant de voir les énigmes auquelles il faut répondre... mais elles ne s&lsquo;affiche que si vous en avez déjà passé. La réponse apparaît lorsque vous avez bien répondu.</p>
