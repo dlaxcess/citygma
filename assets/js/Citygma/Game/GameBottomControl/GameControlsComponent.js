@@ -8,6 +8,7 @@ import pictoLoupe from "../../../../images/picto-loupe.png";
 import pictoLivre from "../../../../images/picto-livre.png";
 import LateEnigmaQuestionAnswer from "../EnigmaQuestionAnswerComponent/LateEnigmaQuestionAnswer";
 
+import {uploadsDir} from "../../ConstData/uploadsDir";
 
 export default class GameControlsComponent extends Component {
     constructor(props) {
@@ -150,11 +151,18 @@ export default class GameControlsComponent extends Component {
                     <h2>Aide</h2>
                     <div id="helpContainer">
                         <div id="helpContent">
+                            <img src={`${uploadsDir.getUploadsDir()}${adventure.pictoMarker}`} alt=""/>
+                            <p>Suivez la bonne direction grâce au marker sur la carte. La pointe indique la direction à suivre</p>
+                            <br/>
+                            <img src={pictoLoupe} alt=""/>
+                            <p>En cliquant sur la loupe vous ouvrez l&lsquo;interface permettant de voir les énigmes auquelles il faut répondre... mais elles ne s&lsquo;affiche que si vous en avez déjà passé. La réponse apparaît lorsque vous avez bien répondu.</p>
+                            <br/>
+                            <img src={pictoLivre} alt=""/>
+                            <p>En cliquant sur le livre, vous ouvrez vos notes. Dés que vous découvrez un nouveau lieu, les informations vues lui correspondant sont enregistrées dedans.</p>
+                            <br/>
+                            <img src={logoGame} alt="logo-game"/>
                             <p>Pour ouvrir le message courrant de l&lsquo;aventure, veuillez cliquer sur le logo de citygma en bas à gauche de l&lsquo;écran</p>
-                            <br/>
-                            <p>En cliquant sur la loupe vous ouvrer l&lsquo;interface permettant de répondre à l&lsquo;énigme en cours... mais elle ne s&lsquo;affiche que si vous êtes assez proche du lieu concerné.</p>
-                            <br/>
-                            <p>En cliquant sur le livre, vous ouvrez vos notes. Dés que vous découvrez un nouveau lieu, l&lsquo;information historique lui correspondant est enregistrée dedans.</p>
+
                         </div>
                     </div>
                 </div>
