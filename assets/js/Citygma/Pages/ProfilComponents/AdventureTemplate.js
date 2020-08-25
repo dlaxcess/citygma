@@ -61,8 +61,8 @@ export default function AdventureTemplate(props) {
                                 </div>
                             </div>
                             <p>
-                                <b>Description :</b> {cityAdventure.adventureDescription}<br/>
-                                <b>{cityAdventure.adventureWebLink}</b>
+                                <b>Description :</b> {cityAdventure.adventureDescription}<br/><br/>
+                                <a href={cityAdventure.adventureWebLink} target="_blank">{cityAdventure.adventureWebLink}</a>
                             </p>
                         </div>
                     </div>
