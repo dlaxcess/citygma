@@ -1217,11 +1217,12 @@ nav {
 
 #gameNav {
   nav {
-    z-index: 8000;
+    z-index: 8050;
     position: fixed;
     width: 32rem;
     height: 70vh;
-    top: 100vh;
+    top: unset;
+    bottom: -200vh;
     right: 0;
     @include transition(all .2s linear);
     background-color: #ffdc57;
@@ -1253,12 +1254,14 @@ nav {
 
     &.loggedNav {
       &.openedNav {
-        top: calc(100vh - 20vw - 32rem);
+        //top: calc(100vh - 20vw - 32rem);
+        bottom: -10vw;
       }
     }
 
     &.openedNav {
-      top: calc(100vh - 20vw - 29rem);
+      //top: calc(100vh - 20vw - 29rem);
+      bottom: -10vw;
     }
   }
 }

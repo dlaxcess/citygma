@@ -122,21 +122,21 @@ ul {
   @include border-radius(2rem);
   color: white;
   font-family: $title-font-family;
-  padding: 5px 20px;
+  padding: 10px 20px;
 
-  &:hover {
+  /*&:hover {
     cursor: pointer;
     background-color: lighten($marron, 10%);
-  }
+  }*/
 
   &.white {
     background-color: white;
     color: $marron;
 
-    &:hover {
+    /*&:hover {
       background-color: lighten($marron, 10%);
       color: white;
-    }
+    }*/
   }
 }
 
