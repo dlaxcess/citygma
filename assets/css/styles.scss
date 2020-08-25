@@ -765,6 +765,9 @@ nav {
     a {
       color: $marron;
       cursor: pointer;
+      border: 1px solid $marron;
+      padding: 10px 20px;
+      @include border-radius(2rem);
     }
 
     h2 {

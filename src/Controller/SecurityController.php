@@ -36,10 +36,18 @@ class SecurityController extends AbstractController
 
             $errors = $validator->validate($user);
             if(count($errors)) {
-                $errors = $serializer->serialize($errors, 'json');
-                return new Response($errors, 500, [
-                    'Content-Type' => 'application/json'
-                ]);
+                /*if (0 !== count($errors->findByCodes(UniqueEntity::NOT_UNIQUE_ERROR))) {
+                    $errors["message"] = "Utilisateur déjà créé";
+                    $errors = $serializer->serialize($errors, 'json');
+                    return new Response($errors, 500, [
+                        'Content-Type' => 'application/json'
+                    ]);
+                } else {*/
+                    $errors = $serializer->serialize($errors, 'json');
+                    return new Response($errors, 500, [
+                        'Content-Type' => 'application/json'
+                    ]);
+                //}
             }
 
             $entityManager->persist($user);
