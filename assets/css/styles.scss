@@ -1050,7 +1050,7 @@ nav {
 #questionsRecap {
   z-index: 7820;
   position: fixed;
-  bottom: -100vh;
+  top: 100vh;
   left: 5vw;
   height: 95vh;
   width: 90vw;
@@ -1064,7 +1064,7 @@ nav {
   box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
 
   &.openedQuestions {
-    bottom: -5vh;
+    top: 5vh;
   }
 
   #questionsClose {
@@ -1105,7 +1105,7 @@ nav {
 #noteBook {
   z-index: 7820;
   position: fixed;
-  bottom: -100vh;
+  top: 100vh;
   left: 5vw;
   height: 95vh;
   width: 90vw;
@@ -1119,7 +1119,7 @@ nav {
   box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
 
   &.openedNote {
-    bottom: -5vh;
+    top: 5vh;
   }
 
   #noteClose {
