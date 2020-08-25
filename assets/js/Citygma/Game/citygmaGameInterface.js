@@ -1641,6 +1641,7 @@ export default class CitygmaGameInterface extends Component {
 
                     { this.state.showEnigma &&
                         <EnigmaQuestionAnswer
+                            key="Question"
                             showCurrentEnigma={true}
                             onLoupeClick={this.handleLoupeClick}
                             enigmaId={enigmaId}
@@ -1670,6 +1671,7 @@ export default class CitygmaGameInterface extends Component {
 
                     { this.state.showLateQuestionAnswer &&
                         <LateEnigmaQuestionAnswer
+                            key="lateQuestion"
                             showCurrentEnigma={true}
                             onLoupeClick={this.handleLoupeClick}
                             enigmaId={this.state.lateAnswer.enigmaId}
@@ -1682,7 +1684,7 @@ export default class CitygmaGameInterface extends Component {
 
                     { this.state.showPlaybackVideo &&
                         <PlaybackVideoPlayerComponent
-                            key={'playback' + this.state.playbackVideoUrl}
+                            key={`playback${this.state.playbackVideoUrl}`}
                             videoUrl={this.state.playbackVideoUrl}
                             displayVideo={true}
                             videoPlaying={true}

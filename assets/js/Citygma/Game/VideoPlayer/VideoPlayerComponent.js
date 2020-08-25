@@ -284,7 +284,7 @@ export default class VideoPlayerComponent extends Component {
             <section className={`playerSection ${cssDisplayVideo}`}>
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
-                <div className="videoPlayerButtons">
+                <div id="videoPlayerButtons">
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
                     {this.state.showEndedButton && !this.state.playing &&
                         <button className="marronButton" onClick={this.props.handleBackToGameInterface}>Poursuivre</button>

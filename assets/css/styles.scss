@@ -791,7 +791,7 @@ nav {
     width: 100vw;
     height: 100vh;
 
-    .videoPlayerButtons {
+    #videoPlayerButtons {
       z-index: 8001;
       position: absolute;
       left: 0;
@@ -808,7 +808,7 @@ nav {
     }
 
     #playerBubulle {
-      position: fixed;
+      position: absolute;
       left: 0;
       bottom: 8vw;
       z-index: 7000;
@@ -823,7 +823,7 @@ nav {
 
     #playerBackground {
       z-index: 6000;
-      position: fixed;
+      position: absolute;
       top: 0;
       bottom: 0;
       width: 100vw;
@@ -833,7 +833,7 @@ nav {
 
     .player-wrapper {
       z-index: 6100;
-      position: fixed;
+      position: absolute;
       bottom: 36vw;
       left: 0;
       width: 100vw;

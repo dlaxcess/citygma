@@ -284,10 +284,10 @@ export default class VideoPlayerComponent extends Component {
             <section className="playerSection playbackPlayer">
                 <div id="playerBubulle"></div>
                 <div id="playerBackground"></div>
-                <div className="videoPlayerButtons">
+                <div id="videoPlayerButtons">
                     {/*<button id="videoPlay" className="marronButton" onClick={this.handlePlay}>Lire</button>*/}
 
-                    {!this.state.playing &&
+                    {/*!this.state.playing && */true &&
                         <button id="videoRePlay" className="marronButton" onClick={this.play}>{this.state.showEndedButton ? "Revoir" : "Lire"}</button>
                     }
                     {/*this.state.showEndedButton && !this.state.playing*/true &&
