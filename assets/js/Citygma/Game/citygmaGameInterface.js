@@ -164,6 +164,15 @@ export default class CitygmaGameInterface extends Component {
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.noSleep) {
+            this.noSleep.disable();
+            this.noSleep = new NoSleep();
+        } else {
+            this.noSleep = new NoSleep();
+        }
+        this.enableNoSleep();
+    }
 
 
     componentDidMount() {
