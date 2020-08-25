@@ -58,14 +58,14 @@ export const GeolocateComponent = (props) => {
     return (
 
         <div id="geolocateComponent">
-            <div id="test">
+            {/*<div id="test">
                 latitude: {latitude}<br/>
                 longitude: {longitude}<br/>
                 timestamp: {timestamp}<br/>
                 accuracy: {accuracy && `${accuracy}m`}<br/>
                 error: {error}<br/>
                 dist declanchmt: {destinationPrecision}<br/>
-            </div>
+            </div>*/}
 
             <div id="distanceComponent">
                 <p id="distanceComponentValue">{distance} m</p>
