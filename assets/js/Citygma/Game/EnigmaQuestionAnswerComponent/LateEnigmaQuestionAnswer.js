@@ -15,7 +15,7 @@ export default function EnigmaQuestionAnswer(props) {
         <Fragment>
 
         { showCurrentEnigma ?
-            <section key={enigmaId + "Last"} id="enigmaSection">
+            <section key={enigmaId + "Last"} id="enigmaSection" className="lateQuestionSection">
                 <span id="closeEnigma" onClick={handleBackFromLastQuestionAnswer}>X</span>
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
                 <h2>Enigme</h2>

@@ -25,6 +25,7 @@ export default class GameControlsComponent extends Component {
         this.helpPictoClicked = this.helpPictoClicked.bind(this);
         this.loupeClicked = this.loupeClicked.bind(this);
         this.notePictoClicked = this.notePictoClicked.bind(this);
+        this.handleCitygmaLogoClick = this.handleCitygmaLogoClick.bind(this);
         this.handleQuestionClick = this.handleQuestionClick.bind(this);
         this.handleVideoReplayClick = this.handleVideoReplayClick.bind(this);
     }
@@ -55,9 +56,15 @@ export default class GameControlsComponent extends Component {
         return Number(n) === n && n % 1 !== 0;
     }
 
+    handleCitygmaLogoClick() {
+        this.state.showHelp && this.setState({showHelp: false});
+        this.state.showQuestions && this.setState({showQuestions: false});
+        this.state.showNote && this.setState({showNote: false});
+        this.props.onPersoPictoClick();
+    }
+
     handleQuestionClick(id, questionPicture, questionText) {
         this.props.handleDisplayLateEnigmaQuestion(id, questionPicture, questionText);
-        this.setState({showQuestions: false});
     }
 
     handleVideoReplayClick(playbackVideoUrl) {
@@ -179,7 +186,7 @@ export default class GameControlsComponent extends Component {
                 </div>
                 <div id="gameControls">
                     <div id="principalControlRow">
-                        <div id="gameCitygmaPicto"><img src={logoGame} alt="logo-game" onClick={onPersoPictoClick}/></div>
+                        <div id="gameCitygmaPicto"><img src={logoGame} alt="logo-game" onClick={this.handleCitygmaLogoClick}/></div>
                         <div id="gameBurgerButton" title="Menu principal"
                              className={burgerClicked === true ? 'activeBurger' : ''}
                              onClick={() => this.burgerIconClick(burgerClicked)}

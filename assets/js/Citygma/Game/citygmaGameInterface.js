@@ -97,7 +97,7 @@ export default class CitygmaGameInterface extends Component {
         //this.handleEnigmaGoodAnswer = this.handleEnigmaGoodAnswer.bind(this);
 
         this.onVideoEnded = this.onVideoEnded.bind(this);
-        this.handleReloadCurrentVideo = this.handleReloadCurrentVideo.bind(this);
+        this.handlePersoPictoClick = this.handlePersoPictoClick.bind(this);
         this.handleLoupeClick = this.handleLoupeClick.bind(this);
 
         this.handleReCenter = this.handleReCenter.bind(this);
@@ -870,8 +870,8 @@ export default class CitygmaGameInterface extends Component {
         this.enableNoSleep();
     }
 
-    handleReloadCurrentVideo() {
-        this.setState({showEnigma: false, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false});
+    handlePersoPictoClick() {
+        this.setState({showLateQuestionAnswer: false, showPlaybackVideo: false});
     }
 
     handleLoupeClick() {
@@ -1546,7 +1546,7 @@ export default class CitygmaGameInterface extends Component {
                     }
 
 
-                    <div id="compass" className={this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
+                    <div id="compass" className={false && this.state.userDeviceAcceptCompass && this.state.showCompass && this.state.currentEnigmaActiveCompass ? 'compassVisible' : 'compassHidden'}>
                         <div id="arrow"><img src={boussole}/></div>
                         <div id="notice"></div>
                         <div id="tiltLR"></div>
@@ -1636,6 +1636,7 @@ export default class CitygmaGameInterface extends Component {
                             destinationPrecision={this.state.destinationPrecision}
                             currentEnigmaActiveCompass={this.state.currentEnigmaActiveCompass}
                             handleReCenter={this.handleReCenter}
+                            pictoMarker={this.state.adventure.pictoMarker}
                         />
                     }
 
@@ -1655,7 +1656,7 @@ export default class CitygmaGameInterface extends Component {
                         <GameControlsComponent
                             currentUser={currentUser}
                             onLogoutClick={this.props.onLogoutClick}
-                            onPersoPictoClick={this.handleReloadCurrentVideo}
+                            onPersoPictoClick={this.handlePersoPictoClick}
                             onLoupeClick={this.handleLoupeClick}
                             userAdvance={this.state.userAdvance}
                             adventure={this.state.adventure}
