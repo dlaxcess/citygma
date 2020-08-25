@@ -785,7 +785,8 @@ nav {
   .playerSection {
     position: absolute;
     top: 0;
-    left: 0;
+    /*left: 0;*/
+    bottom: 0;
     width: 100vw;
     height: 100vh;
 
@@ -808,7 +809,7 @@ nav {
     #playerBubulle {
       position: absolute;
       left: 0;
-      //bottom: 10vw;
+      bottom: 10vw;
       z-index: 7000;
       width: 100vw;
       height: 100%;
