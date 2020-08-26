@@ -31,6 +31,15 @@ export default class GameControlsComponent extends Component {
         this.handleVideoReplayClick = this.handleVideoReplayClick.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.closeAllControls) {
+            if (this.props.closeAllControls !== prevProps.closeAllControls) {
+                this.handleCitygmaLogoClick();
+            }
+        }
+    }
+
+
     burgerIconClick(burgerClicked) {
         burgerClicked === false ? this.setState({ burgerClicked : true }) : this.setState({ burgerClicked : false });
     }
@@ -77,6 +86,7 @@ export default class GameControlsComponent extends Component {
     render() {
         const { burgerClicked } = this.state;
         const {currentUser, onLogoutClick, onPersoPictoClick, onLoupeClick, userAdvance, adventure, enigmas, userGoodAnswersAdvance, handleDisplayLateEnigmaQuestion} = this.props;
+
 
         let enigmaAdvance = 0;
 

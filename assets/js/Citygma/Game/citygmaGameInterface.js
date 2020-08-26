@@ -78,6 +78,8 @@ export default class CitygmaGameInterface extends Component {
             showPlaybackVideo: false,
             playbackVideoUrl: '',
 
+            closeAllControls: false,
+
 
         };
 
@@ -164,12 +166,15 @@ export default class CitygmaGameInterface extends Component {
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
-
-    componentDidMount() {
+    componentWillMount(){
         // redirect to login if not logged in
         if (!authenticationService.currentUserValue) {
-            this.props.history.push('/login');
+            history.push('/login');
         }
+    }
+
+    componentDidMount() {
+
 
         //this.noSleep = new NoSleep();
         //this.setState({noSleep: new NoSleep()});
@@ -556,7 +561,7 @@ export default class CitygmaGameInterface extends Component {
                         this.enableNoSleep();
 
                         let enigmaKey = Math.round(this.state.userAdvance - 2);
-                        this.setState({/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.2*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                        this.setState({closeAllControls: false,/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.2*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
 
                         // Cas pas video indice final
@@ -598,7 +603,7 @@ export default class CitygmaGameInterface extends Component {
                             this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
                         }
 
-                        this.setState({currentEnigmaActiveCompass: true, showEnigma: false, videoPlayerKey: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
+                        this.setState({closeAllControls: false, currentEnigmaActiveCompass: true, showEnigma: false, videoPlayerKey: this.state.adventure.videoLastEnigmaFilename, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                         // cas pas de GPS apres video
                         if (this.state.adventure.adventureMapOff) {
@@ -627,7 +632,7 @@ export default class CitygmaGameInterface extends Component {
                     } else if(this.state.userAdvance % 0.5 === 0) {
                         this.enableNoSleep();
 
-                        this.setState({/*videoPlayerKey: this.state.userAdvance + 0.2, */videoPlaying: true, displayVideo: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.2, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
+                        this.setState({closeAllControls: true,/*videoPlayerKey: this.state.userAdvance + 0.2, */videoPlaying: true, displayVideo: false, geolocateShow: false, showCompass: false, showEnigma: true, userAdvance: this.state.userAdvance + 0.2, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                         this.storeUserAdvance(this.state.userAdvance + 0.2);
 
@@ -639,8 +644,7 @@ export default class CitygmaGameInterface extends Component {
                             this.storeUserGoodAnswersAdvance(newGoodAnswersAdvance);
                         }
 
-                        //alert('useradvance: ' + this.state.userAdvance);
-                        this.setState({showEnigma: false, videoPlayerKey: this.state.adventure.videoFinalSequenceFilename/*this.state.userAdvance*/, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), showEnterGameScreen: false});
+                        this.setState({closeAllControls: false, showEnigma: false, videoPlayerKey: this.state.adventure.videoFinalSequenceFilename/*this.state.userAdvance*/, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance), showEnterGameScreen: false});
                         this.storeUserAdvance(Math.round(this.state.userAdvance));
                     }
 
@@ -649,7 +653,7 @@ export default class CitygmaGameInterface extends Component {
                 } else if (this.state.userAdvance === this.state.enigmas.length + 1) {
                     this.enableNoSleep();
 
-                    this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false, showEnigma: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
+                    this.setState({closeAllControls: false, videoPlayerKey: 0/*this.state.userAdvance + 0.7, videoUrl: this.state.adventure.videoFinalSequenceFilename*/, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showCompass: true, showEnterGameScreen: false, showEnigma: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText});
 
                     if (this.state.adventure.adventureFinalQuestionOff) {
                         this.setState({userAdvance: this.state.userAdvance + 0.7});
@@ -671,7 +675,7 @@ export default class CitygmaGameInterface extends Component {
                 // Lecture video intro de boucle
                 if (this.isInt(this.state.userAdvance)) {
                     const enigmaKey = this.state.userAdvance - 1;
-                    this.setState({userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoIntroClue/*this.state.userAdvance + 0.5*/, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                    this.setState({closeAllControls: false, userAdvance: this.state.userAdvance + 0.5, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoIntroClue/*this.state.userAdvance + 0.5*/, videoPlaying: true, displayVideo: true, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnterGameScreen: false, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
                     this.storeUserAdvance(this.state.userAdvance + 0.5);
 
@@ -697,7 +701,7 @@ export default class CitygmaGameInterface extends Component {
 
                         }
                         let newUserAdvance = this.state.userAdvance + 0.2;
-                        this.setState({userAdvance: newUserAdvance, showEnigma: false, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                        this.setState({closeAllControls: false, userAdvance: newUserAdvance, showEnigma: false, videoPlaying: true, displayVideo: false, geolocateShow: true, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showCompass: true, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
                         // Compass Bearing
                         //this.activateCompass();
 
@@ -710,7 +714,7 @@ export default class CitygmaGameInterface extends Component {
                         const enigmaKey = Math.round(this.state.userAdvance) - 2;
                         const nextEnigmaKey = enigmaKey + 1;
 
-                        this.setState({videoPlayerKey: 0/*this.state.userAdvance + 0.1, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                        this.setState({closeAllControls: false, videoPlayerKey: 0/*this.state.userAdvance + 0.1, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
 
                         if (this.state.enigmas[nextEnigmaKey].loopFirstVidOff) {
@@ -733,7 +737,7 @@ export default class CitygmaGameInterface extends Component {
                     // Retour GPS atteinds Boucle Envoi video info historique
                     } else if (Math.round((this.state.userAdvance % 0.5)*100)/100 === 0.2) {
                         const enigmaKey = Math.round(this.state.userAdvance) - 2;
-                        this.setState({showEnigma: false, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                        this.setState({closeAllControls: true, showEnigma: false, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoUrl: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
                         let nextEnigmaKey = Math.round(this.state.userAdvance) - 1;
                         if (this.state.enigmas[nextEnigmaKey]) {
@@ -807,7 +811,7 @@ export default class CitygmaGameInterface extends Component {
                         this.state.enigmas[enigmaKey].enigmaCompassActive ? this.setState({currentEnigmaActiveCompass: true}) : this.setState({currentEnigmaActiveCompass: false});
                         let newUserAdvance = Math.round(this.state.userAdvance) + 0.5;
                         //alert(newUserAdvance);
-                        this.setState({videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnigma: false, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance) + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
+                        this.setState({closeAllControls: false, videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoIntroClue, showEnigma: false, /*videoUrl: this.state.enigmas[enigmaKey].enigmaVideoIntroClue,*/videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, userAdvance: Math.round(this.state.userAdvance) + 0.5, currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText});
 
                         this.storeUserAdvance(newUserAdvance);
                     }
@@ -868,39 +872,7 @@ export default class CitygmaGameInterface extends Component {
 
     }*/
 
-    onVideoEnded() {
-        this.setState({videoEnded: true});
-        //this.setState({videoPlaying: false})
-        this.enableNoSleep();
-    }
 
-    handlePersoPictoClick() {
-        this.setState({showLateQuestionAnswer: false, showPlaybackVideo: false});
-    }
-
-    handleLoupeClick() {
-        this.state.showEnigma ? this.setState({showEnigma: false}) : this.setState({showEnigma: true});
-        this.state.userAdvance % 0.5 > 0 && this.setState({videoPlaying: true, displayVideo: true});
-    }
-
-    handleViewportChange(viewport) {
-        this.setState({ viewport: viewport });
-    }
-
-    handleReCenter() {
-        navigator.geolocation.getCurrentPosition(position => {
-            let newViewport = {
-                height: "100vh",
-                width: "100vw",
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                zoom: 16
-            };
-            this.setState({
-                viewport: newViewport
-            });
-        });
-    }
 
     // Compass
     activateCompass() {
@@ -1187,12 +1159,48 @@ export default class CitygmaGameInterface extends Component {
         this.setState({showPlaybackVideo: false});
     }
 
+    onVideoEnded() {
+        this.setState({videoEnded: true});
+        //this.setState({videoPlaying: false})
+        this.enableNoSleep();
+    }
+
+    handlePersoPictoClick() {
+        this.setState({showLateQuestionAnswer: false, showPlaybackVideo: false});
+    }
+
+    handleLoupeClick() {
+        this.state.showEnigma ? this.setState({showEnigma: false}) : this.setState({showEnigma: true});
+        this.state.userAdvance % 0.5 > 0 && this.setState({videoPlaying: true, displayVideo: true});
+    }
+
+    handleViewportChange(viewport) {
+        this.setState({ viewport: viewport });
+    }
+
+    handleReCenter() {
+        navigator.geolocation.getCurrentPosition(position => {
+            let newViewport = {
+                height: "100vh",
+                width: "100vw",
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                zoom: 16
+            };
+            this.setState({
+                viewport: newViewport
+            });
+        });
+    }
+
 
 
 
     render() {
 
         const {currentUser, onLogoutClick} = this.props;
+
+
 
         console.log(this.state.enigmas);
         console.log(this.state.adventure);
@@ -1255,6 +1263,7 @@ export default class CitygmaGameInterface extends Component {
                     (this.state.userAdvance > 1) ? this.state.enigmas[Math.round(this.state.userAdvance) - 2].enigmaId : this.state.enigmas[0].enigmaId
                 : ''
         ;*/
+        const closeAllControls = this.state.closeAllControls;
 
         const enigmaId = this.state.currentEnigmaId;
             /*this.state.adventure && this.state.enigmas ?
@@ -1670,6 +1679,7 @@ export default class CitygmaGameInterface extends Component {
                             handleBackFromLastQuestionAnswer = {this.handleBackFromLastQuestionAnswer}
                             handleDisplayPlaybackVideo = {this.handleDisplayPlaybackVideo}
                             handleBackFromPlaybackVideo = {this.handleBackFromPlaybackVideo}
+                            closeAllControls = {closeAllControls}
                         />
                     }
 
