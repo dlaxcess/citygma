@@ -166,6 +166,11 @@ export default class CitygmaGameInterface extends Component {
 
 
     componentDidMount() {
+        // redirect to login if not logged in
+        if (!authenticationService.currentUserValue) {
+            this.props.history.push('/login');
+        }
+
         //this.noSleep = new NoSleep();
         //this.setState({noSleep: new NoSleep()});
         /*var noSleep = new NoSleep();
