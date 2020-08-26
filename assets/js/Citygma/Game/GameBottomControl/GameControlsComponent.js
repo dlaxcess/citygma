@@ -45,12 +45,14 @@ export default class GameControlsComponent extends Component {
         this.state.showHelp && this.setState({showHelp: false});
         this.state.showQuestions ? this.setState({showQuestions: false}) : this.setState({showQuestions: true});
         this.state.showNote && this.setState({showNote: false});
+        this.props.onPersoPictoClick();
     }
 
     notePictoClicked() {
         this.state.showHelp && this.setState({showHelp: false});
         this.state.showQuestions && this.setState({showQuestions: false});
         this.state.showNote ? this.setState({showNote: false}) : this.setState({showNote: true});
+        this.props.onPersoPictoClick();
     }
 
     isFloat(n){
