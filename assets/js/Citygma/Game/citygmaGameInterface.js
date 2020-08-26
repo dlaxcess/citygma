@@ -166,12 +166,12 @@ export default class CitygmaGameInterface extends Component {
         //navigator.geolocation.clearWatch(this.state.watchPositionId);
     }
 
-    componentWillMount(){
+    /*componentWillMount(){
         // redirect to login if not logged in
         if (!authenticationService.currentUserValue) {
             history.push('/login');
         }
-    }
+    }*/
 
     componentDidMount() {
 
@@ -218,7 +218,12 @@ export default class CitygmaGameInterface extends Component {
                 this.setState({enigmas});
 
                 userService.getCurrentUser().then(user => {
-                    this.setState({user: user});
+                    if (user) {
+                        this.setState({user: user});
+                    } else {
+                        history.push('/login');
+                    }
+
 
                     //mise à jour userAdvance
                     userService.getCurrentUserAdvance(user.id, adventureId)
