@@ -218,12 +218,7 @@ export default class CitygmaGameInterface extends Component {
                 this.setState({enigmas});
 
                 userService.getCurrentUser().then(user => {
-                    if (user) {
                         this.setState({user: user});
-                    } else {
-                        history.push('/login');
-                    }
-
 
                     //mise à jour userAdvance
                     userService.getCurrentUserAdvance(user.id, adventureId)
@@ -308,8 +303,10 @@ export default class CitygmaGameInterface extends Component {
         //if (this.noSleep) this.noSleep.disable(); // Just to be sure if you forgot to disable.
         //this.noSleep = new NoSleep();
 
+        if (this.noSleep) {
+            this.noSleep.enable();
+        }
 
-        this.noSleep.enable();
 
         //this.setState({noSleep: noSleep});
 
