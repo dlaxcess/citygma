@@ -966,13 +966,13 @@ nav {
 
 #enigmaSection {
   z-index: 7800;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
-  padding: 6rem 3rem 100vw 3rem;
+  padding: 9rem 3rem 100vw 3rem;
   background-color: $orangeBack;
 
   img {
