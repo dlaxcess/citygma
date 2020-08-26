@@ -32,7 +32,7 @@ export default function CitygmaAppContainer() {
                     <div id="homepageText">
                         <div id="homepageTextScroll">
                             <div id="homepageTitle">
-                                <h2>INTÉGREZ L'AGENCE CITYGMA ET AIDEZ<br/>LES P'TITS BATEAUX RENNES<br/>À PERCER LES SECRETS DU CANAL D'ILLE ET RANCE&nbsp;!</h2>
+                                <h2>INTÉGREZ L'AGENCE CITYGMA ET AIDEZ<br/>LES P'TITS BATEAUX-RENNES<br/>À PERCER LES SECRETS DU CANAL D'ILLE ET RANCE&nbsp;!</h2>
                             </div>
                             {/*<div id="homepageTextContainer">
                                 <p>Assistés de votre smartphone, déambulez dans les rues de Rennes au coeur d’une
