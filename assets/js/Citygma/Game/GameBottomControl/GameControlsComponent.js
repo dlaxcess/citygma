@@ -229,7 +229,7 @@ export default class GameControlsComponent extends Component {
                             <button className="marronButton" onClick={() => this.handleVideoReplayClick(adventure.videoAdventureIntroFilename)}>Revoir</button>
                         </div>
                         {(enigmas && enigmasElements[0]) && enigmasElements }
-                        { (enigmaAdvance >= enigmas.length && !adventure.adventureLastVidOff) ?
+                        { (userAdvance >= enigmas.length + 1 && !adventure.adventureLastVidOff) ?
                             <Fragment>
                                 <div key="fin" className="noteContainer noteContent noteBookRaw">
                                 <h3>Vidéo d'indice final</h3>
