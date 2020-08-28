@@ -202,54 +202,59 @@ export default class CitygmaGameInterface extends Component {
 
         this.props.toggleHeader(false);
 
+        // Test pour eviter erreur entree sortie de navigateur
+        if (this.props.location.state) {
+            // Get current adventure
+            const {adventureId} = this.props.location.state;
 
+            adventureService.getCityAdventure(adventureId)
+                .then(adventure => {
+                    this.setState({adventure: adventure});
+                    this.setState({videoUrl: adventure.videoAdventureIntroFilename});
+                });
 
-        // Get current adventure
-        const {adventureId} = this.props.location.state;
+            // Get adventure's enigmas
+            adventureService.getAdventureEnigmas(adventureId)
+                .then(enigmas => {
+                    this.setState({enigmas});
 
-        adventureService.getCityAdventure(adventureId)
-            .then(adventure => {
-                this.setState({adventure: adventure});
-                this.setState({videoUrl: adventure.videoAdventureIntroFilename});
-            });
-
-        // Get adventure's enigmas
-        adventureService.getAdventureEnigmas(adventureId)
-            .then(enigmas => {
-                this.setState({enigmas});
-
-                userService.getCurrentUser().then(user => {
+                    userService.getCurrentUser().then(user => {
                         this.setState({user: user});
 
-                    //mise à jour userAdvance
-                    userService.getCurrentUserAdvance(user.id, adventureId)
-                        .then(data => {
-                            this.setState({userAdvance: data.userAdvance});
-                            console.log('Stored useradvance', data.userAdvance);
+                        //mise à jour userAdvance
+                        userService.getCurrentUserAdvance(user.id, adventureId)
+                            .then(data => {
+                                this.setState({userAdvance: data.userAdvance});
+                                console.log('Stored useradvance', data.userAdvance);
 
-                            let enigmaKey;
-                            if (!data.userAdvance) {
-                                enigmaKey = 0;
-                            } else if (this.isInt(data.userAdvance)) {
-                                enigmaKey = data.userAdvance -1;
-                            } else {
-                                enigmaKey = Math.round(data.userAdvance) -2;
-                            }
+                                let enigmaKey;
+                                if (!data.userAdvance) {
+                                    enigmaKey = 0;
+                                } else if (this.isInt(data.userAdvance)) {
+                                    enigmaKey = data.userAdvance -1;
+                                } else {
+                                    enigmaKey = Math.round(data.userAdvance) -2;
+                                }
 
-                            this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
+                                this.setState({currentLat: this.state.enigmas[enigmaKey].enigmaLat, currentLong: this.state.enigmas[enigmaKey].enigmaLong, destinationPrecision: this.state.enigmas[enigmaKey].loopCatchPositionDistance, currentEnigmaActiveCompass: this.state.enigmas[enigmaKey].enigmaCompassActive});
+
+                            });
+
+                        //mise à jour userGoodAnswerAdvance
+                        userService.getCurrentUserGoodAnswersAdvance(user.id, adventureId)
+                            .then(data => {
+                                if (data) {
+                                    this.setState({userGoodAnswersAdvance: data});
+                                }
+                            })
 
                     });
-
-                    //mise à jour userGoodAnswerAdvance
-                    userService.getCurrentUserGoodAnswersAdvance(user.id, adventureId)
-                        .then(data => {
-                            if (data) {
-                                this.setState({userGoodAnswersAdvance: data});
-                            }
-                        })
-
                 });
-            });
+        } else {
+            history.push('/profil');
+        }
+
+
 
 
 

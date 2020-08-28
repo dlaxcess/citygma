@@ -127,31 +127,65 @@ export default class GameControlsComponent extends Component {
 
         let questionsRecapElements = enigmas.map((enigma, index) => {
             if (index < enigmaAdvance && index < enigmas.length -1) {
-                if (userAdvance >= index + 2.7)
-                if (!enigma.loopQuestionOff) {
-                    return (
-                        <div key={'question' + enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
-                            <h3>{enigma.enigmaName}</h3>
-                            { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
-                        </div>
-
-                    );
-                } else {
-                    return;
-                }
-            } else if (index === enigmas.length -1) {
-                if (userAdvance > index + 2.7)
+                if (userAdvance >= index + 2.7) {
                     if (!enigma.loopQuestionOff) {
                         return (
-                            <div key={'question' + enigma.enigmaId} className="questionsContainer questionsContent questionRaw">
+                            <div key={'question' + enigma.enigmaId}
+                                 className="questionsContainer questionsContent questionRaw">
                                 <h3>{enigma.enigmaName}</h3>
-                                { userGoodAnswersAdvance[enigma.enigmaId] ? <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> : <button className="marronButton" onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter l'énigme</button> }
+                                {userGoodAnswersAdvance[enigma.enigmaId] ?
+                                    <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> :
+                                    <button className="marronButton"
+                                            onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter
+                                        l'énigme</button>}
                             </div>
 
                         );
                     } else {
                         return;
                     }
+                }
+            } else if (index === enigmas.length -1) {
+                if (adventure.adventureLastVidOff && adventure.adventureMapOff && adventure.adventureFinalQuestionOff) {
+                    if (userAdvance > index + 2.7) {
+                        if (!enigma.loopQuestionOff) {
+                            return (
+                                <div key={'question' + enigma.enigmaId}
+                                     className="questionsContainer questionsContent questionRaw">
+                                    <h3>{enigma.enigmaName}</h3>
+                                    {userGoodAnswersAdvance[enigma.enigmaId] ?
+                                        <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> :
+                                        <button className="marronButton"
+                                                onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter
+                                            l'énigme</button>}
+                                </div>
+
+                            );
+                        } else {
+                            return;
+                        }
+                    }
+                } else if (!adventure.adventureLastVidOff) {
+                    if (userAdvance >= enigmas.length +1) {
+                        if (!enigma.loopQuestionOff) {
+                            return (
+                                <div key={'question' + enigma.enigmaId}
+                                     className="questionsContainer questionsContent questionRaw">
+                                    <h3>{enigma.enigmaName}</h3>
+                                    {userGoodAnswersAdvance[enigma.enigmaId] ?
+                                        <p><u>Réponse trouvée :</u> {enigma.enigmaExpectedAnswer}</p> :
+                                        <button className="marronButton"
+                                                onClick={() => this.handleQuestionClick(enigma.enigmaId, enigma.enigmaQuestionPicture, enigma.enigmaQuestionText)}>Re-tenter
+                                            l'énigme</button>}
+                                </div>
+
+                            );
+                        } else {
+                            return;
+                        }
+                    }
+                }
+
             }
         });
 
