@@ -472,8 +472,8 @@ export default class CitygmaGameInterface extends Component {
                             this.setState({videoPlayerKey: this.state.enigmas[enigmaKey].enigmaVideoHistoryInfo, videoPlaying: true, displayVideo: true, geolocateShow: false, showCompass: false, currentLat: this.state.adventure.lastEnigmaLatitude, currentLong: this.state.adventure.lastEnigmaLongitude, destinationPrecision: this.state.adventure.catchPositionDistance, showEnterGameScreen: false});
 
                         } else {
-                            // cas envoi question enigme finale finale
-                            this.setState({/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.1*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: 'none', currentEnigmaQuestionPicture: this.state.adventure.lastEnigmaPictureFilename, currentEnigmaQuestionText: this.state.adventure.lastEnigmaQuestionText, enigmaQuestionTime: 0});
+                            // cas envoi question enigme dernière boucle
+                            this.setState({/*videoUrl: this.state.adventure.videoLastEnigmaFilename, */videoPlayerKey: 0/*this.state.userAdvance + 0.1*/, videoPlaying: true, displayVideo: false, showEnigma: true, geolocateShow: false, showCompass: false, showEnterGameScreen: false, currentEnigmaId: this.state.enigmas[enigmaKey].enigmaId, currentEnigmaQuestionPicture: this.state.enigmas[enigmaKey].enigmaQuestionPicture, currentEnigmaQuestionText: this.state.enigmas[enigmaKey].enigmaQuestionText, enigmaQuestionTime: this.state.enigmas[enigmaKey].enigmaStoryOrder});
                         }
 
                     }
