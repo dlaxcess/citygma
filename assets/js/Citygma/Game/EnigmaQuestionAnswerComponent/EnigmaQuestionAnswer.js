@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
@@ -8,7 +8,26 @@ import { uploadsDir} from "../../ConstData/uploadsDir";
 
 export default function EnigmaQuestionAnswer(props) {
 
-    const { showCurrentEnigma, onLoupeClick, enigmaId, adventureId, enigmaQuestionPicture, enigmaQuestionText, handleBackToGameInterface/*handleEnigmaGoodAnswer*/ } = props;
+    const { showCurrentEnigma, onLoupeClick, enigmaId, adventureId, enigmaQuestionPicture, enigmaQuestionText, enigmaQuestionTime, handleBackToGameInterface/*handleEnigmaGoodAnswer*/ } = props;
+
+    const enigmaQuestionTimeNumber = parseInt(enigmaQuestionTime, 10);
+
+    const [count, setCount] = useState(enigmaQuestionTimeNumber);
+
+    if (enigmaQuestionTimeNumber !== 0) {
+        useEffect(() => {
+            const timeout = setTimeout(() => {
+                handleBackToGameInterface();
+            }, 1000*enigmaQuestionTimeNumber);
+
+            const interval = setInterval(() => {setCount(c => c -1)}, 1000);
+
+            return () => clearTimeout(timeout);
+        },[]);
+    }
+
+
+
 
 
     return (
@@ -20,6 +39,7 @@ export default function EnigmaQuestionAnswer(props) {
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
                 <h2>Enigme</h2>
                 <p>{enigmaQuestionText}</p>
+                <p>{enigmaQuestionTimeNumber !== 0 && 'Temps restant : ' + count + 's'}</p>
 
                 <Formik
                     initialValues={{
@@ -33,7 +53,6 @@ export default function EnigmaQuestionAnswer(props) {
                         adventureService.answerEnigma(enigmaId, adventureId, enigmaAnswer)
                             .then(
                                 data => {
-
                                     /*handleEnigmaGoodAnswer*/handleBackToGameInterface(true, enigmaId);
                                 },
                                 error => {
