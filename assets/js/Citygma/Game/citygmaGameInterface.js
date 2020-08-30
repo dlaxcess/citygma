@@ -309,9 +309,9 @@ export default class CitygmaGameInterface extends Component {
         //if (this.noSleep) this.noSleep.disable(); // Just to be sure if you forgot to disable.
         //this.noSleep = new NoSleep();
 
-        if (this.noSleep) {
+        //if (this.noSleep) {
             this.noSleep.enable();
-        }
+        //}
 
 
         //this.setState({noSleep: noSleep});
@@ -1627,15 +1627,17 @@ export default class CitygmaGameInterface extends Component {
 
                     { this.state.videoPlaying && this.state.enigmas && this.state.enigmas.map((enigma) => (
                         <Fragment>
-                            <VideoPlayerComponent
-                                key={enigma.enigmaVideoIntroClue}
-                                videoUrl={enigma.enigmaVideoIntroClue}
-                                displayVideo={enigma.enigmaVideoIntroClue === this.state.videoPlayerKey}
-                                videoPlaying={videoPlaying}
-                                handleBackToGameInterface={this.handleBackToGameInterface}
-                                onVideoEnded={this.onVideoEnded}
-                                skipVideo = {false}
-                            />
+                            { !enigma.loopFirstVidOff &&
+                                <VideoPlayerComponent
+                                    key={enigma.enigmaVideoIntroClue}
+                                    videoUrl={enigma.enigmaVideoIntroClue}
+                                    displayVideo={enigma.enigmaVideoIntroClue === this.state.videoPlayerKey}
+                                    videoPlaying={videoPlaying}
+                                    handleBackToGameInterface={this.handleBackToGameInterface}
+                                    onVideoEnded={this.onVideoEnded}
+                                    skipVideo={false}
+                                />
+                            }
                             <VideoPlayerComponent
                                 key={enigma.enigmaVideoHistoryInfo}
                                 videoUrl={enigma.enigmaVideoHistoryInfo}
