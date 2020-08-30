@@ -52,7 +52,9 @@ export const GeolocateComponent = (props) => {
         positionMarker.style.transform = "rotate("+ bearing +"deg)";
     }
 
-
+    /*if (error) {
+        alert(error);
+    }*/
     if (distance < destinationPrecision) {handleNearLocationDistance()}
 
     return (
