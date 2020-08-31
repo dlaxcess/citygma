@@ -19,7 +19,7 @@ export default function EnigmaQuestionAnswer(props) {
                 <span id="closeEnigma" onClick={handleBackFromLastQuestionAnswer}>X</span>
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
                 <h2>Enigme</h2>
-                <p>{enigmaQuestionText}</p>
+                <p dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
 
                 <Formik
                     initialValues={{

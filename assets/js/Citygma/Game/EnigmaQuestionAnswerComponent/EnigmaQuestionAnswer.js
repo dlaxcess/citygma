@@ -27,9 +27,6 @@ export default function EnigmaQuestionAnswer(props) {
     }
 
 
-
-
-
     return (
         <Fragment>
 
@@ -38,7 +35,8 @@ export default function EnigmaQuestionAnswer(props) {
 
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
                 <h2>Enigme</h2>
-                <p>{enigmaQuestionText}</p>
+                {/* Conversion String enigme en html */}
+                <p dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
                 <p>{enigmaQuestionTimeNumber !== 0 && 'Temps restant : ' + count + 's'}</p>
 
                 <Formik
