@@ -48,6 +48,8 @@ export default function EnigmaQuestionAnswer(props) {
                     })}
                     onSubmit={({enigmaAnswer}, {setStatus, setSubmitting}) => {
                         setStatus();
+                        document.activeElement.blur();
+                        /*document.getElementsByClassName('form-control').blur();*/
                         adventureService.answerEnigma(enigmaId, adventureId, enigmaAnswer)
                             .then(
                                 data => {
