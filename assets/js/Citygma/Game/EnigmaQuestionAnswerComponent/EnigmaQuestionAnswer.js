@@ -34,7 +34,7 @@ export default function EnigmaQuestionAnswer(props) {
             <section key={enigmaId} id="enigmaSection">
 
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
-                <h2>Enigme</h2>
+                <h2>Enigme</h2><br/>
                 {/* Conversion String enigme en html */}
                 <div dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
                 <p>{enigmaQuestionTimeNumber !== 0 && 'Temps restant : ' + count + 's'}</p>

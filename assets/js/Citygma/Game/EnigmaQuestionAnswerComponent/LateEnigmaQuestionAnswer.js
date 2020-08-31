@@ -18,7 +18,8 @@ export default function EnigmaQuestionAnswer(props) {
             <section key={enigmaId + "Last"} id="enigmaSection" className="lateQuestionSection">
                 <span id="closeEnigma" onClick={handleBackFromLastQuestionAnswer}>X</span>
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
-                <h2>Enigme</h2>
+                <h2>Enigme</h2><br/>
+                {/* Conversion String enigme en html */}
                 <div dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
 
                 <Formik
