@@ -544,7 +544,7 @@ export default class CitygmaGameInterface extends Component {
     }
 
     handleBackToGameInterface(goodAnswer = null, enigmaId = null) {
-
+        this.enableNoSleep();
         /*if (this.noSleep) {
             this.noSleep.disable();
             this.noSleep = new NoSleep();
