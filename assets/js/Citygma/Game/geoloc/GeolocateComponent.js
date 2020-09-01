@@ -80,6 +80,8 @@ export const GeolocateComponent = (props) => {
                 mapboxApiAccessToken="pk.eyJ1IjoiZGxheGNlc3MiLCJhIjoiY2szeGhmY3lhMTZiNjNqb3A3MzVkMGJoaCJ9.jifnf4oofKKVa0qLnxqA6A"
                 height="100vh"
                 width="100vw"
+                latitude={latitude}
+                longitude={longitude}
             >
                 {viewport &&
                 <Marker
