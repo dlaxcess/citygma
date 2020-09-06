@@ -177,8 +177,9 @@ export default class CitygmaGameInterface extends Component {
     componentDidMount() {
 
         window.addEventListener("beforeunload", function (e) {
+            //e.preventDefault();
             var confirmationMessage = "voulez-vous quitter ?";
-
+            //confirm('Voulez vous sortir du jeu ?');
             e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
             return confirmationMessage;              // Gecko, WebKit, Chrome <34
         });
