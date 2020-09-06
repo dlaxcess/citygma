@@ -305,6 +305,7 @@ export default class VideoPlayerComponent extends Component {
                         autoPlay
                         webkit-playsinline
                         playsInline
+                        preload="auto"
                         ended={this.handleEnded}
                     >
                         <source src={`${uploadsDir.getUploadsDir()}${url}`} type="video/mp4" />
