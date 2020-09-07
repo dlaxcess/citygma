@@ -177,6 +177,8 @@ export default class CitygmaGameInterface extends Component {
             if (this.noSleep) this.noSleep.disable();
         }
 
+        this.setState({videoPlayerKey: 0, geolocateShow: false, showPlaybackVideo: false})
+
         window.removeEventListener("beforeunload", this.onUnload);
 
         //this.state.noSleep.disable();
