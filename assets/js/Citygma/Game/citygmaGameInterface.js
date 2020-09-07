@@ -125,6 +125,8 @@ export default class CitygmaGameInterface extends Component {
         this.handleDisplayPlaybackVideo = this.handleDisplayPlaybackVideo.bind(this);
         this.handleBackFromPlaybackVideo = this.handleBackFromPlaybackVideo.bind(this);
 
+        this.onUnload = this.onUnload.bind(this);
+
         this.noSleep = /*new NoSleep()*/null;
 
     }
@@ -156,6 +158,13 @@ export default class CitygmaGameInterface extends Component {
         }
     }
 
+    onUnload(e) {
+        var confirmationMessage = "voulez-vous quitter ?";
+        //confirm('Voulez vous sortir du jeu ?');
+        e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+        return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    }
+
 
     componentWillUnmount() {
         this.props.toggleHeader(true);
@@ -165,6 +174,8 @@ export default class CitygmaGameInterface extends Component {
         if (!this.state.showEnterGameScreen) {
             if (this.noSleep) this.noSleep.disable();
         }
+
+        window.removeEventListener("beforeunload", this.onUnload);
 
         //this.state.noSleep.disable();
         //document.removeEventListener('deviceorientation', this.bearingListener, false);
@@ -180,13 +191,7 @@ export default class CitygmaGameInterface extends Component {
 
     componentDidMount() {
 
-        window.addEventListener("beforeunload", function (e) {
-            //e.preventDefault();
-            var confirmationMessage = "voulez-vous quitter ?";
-            //confirm('Voulez vous sortir du jeu ?');
-            e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
-            return confirmationMessage;              // Gecko, WebKit, Chrome <34
-        });
+        window.addEventListener("beforeunload", this.onUnload);
         //this.noSleep = new NoSleep();
         //this.setState({noSleep: new NoSleep()});
         /*var noSleep = new NoSleep();
