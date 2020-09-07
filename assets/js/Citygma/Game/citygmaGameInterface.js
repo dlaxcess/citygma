@@ -17,8 +17,10 @@ import boussole from "../../../images/boussole.png";
 import {NavLink} from "react-router-dom";
 import {authenticationService} from "../../auth/services/authenticationService";
 import PlaybackVideoPlayerComponent from "./VideoPlayer/PlaybackVideoPlayerComponent";
+import CuicuiPlayerComponent from "./VideoPlayer/CuicuiPlayerComponent";
 
 import logoGame from "../../../images/logo-citygma.png";
+
 
 
 
@@ -1671,6 +1673,18 @@ export default class CitygmaGameInterface extends Component {
                             />
                         </Fragment>
                     ))}
+
+                    {this.state.videoPlaying &&
+                        <CuicuiPlayerComponent
+                            key="cuicuis"
+                            videoUrl="/videos/zoziaux.mp4"
+                            displayVideo={this.state.geolocateShow}
+                            videoPlaying={videoPlaying}
+                            handleBackToGameInterface={this.handleBackToGameInterface}
+                            onVideoEnded={this.onVideoEnded}
+                            skipVideo = {false}
+                        />
+                    }
 
                     { /*!this.state.videoPlaying && */this.state.geolocateShow &&
                         <GeolocateComponent

@@ -136,8 +136,6 @@ export default class VideoPlayerComponent extends Component {
             player: state
         });
 
-        console.log('playingchange: ' + this.props.videoPlaying + 'soundChange: ' + this.props.displayVideo);
-
         /*if (this.state.player.videoPlaying && this.state.player.displaySound) {
             //var timeOutID = window.setTimeout( this.play, 2000);
             this.play();
