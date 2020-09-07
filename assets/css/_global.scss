@@ -161,3 +161,51 @@ ul {
     opacity: 1;
   }
 }
+
+// Modale Good Answer
+#goodAnswerNotice {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 9999;
+  position: fixed;
+  top: 15vh;
+  left: 15vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $orangeLight;
+  width: 70vw;
+  height: 40vh;
+  border-radius: 10px;
+  border: 2px solid $blackTitle;
+  padding: 3rem;
+  animation: modaleOff 4s ease-in 0s 1;
+
+  img {
+    visibility: hidden;
+    opacity: 0;
+    width: 20vw;
+    height: auto;
+    margin-bottom: 2rem;
+    animation: modaleOff 4s ease-in 0s 1;
+  }
+
+  p {
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    font-family: $title-font-family;
+    color: $marron;
+    font-size: $font-size-xtall;
+    animation: modaleOff 4s ease-in 0s 1;
+  }
+}
+
+// Modale off animation
+@keyframes modaleOff {
+  0%   {visibility: visible; opacity: 1;}
+  90%  {visibility: visible; opacity: 1;}
+  100% {visibility: hidden; opacity: 0;}
+}
