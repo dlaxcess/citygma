@@ -10,15 +10,22 @@ export default function EnigmaQuestionAnswer(props) {
 
     const { showCurrentEnigma, onLoupeClick, enigmaId, adventureId, enigmaQuestionPicture, enigmaQuestionText, handleBackFromLastQuestionAnswer/*handleEnigmaGoodAnswer*/ } = props;
 
+    let scrollTop = e => {
+
+        if (document.getElementById('enigmaSection').scrollTop < document.getElementById('enigmaAnswerForm').offsetTop) {
+            document.getElementById('inputAnswerFeild').focus({preventScroll:false});
+            document.getElementById('titleEnigma').scrollIntoView({ behavior: "smooth" });
+        }
+    }
 
     return (
         <Fragment>
 
         { showCurrentEnigma ?
-            <section key={enigmaId + "Last"} id="enigmaSection" className="lateQuestionSection">
+            <section key={enigmaId + "Last"} id="enigmaSection" className="lateQuestionSection" onClick={scrollTop}>
                 <span id="closeEnigma" onClick={handleBackFromLastQuestionAnswer}>X</span>
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
-                <h2>Enigme</h2><br/>
+                <h2 id="titleEnigma">Enigme</h2><br/>
                 {/* Conversion String enigme en html */}
                 <div dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
 
@@ -32,6 +39,7 @@ export default function EnigmaQuestionAnswer(props) {
                     onSubmit={({enigmaAnswer}, {setStatus, setSubmitting}) => {
                         setStatus();
                         document.activeElement.blur();
+                        document.getElementById('enigmaSection').scrollTop = 0;
                         /*document.getElementsByClassName('form-control').blur();*/
                         adventureService.answerEnigma(enigmaId, adventureId, enigmaAnswer)
                             .then(
@@ -49,11 +57,13 @@ export default function EnigmaQuestionAnswer(props) {
                         <Form>
                             <div>
                                 <div id="enigmaAnswerForm">
-                                    <label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>
+                                    {/*<label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>*/}
                                     <Field name="enigmaAnswer" type="text"
+                                           id="inputAnswerFeild"
                                            className={'form-control' + (errors.enigmaAnswer && touched.enigmaAnswer ? ' is-invalid' : '')}
                                            placeholder="Réponse"
-                                           autocomplete="off"
+                                           autoComplete="off"
+                                           onClick={scrollTop}
                                     />
                                     <ErrorMessage name="enigmaAnswer" component="div" className="invalid-feedback"/>
                                 </div>

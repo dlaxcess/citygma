@@ -972,11 +972,24 @@ nav {
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
-  padding: 12.5rem 3rem 100vw 3rem;
+  padding: 12.5rem 3rem 87vh 3rem;
   background-color: $orangeBack;
 
+  .timerEnigma {
+    position: fixed;
+    top: 3rem;
+    left: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    border-radius: 30px;
+    border: 2px solid #AA3333;
+    background-color: #f6eee0;
+    color: #AA3333;
+    font-family: $title-font-family;
+  }
+
   img {
-    width: 100%;
+    width: 70%;
     height: auto;
     margin-bottom: 2rem;
   }

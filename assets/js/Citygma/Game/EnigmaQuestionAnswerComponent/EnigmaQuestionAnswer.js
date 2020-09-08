@@ -27,17 +27,36 @@ export default function EnigmaQuestionAnswer(props) {
     }
 
 
+    let scrollTop = e => {
+        //e.preventDefault();
+        // do something here
+        console.log(document.getElementById('titleEnigma').offsetTop);
+        console.log(document.getElementById('enigmaAnswerForm').scrollTop);
+        console.log( document.getElementById('enigmaSection').scrollTop);
+        if (document.getElementById('enigmaSection').scrollTop < document.getElementById('enigmaAnswerForm').offsetTop) {
+            document.getElementById('inputAnswerFeild').focus({preventScroll:false});
+            document.getElementById('titleEnigma').scrollIntoView({ behavior: "smooth" });
+            //document.getElementById('enigmaSection').scrollTop = document.getElementById('enigmaAnswerForm').offsetTop - 300;
+        }
+    }
+
+
+
     return (
         <Fragment>
 
         { showCurrentEnigma ?
-            <section key={enigmaId} id="enigmaSection">
+            <section key={enigmaId} id="enigmaSection" onClick={scrollTop}>
+                {enigmaQuestionTimeNumber !== 0 &&
+                    <p className="timerEnigma">{`Temps restant : ${count} s`}</p>
+                }
 
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
-                <h2>Enigme</h2><br/>
+
+                <h2 id="titleEnigma">Enigme</h2><br/>
                 {/* Conversion String enigme en html */}
                 <div dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
-                <p>{enigmaQuestionTimeNumber !== 0 && 'Temps restant : ' + count + 's'}</p>
+
 
                 <Formik
                     initialValues={{
@@ -49,6 +68,7 @@ export default function EnigmaQuestionAnswer(props) {
                     onSubmit={({enigmaAnswer}, {setStatus, setSubmitting}) => {
                         setStatus();
                         document.activeElement.blur();
+                        document.getElementById('enigmaSection').scrollTop = 0;
                         /*document.getElementsByClassName('form-control').blur();*/
                         adventureService.answerEnigma(enigmaId, adventureId, enigmaAnswer)
                             .then(
@@ -65,11 +85,13 @@ export default function EnigmaQuestionAnswer(props) {
                         <Form>
                             <div>
                                 <div id="enigmaAnswerForm">
-                                    <label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>
+                                    {/*<label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>*/}
                                     <Field name="enigmaAnswer" type="text"
+                                           id="inputAnswerFeild"
                                            className={'form-control' + (errors.enigmaAnswer && touched.enigmaAnswer ? ' is-invalid' : '')}
                                            placeholder="Réponse"
-                                           autocomplete="off"
+                                           autoComplete="off"
+                                           onClick={scrollTop}
                                     />
                                     <ErrorMessage name="enigmaAnswer" component="div" className="invalid-feedback"/>
                                 </div>
