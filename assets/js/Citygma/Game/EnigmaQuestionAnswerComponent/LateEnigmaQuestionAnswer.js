@@ -12,7 +12,7 @@ export default function EnigmaQuestionAnswer(props) {
 
     let scrollTop = e => {
 
-        if (document.getElementById('enigmaSection').scrollTop < document.getElementById('enigmaAnswerForm').offsetTop) {
+        if (document.getElementsByClassName('lateQuestionSection').scrollTop < document.getElementById('enigmaAnswerForm').offsetTop) {
             document.getElementById('inputLateAnswerFeild').focus({preventScroll:false});
             document.getElementById('titleLateEnigma').scrollIntoView({ behavior: "smooth" });
         }
