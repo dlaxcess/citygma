@@ -68,7 +68,9 @@ export default function EnigmaQuestionAnswer(props) {
                                     <label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>
                                     <Field name="enigmaAnswer" type="text"
                                            className={'form-control' + (errors.enigmaAnswer && touched.enigmaAnswer ? ' is-invalid' : '')}
-                                           placeholder="Réponse"/>
+                                           placeholder="Réponse"
+                                           autocomplete="off"
+                                    />
                                     <ErrorMessage name="enigmaAnswer" component="div" className="invalid-feedback"/>
                                 </div>
                                 <div id="enigmaAnswerSubmitForm">
