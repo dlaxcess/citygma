@@ -13,8 +13,8 @@ export default function EnigmaQuestionAnswer(props) {
     let scrollTop = e => {
 
         if (document.getElementById('enigmaSection').scrollTop < document.getElementById('enigmaAnswerForm').offsetTop) {
-            document.getElementById('inputAnswerFeild').focus({preventScroll:false});
-            document.getElementById('titleEnigma').scrollIntoView({ behavior: "smooth" });
+            document.getElementById('inputLateAnswerFeild').focus({preventScroll:false});
+            document.getElementById('titleLateEnigma').scrollIntoView({ behavior: "smooth" });
         }
     }
 
@@ -25,7 +25,7 @@ export default function EnigmaQuestionAnswer(props) {
             <section key={enigmaId + "Last"} id="enigmaSection" className="lateQuestionSection" onClick={scrollTop}>
                 <span id="closeEnigma" onClick={handleBackFromLastQuestionAnswer}>X</span>
                 { enigmaQuestionPicture && <img src={`${uploadsDir.getUploadsDir()}${enigmaQuestionPicture}`}/> }
-                <h2 id="titleEnigma">Enigme</h2><br/>
+                <h2 id="titleLateEnigma">Enigme</h2><br/>
                 {/* Conversion String enigme en html */}
                 <div dangerouslySetInnerHTML={{__html: enigmaQuestionText}} />
 
@@ -59,7 +59,7 @@ export default function EnigmaQuestionAnswer(props) {
                                 <div id="enigmaAnswerForm">
                                     {/*<label htmlFor="enigmaAnswer">Réponse à l&lsquo;énigme</label>*/}
                                     <Field name="enigmaAnswer" type="text"
-                                           id="inputAnswerFeild"
+                                           id="inputLateAnswerFeild"
                                            className={'form-control' + (errors.enigmaAnswer && touched.enigmaAnswer ? ' is-invalid' : '')}
                                            placeholder="Réponse"
                                            autoComplete="off"
