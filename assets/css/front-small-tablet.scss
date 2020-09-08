@@ -104,3 +104,24 @@
     }
   }
 }
+
+// Interface de jeu
+#GameInterfaceGenContainer {
+
+  // Geolocation component
+  #geolocateComponent {
+    #distanceComponent {
+      bottom: 89.5vh;
+      border-radius: 30px;
+
+      #distanceComponentValue {
+        font-size: 5rem;
+      }
+    }
+  }
+}
+
+#recenterButton {
+  bottom: 90.5vh;
+  font-size: 3rem;
+}
