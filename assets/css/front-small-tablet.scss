@@ -64,3 +64,43 @@
     }
   }
 }
+
+// Barre GameControl
+#gameControls {
+  #principalControlRow {
+    #gameCitygmaPicto {
+      padding: 0 0 2rem 2rem;
+
+      img {
+        width: 14rem;
+      }
+    }
+  }
+
+  #pictoInterrog {
+    left: 3rem;
+    bottom: 18.5rem;
+
+    img {
+      width: 7rem;
+    }
+  }
+
+  #pictoLoupe {
+    left: 11.5rem;
+    bottom: 18rem;
+
+    img {
+      width: 9rem;
+    }
+  }
+
+  #pictoLivre {
+    left: 18rem;
+    bottom: 9rem;
+
+    img {
+      width: 12rem;
+    }
+  }
+}
