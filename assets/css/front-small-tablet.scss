@@ -107,6 +107,20 @@
 
 // Interface de jeu
 #GameInterfaceGenContainer {
+  // Ecran d'entrée dans le jeu
+  #enterGameScreen {
+    a {
+      font-size: 2.5rem;
+      border-radius: 30px;
+    }
+
+    button {
+      //min-height: 2.3rem;
+      font-size: 2.5rem;
+      margin-top: 8rem;
+    }
+  }
+
   // Player component
   .playerSection {
     #videoPlayerButtons {
