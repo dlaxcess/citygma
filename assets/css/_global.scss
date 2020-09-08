@@ -209,3 +209,15 @@ ul {
   90%  {visibility: visible; opacity: 1;}
   100% {visibility: hidden; opacity: 0;}
 }
+
+// Chargements formulaire
+.loadCircle {
+  width: 30px!important;
+  margin: 0 0 0 2rem;
+}
+
+.loadCircleDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

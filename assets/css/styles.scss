@@ -996,6 +996,20 @@ nav {
       padding: 0.7rem;
     }
   }
+
+  #enigmaAnswerSubmitForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    button {
+      margin: 0 1rem 0 0;
+    }
+
+    img {
+      width: 30px;
+    }
+  }
 }
 
 // Page aide
