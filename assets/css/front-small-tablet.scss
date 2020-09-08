@@ -107,6 +107,16 @@
 
 // Interface de jeu
 #GameInterfaceGenContainer {
+  // Player component
+  .playerSection {
+    #videoPlayerButtons {
+      bottom: 92vh;
+
+      button {
+        font-size: 3rem;
+      }
+    }
+  }
 
   // Geolocation component
   #geolocateComponent {
