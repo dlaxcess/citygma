@@ -1345,7 +1345,7 @@ nav {
   @import "front-small-tablet";
 }
 
-@media screen and (min-width: $min-breakpoint-tablet) {
+@media screen and (min-width: /*$min-breakpoint-tablet*/500px) {
   @import "front-tablet";
 }
 
