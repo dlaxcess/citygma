@@ -14,6 +14,17 @@ export default function CitygmaAbout() {
                 <div id="aboutTextContainer">
                     <div id="aboutText">
                         <div className="clearFloat">
+                            <h2>Conception et réalisation graphique</h2>
+
+                            <div className="wrapTextAbout">
+                                <p>Un remerciement tout particulier à <b>Bim's</b>, artiste peintre et bien plus ! qui nous a grâcieusement offert ses talents afin de concevoir la charte graphique ainsi que les illustrations de ce site.</p><br/>
+                                <p><b>Retrouvez le reste de son EXCELLENT ! travail sur :</b></p>
+                                Facebook : <a href="https://www.facebook.com/lazerbims" target="_blank">facebook.com/lazerbims/</a><br/>
+                                Instagram : <a href="https://www.instagram.com/sbiiim/" target="_blank">instagram.com/sbiiim/</a>
+                            </div>
+                        </div>
+
+                        <div className="clearFloat">
                             <h2>À l&lsquo;origine</h2>
                             <div className="imgAbout">
                                 <img src={aboutPhotoMain} alt="Citygma jeu historique"/>
@@ -42,11 +53,11 @@ export default function CitygmaAbout() {
                                 <p>Citygma est un jeu d’enquêtes permettant de découvrir une ville et son histoire au travers d’énigmes à résoudre seul ou à plusieurs.
                                     Guidé par le GPS de son smartphone et des vidéos interactives, l’utilisateur navigue à la recherche d’indices sur un parcours rythmé
                                     d’énigmes mêlant architecture,  informations historiques et aventure loufoque.
-                                    Une expérience familiale pour arpenter une ville sous un nouvel angle !
+                                    Une expérience familiale pour arpenter une ville sous un nouvel angle ! ( à partir de 8 ans ).
                                 </p>
                             </div>
                         </div>
-
+                        {/*
                         <div className="clearFloat">
                             <h2>Un jeu riche en histoire</h2>
                             <div className="imgAbout">
@@ -56,7 +67,7 @@ export default function CitygmaAbout() {
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                             </div>
                         </div>
-                        {/*<span id="playAbout"><h2>Jouer</h2></span>*/}
+                        */}
 
                     </div>
                 </div>
