@@ -1069,6 +1069,31 @@ nav {
     #helpContent {
       background-color: $whiteBubble;
       padding: 1rem;
+
+      .refreshText {
+        font-size: 3rem;
+        //font-weight: bold;
+        margin-top: 3rem;
+      }
+
+      .refreshButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 5rem;
+        width: 50%;
+        padding: 3rem;
+        margin: 2rem auto;
+        background-color: #dabf78;
+        font-size: 3rem;
+
+        .pictoRefresh {
+          width: 5rem;
+          height: auto;
+          margin-bottom: 2rem;
+        }
+      }
     }
   }
 }

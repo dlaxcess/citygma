@@ -6,6 +6,9 @@ import logoGame from "../../../../images/logo-citygma.png";
 import pictoInterrog from "../../../../images/picto-interogation.png";
 import pictoLoupe from "../../../../images/picto-loupe.png";
 import pictoLivre from "../../../../images/picto-livre.png";
+import pictoRefresh from "../../../../images/picto-refresh.png";
+
+import { history } from "../../../auth/helpers/history";
 import LateEnigmaQuestionAnswer from "../EnigmaQuestionAnswerComponent/LateEnigmaQuestionAnswer";
 
 import {uploadsDir} from "../../ConstData/uploadsDir";
@@ -22,6 +25,7 @@ export default class GameControlsComponent extends Component {
 
         };
 
+        this.refreshClick = this.refreshClick.bind(this);
         this.burgerIconClick = this.burgerIconClick.bind(this);
         this.helpPictoClicked = this.helpPictoClicked.bind(this);
         this.loupeClicked = this.loupeClicked.bind(this);
@@ -39,6 +43,9 @@ export default class GameControlsComponent extends Component {
         }
     }
 
+    refreshClick() {
+        history.go(0);
+    }
 
     burgerIconClick(burgerClicked) {
         burgerClicked === false ? this.setState({ burgerClicked : true }) : this.setState({ burgerClicked : false });
@@ -209,6 +216,11 @@ export default class GameControlsComponent extends Component {
                             <br/>
                             <img src={logoGame} alt="logo-game"/>
                             <p>Pour revenir au jeu, cliquez sur le logo de Citygma.</p>
+                            <br/>
+                            <br/>
+                            <h4 className="refreshText">En cas de problème cliquez sur :</h4>
+                            <span className="refreshButton" onClick={this.refreshClick}><img className="pictoRefresh" src={pictoRefresh} alt="Actualiser"/> Actualiser</span>
+
 
                         </div>
                     </div>
